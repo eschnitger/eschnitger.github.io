@@ -1,7 +1,7 @@
 ---
 layout: blog
-permalink: writings/
-title: "Writings
+permalink: /writings/
+title: "Writings"
 pagination:
   enabled: true
 ---
