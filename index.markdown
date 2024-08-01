@@ -3,6 +3,6 @@
 # To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 
 layout: home
-home_text: "testing the home text"
+home_text: "Welcome | Python | SQL | R | Tableau"
 title: Eric's Portfolio
 ---
