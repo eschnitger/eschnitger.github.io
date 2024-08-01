@@ -1,24 +1,15 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2487.7">
-  <style type="text/css">
-    li.li1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; color: #0000e9; -webkit-text-stroke: #000000}
-    span.s1 {-webkit-text-stroke: 0px #000000}
-    span.s2 {text-decoration: underline ; font-kerning: none}
-    ul.ul1 {list-style-type: disc}
-  </style>
-</head>
-<body>
-<ul class="ul1">
-  <li class="li1"><span class="s1"><a href="file:///Users/ees/githubrepo/eschnitger.github.io/_includes/%7B%7B%20'/'%20%7C%20relative_url%20%7D%7D"><span class="s2">Home</span></a></span></li>
-  <li class="li1"><span class="s1"><a href="file:///Users/ees/githubrepo/eschnitger.github.io/_includes/%7B%7B%20'portfolio/'%20%7C%20relative_url%20%7D%7D"><span class="s2">Portfolio</span></a></span></li>
-  <li class="li1"><span class="s1"><a href="file:///Users/ees/githubrepo/eschnitger.github.io/_includes/%7B%7B%20'blog/'%20%7C%20relative_url%20%7D%7D"><span class="s2">Writings</span></a></span></li>
-  <li class="li1"><span class="s1"><a href="file:///Users/ees/githubrepo/eschnitger.github.io/_includes/%7B%7B%20site.resume_url%20%7C%20relative_url%20%7D%7D"><span class="s2">Resume</span></a></span></li>
-</ul>
-</body>
-</html>
+---
+title: Eric Schnitger
+layout: default
+---
+<div class="mid-section-home">
+    <h1><span>Hi. I am </span>{{ site.author_name }}</h1>
+    <div class="row sub-heading">
+        <div class="summary-about-me">
+            <p>{{ page.home_text }}</p>
+        </div>
+        <div class="nav-link">
+            {% include navigation.html %}
+        </div>
+    </div>
+</div>
