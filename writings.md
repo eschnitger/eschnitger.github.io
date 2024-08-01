@@ -6,4 +6,10 @@ pagination:
   enabled: true
 ---
 
-This is where my writings will go.
+<ul>
+  {% for post in site.posts %}
+    <li>
+      <a href="{{ post.url }}">{{ post.title }}</a>
+    </li>
+  {% endfor %}
+</ul>
