@@ -3,7 +3,6 @@ layout: description
 title: Resume
 permalink: /resume/
 ---
+[Download the PDF directly](/assets/Schnitger_Resume.pdf)
 
 ![Eric's resume](/assets/Schnitger_Resume.pdf)
-
-... and you can [download the PDF](/assets/Schnitger_Resume.pdf) directly.
