@@ -3,6 +3,6 @@
 # To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 
 layout: home
-home_text: Text
-title: [Home Page Title]
+home_text: "testing the home text"
+title: Eric's Portfolio
 ---
