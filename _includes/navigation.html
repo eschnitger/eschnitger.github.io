@@ -1,15 +1,22 @@
----
-title: Eric Schnitger
-layout: default
----
-<div class="mid-section-home">
-    <h1><span>Hi. I am </span>{{ site.author_name }}</h1>
-    <div class="row sub-heading">
-        <div class="summary-about-me">
-            <p>{{ page.home_text }}</p>
-        </div>
-        <div class="nav-link">
-            {% include navigation.html %}
-        </div>
-    </div>
-</div>
+<ul>
+      <li>
+        <a href = "{{ '/' | relative_url }}">
+          Home
+        </a>
+      </li>
+      <li>
+        <a href = "{{ 'portfolio/' | relative_url }}">
+          About
+        </a>
+      </li>
+      <li>
+        <a href = "{{ 'writings/' | relative_url }}">
+          Blog
+        </a>
+      </li>
+      <li>
+        <a href = "{{ site.resume_url | relative_url }}">
+          Resume
+        </a>
+      </li>
+</ul>
