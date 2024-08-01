@@ -1,6 +1,6 @@
 ---
 layout: blog
-permalink: /writings/
+permalink: writings/
 title: "Writings
 pagination:
   enabled: true
