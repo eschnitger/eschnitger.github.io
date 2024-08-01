@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Another Thought
+title:  "Another Thought"
 date:   2024-07-31 18:37:18 -0700
 categories: test ideas
 ---
