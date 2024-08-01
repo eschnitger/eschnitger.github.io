@@ -19,7 +19,7 @@
 # in the templates via {{ site.myvariable }}.
 
 resume_url: "Schnitger_Resume.pdf"
-author_name: "eric eliot schnitger"
+author_name: "Eric Eliot Schnitger, Ph.D."
 title: Eric Schnitger's Portfolio 
 email: e.schnitger@icloud.com
 description: Eric Schnitger is proud to show the work he has done in python, R, SQL, and Tableau. Also included are some writings from his work in ethics and policy.
