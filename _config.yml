@@ -34,6 +34,7 @@ plugins:
   - jekyll-sitemap
   - jekyll-paginate-v2
   - jekyll-assets
+  - jekyll-minifier
 
 
 ############################################################
@@ -115,3 +116,6 @@ pagination:
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
+
+jekyll-minifier:
+  exclude: 'atom.xml' # Exclude files from processing - file name, glob pattern or array of file names and glob patterns

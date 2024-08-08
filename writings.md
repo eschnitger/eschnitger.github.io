@@ -1,15 +1,7 @@
 ---
 layout: blog
 permalink: /writings/
-title: "Writings"
+title: "Writings" [Blog Page Title]
 pagination:
   enabled: true
 ---
-
-<ul>
-  {% for post in site.posts %}
-    <li>
-      <a href="{{ post.url }}">{{ post.title }}</a>
-    </li>
-  {% endfor %}
-</ul>
