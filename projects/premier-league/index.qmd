@@ -1,0 +1,27 @@
+---
+title: "Premier League: The Growing Divide"
+description: "Analyzing 33 seasons of title-winning and relegation survival points"
+date: 2026-04-27
+categories: [data-viz, sports, python]
+image: thumbnail.png
+---
+
+## Overview
+
+An interactive analysis of how the gap between Premier League champions
+and relegation survivors has grown from 1992 to 2025.
+
+## Key Findings
+
+- Title-winning points trend upward (+0.25 pts/season)
+- Relegation survival points are flat or declining
+- The gap has grown from ~35-50 pts to 50-65 pts
+
+## Interactive Chart
+
+{{< embed PremLeague.ipynb#fig-main >}}
+
+## Code
+
+The full source notebook is available on
+[GitHub](https://github.com/eschnitger/PremLeague).

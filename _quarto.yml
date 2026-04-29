@@ -1,0 +1,28 @@
+project:
+ type: website
+ output-dir: docs
+
+website:
+ title: "Eric Schnitger"
+ navbar:
+   left:
+     - text: "Home"
+       href: index.qmd
+     - text: "Projects"
+       href: projects/index.qmd
+     - text: "Writing"
+       href: writing/index.qmd
+     - text: "About"
+       href: about.qmd
+   right:
+     - icon: github
+       href: https://github.com/eschnitger
+
+format:
+ html:
+   theme: darkly        # or: flatly, cosmo, lux, journal
+   css: styles.css
+   toc: true
+
+
+

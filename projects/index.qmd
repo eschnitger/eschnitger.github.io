@@ -1,0 +1,8 @@
+---
+title: "Projects"
+listing:
+ type: grid
+ categories: true
+ sort: "date desc"
+ contents: "*/index.qmd"
+---
