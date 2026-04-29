@@ -610,7 +610,7 @@ Dataset: 33 seasons loaded</code></pre>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>top4_clubs[<span class="st">"Percentage"</span>] <span class="op">=</span> (top4_clubs[<span class="st">"Top 4 Finishes"</span>] <span class="op">/</span> <span class="bu">len</span>(df) <span class="op">*</span> <span class="dv">100</span>).<span class="bu">round</span>(<span class="dv">1</span>)</span>
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>top4_clubs.head(<span class="dv">10</span>).style.<span class="bu">format</span>({<span class="st">"Percentage"</span>: <span class="st">"</span><span class="sc">{:.1f}</span><span class="st">%"</span>}).hide(axis<span class="op">=</span><span class="st">"index"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="tbl-top4-frequency" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2026-04-29T21:26:36.536014Z&quot;,&quot;start_time&quot;:&quot;2026-04-29T21:26:36.471836Z&quot;}}" data-execution_count="25">
+<div id="tbl-top4-frequency" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="25" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2026-04-29T21:26:36.536014Z&quot;,&quot;start_time&quot;:&quot;2026-04-29T21:26:36.471836Z&quot;}}">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-top4-frequency-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;1: Most frequent Top 4 finishers (1992-2025)
@@ -696,7 +696,7 @@ Table&nbsp;1: Most frequent Top 4 finishers (1992-2025)
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>relegated_clubs.columns <span class="op">=</span> [<span class="st">"Club"</span>, <span class="st">"Times Relegated"</span>]</span>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>relegated_clubs.head(<span class="dv">10</span>).style.hide(axis<span class="op">=</span><span class="st">"index"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="tbl-relegated" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2026-04-29T21:26:42.408434Z&quot;,&quot;start_time&quot;:&quot;2026-04-29T21:26:42.380514Z&quot;}}" data-execution_count="26">
+<div id="tbl-relegated" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="26" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2026-04-29T21:26:42.408434Z&quot;,&quot;start_time&quot;:&quot;2026-04-29T21:26:42.380514Z&quot;}}">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-relegated-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;2: Most frequently relegated clubs (1992-2025)
@@ -1121,7 +1121,7 @@ Figure&nbsp;3: Clubs relegated most often from the Premier League (1992-2025)
 <span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>display_df.style.background_gradient(</span>
 <span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>   subset<span class="op">=</span>[<span class="st">"Gap"</span>], cmap<span class="op">=</span><span class="st">"YlOrRd"</span></span>
 <span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>).hide(axis<span class="op">=</span><span class="st">"index"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="tbl-full-data" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2026-04-29T21:27:38.355303Z&quot;,&quot;start_time&quot;:&quot;2026-04-29T21:27:38.322873Z&quot;}}" data-execution_count="30">
+<div id="tbl-full-data" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="30" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2026-04-29T21:27:38.355303Z&quot;,&quot;start_time&quot;:&quot;2026-04-29T21:27:38.322873Z&quot;}}">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-full-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;3: Complete Premier League season data (scroll to see all)
@@ -1726,7 +1726,7 @@ Table&nbsp;3: Complete Premier League season data (scroll to see all)
 <span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>era_comparison <span class="op">=</span> pd.DataFrame(era_stats)</span>
 <span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>era_comparison.style.<span class="bu">format</span>({<span class="st">"Avg Ratio"</span>: <span class="st">"</span><span class="sc">{:.2f}</span><span class="st">x"</span>}).hide(axis<span class="op">=</span><span class="st">"index"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="tbl-era-comparison" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2026-04-29T21:27:41.915971Z&quot;,&quot;start_time&quot;:&quot;2026-04-29T21:27:41.890326Z&quot;}}" data-execution_count="31">
+<div id="tbl-era-comparison" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="31" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2026-04-29T21:27:41.915971Z&quot;,&quot;start_time&quot;:&quot;2026-04-29T21:27:41.890326Z&quot;}}">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-era-comparison-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;4: Points comparison across Premier League eras
