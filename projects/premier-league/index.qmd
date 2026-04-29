@@ -4,6 +4,12 @@ description: "Analyzing 33 seasons of title-winning and relegation survival poin
 date: 2026-04-27
 categories: [data-viz, sports, python]
 image: thumbnail.png
+format: 
+  html:
+    self-contained: true  # This helps ensure all JS is bundled in one file
+execute:
+  enabled: true
+jupyter: python3
 ---
 
 ## Overview
@@ -20,6 +26,10 @@ and relegation survivors has grown from 1992 to 2025.
 ## Interactive Chart
 
 {{< embed PremLeague.ipynb#fig-main >}}
+
+## Whole Project:
+
+{{< embed PremLeague.ipynb >}}
 
 ## Code
 
