@@ -126,6 +126,13 @@
     "text": "Interactive Chart\n\n\n\n\n\n                            \n                                            \n\n\nFigure 1: Premier League points analysis across three dimensions: absolute points, gap, and ratio. Use the dropdown to switch between eras.\n\n\n\n\nSource: Top and Bottom of the Premiere League"
   },
   {
+    "objectID": "projects/premier-league/index.html#section",
+    "href": "projects/premier-league/index.html#section",
+    "title": "Premier League: The Growing Divide",
+    "section": "",
+    "text": "{{&lt; embed PremLeague.ipynb#&gt;}}"
+  },
+  {
     "objectID": "projects/premier-league/index.html#code",
     "href": "projects/premier-league/index.html#code",
     "title": "Premier League: The Growing Divide",
