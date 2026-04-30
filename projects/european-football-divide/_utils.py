@@ -376,7 +376,7 @@ def scrape_season(
        return None
 
    # Parse HTML tables
-    try:
+   try:
         tables = pd.read_html(io.StringIO(html))
     except ValueError:
         print(f"    ERROR: No tables found")
