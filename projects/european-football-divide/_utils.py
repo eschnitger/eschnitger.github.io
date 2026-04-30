@@ -370,15 +370,14 @@ def scrape_season(
        html = fetch_page(url)
        if html is not None:
            break
-
-    if html is None:
+   if html is None:
        print(f"    ERROR: All URL patterns failed for {start_year}/{start_year+1}")
        return None
 
-    # Parse HTML tables
-    try:
+   # Parse HTML tables
+   try:
         tables = pd.read_html(io.StringIO(html))
-    except ValueError:
+   except ValueError:
         print(f"    ERROR: No tables found")
         return None
 
