@@ -42,7 +42,7 @@ and 2011. Has PSG killed that unpredictability permanently?
 :::
 
 ```{python}
-#| label: load-data
+#| label: load-data-ligue1
 #| code-summary: "Import and load data"
 
 import sys
@@ -67,7 +67,7 @@ df[["Season", "Champion", "Title-Winning Points", "Survived Relegation",
 ## Interactive Analysis
 
 ```{python}
-#| label: fig-main
+#| label: fig-main-ligue1
 #| fig-cap: "Ligue 1: Title-winning vs. relegation survival points"
 #| code-summary: "Build visualization"
 

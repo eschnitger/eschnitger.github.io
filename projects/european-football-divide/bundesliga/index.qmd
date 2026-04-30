@@ -44,7 +44,7 @@ look so predictable?
 :::
 
 ```{python}
-#| label: load-data
+#| label: load-data-bundesliga
 #| code-summary: "Import and load data"
 
 import sys
@@ -69,7 +69,7 @@ df[["Season", "Champion", "Title-Winning Points", "Survived Relegation",
 ## Interactive Analysis
 
 ```{python}
-#| label: fig-main
+#| label: fig-main-bundesliga
 #| fig-cap: "Bundesliga: Title-winning vs. relegation survival points"
 #| code-summary: "Build visualization"
 

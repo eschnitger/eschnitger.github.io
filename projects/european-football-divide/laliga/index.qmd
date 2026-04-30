@@ -42,7 +42,7 @@ stagnated. Has the duopoly become more extreme over time?
 :::
 
 ```{python}
-#| label: load-data
+#| label: load-data-laliga
 #| code-summary: "Import and load data"
 
 import sys
@@ -67,7 +67,7 @@ df[["Season", "Champion", "Title-Winning Points", "Survived Relegation",
 ## Interactive Analysis
 
 ```{python}
-#| label: fig-main
+#| label: fig-main-laliga
 #| fig-cap: "La Liga: Title-winning vs. relegation survival points"
 #| code-summary: "Build visualization"
 

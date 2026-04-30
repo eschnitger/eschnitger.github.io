@@ -43,7 +43,7 @@ in a row. Has Italy recovered?
 :::
 
 ```{python}
-#| label: load-data
+#| label: load-data-serie-a
 #| code-summary: "Import and load data"
 
 import sys
@@ -68,7 +68,7 @@ df[["Season", "Champion", "Title-Winning Points", "Survived Relegation",
 ## Interactive Analysis
 
 ```{python}
-#| label: fig-main
+#| label: fig-main-serie-a
 #| fig-cap: "Serie A: Title-winning vs. relegation survival points"
 #| code-summary: "Build visualization"
 

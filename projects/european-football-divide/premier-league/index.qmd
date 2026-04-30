@@ -46,7 +46,7 @@ Is the Premier League becoming a two-tier league?
 :::
 
 ```{python}
-#| label: load-data
+#| label: load-data-prem
 #| code-summary: "Import utilities and load data"
 
 import sys
@@ -77,7 +77,7 @@ Use the **dropdown** to explore different eras. Each era recalculates its own
 trend line. Hover over any point to see the champion, top 4, or relegated clubs.
 
 ```{python}
-#| label: fig-main
+#| label: fig-main-prem
 #| fig-cap: "Premier League points analysis with per-era trend lines"
 #| code-summary: "Build main visualization"
 
