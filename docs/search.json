@@ -119,6 +119,13 @@
     "text": "Key Findings\n\nTitle-winning points trend upward (+0.25 pts/season)\nRelegation survival points are flat or declining\nThe gap has grown from ~35-50 pts to 50-65 pts"
   },
   {
+    "objectID": "projects/premier-league/index.html#interactive-chart",
+    "href": "projects/premier-league/index.html#interactive-chart",
+    "title": "Premier League: The Growing Divide",
+    "section": "Interactive Chart",
+    "text": "Interactive Chart\n\n\n\n\n\n                            \n                                            \n\n\nFigure 1: Premier League points analysis across three dimensions: absolute points, gap, and ratio. Use the dropdown to switch between eras.\n\n\n\n\nSource: Top and Bottom of the Premiere League"
+  },
+  {
     "objectID": "projects/premier-league/index.html#the-whole-project",
     "href": "projects/premier-league/index.html#the-whole-project",
     "title": "Premier League: The Growing Divide",
@@ -144,21 +151,21 @@
     "href": "projects/premier-league/index.html#interactive-analysis",
     "title": "Premier League: The Growing Divide",
     "section": "Interactive Analysis",
-    "text": "Interactive Analysis\nUse the dropdown menu in the top-left of the chart to explore different eras. Each era recalculates its own trend line independently.\nHover over any point to see the champion, the surviving team, or the full top 4.\n\n\n\n\n                            \n                                            \n\n\nFigure 1: Premier League points analysis across three dimensions: absolute points, gap, and ratio. Use the dropdown to switch between eras."
+    "text": "Interactive Analysis\nUse the dropdown menu in the top-left of the chart to explore different eras. Each era recalculates its own trend line independently.\nHover over any point to see the champion, the surviving team, or the full top 4.\n\n\n\n\n                            \n                                            \n\n\nFigure 2: Premier League points analysis across three dimensions: absolute points, gap, and ratio. Use the dropdown to switch between eras."
   },
   {
     "objectID": "projects/premier-league/index.html#the-top-4-lock-out",
     "href": "projects/premier-league/index.html#the-top-4-lock-out",
     "title": "Premier League: The Growing Divide",
     "section": "The Top 4 Lock-Out",
-    "text": "The Top 4 Lock-Out\nOne of the most striking patterns is how few clubs have occupied the Champions League places over 33 seasons.\n\n\n\n\n                            \n                                            \n\n\nFigure 2: Distribution of Top 4 finishes across all 33 Premier League seasons (132 total slots)"
+    "text": "The Top 4 Lock-Out\nOne of the most striking patterns is how few clubs have occupied the Champions League places over 33 seasons.\n\n\n\n\n                            \n                                            \n\n\nFigure 3: Distribution of Top 4 finishes across all 33 Premier League seasons (132 total slots)"
   },
   {
     "objectID": "projects/premier-league/index.html#the-relegation-revolving-door",
     "href": "projects/premier-league/index.html#the-relegation-revolving-door",
     "title": "Premier League: The Growing Divide",
     "section": "The Relegation Revolving Door",
-    "text": "The Relegation Revolving Door\nWhile the top is locked down by a handful of clubs, the bottom is chaos.\n\n\n\n\n                            \n                                            \n\n\nFigure 3: Clubs relegated most often from the Premier League (1992-2025)"
+    "text": "The Relegation Revolving Door\nWhile the top is locked down by a handful of clubs, the bottom is chaos.\n\n\n\n\n                            \n                                            \n\n\nFigure 4: Clubs relegated most often from the Premier League (1992-2025)"
   },
   {
     "objectID": "projects/premier-league/index.html#season-by-season-detail",
