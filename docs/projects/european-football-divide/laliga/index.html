@@ -232,7 +232,7 @@ if (window.MathJax && window.MathJax.Hub && window.MathJax.Hub.Config) {window.M
 </ul>
 </div>
 </div>
-<div id="cell-load-data" class="cell" data-execution_count="1">
+<div id="cell-load-data-laliga" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>sys.path.insert(<span class="dv">0</span>, <span class="st">".."</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -251,74 +251,10 @@ if (window.MathJax && window.MathJax.Hub && window.MathJax.Hub.Config) {window.M
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>df[[<span class="st">"Season"</span>, <span class="st">"Champion"</span>, <span class="st">"Title-Winning Points"</span>, <span class="st">"Survived Relegation"</span>,</span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>   <span class="st">"Relegation Survival Points"</span>, <span class="st">"Relegated 1"</span>, <span class="st">"Relegated 2"</span>, <span class="st">"Relegated 3"</span>]].tail(<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  [LL] Scraping La Liga (1992/1993 to 2024/2025)...
-    1992/1993...     WARNING: Only 10 valid rows for 1992/1993 (expected 20)
-FAILED
-    1993/1994...     WARNING: Only 11 valid rows for 1993/1994 (expected 20)
-FAILED
-    1994/1995...     WARNING: Only 7 valid rows for 1994/1995 (expected 20)
-FAILED
-    1995/1996...     WARNING: Only 14 valid rows for 1995/1996 (expected 22)
-FAILED
-    1996/1997...     ERROR: No tables found
-FAILED
-    1997/1998...     WARNING: Only 12 valid rows for 1997/1998 (expected 20)
-FAILED
-    1998/1999... OK
-    1999/2000...     ERROR: All URL patterns failed for 1999/2000
-FAILED
-    2000/2001...     WARNING: Only 10 valid rows for 2000/2001 (expected 20)
-FAILED
-    2001/2002...     WARNING: Only 13 valid rows for 2001/2002 (expected 20)
-FAILED
-    2002/2003...     WARNING: Only 16 valid rows for 2002/2003 (expected 20)
-FAILED
-    2003/2004...     WARNING: Only 14 valid rows for 2003/2004 (expected 20)
-FAILED
-    2004/2005...     WARNING: Only 13 valid rows for 2004/2005 (expected 20)
-FAILED
-    2005/2006... OK
-    2006/2007...     WARNING: Only 12 valid rows for 2006/2007 (expected 20)
-FAILED
-    2007/2008...     WARNING: Only 14 valid rows for 2007/2008 (expected 20)
-FAILED
-    2008/2009...     WARNING: Only 13 valid rows for 2008/2009 (expected 20)
-FAILED
-    2009/2010...     WARNING: Only 14 valid rows for 2009/2010 (expected 20)
-FAILED
-    2010/2011...     WARNING: Only 8 valid rows for 2010/2011 (expected 20)
-FAILED
-    2011/2012...     WARNING: Only 15 valid rows for 2011/2012 (expected 20)
-FAILED
-    2012/2013... OK
-    2013/2014...     WARNING: Only 14 valid rows for 2013/2014 (expected 20)
-FAILED
-    2014/2015...     WARNING: Only 13 valid rows for 2014/2015 (expected 20)
-FAILED
-    2015/2016...     WARNING: Only 12 valid rows for 2015/2016 (expected 20)
-FAILED
-    2016/2017...     WARNING: Only 16 valid rows for 2016/2017 (expected 20)
-FAILED
-    2017/2018...     WARNING: Only 13 valid rows for 2017/2018 (expected 20)
-FAILED
-    2018/2019...     WARNING: Only 9 valid rows for 2018/2019 (expected 20)
-FAILED
-    2019/2020... OK
-    2020/2021...     WARNING: Only 16 valid rows for 2020/2021 (expected 20)
-FAILED
-    2021/2022...     WARNING: Only 14 valid rows for 2021/2022 (expected 20)
-FAILED
-    2022/2023...     WARNING: Only 14 valid rows for 2022/2023 (expected 20)
-FAILED
-    2023/2024...     WARNING: Only 14 valid rows for 2023/2024 (expected 20)
-FAILED
-    2024/2025...     WARNING: Only 9 valid rows for 2024/2025 (expected 20)
-FAILED
-  [LL] Done: 4 seasons cached. Failures: 29
-    Failed years: [1992, 1993, 1994, 1995, 1996, 1997, 1999, 2000, 2001, 2002, 2003, 2004, 2006, 2007, 2008, 2009, 2010, 2011, 2013, 2014, 2015, 2016, 2017, 2018, 2020, 2021, 2022, 2023, 2024]
+<pre><code>  [LL] Using cached data (0.1 days old)
 Dataset: 4 seasons loaded</code></pre>
 </div>
-<div id="load-data" class="cell-output cell-output-display" data-execution_count="1">
+<div id="load-data-laliga" class="cell-output cell-output-display" data-execution_count="1">
 <div>
 
 
@@ -390,7 +326,7 @@ Dataset: 4 seasons loaded</code></pre>
 </section>
 <section id="interactive-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-analysis">Interactive Analysis</h2>
-<div id="cell-fig-main" class="cell" data-execution_count="2">
+<div id="cell-fig-main-laliga" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>eras <span class="op">=</span> [</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>   {<span class="st">"label"</span>: <span class="st">"Full History (1992-2025)"</span>, <span class="st">"start"</span>: df[<span class="st">"Season"</span>].iloc[<span class="dv">0</span>],</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"end"</span>: df[<span class="st">"Season"</span>].iloc[<span class="op">-</span><span class="dv">1</span>],</span>
@@ -425,13 +361,13 @@ Dataset: 4 seasons loaded</code></pre>
     WARNING: Era 'Messi/Ronaldo (2004-2018)' has invalid bounds, skipping
     WARNING: Era 'Post-Legends (2018-2025)' has invalid bounds, skipping</code></pre>
 </div>
-<div id="fig-main" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-main-laliga" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-main-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="fig-main-laliga-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div>            <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_SVG"></script><script>if (window.MathJax && window.MathJax.Hub && window.MathJax.Hub.Config) {window.MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}</script>                <script>window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
-        <script charset="utf-8" src="https://cdn.plot.ly/plotly-3.5.0.min.js" integrity="sha256-fHbNLP+GlIXN+efbQec78UkemUz3NJp7UmfGxC1tNxs=" crossorigin="anonymous"></script>                <div id="946aad61-e632-4c7d-b7f1-d609003e8def" class="plotly-graph-div" style="height:1000px; width:1100px;"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("946aad61-e632-4c7d-b7f1-d609003e8def")) {                    Plotly.newPlot(                        "946aad61-e632-4c7d-b7f1-d609003e8def",                        [{"hoverinfo":"text","hovertext":["\u003cb\u003e1998\u002f99\u003c\u002fb\u003e\u003cbr\u003e\ud83c\udfc6 Barcelona: 79 pts\u003cbr\u003e\ud83e\udd48 Real Madrid: 68 pts\u003cbr\u003e\ud83e\udd49 Mallorca: 66 pts\u003cbr\u003e4th: Valencia: 65 pts","\u003cb\u003e2005\u002f06\u003c\u002fb\u003e\u003cbr\u003e\ud83c\udfc6 Barcelona: 82 pts\u003cbr\u003e\ud83e\udd48 Real Madrid: 70 pts\u003cbr\u003e\ud83e\udd49 Valencia: 69 pts\u003cbr\u003e4th: Osasuna: 68 pts","\u003cb\u003e2012\u002f13\u003c\u002fb\u003e\u003cbr\u003e\ud83c\udfc6 Barcelona: 100 pts\u003cbr\u003e\ud83e\udd48 Real Madrid: 85 pts\u003cbr\u003e\ud83e\udd49 Atl\u00e9tico Madrid: 76 pts\u003cbr\u003e4th: Real Sociedad: 66 pts","\u003cb\u003e2019\u002f20\u003c\u002fb\u003e\u003cbr\u003e\ud83c\udfc6 Real Madrid: 87 pts\u003cbr\u003e\ud83e\udd48 Barcelona: 82 pts\u003cbr\u003e\ud83e\udd49 Atl\u00e9tico Madrid: 70 pts\u003cbr\u003e4th: Sevilla: 70 pts"],"line":{"color":"#FFD54F","width":3},"marker":{"size":7},"mode":"lines+markers","name":"Title-Winning Points","showlegend":true,"visible":true,"x":["1998\u002f99","2005\u002f06","2012\u002f13","2019\u002f20"],"y":{"dtype":"i1","bdata":"T1JkVw=="},"type":"scatter","xaxis":"x","yaxis":"y"},{"hoverinfo":"skip","line":{"color":"#FFD54F","dash":"dash","width":2},"mode":"lines","name":"Title Trend (+4.20 pts\u002fyr)","showlegend":true,"visible":true,"x":["1998\u002f99","2005\u002f06","2012\u002f13","2019\u002f20"],"y":{"dtype":"f8","bdata":"yszMzMwsVECYmZmZmTlVQGVmZmZmRlZAMzMzMzNTV0A="},"type":"scatter","xaxis":"x","yaxis":"y"},{"hoverinfo":"text","hovertext":["\u003cb\u003e1998\u002f99\u003c\u002fb\u003e\u003cbr\u003e\ud83e\ude82 Survived: Extremadura (39 pts)\u003cbr\u003e\u274c Villarreal | Tenerife | Salamanca","\u003cb\u003e2005\u002f06\u003c\u002fb\u003e\u003cbr\u003e\ud83e\ude82 Survived: Racing Santander (40 pts)\u003cbr\u003e\u274c Alav\u00e9s | C\u00e1diz | M\u00e1laga","\u003cb\u003e2012\u002f13\u003c\u002fb\u003e\u003cbr\u003e\ud83e\ude82 Survived: Celta Vigo (37 pts)\u003cbr\u003e\u274c Mallorca | Deportivo La Coru\u00f1a | Zaragoza","\u003cb\u003e2019\u002f20\u003c\u002fb\u003e\u003cbr\u003e\ud83e\ude82 Survived: Celta Vigo (37 pts)\u003cbr\u003e\u274c Legan\u00e9s | Mallorca | Espanyol"],"line":{"color":"#AB47BC","width":3},"marker":{"size":7},"mode":"lines+markers","name":"Relegation Survival Points","showlegend":true,"visible":true,"x":["1998\u002f99","2005\u002f06","2012\u002f13","2019\u002f20"],"y":{"dtype":"i1","bdata":"JyglJQ=="},"type":"scatter","xaxis":"x","yaxis":"y"},{"hoverinfo":"skip","line":{"color":"#AB47BC","dash":"dash","width":2},"mode":"lines","name":"Relegation Trend (-0.90 pts\u002fyr)","showlegend":true,"visible":true,"x":["1998\u002f99","2005\u002f06","2012\u002f13","2019\u002f20"],"y":{"dtype":"f8","bdata":"zMzMzMzMQ0CZmZmZmVlDQGZmZmZm5kJAMzMzMzNzQkA="},"type":"scatter","xaxis":"x","yaxis":"y"},{"fill":"toself","fillcolor":"rgba(255, 255, 255, 0.05)","hoverinfo":"skip","line":{"width":0},"showlegend":false,"visible":true,"x":["1998\u002f99","2005\u002f06","2012\u002f13","2019\u002f20","2019\u002f20","2012\u002f13","2005\u002f06","1998\u002f99"],"y":[79,82,100,87,37,37,40,39],"type":"scatter","xaxis":"x","yaxis":"y"},{"hovertemplate":"\u003cb\u003e%{x}\u003c\u002fb\u003e\u003cbr\u003eGap: %{y} pts\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":["rgba(180, 180, 100, 0.85)","rgba(186, 172, 100, 0.85)","rgba(249, 88, 100, 0.85)","rgba(210, 140, 100, 0.85)"],"line":{"width":0}},"name":"Points Gap","showlegend":true,"visible":true,"x":["1998\u002f99","2005\u002f06","2012\u002f13","2019\u002f20"],"y":{"dtype":"i1","bdata":"KCo\u002fMg=="},"type":"bar","xaxis":"x2","yaxis":"y2"},{"hoverinfo":"skip","line":{"color":"#FFD54F","dash":"dash","width":2},"mode":"lines","name":"Gap Trend (+5.10 pts\u002fyr)","showlegend":true,"visible":true,"x":["1998\u002f99","2005\u002f06","2012\u002f13","2019\u002f20"],"y":{"dtype":"f8","bdata":"zMzMzMyMRECamZmZmRlHQGdmZmZmpklANDMzMzMzTEA="},"type":"scatter","xaxis":"x2","yaxis":"y2"},{"hovertemplate":"\u003cb\u003e%{x}\u003c\u002fb\u003e\u003cbr\u003eRatio: %{y:.2f}x\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#AB47BC","width":3},"marker":{"size":6},"mode":"lines+markers","name":"Points Ratio","showlegend":true,"visible":true,"x":["1998\u002f99","2005\u002f06","2012\u002f13","2019\u002f20"],"y":{"dtype":"f8","bdata":"PQrXo3A9AEBmZmZmZmYAQJqZmZmZmQVAzczMzMzMAkA="},"type":"scatter","xaxis":"x3","yaxis":"y3"},{"hoverinfo":"skip","line":{"color":"#AB47BC","dash":"dash","width":2},"mode":"lines","name":"Ratio Trend (+0.161\u002fyr)","showlegend":true,"visible":true,"x":["1998\u002f99","2005\u002f06","2012\u002f13","2019\u002f20"],"y":{"dtype":"f8","bdata":"hRbZzvdTAEADVg4tsp0BQIGVQ4ts5wJA\u002f9R46SYxBEA="},"type":"scatter","xaxis":"x3","yaxis":"y3"},{"showlegend":false,"visible":false,"x":[],"y":[],"type":"scatter","xaxis":"x","yaxis":"y"},{"showlegend":false,"visible":false,"x":[],"y":[],"type":"scatter","xaxis":"x","yaxis":"y"},{"showlegend":false,"visible":false,"x":[],"y":[],"type":"scatter","xaxis":"x","yaxis":"y"},{"showlegend":false,"visible":false,"x":[],"y":[],"type":"scatter","xaxis":"x","yaxis":"y"},{"showlegend":false,"visible":false,"x":[],"y":[],"type":"scatter","xaxis":"x","yaxis":"y"},{"showlegend":false,"visible":false,"x":[],"y":[],"type":"scatter","xaxis":"x","yaxis":"y"},{"showlegend":false,"visible":false,"x":[],"y":[],"type":"scatter","xaxis":"x","yaxis":"y"},{"showlegend":false,"visible":false,"x":[],"y":[],"type":"scatter","xaxis":"x","yaxis":"y"},{"showlegend":false,"visible":false,"x":[],"y":[],"type":"scatter","xaxis":"x","yaxis":"y"},{"showlegend":false,"visible":false,"x":[],"y":[],"type":"scatter","xaxis":"x","yaxis":"y"},{"showlegend":false,"visible":false,"x":[],"y":[],"type":"scatter","xaxis":"x","yaxis":"y"},{"showlegend":false,"visible":false,"x":[],"y":[],"type":"scatter","xaxis":"x","yaxis":"y"},{"showlegend":false,"visible":false,"x":[],"y":[],"type":"scatter","xaxis":"x","yaxis":"y"},{"showlegend":false,"visible":false,"x":[],"y":[],"type":"scatter","xaxis":"x","yaxis":"y"},{"showlegend":false,"visible":false,"x":[],"y":[],"type":"scatter","xaxis":"x","yaxis":"y"},{"showlegend":false,"visible":false,"x":[],"y":[],"type":"scatter","xaxis":"x","yaxis":"y"},{"showlegend":false,"visible":false,"x":[],"y":[],"type":"scatter","xaxis":"x","yaxis":"y"},{"showlegend":false,"visible":false,"x":[],"y":[],"type":"scatter","xaxis":"x","yaxis":"y"},{"showlegend":false,"visible":false,"x":[],"y":[],"type":"scatter","xaxis":"x","yaxis":"y"},{"showlegend":false,"visible":false,"x":[],"y":[],"type":"scatter","xaxis":"x","yaxis":"y"},{"showlegend":false,"visible":false,"x":[],"y":[],"type":"scatter","xaxis":"x","yaxis":"y"},{"showlegend":false,"visible":false,"x":[],"y":[],"type":"scatter","xaxis":"x","yaxis":"y"},{"showlegend":false,"visible":false,"x":[],"y":[],"type":"scatter","xaxis":"x","yaxis":"y"},{"showlegend":false,"visible":false,"x":[],"y":[],"type":"scatter","xaxis":"x","yaxis":"y"},{"showlegend":false,"visible":false,"x":[],"y":[],"type":"scatter","xaxis":"x","yaxis":"y"},{"showlegend":false,"visible":false,"x":[],"y":[],"type":"scatter","xaxis":"x","yaxis":"y"},{"showlegend":false,"visible":false,"x":[],"y":[],"type":"scatter","xaxis":"x","yaxis":"y"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"rgb(17,17,17)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#f2f5fa"},"error_y":{"color":"#f2f5fa"},"marker":{"line":{"color":"rgb(17,17,17)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#A2B1C6","gridcolor":"#506784","linecolor":"#506784","minorgridcolor":"#506784","startlinecolor":"#A2B1C6"},"baxis":{"endlinecolor":"#A2B1C6","gridcolor":"#506784","linecolor":"#506784","minorgridcolor":"#506784","startlinecolor":"#A2B1C6"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"line":{"color":"#283442"}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"marker":{"line":{"color":"#283442"}},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#506784"},"line":{"color":"rgb(17,17,17)"}},"header":{"fill":{"color":"#2a3f5f"},"line":{"color":"rgb(17,17,17)"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#f2f5fa","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#f2f5fa"},"geo":{"bgcolor":"rgb(17,17,17)","lakecolor":"rgb(17,17,17)","landcolor":"rgb(17,17,17)","showlakes":true,"showland":true,"subunitcolor":"#506784"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"dark"},"margin":{"b":0,"l":0,"r":0,"t":30},"paper_bgcolor":"rgb(17,17,17)","plot_bgcolor":"rgb(17,17,17)","polar":{"angularaxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""},"bgcolor":"rgb(17,17,17)","radialaxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"rgb(17,17,17)","gridcolor":"#506784","gridwidth":2,"linecolor":"#506784","showbackground":true,"ticks":"","zerolinecolor":"#C8D4E3"},"yaxis":{"backgroundcolor":"rgb(17,17,17)","gridcolor":"#506784","gridwidth":2,"linecolor":"#506784","showbackground":true,"ticks":"","zerolinecolor":"#C8D4E3"},"zaxis":{"backgroundcolor":"rgb(17,17,17)","gridcolor":"#506784","gridwidth":2,"linecolor":"#506784","showbackground":true,"ticks":"","zerolinecolor":"#C8D4E3"}},"shapedefaults":{"line":{"color":"#f2f5fa"}},"sliderdefaults":{"bgcolor":"#C8D4E3","bordercolor":"rgb(17,17,17)","borderwidth":1,"tickwidth":0},"ternary":{"aaxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""},"baxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""},"bgcolor":"rgb(17,17,17)","caxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""}},"title":{"x":0.05},"updatemenudefaults":{"bgcolor":"#506784","borderwidth":0},"xaxis":{"automargin":true,"gridcolor":"#283442","linecolor":"#506784","ticks":"","title":{"standoff":15},"zerolinecolor":"#283442","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#283442","linecolor":"#506784","ticks":"","title":{"standoff":15},"zerolinecolor":"#283442","zerolinewidth":2}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"matches":"x3","showticklabels":false},"yaxis":{"anchor":"x","domain":[0.58,1.0],"title":{"text":"Points"}},"xaxis2":{"anchor":"y2","domain":[0.0,1.0],"matches":"x3","showticklabels":false},"yaxis2":{"anchor":"x2","domain":[0.29,0.5],"title":{"text":"Gap (pts)"}},"xaxis3":{"anchor":"y3","domain":[0.0,1.0],"tickangle":-45,"dtick":3},"yaxis3":{"anchor":"x3","domain":[0.0,0.21],"title":{"text":"Ratio"}},"annotations":[{"font":{"size":11,"color":"rgba(255,255,255,0.5)"},"showarrow":false,"text":"2.5x","x":1.01,"xanchor":"left","xref":"x3 domain","y":2.5,"yanchor":"bottom","yref":"y3"},{"font":{"size":11,"color":"rgba(255,255,255,0.5)"},"showarrow":false,"text":"2.5x","x":1.01,"xanchor":"left","xref":"x3 domain","y":2.5,"yanchor":"bottom","yref":"y3"},{"font":{"size":11,"color":"rgba(255,255,255,0.5)"},"showarrow":false,"text":"2.5x","x":1.01,"xanchor":"left","xref":"x3 domain","y":2.5,"yanchor":"bottom","yref":"y3"}],"shapes":[{"line":{"color":"rgba(255,255,255,0.3)","dash":"dot"},"type":"line","x0":0,"x1":1,"xref":"x3 domain","y0":2.5,"y1":2.5,"yref":"y3"}],"title":{"font":{"size":18},"text":"La Liga: The Duopoly (1992-2025)"},"legend":{"font":{"size":10},"orientation":"h","yanchor":"bottom","y":1.05,"xanchor":"center","x":0.5},"margin":{"t":150},"height":1000,"width":1100,"hovermode":"closest","updatemenus":[{"active":0,"bgcolor":"rgba(50, 50, 50, 0.9)","bordercolor":"rgba(255, 255, 255, 0.3)","buttons":[{"args":[{"visible":[true,true,true,true,true,true,true,true,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]},{"title.text":"La Liga: The Duopoly (1992-2025)","annotations":[{"x":1.01,"y":2.5,"xref":"x3 domain","yref":"y3","text":"2.5x","showarrow":false,"font":{"color":"rgba(255,255,255,0.5)","size":11},"xanchor":"left"}]}],"label":"Full History (1992-2025)","method":"update"},{"args":[{"visible":[false,false,false,false,false,false,false,false,false,true,true,true,true,true,true,true,true,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]},{"title.text":"La Liga: Classic Duopoly (1992-2004)","annotations":[{"x":1.01,"y":2.5,"xref":"x3 domain","yref":"y3","text":"2.5x","showarrow":false,"font":{"color":"rgba(255,255,255,0.5)","size":11},"xanchor":"left"}]}],"label":"Classic Era (1992-2004)","method":"update"},{"args":[{"visible":[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,true,true,true,true,true,true,true,true,false,false,false,false,false,false,false,false,false]},{"title.text":"La Liga: The Messi\u002fRonaldo Era (2004-2018)","annotations":[{"x":1.01,"y":2.5,"xref":"x3 domain","yref":"y3","text":"2.5x","showarrow":false,"font":{"color":"rgba(255,255,255,0.5)","size":11},"xanchor":"left"}]}],"label":"Messi\u002fRonaldo (2004-2018)","method":"update"},{"args":[{"visible":[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,true,true,true,true,true,true,true,true]},{"title.text":"La Liga: Post-Legends (2018-2025)","annotations":[{"x":1.01,"y":2.5,"xref":"x3 domain","yref":"y3","text":"2.5x","showarrow":false,"font":{"color":"rgba(255,255,255,0.5)","size":11},"xanchor":"left"}]}],"label":"Post-Legends (2018-2025)","method":"update"}],"direction":"down","font":{"color":"white","size":12},"type":"dropdown","x":0.0,"xanchor":"left","y":1.18,"yanchor":"top"}]},                        {"responsive": true}                    ).then(function(){
+        <script charset="utf-8" src="https://cdn.plot.ly/plotly-3.5.0.min.js" integrity="sha256-fHbNLP+GlIXN+efbQec78UkemUz3NJp7UmfGxC1tNxs=" crossorigin="anonymous"></script>                <div id="1f99ff6a-297c-4a7d-9915-4c9777e6dd80" class="plotly-graph-div" style="height:1000px; width:1100px;"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("1f99ff6a-297c-4a7d-9915-4c9777e6dd80")) {                    Plotly.newPlot(                        "1f99ff6a-297c-4a7d-9915-4c9777e6dd80",                        [{"hoverinfo":"text","hovertext":["\u003cb\u003e1998\u002f99\u003c\u002fb\u003e\u003cbr\u003e\ud83c\udfc6 Barcelona: 79 pts\u003cbr\u003e\ud83e\udd48 Real Madrid: 68 pts\u003cbr\u003e\ud83e\udd49 Mallorca: 66 pts\u003cbr\u003e4th: Valencia: 65 pts","\u003cb\u003e2005\u002f06\u003c\u002fb\u003e\u003cbr\u003e\ud83c\udfc6 Barcelona: 82 pts\u003cbr\u003e\ud83e\udd48 Real Madrid: 70 pts\u003cbr\u003e\ud83e\udd49 Valencia: 69 pts\u003cbr\u003e4th: Osasuna: 68 pts","\u003cb\u003e2012\u002f13\u003c\u002fb\u003e\u003cbr\u003e\ud83c\udfc6 Barcelona: 100 pts\u003cbr\u003e\ud83e\udd48 Real Madrid: 85 pts\u003cbr\u003e\ud83e\udd49 Atl\u00e9tico Madrid: 76 pts\u003cbr\u003e4th: Real Sociedad: 66 pts","\u003cb\u003e2019\u002f20\u003c\u002fb\u003e\u003cbr\u003e\ud83c\udfc6 Real Madrid: 87 pts\u003cbr\u003e\ud83e\udd48 Barcelona: 82 pts\u003cbr\u003e\ud83e\udd49 Atl\u00e9tico Madrid: 70 pts\u003cbr\u003e4th: Sevilla: 70 pts"],"line":{"color":"#FFD54F","width":3},"marker":{"size":7},"mode":"lines+markers","name":"Title-Winning Points","showlegend":true,"visible":true,"x":["1998\u002f99","2005\u002f06","2012\u002f13","2019\u002f20"],"y":{"dtype":"i1","bdata":"T1JkVw=="},"type":"scatter","xaxis":"x","yaxis":"y"},{"hoverinfo":"skip","line":{"color":"#FFD54F","dash":"dash","width":2},"mode":"lines","name":"Title Trend (+4.20 pts\u002fyr)","showlegend":true,"visible":true,"x":["1998\u002f99","2005\u002f06","2012\u002f13","2019\u002f20"],"y":{"dtype":"f8","bdata":"yszMzMwsVECYmZmZmTlVQGVmZmZmRlZAMzMzMzNTV0A="},"type":"scatter","xaxis":"x","yaxis":"y"},{"hoverinfo":"text","hovertext":["\u003cb\u003e1998\u002f99\u003c\u002fb\u003e\u003cbr\u003e\ud83e\ude82 Survived: Extremadura (39 pts)\u003cbr\u003e\u274c Villarreal | Tenerife | Salamanca","\u003cb\u003e2005\u002f06\u003c\u002fb\u003e\u003cbr\u003e\ud83e\ude82 Survived: Racing Santander (40 pts)\u003cbr\u003e\u274c Alav\u00e9s | C\u00e1diz | M\u00e1laga","\u003cb\u003e2012\u002f13\u003c\u002fb\u003e\u003cbr\u003e\ud83e\ude82 Survived: Celta Vigo (37 pts)\u003cbr\u003e\u274c Mallorca | Deportivo La Coru\u00f1a | Zaragoza","\u003cb\u003e2019\u002f20\u003c\u002fb\u003e\u003cbr\u003e\ud83e\ude82 Survived: Celta Vigo (37 pts)\u003cbr\u003e\u274c Legan\u00e9s | Mallorca | Espanyol"],"line":{"color":"#AB47BC","width":3},"marker":{"size":7},"mode":"lines+markers","name":"Relegation Survival Points","showlegend":true,"visible":true,"x":["1998\u002f99","2005\u002f06","2012\u002f13","2019\u002f20"],"y":{"dtype":"i1","bdata":"JyglJQ=="},"type":"scatter","xaxis":"x","yaxis":"y"},{"hoverinfo":"skip","line":{"color":"#AB47BC","dash":"dash","width":2},"mode":"lines","name":"Relegation Trend (-0.90 pts\u002fyr)","showlegend":true,"visible":true,"x":["1998\u002f99","2005\u002f06","2012\u002f13","2019\u002f20"],"y":{"dtype":"f8","bdata":"zMzMzMzMQ0CZmZmZmVlDQGZmZmZm5kJAMzMzMzNzQkA="},"type":"scatter","xaxis":"x","yaxis":"y"},{"fill":"toself","fillcolor":"rgba(255, 255, 255, 0.05)","hoverinfo":"skip","line":{"width":0},"showlegend":false,"visible":true,"x":["1998\u002f99","2005\u002f06","2012\u002f13","2019\u002f20","2019\u002f20","2012\u002f13","2005\u002f06","1998\u002f99"],"y":[79,82,100,87,37,37,40,39],"type":"scatter","xaxis":"x","yaxis":"y"},{"hovertemplate":"\u003cb\u003e%{x}\u003c\u002fb\u003e\u003cbr\u003eGap: %{y} pts\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":["rgba(180, 180, 100, 0.85)","rgba(186, 172, 100, 0.85)","rgba(249, 88, 100, 0.85)","rgba(210, 140, 100, 0.85)"],"line":{"width":0}},"name":"Points Gap","showlegend":true,"visible":true,"x":["1998\u002f99","2005\u002f06","2012\u002f13","2019\u002f20"],"y":{"dtype":"i1","bdata":"KCo\u002fMg=="},"type":"bar","xaxis":"x2","yaxis":"y2"},{"hoverinfo":"skip","line":{"color":"#FFD54F","dash":"dash","width":2},"mode":"lines","name":"Gap Trend (+5.10 pts\u002fyr)","showlegend":true,"visible":true,"x":["1998\u002f99","2005\u002f06","2012\u002f13","2019\u002f20"],"y":{"dtype":"f8","bdata":"zMzMzMyMRECamZmZmRlHQGdmZmZmpklANDMzMzMzTEA="},"type":"scatter","xaxis":"x2","yaxis":"y2"},{"hovertemplate":"\u003cb\u003e%{x}\u003c\u002fb\u003e\u003cbr\u003eRatio: %{y:.2f}x\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#AB47BC","width":3},"marker":{"size":6},"mode":"lines+markers","name":"Points Ratio","showlegend":true,"visible":true,"x":["1998\u002f99","2005\u002f06","2012\u002f13","2019\u002f20"],"y":{"dtype":"f8","bdata":"PQrXo3A9AEBmZmZmZmYAQJqZmZmZmQVAzczMzMzMAkA="},"type":"scatter","xaxis":"x3","yaxis":"y3"},{"hoverinfo":"skip","line":{"color":"#AB47BC","dash":"dash","width":2},"mode":"lines","name":"Ratio Trend (+0.161\u002fyr)","showlegend":true,"visible":true,"x":["1998\u002f99","2005\u002f06","2012\u002f13","2019\u002f20"],"y":{"dtype":"f8","bdata":"hRbZzvdTAEADVg4tsp0BQIGVQ4ts5wJA\u002f9R46SYxBEA="},"type":"scatter","xaxis":"x3","yaxis":"y3"},{"showlegend":false,"visible":false,"x":[],"y":[],"type":"scatter","xaxis":"x","yaxis":"y"},{"showlegend":false,"visible":false,"x":[],"y":[],"type":"scatter","xaxis":"x","yaxis":"y"},{"showlegend":false,"visible":false,"x":[],"y":[],"type":"scatter","xaxis":"x","yaxis":"y"},{"showlegend":false,"visible":false,"x":[],"y":[],"type":"scatter","xaxis":"x","yaxis":"y"},{"showlegend":false,"visible":false,"x":[],"y":[],"type":"scatter","xaxis":"x","yaxis":"y"},{"showlegend":false,"visible":false,"x":[],"y":[],"type":"scatter","xaxis":"x","yaxis":"y"},{"showlegend":false,"visible":false,"x":[],"y":[],"type":"scatter","xaxis":"x","yaxis":"y"},{"showlegend":false,"visible":false,"x":[],"y":[],"type":"scatter","xaxis":"x","yaxis":"y"},{"showlegend":false,"visible":false,"x":[],"y":[],"type":"scatter","xaxis":"x","yaxis":"y"},{"showlegend":false,"visible":false,"x":[],"y":[],"type":"scatter","xaxis":"x","yaxis":"y"},{"showlegend":false,"visible":false,"x":[],"y":[],"type":"scatter","xaxis":"x","yaxis":"y"},{"showlegend":false,"visible":false,"x":[],"y":[],"type":"scatter","xaxis":"x","yaxis":"y"},{"showlegend":false,"visible":false,"x":[],"y":[],"type":"scatter","xaxis":"x","yaxis":"y"},{"showlegend":false,"visible":false,"x":[],"y":[],"type":"scatter","xaxis":"x","yaxis":"y"},{"showlegend":false,"visible":false,"x":[],"y":[],"type":"scatter","xaxis":"x","yaxis":"y"},{"showlegend":false,"visible":false,"x":[],"y":[],"type":"scatter","xaxis":"x","yaxis":"y"},{"showlegend":false,"visible":false,"x":[],"y":[],"type":"scatter","xaxis":"x","yaxis":"y"},{"showlegend":false,"visible":false,"x":[],"y":[],"type":"scatter","xaxis":"x","yaxis":"y"},{"showlegend":false,"visible":false,"x":[],"y":[],"type":"scatter","xaxis":"x","yaxis":"y"},{"showlegend":false,"visible":false,"x":[],"y":[],"type":"scatter","xaxis":"x","yaxis":"y"},{"showlegend":false,"visible":false,"x":[],"y":[],"type":"scatter","xaxis":"x","yaxis":"y"},{"showlegend":false,"visible":false,"x":[],"y":[],"type":"scatter","xaxis":"x","yaxis":"y"},{"showlegend":false,"visible":false,"x":[],"y":[],"type":"scatter","xaxis":"x","yaxis":"y"},{"showlegend":false,"visible":false,"x":[],"y":[],"type":"scatter","xaxis":"x","yaxis":"y"},{"showlegend":false,"visible":false,"x":[],"y":[],"type":"scatter","xaxis":"x","yaxis":"y"},{"showlegend":false,"visible":false,"x":[],"y":[],"type":"scatter","xaxis":"x","yaxis":"y"},{"showlegend":false,"visible":false,"x":[],"y":[],"type":"scatter","xaxis":"x","yaxis":"y"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"rgb(17,17,17)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#f2f5fa"},"error_y":{"color":"#f2f5fa"},"marker":{"line":{"color":"rgb(17,17,17)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#A2B1C6","gridcolor":"#506784","linecolor":"#506784","minorgridcolor":"#506784","startlinecolor":"#A2B1C6"},"baxis":{"endlinecolor":"#A2B1C6","gridcolor":"#506784","linecolor":"#506784","minorgridcolor":"#506784","startlinecolor":"#A2B1C6"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"line":{"color":"#283442"}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"marker":{"line":{"color":"#283442"}},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#506784"},"line":{"color":"rgb(17,17,17)"}},"header":{"fill":{"color":"#2a3f5f"},"line":{"color":"rgb(17,17,17)"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#f2f5fa","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#f2f5fa"},"geo":{"bgcolor":"rgb(17,17,17)","lakecolor":"rgb(17,17,17)","landcolor":"rgb(17,17,17)","showlakes":true,"showland":true,"subunitcolor":"#506784"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"dark"},"margin":{"b":0,"l":0,"r":0,"t":30},"paper_bgcolor":"rgb(17,17,17)","plot_bgcolor":"rgb(17,17,17)","polar":{"angularaxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""},"bgcolor":"rgb(17,17,17)","radialaxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"rgb(17,17,17)","gridcolor":"#506784","gridwidth":2,"linecolor":"#506784","showbackground":true,"ticks":"","zerolinecolor":"#C8D4E3"},"yaxis":{"backgroundcolor":"rgb(17,17,17)","gridcolor":"#506784","gridwidth":2,"linecolor":"#506784","showbackground":true,"ticks":"","zerolinecolor":"#C8D4E3"},"zaxis":{"backgroundcolor":"rgb(17,17,17)","gridcolor":"#506784","gridwidth":2,"linecolor":"#506784","showbackground":true,"ticks":"","zerolinecolor":"#C8D4E3"}},"shapedefaults":{"line":{"color":"#f2f5fa"}},"sliderdefaults":{"bgcolor":"#C8D4E3","bordercolor":"rgb(17,17,17)","borderwidth":1,"tickwidth":0},"ternary":{"aaxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""},"baxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""},"bgcolor":"rgb(17,17,17)","caxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""}},"title":{"x":0.05},"updatemenudefaults":{"bgcolor":"#506784","borderwidth":0},"xaxis":{"automargin":true,"gridcolor":"#283442","linecolor":"#506784","ticks":"","title":{"standoff":15},"zerolinecolor":"#283442","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#283442","linecolor":"#506784","ticks":"","title":{"standoff":15},"zerolinecolor":"#283442","zerolinewidth":2}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"matches":"x3","showticklabels":false},"yaxis":{"anchor":"x","domain":[0.58,1.0],"title":{"text":"Points"}},"xaxis2":{"anchor":"y2","domain":[0.0,1.0],"matches":"x3","showticklabels":false},"yaxis2":{"anchor":"x2","domain":[0.29,0.5],"title":{"text":"Gap (pts)"}},"xaxis3":{"anchor":"y3","domain":[0.0,1.0],"tickangle":-45,"dtick":3},"yaxis3":{"anchor":"x3","domain":[0.0,0.21],"title":{"text":"Ratio"}},"annotations":[{"font":{"size":11,"color":"rgba(255,255,255,0.5)"},"showarrow":false,"text":"2.5x","x":1.01,"xanchor":"left","xref":"x3 domain","y":2.5,"yanchor":"bottom","yref":"y3"},{"font":{"size":11,"color":"rgba(255,255,255,0.5)"},"showarrow":false,"text":"2.5x","x":1.01,"xanchor":"left","xref":"x3 domain","y":2.5,"yanchor":"bottom","yref":"y3"},{"font":{"size":11,"color":"rgba(255,255,255,0.5)"},"showarrow":false,"text":"2.5x","x":1.01,"xanchor":"left","xref":"x3 domain","y":2.5,"yanchor":"bottom","yref":"y3"}],"shapes":[{"line":{"color":"rgba(255,255,255,0.3)","dash":"dot"},"type":"line","x0":0,"x1":1,"xref":"x3 domain","y0":2.5,"y1":2.5,"yref":"y3"}],"title":{"font":{"size":18},"text":"La Liga: The Duopoly (1992-2025)"},"legend":{"font":{"size":10},"orientation":"h","yanchor":"bottom","y":1.05,"xanchor":"center","x":0.5},"margin":{"t":150},"height":1000,"width":1100,"hovermode":"closest","updatemenus":[{"active":0,"bgcolor":"rgba(50, 50, 50, 0.9)","bordercolor":"rgba(255, 255, 255, 0.3)","buttons":[{"args":[{"visible":[true,true,true,true,true,true,true,true,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]},{"title.text":"La Liga: The Duopoly (1992-2025)","annotations":[{"x":1.01,"y":2.5,"xref":"x3 domain","yref":"y3","text":"2.5x","showarrow":false,"font":{"color":"rgba(255,255,255,0.5)","size":11},"xanchor":"left"}]}],"label":"Full History (1992-2025)","method":"update"},{"args":[{"visible":[false,false,false,false,false,false,false,false,false,true,true,true,true,true,true,true,true,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]},{"title.text":"La Liga: Classic Duopoly (1992-2004)","annotations":[{"x":1.01,"y":2.5,"xref":"x3 domain","yref":"y3","text":"2.5x","showarrow":false,"font":{"color":"rgba(255,255,255,0.5)","size":11},"xanchor":"left"}]}],"label":"Classic Era (1992-2004)","method":"update"},{"args":[{"visible":[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,true,true,true,true,true,true,true,true,false,false,false,false,false,false,false,false,false]},{"title.text":"La Liga: The Messi\u002fRonaldo Era (2004-2018)","annotations":[{"x":1.01,"y":2.5,"xref":"x3 domain","yref":"y3","text":"2.5x","showarrow":false,"font":{"color":"rgba(255,255,255,0.5)","size":11},"xanchor":"left"}]}],"label":"Messi\u002fRonaldo (2004-2018)","method":"update"},{"args":[{"visible":[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,true,true,true,true,true,true,true,true]},{"title.text":"La Liga: Post-Legends (2018-2025)","annotations":[{"x":1.01,"y":2.5,"xref":"x3 domain","yref":"y3","text":"2.5x","showarrow":false,"font":{"color":"rgba(255,255,255,0.5)","size":11},"xanchor":"left"}]}],"label":"Post-Legends (2018-2025)","method":"update"}],"direction":"down","font":{"color":"white","size":12},"type":"dropdown","x":0.0,"xanchor":"left","y":1.18,"yanchor":"top"}]},                        {"responsive": true}                    ).then(function(){
                             
-var gd = document.getElementById('946aad61-e632-4c7d-b7f1-d609003e8def');
+var gd = document.getElementById('1f99ff6a-297c-4a7d-9915-4c9777e6dd80');
 var x = new MutationObserver(function (mutations, observer) {{
         var display = window.getComputedStyle(gd).display;
         if (!display || display === 'none') {{
@@ -455,7 +391,7 @@ if (outputEl) {{
 
                         })                };            </script>        </div>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-main-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-main-laliga-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1: La Liga: Title-winning vs.&nbsp;relegation survival points
 </figcaption>
 </figure>
@@ -477,54 +413,54 @@ Table&nbsp;1: Most frequent La Liga Top 4 finishers
 <style type="text/css">
 </style>
 
-<table id="T_b3fbb" class="cell caption-top table table-sm table-striped small">
+<table id="T_08bff" class="cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
-<th id="T_b3fbb_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Club</th>
-<th id="T_b3fbb_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Top 4 Finishes</th>
-<th id="T_b3fbb_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">Percentage</th>
+<th id="T_08bff_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Club</th>
+<th id="T_08bff_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Top 4 Finishes</th>
+<th id="T_08bff_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">Percentage</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td id="T_b3fbb_row0_col0" class="data row0 col0">Barcelona</td>
-<td id="T_b3fbb_row0_col1" class="data row0 col1">4</td>
-<td id="T_b3fbb_row0_col2" class="data row0 col2">100.0%</td>
+<td id="T_08bff_row0_col0" class="data row0 col0">Barcelona</td>
+<td id="T_08bff_row0_col1" class="data row0 col1">4</td>
+<td id="T_08bff_row0_col2" class="data row0 col2">100.0%</td>
 </tr>
 <tr class="even">
-<td id="T_b3fbb_row1_col0" class="data row1 col0">Real Madrid</td>
-<td id="T_b3fbb_row1_col1" class="data row1 col1">4</td>
-<td id="T_b3fbb_row1_col2" class="data row1 col2">100.0%</td>
+<td id="T_08bff_row1_col0" class="data row1 col0">Real Madrid</td>
+<td id="T_08bff_row1_col1" class="data row1 col1">4</td>
+<td id="T_08bff_row1_col2" class="data row1 col2">100.0%</td>
 </tr>
 <tr class="odd">
-<td id="T_b3fbb_row2_col0" class="data row2 col0">Valencia</td>
-<td id="T_b3fbb_row2_col1" class="data row2 col1">2</td>
-<td id="T_b3fbb_row2_col2" class="data row2 col2">50.0%</td>
+<td id="T_08bff_row2_col0" class="data row2 col0">Valencia</td>
+<td id="T_08bff_row2_col1" class="data row2 col1">2</td>
+<td id="T_08bff_row2_col2" class="data row2 col2">50.0%</td>
 </tr>
 <tr class="even">
-<td id="T_b3fbb_row3_col0" class="data row3 col0">Atlético Madrid</td>
-<td id="T_b3fbb_row3_col1" class="data row3 col1">2</td>
-<td id="T_b3fbb_row3_col2" class="data row3 col2">50.0%</td>
+<td id="T_08bff_row3_col0" class="data row3 col0">Atlético Madrid</td>
+<td id="T_08bff_row3_col1" class="data row3 col1">2</td>
+<td id="T_08bff_row3_col2" class="data row3 col2">50.0%</td>
 </tr>
 <tr class="odd">
-<td id="T_b3fbb_row4_col0" class="data row4 col0">Mallorca</td>
-<td id="T_b3fbb_row4_col1" class="data row4 col1">1</td>
-<td id="T_b3fbb_row4_col2" class="data row4 col2">25.0%</td>
+<td id="T_08bff_row4_col0" class="data row4 col0">Mallorca</td>
+<td id="T_08bff_row4_col1" class="data row4 col1">1</td>
+<td id="T_08bff_row4_col2" class="data row4 col2">25.0%</td>
 </tr>
 <tr class="even">
-<td id="T_b3fbb_row5_col0" class="data row5 col0">Osasuna</td>
-<td id="T_b3fbb_row5_col1" class="data row5 col1">1</td>
-<td id="T_b3fbb_row5_col2" class="data row5 col2">25.0%</td>
+<td id="T_08bff_row5_col0" class="data row5 col0">Osasuna</td>
+<td id="T_08bff_row5_col1" class="data row5 col1">1</td>
+<td id="T_08bff_row5_col2" class="data row5 col2">25.0%</td>
 </tr>
 <tr class="odd">
-<td id="T_b3fbb_row6_col0" class="data row6 col0">Real Sociedad</td>
-<td id="T_b3fbb_row6_col1" class="data row6 col1">1</td>
-<td id="T_b3fbb_row6_col2" class="data row6 col2">25.0%</td>
+<td id="T_08bff_row6_col0" class="data row6 col0">Real Sociedad</td>
+<td id="T_08bff_row6_col1" class="data row6 col1">1</td>
+<td id="T_08bff_row6_col2" class="data row6 col2">25.0%</td>
 </tr>
 <tr class="even">
-<td id="T_b3fbb_row7_col0" class="data row7 col0">Sevilla</td>
-<td id="T_b3fbb_row7_col1" class="data row7 col1">1</td>
-<td id="T_b3fbb_row7_col2" class="data row7 col2">25.0%</td>
+<td id="T_08bff_row7_col0" class="data row7 col0">Sevilla</td>
+<td id="T_08bff_row7_col1" class="data row7 col1">1</td>
+<td id="T_08bff_row7_col2" class="data row7 col2">25.0%</td>
 </tr>
 </tbody>
 </table>
@@ -548,53 +484,53 @@ Table&nbsp;2: Most frequently relegated La Liga clubs
 <style type="text/css">
 </style>
 
-<table id="T_79b16" class="cell caption-top table table-sm table-striped small">
+<table id="T_0faf0" class="cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
-<th id="T_79b16_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Club</th>
-<th id="T_79b16_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Times Relegated</th>
+<th id="T_0faf0_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Club</th>
+<th id="T_0faf0_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Times Relegated</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td id="T_79b16_row0_col0" class="data row0 col0">Mallorca</td>
-<td id="T_79b16_row0_col1" class="data row0 col1">2</td>
+<td id="T_0faf0_row0_col0" class="data row0 col0">Mallorca</td>
+<td id="T_0faf0_row0_col1" class="data row0 col1">2</td>
 </tr>
 <tr class="even">
-<td id="T_79b16_row1_col0" class="data row1 col0">Villarreal</td>
-<td id="T_79b16_row1_col1" class="data row1 col1">1</td>
+<td id="T_0faf0_row1_col0" class="data row1 col0">Villarreal</td>
+<td id="T_0faf0_row1_col1" class="data row1 col1">1</td>
 </tr>
 <tr class="odd">
-<td id="T_79b16_row2_col0" class="data row2 col0">Alavés</td>
-<td id="T_79b16_row2_col1" class="data row2 col1">1</td>
+<td id="T_0faf0_row2_col0" class="data row2 col0">Alavés</td>
+<td id="T_0faf0_row2_col1" class="data row2 col1">1</td>
 </tr>
 <tr class="even">
-<td id="T_79b16_row3_col0" class="data row3 col0">Leganés</td>
-<td id="T_79b16_row3_col1" class="data row3 col1">1</td>
+<td id="T_0faf0_row3_col0" class="data row3 col0">Leganés</td>
+<td id="T_0faf0_row3_col1" class="data row3 col1">1</td>
 </tr>
 <tr class="odd">
-<td id="T_79b16_row4_col0" class="data row4 col0">Tenerife</td>
-<td id="T_79b16_row4_col1" class="data row4 col1">1</td>
+<td id="T_0faf0_row4_col0" class="data row4 col0">Tenerife</td>
+<td id="T_0faf0_row4_col1" class="data row4 col1">1</td>
 </tr>
 <tr class="even">
-<td id="T_79b16_row5_col0" class="data row5 col0">Cádiz</td>
-<td id="T_79b16_row5_col1" class="data row5 col1">1</td>
+<td id="T_0faf0_row5_col0" class="data row5 col0">Cádiz</td>
+<td id="T_0faf0_row5_col1" class="data row5 col1">1</td>
 </tr>
 <tr class="odd">
-<td id="T_79b16_row6_col0" class="data row6 col0">Deportivo La Coruña</td>
-<td id="T_79b16_row6_col1" class="data row6 col1">1</td>
+<td id="T_0faf0_row6_col0" class="data row6 col0">Deportivo La Coruña</td>
+<td id="T_0faf0_row6_col1" class="data row6 col1">1</td>
 </tr>
 <tr class="even">
-<td id="T_79b16_row7_col0" class="data row7 col0">Salamanca</td>
-<td id="T_79b16_row7_col1" class="data row7 col1">1</td>
+<td id="T_0faf0_row7_col0" class="data row7 col0">Salamanca</td>
+<td id="T_0faf0_row7_col1" class="data row7 col1">1</td>
 </tr>
 <tr class="odd">
-<td id="T_79b16_row8_col0" class="data row8 col0">Málaga</td>
-<td id="T_79b16_row8_col1" class="data row8 col1">1</td>
+<td id="T_0faf0_row8_col0" class="data row8 col0">Málaga</td>
+<td id="T_0faf0_row8_col1" class="data row8 col1">1</td>
 </tr>
 <tr class="even">
-<td id="T_79b16_row9_col0" class="data row9 col0">Zaragoza</td>
-<td id="T_79b16_row9_col1" class="data row9 col1">1</td>
+<td id="T_0faf0_row9_col0" class="data row9 col0">Zaragoza</td>
+<td id="T_0faf0_row9_col1" class="data row9 col1">1</td>
 </tr>
 </tbody>
 </table>

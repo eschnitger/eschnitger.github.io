@@ -102,7 +102,7 @@ fig.show()
 ## Champions League Concentration
 
 ```{python}
-#| label: tbl-top4
+#| label: tbl-top4-bundesliga
 #| tbl-cap: "Most frequent Bundesliga Top 4 finishers"
 #| code-summary: "Top 4 frequency"
 
@@ -113,7 +113,7 @@ top4_clubs.head(10).style.format({"Percentage": "{:.1f}%"}).hide(axis="index")
 ## Relegated Clubs
 
 ```{python}
-#| label: tbl-relegated
+#| label: tbl-relegated-bundesliga
 #| tbl-cap: "Most frequently relegated Bundesliga clubs"
 #| code-summary: "Relegation frequency"
 

@@ -110,7 +110,7 @@ fig.show()
 ## Champions League Concentration
 
 ```{python}
-#| label: tbl-top4
+#| label: tbl-top4-ligue1
 #| tbl-cap: "Most frequent Ligue 1 Top 4 finishers"
 #| code-summary: "Top 4 frequency"
 
@@ -121,7 +121,7 @@ top4_clubs.head(10).style.format({"Percentage": "{:.1f}%"}).hide(axis="index")
 ## Relegated Clubs
 
 ```{python}
-#| label: tbl-relegated
+#| label: tbl-relegated-ligue1
 #| tbl-cap: "Most frequently relegated Ligue 1 clubs"
 #| code-summary: "Relegation frequency"
 
