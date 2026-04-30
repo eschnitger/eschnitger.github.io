@@ -1,0 +1,308 @@
+```markdown
+---
+title: "Premier League: The Growing Divide"
+subtitle: "33 seasons of English football's increasing stratification"
+author: "Eric Schnitger"
+date: 2026-04-27
+categories: [data-visualization, python, sports-analytics, web-scraping]
+image: thumbnail.png
+description: |
+ An interactive analysis of every Premier League season from 1992 to 2025,
+ examining title-winning points, Champions League qualification, relegation
+ thresholds, and the growing gap between top and bottom.
+format:
+ html:
+   code-fold: true
+   code-summary: "Show code"
+   code-tools: true
+   toc: true
+   toc-depth: 3
+execute:
+ echo: true
+ warning: false
+ freeze: auto
+---
+
+## The Question
+
+In 1992/93, Manchester United won the first Premier League title with 84 points.
+Coventry City survived relegation with 49. The gap: **35 points**.
+
+In 2019/20, Liverpool won with 99 points. Aston Villa survived with 34.
+The gap: **65 points**.
+
+Is the Premier League becoming a two-tier league?
+
+## Key Findings
+
+::: {.callout-tip}
+## Summary
+
+- **Title-winning points have trended upward** at roughly +0.25 points per season
+- **Relegation survival points are flat or declining** at roughly -0.15 points per season
+- **The gap has nearly doubled**, from an average of 42 pts (1990s) to 58 pts (2020s)
+- The sharpest inflection was **2016/17**, when Guardiola and Klopp triggered a points arms race
+- **The same 6 clubs dominate the top 4** with increasing regularity
+:::
+
+```{python}
+#| label: load-data
+#| code-summary: "Import utilities and load data"
+
+import sys
+sys.path.insert(0, "..")
+
+from _utils import (
+   LEAGUES, scrape_league, enrich_dataframe,
+   build_league_chart, build_frequency_tables,
+)
+import pandas as pd
+import numpy as np
+import io
+import html5lib
+
+config = LEAGUES["premier_league"]
+df = scrape_league("premier_league", cache_dir=".")
+df = enrich_dataframe(df)
+
+print(f"Dataset: {len(df)} seasons loaded")
+df[["Season", "Champion", "Title-Winning Points", "4th Place", "4th Place Points",
+   "Survived Relegation", "Relegation Survival Points",
+   "Relegated 1", "Relegated 2", "Relegated 3"]].tail(10)
+```
+
+## Interactive Analysis
+
+Use the **dropdown** to explore different eras. Each era recalculates its own
+trend line. Hover over any point to see the champion, top 4, or relegated clubs.
+
+```{python}
+#| label: fig-main
+#| fig-cap: "Premier League points analysis with per-era trend lines"
+#| code-summary: "Build main visualization"
+
+eras = [
+   {"label": "Full History (1992-2025)", "start": df["Season"].iloc[0],
+    "end": df["Season"].iloc[-1],
+    "title": "Premier League: The Growing Divide (1992-2025)"},
+   {"label": "Pre-Abramovich (1992-2003)", "start": "1992/93", "end": "2002/03",
+    "title": "Premier League: Pre-Abramovich Era (1992-2003)"},
+   {"label": "Oligarch Era (2003-2016)", "start": "2003/04", "end": "2015/16",
+    "title": "Premier League: The Oligarch Era (2003-2016)"},
+   {"label": "Pep/Klopp Era (2016-2025)", "start": "2016/17",
+    "end": df["Season"].iloc[-1],
+    "title": "Premier League: The Pep/Klopp Era (2016-2025)"},
+]
+
+outliers = [
+   {"season": "2003/04", "y": 90, "text": "Invincibles",
+    "color": "#FFD54F", "ax": -50, "ay": -30},
+   {"season": "2015/16", "y": 81, "text": "Leicester!",
+    "color": "#66FF66", "ax": -50, "ay": -30},
+   {"season": "2017/18", "y": 100, "text": "100 pts",
+    "color": "#4FC3F7", "ax": 0, "ay": -25},
+   {"season": "2019/20", "y": 99, "text": "COVID",
+    "color": "#EF5350", "ax": 40, "ay": -20},
+]
+
+fig = build_league_chart(df, config, eras=eras, outliers=outliers)
+fig.show()
+```
+
+## Champions League Concentration
+
+```{python}
+#| label: tbl-top4
+#| tbl-cap: "Most frequent Premier League Top 4 finishers (1992-2025)"
+#| code-summary: "Top 4 frequency"
+
+top4_clubs, relegated_clubs = build_frequency_tables(df, config)
+top4_clubs.head(10).style.format({"Percentage": "{:.1f}%"}).hide(axis="index")
+```
+
+## Relegated Clubs
+
+```{python}
+#| label: tbl-relegated
+#| tbl-cap: "Most frequently relegated Premier League clubs"
+#| code-summary: "Relegation frequency"
+
+relegated_clubs.head(10).style.hide(axis="index")
+```
+
+## Era Comparison
+
+```{python}
+#| label: tbl-eras
+#| tbl-cap: "Points statistics by era"
+#| code-summary: "Era comparison table"
+
+era_stats = []
+for era in eras:
+   start_idx = df[df["Season"] == era["start"]].index[0]
+   end_idx = df[df["Season"] == era["end"]].index[0]
+   era_slice = df.iloc[start_idx:end_idx + 1]
+   era_stats.append({
+       "Era": era["label"].split("(")[0].strip(),
+       "Seasons": len(era_slice),
+       "Avg Title Pts": round(era_slice["Title-Winning Points"].mean(), 1),
+       "Avg Survival Pts": round(era_slice["Relegation Survival Points"].mean(), 1),
+       "Avg Gap": round(era_slice["Gap"].mean(), 1),
+       "Avg Ratio": round(era_slice["Ratio"].mean(), 2),
+   })
+
+pd.DataFrame(era_stats).style.format({"Avg Ratio": "{:.2f}x"}).hide(axis="index")
+```
+
+## Methodology
+
+::: {.callout-note collapse="true"}
+## Technical details
+
+Data scraped from Wikipedia's individual season articles. The first three
+seasons (1992/93 through 1994/95) had 22 teams; relegation positions are
+adjusted accordingly. Trend lines use per-era linear regression via
+`numpy.polyfit`. Caching avoids repeated Wikipedia requests.
+:::
+
+---
+
+*Part of [The European Football Divide](../) project.*
+```
+
+---
+
+## `projects/european-football-divide/bundesliga/index.qmd`
+
+```markdown
+---
+title: "Bundesliga: Bayern's Iron Grip"
+subtitle: "32 seasons of German football's competitive imbalance"
+author: "Eric Schnitger"
+date: 2026-04-27
+categories: [data-visualization, python, sports-analytics, web-scraping]
+image: thumbnail.png
+description: |
+ An interactive analysis of every Bundesliga season from 1992 to 2025,
+ examining Bayern Munich's structural dominance and its effect on
+ competitive balance.
+format:
+ html:
+   code-fold: true
+   code-summary: "Show code"
+   code-tools: true
+   toc: true
+   toc-depth: 3
+execute:
+ echo: true
+ warning: false
+ freeze: auto
+---
+
+## The Question
+
+Bayern Munich have won the Bundesliga more than any other club in history. But
+has their dominance grown, or has it always been this extreme? And with the
+50+1 rule supposedly ensuring competitive balance, why does Germany's league
+look so predictable?
+
+## Key Findings
+
+::: {.callout-tip}
+## Summary
+
+- **Bayern have won ~21 of 32 titles** (66%) since 1992
+- **The gap trend is flatter than the Premier League** because Bayern's dominance was already established
+- **Dortmund's emergence** (2010-12) represents the only sustained challenge
+- **The 18-team, 34-match format** produces lower raw point totals, but the ratio of champion to survival is comparable to other leagues
+- **16th-place playoff** makes the relegation boundary more ambiguous than in other leagues
+:::
+
+```{python}
+#| label: load-data
+#| code-summary: "Import and load data"
+
+import sys
+sys.path.insert(0, "..")
+
+from _utils import (
+   LEAGUES, scrape_league, enrich_dataframe,
+   build_league_chart, build_frequency_tables,
+)
+import pandas as pd
+import numpy as np
+
+config = LEAGUES["bundesliga"]
+df = scrape_league("bundesliga", cache_dir=".")
+df = enrich_dataframe(df)
+
+print(f"Dataset: {len(df)} seasons loaded")
+df[["Season", "Champion", "Title-Winning Points", "Survived Relegation",
+   "Relegation Survival Points", "Relegated 1", "Relegated 2", "Relegated 3"]].tail(10)
+```
+
+## Interactive Analysis
+
+```{python}
+#| label: fig-main
+#| fig-cap: "Bundesliga: Title-winning vs. relegation survival points"
+#| code-summary: "Build visualization"
+
+eras = [
+   {"label": "Full History (1992-2025)", "start": df["Season"].iloc[0],
+    "end": df["Season"].iloc[-1],
+    "title": "Bundesliga: Title vs. Relegation (1992-2025)"},
+   {"label": "Pre-Guardiola (1992-2013)", "start": "1992/93", "end": "2012/13",
+    "title": "Bundesliga: Traditional Era (1992-2013)"},
+   {"label": "Modern Bayern (2013-2025)", "start": "2013/14",
+    "end": df["Season"].iloc[-1],
+    "title": "Bundesliga: Modern Bayern (2013-2025)"},
+]
+
+outliers = [
+   {"season": "2012/13", "y": 91, "text": "Bayern Treble",
+    "color": "#EF5350", "ax": 0, "ay": -25},
+]
+
+# Fix y-values from actual data
+for outlier in outliers:
+   match = df[df["Season"] == outlier["season"]]
+   if not match.empty and outlier["y"] is None:
+       outlier["y"] = int(match["Title-Winning Points"].iloc[0])
+
+fig = build_league_chart(df, config, eras=eras, outliers=outliers)
+fig.show()
+```
+
+## Champions League Concentration
+
+```{python}
+#| label: tbl-top4
+#| tbl-cap: "Most frequent Bundesliga Top 4 finishers"
+#| code-summary: "Top 4 frequency"
+
+top4_clubs, relegated_clubs = build_frequency_tables(df, config)
+top4_clubs.head(10).style.format({"Percentage": "{:.1f}%"}).hide(axis="index")
+```
+
+## Relegated Clubs
+
+```{python}
+#| label: tbl-relegated
+#| tbl-cap: "Most frequently relegated Bundesliga clubs"
+#| code-summary: "Relegation frequency"
+
+relegated_clubs.head(10).style.hide(axis="index")
+```
+
+## Context
+
+- **18 teams**, 34 matches per season (lower point totals than 20-team leagues)
+- **2 direct relegation + 1 playoff** (16th place plays 3rd in 2. Bundesliga)
+- **50+1 ownership rule** prevents majority private ownership, yet Bayern's commercial dominance achieves a similar competitive imbalance through wages
+- **Dortmund** (2011, 2012) and **Wolfsburg** (2009) are rare interlopers
+
+---
+
+*Part of [The European Football Divide](../) project.*
+```
