@@ -23,10 +23,6 @@ and relegation survivors has grown from 1992 to 2025.
 - Relegation survival points are flat or declining
 - The gap has grown from ~35-50 pts to 50-65 pts
 
-## Headling Interactive Chart
-
-{{< embed PremLeague.ipynb#fig-main >}}
-
 ## The Whole Project
 
 {{< embed PremLeague.ipynb >}}
