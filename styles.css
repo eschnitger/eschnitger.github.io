@@ -1,1 +1,7 @@
 /* css styles */
+/* Force Plotly containers to respect their parent width */
+.js-plotly-plot, .plot-container {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 450px; /* Ensures they don't collapse to 0px */
+}
