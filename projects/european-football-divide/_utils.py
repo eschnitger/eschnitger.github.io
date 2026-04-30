@@ -377,11 +377,10 @@ def scrape_season(
 
    # Parse HTML tables
     try:
-       # Wrap the html string in StringIO to force pandas to treat it as data
-       tables = pd.read_html(io.StringIO(html)) 
-   except ValueError:
-       print(f"    ERROR: No tables found for {start_year}/{start_year+1}")
-       return None
+        tables = pd.read_html(io.StringIO(html))
+    except ValueError:
+        print(f"    ERROR: No tables found")
+        return None
 
    if not tables:
        print(f"    ERROR: Empty table list for {start_year}/{start_year+1}")
