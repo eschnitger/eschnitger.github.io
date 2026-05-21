@@ -28,19 +28,25 @@ div.sourceCode {
 /* ==========================================================================
    3. PLOTLY RESPONSIVENESS FIXES
    ========================================================================== */
-/* Force Plotly containers to lock down inside the Quarto content width */
-.js-plotly-plot, 
-.plot-container {
+/* Safely bind the outer data rendering frame without breaking child element flows */
+.cell-output-display .plot-container {
   width: 100% !important;
   max-width: 100% !important;
-  height: auto !important; 
-  min-height: 450px; /* Lets height be driven predictably by this guard */
+  min-height: 500px; /* Forces a dependable height for the top-level block */
+  margin: 1.5rem 0;
 }
 
-/* Prevent layout breaking shifts inside SVG elements */
-svg.main-svg {
+/* Ensure the absolute top-level Plotly script wrapper fills its cell space */
+.js-plotly-plot {
   width: 100% !important;
   max-width: 100% !important;
+}
+
+/* Allow the actual inner SVG plots to adapt fluidly without flattening */
+.js-plotly-plot .main-svg {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: max-content !important;
 }
 
 /* ==========================================================================

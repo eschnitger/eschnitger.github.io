@@ -4018,15 +4018,22 @@ overflow-x: auto;
 }
 
 
-.js-plotly-plot, .plot-container {
+.cell-output-display .plot-container {
 width: 100% !important;
 max-width: 100% !important;
-height: auto !important; min-height: 450px; 
+min-height: 500px; 
+margin: 1.5rem 0;
 }
 
-svg.main-svg {
+.js-plotly-plot {
 width: 100% !important;
 max-width: 100% !important;
+}
+
+.js-plotly-plot .main-svg {
+width: 100% !important;
+max-width: 100% !important;
+height: max-content !important;
 }
 
 
