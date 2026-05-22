@@ -2,6 +2,7 @@
 title: "Premier League: The Growing Divide"
 description: "Analyzing 33 seasons of title-winning and relegation survival points"
 date: 2026-04-27
+update: 2026-05-21
 categories: [data-viz, sports, python]
 image: thumbnail.png
 format: 
