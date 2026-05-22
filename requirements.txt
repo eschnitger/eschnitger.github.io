@@ -1,0 +1,6 @@
+pandas
+plotly
+html5lib
+beautifulsoup4
+lxml
+jupyter
