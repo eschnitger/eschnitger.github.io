@@ -1,0 +1,975 @@
+sadf
+
+# %% Cell 2: Load and Clean GHGRP Data
+def clean_ghgrp_data(filepath='data/raw/ghgrp_la_county.csv'):
+   """Clean and standardize EPA GHGRP data."""
+
+   df = pd.read_csv(filepath)
+
+   # Standardize column names (EPA changes these occasionally)
+   col_mapping = {
+       'Facility Id': 'facility_id',
+       'FRS Id': 'frs_id',
+       'Facility Name': 'facility_name',
+       'City': 'city',
+       'State': 'state',
+       'Zip Code': 'zip_code',
+       'Address': 'address',
+       'County': 'county',
+       'Latitude': 'latitude',
+       'Longitude': 'longitude',
+       'Industry Type (sectors)': 'sector',
+       'Industry Type (subparts)': 'subsector',
+       'Reported Year': 'year',
+       'Total reported direct emissions': 'total_emissions_mtco2e',
+       'CO2 emissions (non-biogenic)': 'co2_nonbio',
+       'Methane (CH4) emissions': 'ch4_emissions',
+       'Nitrous Oxide (N2O) emissions': 'n2o_emissions',
+       'Parent Companies': 'parent_company',
+   }
+
+   # Apply mapping for columns that exist
+   rename_dict = {k: v for k, v in col_mapping.items() if k in df.columns}
+   df = df.rename(columns=rename_dict)
+
+   # If standard columns aren't found, try lowercase matching
+   if 'facility_name' not in df.columns:
+       df.columns = df.columns.str.lower().str.replace(' ', '_')
+
+   # Ensure numeric emissions columns
+   emission_cols = [c for c in df.columns if 'emission' in c.lower() or 'co2' in c.lower()]
+   for col in emission_cols:
+       df[col] = pd.to_numeric(df[col], errors='coerce')
+
+   # Filter to LA County (if not already filtered)
+   if 'county' in df.columns:
+       df = df[df['county'].str.contains('Los Angeles', case=False, na=False)]
+
+   # Ensure year is integer
+   if 'year' in df.columns:
+       df['year'] = pd.to_numeric(df['year'], errors='coerce').astype('Int64')
+
+   print(f"Cleaned GHGRP data: {len(df)} records")
+   print(f"Year range: {df['year'].min()} - {df['year'].max()}")
+   print(f"Unique facilities: {df['facility_id'].nunique() if 'facility_id' in df.columns else 'N/A'}")
+
+   return df
+
+ghgrp = clean_ghgrp_data()
+ghgrp.head()
+
+# %% Cell 3: Load and Clean CARB MRR Data
+def clean_carb_mrr(filepath='data/raw/carb_mrr_facilities.xlsx'):
+   """Clean CARB MRR facility-level data."""
+
+   df = pd.read_excel(filepath)
+
+   # CARB MRR typically has these columns:
+   col_mapping = {
+       'ARB GHG ID': 'arb_id',
+       'Facility Name': 'facility_name',
+       'City': 'city',
+       'Zip': 'zip_code',
+       'Sector': 'sector',
+       'Sub-Sector': 'subsector',
+       'Total Covered Emissions (MTCO2e)': 'total_emissions_mtco2e',
+       'Reporting Year': 'year',
+       'Latitude': 'latitude',
+       'Longitude': 'longitude',
+       'County': 'county',
+   }
+
+   rename_dict = {k: v for k, v in col_mapping.items() if k in df.columns}
+   df = df.rename(columns=rename_dict)
+
+   # Filter to LA County
+   if 'county' in df.columns:
+       df = df[df['county'].str.contains('Los Angeles', case=False, na=False)]
+
+   # Clean emissions
+   if 'total_emissions_mtco2e' in df.columns:
+       df['total_emissions_mtco2e'] = pd.to_numeric(
+           df['total_emissions_mtco2e'], errors='coerce'
+       )
+
+   print(f"Cleaned CARB MRR data: {len(df)} records")
+   return df
+
+carb_mrr = clean_carb_mrr()
+carb_mrr.head()
+
+# %% Cell 4: Merge and Deduplicate Data Sources
+def merge_emissions_data(ghgrp_df, carb_df):
+   """
+   Merge GHGRP and CARB MRR data, preferring CARB for CA-specific detail.
+   CARB has lower reporting threshold, so captures more facilities.
+   """
+
+   # Standardize sector names across datasets
+   sector_mapping = {
+       'Electricity Generation': 'Power Generation',
+       'Power Plants': 'Power Generation',
+       'Petroleum and Natural Gas Systems': 'Oil & Gas',
+       'Oil and Gas': 'Oil & Gas',
+       'Petroleum Refining': 'Petroleum Refining',
+       'Refineries': 'Petroleum Refining',
+       'Waste': 'Waste Management',
+       'Landfills': 'Waste Management',
+       'Cement Production': 'Industrial - Cement',
+       'Chemicals': 'Industrial - Chemicals',
+       'Metals': 'Industrial - Metals',
+   }
+
+   for df in [ghgrp_df, carb_df]:
+       if 'sector' in df.columns:
+           df['sector_clean'] = df['sector'].map(sector_mapping).fillna(df['sector'])
+
+   # Combine datasets
+   # Use CARB as primary (lower threshold, CA-specific)
+   # Supplement with GHGRP for any missing facilities
+
+   combined = carb_df.copy() if len(carb_df) > 0 else ghgrp_df.copy()
+
+   if len(ghgrp_df) > 0 and len(carb_df) > 0:
+       # Find GHGRP facilities not in CARB
+       if 'facility_name' in ghgrp_df.columns and 'facility_name' in carb_df.columns:
+           ghgrp_only = ghgrp_df[
+               ~ghgrp_df['facility_name'].isin(carb_df['facility_name'])
+           ]
+           combined = pd.concat([combined, ghgrp_only], ignore_index=True)
+
+   print(f"Combined dataset: {len(combined)} facility-year records")
+   return combined
+
+emissions = merge_emissions_data(ghgrp, carb_mrr)
+
+# %% Cell 5: Create Time-Period Analysis DataFrames
+def create_time_period_analysis(df):
+   """
+   Create analysis dataframes for each time window:
+   - Last year (2025)
+   - 5 years (2021-2025)
+   - Decade (2016-2025)
+   - Full history (2010-2025)
+   """
+
+   max_year = df['year'].max()
+
+   periods = {
+       'last_year': (max_year, max_year),
+       '5_year': (max_year - 4, max_year),
+       'decade': (max_year - 9, max_year),
+       'full_history': (df['year'].min(), max_year),
+   }
+
+   results = {}
+
+   for period_name, (start, end) in periods.items():
+       period_df = df[(df['year'] >= start) & (df['year'] <= end)].copy()
+
+       # --- Top Facilities ---
+       facility_totals = (
+           period_df.groupby(['facility_name', 'sector_clean'])
+           ['total_emissions_mtco2e']
+           .agg(['sum', 'mean', 'count'])
+           .reset_index()
+           .rename(columns={
+               'sum': 'total_emissions',
+               'mean': 'avg_annual_emissions',
+               'count': 'years_reporting'
+           })
+           .sort_values('total_emissions', ascending=False)
+       )
+
+       # --- Sector Totals ---
+       sector_totals = (
+           period_df.groupby(['sector_clean', 'year'])
+           ['total_emissions_mtco2e']
+           .sum()
+           .reset_index()
+       )
+
+       sector_summary = (
+           period_df.groupby('sector_clean')
+           ['total_emissions_mtco2e']
+           .agg(['sum', 'mean'])
+           .reset_index()
+           .rename(columns={'sum': 'total_emissions', 'mean': 'avg_annual'})
+           .sort_values('total_emissions', ascending=False)
+       )
+
+       # --- Geographic (by zip code) ---
+       if 'zip_code' in period_df.columns:
+           geo_totals = (
+               period_df.groupby(['zip_code', 'year'])
+               ['total_emissions_mtco2e']
+               .sum()
+               .reset_index()
+           )
+       else:
+           geo_totals = pd.DataFrame()
+
+       results[period_name] = {
+           'raw': period_df,
+           'facility_ranking': facility_totals,
+           'sector_totals': sector_totals,
+           'sector_summary': sector_summary,
+           'geo_totals': geo_totals,
+           'period': f"{start}-{end}",
+       }
+
+       print(f"\n--- {period_name} ({start}-{end}) ---")
+       print(f"  Records: {len(period_df)}")
+       print(f"  Total emissions: {period_df['total_emissions_mtco2e'].sum():,.0f} MTCO2e")
+       print(f"  Top facility: {facility_totals.iloc[0]['facility_name'] if len(facility_totals) > 0 else 'N/A'}")
+
+   return results
+
+analysis = create_time_period_analysis(emissions)
+
+# %% Cell 6: Compute Trends and Year-over-Year Changes
+def compute_trends(df):
+   """Calculate emission trends, YoY changes, and compound growth rates."""
+
+   # Facility-level trends
+   facility_trends = (
+       df.groupby(['facility_name', 'year'])
+       ['total_emissions_mtco2e']
+       .sum()
+       .reset_index()
+       .sort_values(['facility_name', 'year'])
+   )
+
+   facility_trends['yoy_change'] = (
+       facility_trends.groupby('facility_name')
+       ['total_emissions_mtco2e']
+       .pct_change()
+   )
+
+   # Sector-level trends
+   sector_trends = (
+       df.groupby(['sector_clean', 'year'])
+       ['total_emissions_mtco2e']
+       .sum()
+       .reset_index()
+       .sort_values(['sector_clean', 'year'])
+   )
+
+   sector_trends['yoy_change'] = (
+       sector_trends.groupby('sector_clean')
+       ['total_emissions_mtco2e']
+       .pct_change()
+   )
+
+   # Overall county trend
+   county_trend = (
+       df.groupby('year')
+       ['total_emissions_mtco2e']
+       .sum()
+       .reset_index()
+       .sort_values('year')
+   )
+   county_trend['yoy_change'] = county_trend['total_emissions_mtco2e'].pct_change()
+
+   return facility_trends, sector_trends, county_trend
+
+facility_trends, sector_trends, county_trend = compute_trends(emissions)
+
+print("\nOverall LA County GHG Trend:")
+print(county_trend.to_string(index=False))
+
+# %% Cell 7: Prepare Geographic Data for Choropleth
+def prepare_choropleth_data(df):
+   """
+   Aggregate emissions by zip code and city for choropleth mapping.
+   """
+
+   # By zip code
+   if 'zip_code' in df.columns:
+       zip_emissions = (
+           df.groupby(['zip_code', 'year'])
+           .agg(
+               total_emissions=('total_emissions_mtco2e', 'sum'),
+               num_facilities=('facility_name', 'nunique'),
+           )
+           .reset_index()
+       )
+
+       # Also create a "latest year" snapshot
+       latest_year = df['year'].max()
+       zip_latest = zip_emissions[zip_emissions['year'] == latest_year].copy()
+
+       zip_latest.to_csv('data/processed/zip_emissions_latest.csv', index=False)
+       zip_emissions.to_csv('data/processed/zip_emissions_all_years.csv', index=False)
+
+       print(f"Zip code data: {len(zip_latest)} zip codes with emissions in {latest_year}")
+
+   # By city
+   if 'city' in df.columns:
+       city_emissions = (
+           df.groupby(['city', 'year'])
+           .agg(
+               total_emissions=('total_emissions_mtco2e', 'sum'),
+               num_facilities=('facility_name', 'nunique'),
+           )
+           .reset_index()
+       )
+       city_emissions.to_csv('data/processed/city_emissions_all_years.csv', index=False)
+       print(f"City data: {df['city'].nunique()} cities")
+
+   # Point data for facility-level maps
+   if 'latitude' in df.columns and 'longitude' in df.columns:
+       facility_points = (
+           df.groupby(['facility_name', 'latitude', 'longitude', 'sector_clean'])
+           .agg(
+               latest_emissions=('total_emissions_mtco2e', 'last'),
+               avg_emissions=('total_emissions_mtco2e', 'mean'),
+               max_emissions=('total_emissions_mtco2e', 'max'),
+           )
+           .reset_index()
+       )
+       facility_points.to_csv('data/processed/facility_points.csv', index=False)
+       print(f"Facility point data: {len(facility_points)} facilities with coordinates")
+
+prepare_choropleth_data(emissions)
+
+# %% Cell 8: Export All Analysis to CSV for Tableau
+def export_for_tableau(analysis_results, facility_trends, sector_trends, county_trend):
+   """
+   Export clean CSVs optimized for Tableau ingestion.
+   """
+
+   output_dir = Path('data/tableau_export')
+
+   # 1. Master facility-year table (primary data source for Tableau)
+   # This is the most flexible format for Tableau
+   master_cols = [
+       'facility_name', 'sector_clean', 'city', 'zip_code',
+       'latitude', 'longitude', 'year', 'total_emissions_mtco2e',
+       'parent_company'
+   ]
+
+   master_df = analysis_results['full_history']['raw']
+   available_cols = [c for c in master_cols if c in master_df.columns]
+   master_export = master_df[available_cols].copy()
+
+   # Add computed fields useful in Tableau
+   if 'year' in master_export.columns:
+       max_yr = master_export['year'].max()
+       master_export['period_last_year'] = (master_export['year'] == max_yr)
+       master_export['period_5yr'] = (master_export['year'] >= max_yr - 4)
+       master_export['period_decade'] = (master_export['year'] >= max_yr - 9)
+
+   master_export.to_csv(output_dir / '01_master_facility_emissions.csv', index=False)
+
+   # 2. Facility rankings by period
+   for period_name, data in analysis_results.items():
+       ranking = data['facility_ranking'].head(50)  # Top 50
+       ranking['period'] = data['period']
+       ranking.to_csv(
+           output_dir / f'02_top_facilities_{period_name}.csv', index=False
+       )
+
+   # 3. Sector summary by period
+   all_sectors = []
+   for period_name, data in analysis_results.items():
+       sector_df = data['sector_summary'].copy()
+       sector_df['period'] = data['period']
+       sector_df['period_name'] = period_name
+       all_sectors.append(sector_df)
+
+   pd.concat(all_sectors).to_csv(output_dir / '03_sector_summary.csv', index=False)
+
+   # 4. Time series for trends
+   sector_trends.to_csv(output_dir / '04_sector_trends.csv', index=False)
+   facility_trends.to_csv(output_dir / '05_facility_trends.csv', index=False)
+   county_trend.to_csv(output_dir / '06_county_overall_trend.csv', index=False)
+
+   # 5. Geographic aggregations
+   for f in Path('data/processed').glob('*.csv'):
+       import shutil
+       shutil.copy(f, output_dir / f.name)
+
+   print("\n" + "="*60)
+   print("TABLEAU EXPORT COMPLETE")
+   print("="*60)
+   print(f"\nFiles saved to: {output_dir.absolute()}")
+   print("\nExported files:")
+   for f in sorted(output_dir.glob('*.csv')):
+       size = f.stat().st_size / 1024
+       print(f"  {f.name} ({size:.1f} KB)")
+
+export_for_tableau(analysis, facility_trends, sector_trends, county_trend)
+```
+
+---
+
+## Notebook 3: Exploratory Visualization (Python Preview)
+
+```python
+# ============================================================
+# Notebook 3: Exploratory Visualizations (Preview for Tableau)
+# ============================================================
+
+# %% Cell 1: Imports
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import plotly.express as px
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+import json
+
+plt.style.use('seaborn-v0_8-darkgrid')
+sns.set_palette("husl")
+
+# %% Cell 2: Load processed data
+master = pd.read_csv('data/tableau_export/01_master_facility_emissions.csv')
+county_trend = pd.read_csv('data/tableau_export/06_county_overall_trend.csv')
+sector_trends = pd.read_csv('data/tableau_export/04_sector_trends.csv')
+
+# %% Cell 3: Pie/Donut Charts - Sector Breakdown
+def plot_sector_pie_charts():
+   """
+   Pie charts showing sector contribution for each time period.
+   NOTE: For Tableau, treemaps are often more effective than pie charts
+   for this type of data.
+   """
+
+   fig, axes = plt.subplots(2, 2, figsize=(16, 14))
+   fig.suptitle('LA County GHG Emissions by Sector', fontsize=16, fontweight='bold')
+
+   max_year = master['year'].max()
+   periods = {
+       'Last Year': master[master['year'] == max_year],
+       '5-Year Total': master[master['year'] >= max_year - 4],
+       'Decade Total': master[master['year'] >= max_year - 9],
+       'Full History': master,
+   }
+
+   for ax, (title, df) in zip(axes.flatten(), periods.items()):
+       sector_totals = (
+           df.groupby('sector_clean')['total_emissions_mtco2e']
+           .sum()
+           .sort_values(ascending=False)
+       )
+
+       # Group small sectors into "Other"
+       threshold = sector_totals.sum() * 0.03  # 3% threshold
+       main_sectors = sector_totals[sector_totals >= threshold]
+       other = sector_totals[sector_totals < threshold].sum()
+       if other > 0:
+           main_sectors['Other'] = other
+
+       wedges, texts, autotexts = ax.pie(
+           main_sectors.values,
+           labels=main_sectors.index,
+           autopct='%1.1f%%',
+           startangle=90,
+           pctdistance=0.85,
+       )
+
+       # Make it a donut chart (cleaner look)
+       centre_circle = plt.Circle((0, 0), 0.60, fc='white')
+       ax.add_artist(centre_circle)
+       ax.set_title(title, fontsize=13, fontweight='bold')
+
+   plt.tight_layout()
+   plt.savefig('data/tableau_export/preview_pie_charts.png', dpi=150, bbox_inches='tight')
+   plt.show()
+   print("Saved: preview_pie_charts.png")
+
+plot_sector_pie_charts()
+
+# %% Cell 4: Choropleth Map (using Plotly)
+def plot_choropleth():
+   """
+   Choropleth map of emissions by zip code.
+   This previews what you'll build in Tableau with more interactivity.
+   """
+
+   try:
+       zip_data = pd.read_csv('data/tableau_export/zip_emissions_latest.csv')
+
+       # Load GeoJSON
+       with open('data/raw/la_county_zipcodes.geojson', 'r') as f:
+           la_geojson = json.load(f)
+
+       zip_data['zip_code'] = zip_data['zip_code'].astype(str).str.zfill(5)
+
+       fig = px.choropleth_mapbox(
+           zip_data,
+           geojson=la_geojson,
+           locations='zip_code',
+           featureidkey='properties.zipcode',
+           color='total_emissions',
+           color_continuous_scale='YlOrRd',
+           mapbox_style='carto-positron',
+           zoom=8.5,
+           center={"lat": 34.05, "lon": -118.25},
+           opacity=0.7,
+           title='LA County GHG Emissions by Zip Code (Latest Year)',
+           labels={'total_emissions': 'Emissions (MTCO2e)'}
+       )
+
+       fig.update_layout(margin={"r": 0, "t": 40, "l": 0, "b": 0})
+       fig.write_html('data/tableau_export/preview_choropleth.html')
+       fig.show()
+       print("Saved: preview_choropleth.html")
+
+   except FileNotFoundError:
+       print("GeoJSON not available - choropleth will be built in Tableau")
+       print("Using facility point map instead...")
+
+       # Fallback: bubble map of facilities
+       fig = px.scatter_mapbox(
+           master[master['year'] == master['year'].max()],
+           lat='latitude',
+           lon='longitude',
+           size='total_emissions_mtco2e',
+           color='sector_clean',
+           hover_name='facility_name',
+           mapbox_style='carto-positron',
+           zoom=8.5,
+           center={"lat": 34.05, "lon": -118.25},
+           title='LA County GHG Emitting Facilities',
+           size_max=40,
+       )
+       fig.write_html('data/tableau_export/preview_bubble_map.html')
+       fig.show()
+
+plot_choropleth()
+
+# %% Cell 5: Heatmap - Facilities x Years
+def plot_facility_heatmap():
+   """
+   Heatmap showing top facilities' emissions across years.
+   Great for spotting trends, new/closed facilities, spikes.
+   """
+
+   # Get top 20 all-time emitters
+   top_facilities = (
+       master.groupby('facility_name')['total_emissions_mtco2e']
+       .sum()
+       .nlargest(20)
+       .index.tolist()
+   )
+
+   heatmap_data = (
+       master[master['facility_name'].isin(top_facilities)]
+       .pivot_table(
+           index='facility_name',
+           columns='year',
+           values='total_emissions_mtco2e',
+           aggfunc='sum'
+       )
+       .fillna(0)
+   )
+
+   # Sort by total emissions
+   heatmap_data['total'] = heatmap_data.sum(axis=1)
+   heatmap_data = heatmap_data.sort_values('total', ascending=False).drop('total', axis=1)
+
+   fig, ax = plt.subplots(figsize=(16, 10))
+   sns.heatmap(
+       heatmap_data,
+       cmap='YlOrRd',
+       annot=True,
+       fmt='.0f',
+       linewidths=0.5,
+       ax=ax,
+       cbar_kws={'label': 'Emissions (MTCO2e)'}
+   )
+   ax.set_title('Top 20 LA County Facilities - Annual GHG Emissions Heatmap',
+                fontsize=14, fontweight='bold')
+   ax.set_ylabel('')
+   ax.set_xlabel('Year')
+
+   plt.tight_layout()
+   plt.savefig('data/tableau_export/preview_heatmap.png', dpi=150, bbox_inches='tight')
+   plt.show()
+
+plot_facility_heatmap()
+
+# %% Cell 6: Additional Viz - Stacked Area Chart (Sector Trends)
+def plot_stacked_area():
+   """Stacked area chart showing sector composition over time."""
+
+   pivot = sector_trends.pivot_table(
+       index='year',
+       columns='sector_clean',
+       values='total_emissions_mtco2e',
+       aggfunc='sum'
+   ).fillna(0)
+
+   fig, ax = plt.subplots(figsize=(14, 8))
+   pivot.plot.area(ax=ax, alpha=0.8)
+   ax.set_title('LA County GHG Emissions by Sector Over Time',
+                fontsize=14, fontweight='bold')
+   ax.set_xlabel('Year')
+   ax.set_ylabel('Emissions (MTCO2e)')
+   ax.legend(title='Sector', bbox_to_anchor=(1.05, 1), loc='upper left')
+
+   plt.tight_layout()
+   plt.savefig('data/tableau_export/preview_stacked_area.png', dpi=150, bbox_inches='tight')
+   plt.show()
+
+plot_stacked_area()
+
+# %% Cell 7: Bump Chart - Ranking Changes Over Time
+def plot_bump_chart():
+   """Show how facility/sector rankings change over time."""
+
+   # Rank sectors by year
+   sector_ranked = (
+       sector_trends.copy()
+       .sort_values(['year', 'total_emissions_mtco2e'], ascending=[True, False])
+   )
+   sector_ranked['rank'] = (
+       sector_ranked.groupby('year')['total_emissions_mtco2e']
+       .rank(ascending=False, method='dense')
+   )
+
+   top_sectors = (
+       sector_ranked.groupby('sector_clean')['total_emissions_mtco2e']
+       .sum()
+       .nlargest(8)
+       .index.tolist()
+   )
+
+   plot_data = sector_ranked[sector_ranked['sector_clean'].isin(top_sectors)]
+
+   fig, ax = plt.subplots(figsize=(14, 8))
+   for sector in top_sectors:
+       sdata = plot_data[plot_data['sector_clean'] == sector]
+       ax.plot(sdata['year'], sdata['rank'], marker='o', linewidth=2.5,
+               markersize=8, label=sector)
+
+   ax.invert_yaxis()
+   ax.set_yticks(range(1, 9))
+   ax.set_xlabel('Year')
+   ax.set_ylabel('Rank')
+   ax.set_title('Sector Emission Rankings Over Time (Bump Chart)',
+                fontsize=14, fontweight='bold')
+   ax.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
+
+   plt.tight_layout()
+   plt.savefig('data/tableau_export/preview_bump_chart.png', dpi=150, bbox_inches='tight')
+   plt.show()
+
+plot_bump_chart()
+```
+
+---
+
+## Tableau Workbook Design Guide
+
+Here's how to build each visualization in Tableau using the exported CSVs:
+
+### Data Connection Setup
+
+1. **Primary Data Source:** Connect to `01_master_facility_emissions.csv`
+2. **Join** with `facility_points.csv` on `facility_name` (for lat/lon if not in master)
+3. **Spatial file:** Import `la_county_zipcodes.geojson` for choropleth
+
+---
+
+### Visualization 1: Pie/Donut Charts (Sector Share)
+
+| Element | Tableau Config |
+|---------|---------------|
+| Chart Type | Pie chart (Marks card > Pie) |
+| Angle | SUM(total_emissions_mtco2e) |
+| Color | sector_clean |
+| Filter | Create parameter for period selection (Last Year / 5yr / Decade / All) |
+| Pages | Year (for animation) |
+
+**Better alternative in Tableau:** Use a **Treemap** instead. It handles many categories more effectively and shows relative proportions clearly.
+
+### Visualization 2: Choropleth / Heat Map
+
+| Element | Tableau Config |
+|---------|---------------|
+| Map Type | Filled Map |
+| Geography | Zip Code (geographic role) or join to spatial file |
+| Color | SUM(total_emissions_mtco2e), color palette: Orange-Red sequential |
+| Detail | facility_name (for tooltip) |
+| Filter | Year, Sector |
+| Pages | Year (for animated time-lapse) |
+
+### Visualization 3: Facility Heatmap (Table)
+
+| Element | Tableau Config |
+|---------|---------------|
+| Rows | facility_name (filtered to Top N) |
+| Columns | year |
+| Color | SUM(total_emissions_mtco2e) |
+| Mark Type | Square |
+| Size | Uniform |
+| Sort | Rows by total emissions descending |
+
+### Visualization 4: Stacked Area (Sector Trends)
+
+| Element | Tableau Config |
+|---------|---------------|
+| Columns | year (continuous) |
+| Rows | SUM(total_emissions_mtco2e) |
+| Color | sector_clean |
+| Mark Type | Area |
+| Analysis | Add trend line per sector |
+
+### Visualization 5: Bump Chart (Ranking Changes)
+
+| Element | Tableau Config |
+|---------|---------------|
+| Calculated Field | `RANK(SUM([total_emissions_mtco2e]), 'desc')` |
+| Columns | year |
+| Rows | Rank (computed along year) |
+| Color | sector_clean or facility_name |
+| Mark Type | Line + Circle |
+| Reverse axis | Yes (rank 1 at top) |
+
+### Visualization 6 (Bonus): Bubble Map with Size
+
+| Element | Tableau Config |
+|---------|---------------|
+| Mark Type | Circle on map |
+| Size | SUM(total_emissions_mtco2e) |
+| Color | sector_clean |
+| Detail | facility_name |
+| Filter | Year parameter |
+| Tooltip | Facility, sector, emissions, YoY change |
+
+---
+
+## Additional Recommended Visualizations
+
+Beyond pie charts and choropleths, here are visualization types that work exceptionally well for this data:
+
+| Viz Type | Best For | Why |
+|----------|----------|-----|
+| **Treemap** | Sector + facility hierarchy | Shows part-to-whole with drill-down (sector > company > facility) |
+| **Stacked Area Chart** | Sector trends over time | Shows both total and composition change |
+| **Bump Chart** | Ranking changes | Reveals which polluters are rising/falling |
+| **Small Multiples** | Comparing facilities | Same chart repeated per facility for easy comparison |
+| **Waterfall Chart** | Year-over-year change | Shows what added/reduced emissions between periods |
+| **Diverging Bar** | Change analysis | Facilities that increased vs. decreased emissions |
+| **Bubble Map** | Facility-level geography | More precise than choropleth for point sources |
+| **Lollipop Chart** | Top N rankings | Cleaner than bar chart for ranked lists |
+
+---
+
+## Requirements (pip install)
+
+```
+pip install pandas numpy requests openpyxl matplotlib seaborn plotly geopandas
+```
+
+---
+
+## Key Notes
+
+1. **EPA GHGRP only reports facilities emitting 25,000+ MTCO2e/year**, so smaller sources are missing. CARB MRR has a lower threshold but still misses diffuse sources (vehicles, residential).
+
+2. **For the most recent year (2025):** Data may not be published yet since reporting typically lags 1-2 years. The most recent complete year is likely 2023 or 2024.
+
+3. **Pie chart caution:** While intuitive, pie charts become hard to read with more than 5-6 slices. For sectors (which often have 8-12 categories), treemaps or bar charts are genuinely more effective. I'd recommend keeping pie charts for high-level splits (e.g., "Top 5 sectors + Other") and using treemaps for detailed breakdowns.
+
+4. **Choropleth vs. Bubble Map:** Since GHG emissions come from point sources (facilities), a bubble/proportional symbol map is actually more analytically honest than a choropleth (which implies uniform distribution across the zip code area). Consider using both: choropleth for total area burden, bubble for individual facility identification.
+
+Would you like me to elaborate on any specific part of this pipeline, help with Tableau calculated fields, or adjust the analysis focus?
+
+
+
+HK
+
+
+# Tableau Calculated Field for Ranking (Bump Chart)
+
+## Basic Rank Calculation
+
+In Tableau, create a calculated field:
+
+**Name:** `Emission Rank`
+
+```
+RANK(SUM([Total Emissions Mtco2e]), 'desc')
+```
+
+This ranks from highest emissions (rank 1) to lowest.
+
+---
+
+## Step-by-Step Setup
+
+### 1. Create the Calculated Field
+
+- Right-click in the Data pane > **Create Calculated Field**
+- Name it `Emission Rank`
+- Enter: `RANK(SUM([Total Emissions Mtco2e]), 'desc')`
+- Click OK
+
+### 2. Build the Bump Chart
+
+| Shelf | Field |
+|-------|-------|
+| Columns | `Year` (set to **Continuous**, not discrete) |
+| Rows | `Emission Rank` |
+| Color | `Sector Clean` (or `Facility Name` for facility-level) |
+| Path | `Sector Clean` (same as Color, ensures lines connect correctly) |
+| Mark Type | **Line** (add a second marks layer for circles if desired) |
+
+### 3. Configure the Table Calculation
+
+This is the critical step most people miss. After dragging `Emission Rank` to Rows:
+
+1. Right-click `Emission Rank` on the Rows shelf
+2. Select **Edit Table Calculation**
+3. Set **Compute Using:** to `Sector Clean` (or `Facility Name`)
+  - This tells Tableau: "Rank the sectors *within each year*"
+  - Alternatively, choose "Specific Dimensions" and check only the dimension you're ranking (sector or facility)
+
+If you skip this, Tableau will compute the rank across the wrong dimension and the chart will look wrong.
+
+### 4. Reverse the Axis
+
+- Right-click the Y-axis (Emission Rank) > **Edit Axis**
+- Check **Reversed** so that Rank 1 appears at the top
+
+### 5. Clean Up
+
+- Right-click Y-axis > **Edit Axis** > set Fixed Range from 1 to your desired max (e.g., 10)
+- Format the axis to show only whole numbers
+
+---
+
+## Filtering to Top N
+
+If you have many sectors/facilities and only want the top 10:
+
+### Option A: Index Filter
+
+Create another calculated field:
+
+**Name:** `Rank Filter`
+
+```
+RANK(SUM([Total Emissions Mtco2e]), 'desc')
+```
+
+- Drag to Filters shelf
+- Set Compute Using to the same dimension
+- Filter to values 1 through 10
+
+### Option B: Set-based Filter (more reliable)
+
+1. Create a Set on `Sector Clean`:
+  - Right-click `Sector Clean` > Create > Set
+  - Go to the **Top** tab
+  - Select "By field": Top 10 by `Total Emissions Mtco2e` Sum
+2. Drag that Set to Filters and keep only "In"
+
+Option B avoids table calculation conflicts and is generally more stable.
+
+---
+
+## Handling Ties
+
+If two facilities have the same emissions in a year, you can control tie behavior:
+
+```
+RANK(SUM([Total Emissions Mtco2e]), 'desc')
+```
+
+By default, Tableau uses **competition ranking** (1, 2, 2, 4). If you want **dense ranking** (1, 2, 2, 3), use:
+
+```
+RANK_DENSE(SUM([Total Emissions Mtco2e]), 'desc')
+```
+
+Other options:
+- `RANK_UNIQUE` - no ties, arbitrary tiebreaker (1, 2, 3, 4)
+- `RANK_MODIFIED` - modified competition (1, 3, 3, 4)
+- `RANK_PERCENTILE` - percentile-based (0.0 to 1.0)
+
+For a bump chart, `RANK_DENSE` is usually the cleanest.
+
+---
+
+## Adding Labels and Polish
+
+To label only the first and last year (avoiding clutter):
+
+**Calculated Field Name:** `Endpoint Label`
+
+```
+IF FIRST() = 0 OR LAST() = 0 THEN ATTR([Sector Clean]) END
+```
+
+- Drag this to the Label shelf
+- Set Compute Using to `Year`
+- This shows the sector name only at the leftmost and rightmost points of each line
+
+---
+
+## Showing Rank Change (Up/Down Indicator)
+
+To highlight which entities moved up or down in rank from the previous year:
+
+**Calculated Field Name:** `Rank Change`
+
+```
+ZN(LOOKUP([Emission Rank], -1)) - [Emission Rank]
+```
+
+- Positive value = moved up in ranking (improved position)
+- Negative value = moved down (got worse, more polluting relative to others)
+- Use this on Color or as a secondary indicator
+
+For an arrow indicator:
+
+**Calculated Field Name:** `Rank Direction`
+
+```
+IF [Rank Change] > 0 THEN "▲ Up"
+ELSEIF [Rank Change] < 0 THEN "▼ Down"
+ELSE "● Same"
+END
+```
+
+---
+
+## Common Pitfall: Wrong Compute Direction
+
+If your bump chart looks like flat horizontal lines or random spaghetti, the issue is almost always the **Compute Using** direction. Quick diagnostic:
+
+| Symptom | Fix |
+|---------|-----|
+| All lines flat at rank 1 | Compute Using is set to Year instead of Sector |
+| Lines don't connect properly | Add the dimension to **Path** shelf |
+| Ranks repeat across years | Year is set to Discrete; change to Continuous |
+| Some sectors missing | A filter is excluding data before the rank calculates |
+
+---
+
+## Filter Order Matters
+
+Table calculations like `RANK` execute **after** dimension filters but can be affected by them. To rank against the full dataset *before* filtering to a specific period:
+
+1. Right-click your year filter > **Add to Context**
+2. Context filters execute first, but rank still computes within the filtered data
+
+Alternatively, use **FIXED Level of Detail** for a rank that ignores filters:
+
+**Calculated Field Name:** `Fixed Total Rank`
+
+```
+{ FIXED [Sector Clean] : SUM([Total Emissions Mtco2e]) }
+```
+
+Then rank that field. This gives a stable "all-time rank" that doesn't change as you filter.
+
+---
+
+Let me know if you want help with any other Tableau elements, like building the choropleth color scale, parameter-driven period switching, or interactive dashboard actions.

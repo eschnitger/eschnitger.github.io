@@ -25,7 +25,9 @@ and relegation survivors has grown from 1992 to 2025.
 
 ## The Whole Project
 
+::: {.column-page}
 {{< embed PremLeague.ipynb >}}
+:::
 
 ## Code
 
