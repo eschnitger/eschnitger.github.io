@@ -3,7 +3,7 @@ project:
  output-dir: docs
 
 website:
- title: "Eric Schnitger Portfolio"
+ title: "Eric Eliot Schnitger's Portfolio"
  navbar:
    left:
      - text: "Home"
@@ -20,6 +20,10 @@ website:
 
 format:
  html:
-   theme: sandstone        # or: flatly, cosmo, lux, journal
+   theme: cosmo        # or: flatly, cosmo, lux, journal, sandstone
    css: styles.css
    toc: true
+   toc-location: left
+
+execute:
+  freeze: true  # Or use 'auto'
