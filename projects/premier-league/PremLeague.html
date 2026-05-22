@@ -4322,7 +4322,7 @@ Dataset: 33 seasons loaded</code></pre>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>top4_clubs[<span class="st">"Percentage"</span>] <span class="op">=</span> (top4_clubs[<span class="st">"Top 4 Finishes"</span>] <span class="op">/</span> <span class="bu">len</span>(df) <span class="op">*</span> <span class="dv">100</span>).<span class="bu">round</span>(<span class="dv">1</span>)</span>
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>top4_clubs.head(<span class="dv">10</span>).style.<span class="bu">format</span>({<span class="st">"Percentage"</span>: <span class="st">"</span><span class="sc">{:.1f}</span><span class="st">%"</span>}).hide(axis<span class="op">=</span><span class="st">"index"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="tbl-top4-frequency" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2026-05-22T05:19:39.017264Z&quot;,&quot;start_time&quot;:&quot;2026-05-22T05:19:38.995982Z&quot;}}" data-execution_count="28">
+<div id="tbl-top4-frequency" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="28" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2026-05-22T05:19:39.017264Z&quot;,&quot;start_time&quot;:&quot;2026-05-22T05:19:38.995982Z&quot;}}">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-top4-frequency-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;1: Most frequent Top 4 finishers (1992-2025)
@@ -4408,7 +4408,7 @@ Table&nbsp;1: Most frequent Top 4 finishers (1992-2025)
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>relegated_clubs.columns <span class="op">=</span> [<span class="st">"Club"</span>, <span class="st">"Times Relegated"</span>]</span>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>relegated_clubs.head(<span class="dv">10</span>).style.hide(axis<span class="op">=</span><span class="st">"index"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="tbl-relegated" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2026-05-22T05:19:39.038611Z&quot;,&quot;start_time&quot;:&quot;2026-05-22T05:19:39.020815Z&quot;}}" data-execution_count="29">
+<div id="tbl-relegated" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="29" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2026-05-22T05:19:39.038611Z&quot;,&quot;start_time&quot;:&quot;2026-05-22T05:19:39.020815Z&quot;}}">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-relegated-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;2: Most frequently relegated clubs (1992-2025)
@@ -5079,7 +5079,7 @@ The above exception was the direct cause of the following exception:
 <span class="ansi-red-fg">ImportError</span>: `Import matplotlib` failed. Styler.background_gradient requires matplotlib. Use pip or conda to install the matplotlib package.</pre>
 </div>
 </div>
-<div id="tbl-full-data" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2026-05-22T05:19:39.388464Z&quot;,&quot;start_time&quot;:&quot;2026-05-22T05:19:39.313736Z&quot;}}" data-execution_count="33">
+<div id="tbl-full-data" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="33" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2026-05-22T05:19:39.388464Z&quot;,&quot;start_time&quot;:&quot;2026-05-22T05:19:39.313736Z&quot;}}">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-full-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;3: Complete Premier League season data (scroll to see all)
@@ -5124,7 +5124,7 @@ Table&nbsp;3: Complete Premier League season data (scroll to see all)
 <span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>era_comparison <span class="op">=</span> pd.DataFrame(era_stats)</span>
 <span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>era_comparison.style.<span class="bu">format</span>({<span class="st">"Avg Ratio"</span>: <span class="st">"</span><span class="sc">{:.2f}</span><span class="st">x"</span>}).hide(axis<span class="op">=</span><span class="st">"index"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="tbl-era-comparison" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2026-05-22T05:19:39.410859Z&quot;,&quot;start_time&quot;:&quot;2026-05-22T05:19:39.389967Z&quot;}}" data-execution_count="34">
+<div id="tbl-era-comparison" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="34" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2026-05-22T05:19:39.410859Z&quot;,&quot;start_time&quot;:&quot;2026-05-22T05:19:39.389967Z&quot;}}">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-era-comparison-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;4: Points comparison across Premier League eras
