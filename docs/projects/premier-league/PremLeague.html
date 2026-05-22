@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Top and Bottom of the Premiere League – Eric Schnitger Portfolio</title>
+<title>Top and Bottom of the Premiere League – Eric Eliot Schnitger’s Portfolio</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -77,7 +77,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-de60624a5cb141114e0ea2b9bc293073.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-158031087360bce0ff56dc785ce39e06.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -4000,7 +4000,7 @@ return Plotly;
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -4008,7 +4008,7 @@ return Plotly;
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
-    <span class="navbar-title">Eric Schnitger Portfolio</span>
+    <span class="navbar-title">Eric Eliot Schnitger’s Portfolio</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -4050,9 +4050,8 @@ return Plotly;
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
@@ -4071,6 +4070,10 @@ return Plotly;
   <li><a href="#methodology-technical-notes" id="toc-methodology-technical-notes" class="nav-link" data-scroll-target="#methodology-technical-notes">Methodology &amp; Technical Notes</a></li>
   </ul>
 </nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -4330,7 +4333,7 @@ Dataset: 33 seasons loaded</code></pre>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>top4_clubs[<span class="st">"Percentage"</span>] <span class="op">=</span> (top4_clubs[<span class="st">"Top 4 Finishes"</span>] <span class="op">/</span> <span class="bu">len</span>(df) <span class="op">*</span> <span class="dv">100</span>).<span class="bu">round</span>(<span class="dv">1</span>)</span>
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>top4_clubs.head(<span class="dv">10</span>).style.<span class="bu">format</span>({<span class="st">"Percentage"</span>: <span class="st">"</span><span class="sc">{:.1f}</span><span class="st">%"</span>}).hide(axis<span class="op">=</span><span class="st">"index"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="tbl-top4-frequency" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2026-04-29T23:55:44.428503Z&quot;,&quot;start_time&quot;:&quot;2026-04-29T23:55:44.366088Z&quot;}}" data-execution_count="6">
+<div id="tbl-top4-frequency" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="6" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2026-04-29T23:55:44.428503Z&quot;,&quot;start_time&quot;:&quot;2026-04-29T23:55:44.366088Z&quot;}}">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-top4-frequency-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;1: Most frequent Top 4 finishers (1992-2025)
@@ -4416,7 +4419,7 @@ Table&nbsp;1: Most frequent Top 4 finishers (1992-2025)
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>relegated_clubs.columns <span class="op">=</span> [<span class="st">"Club"</span>, <span class="st">"Times Relegated"</span>]</span>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>relegated_clubs.head(<span class="dv">10</span>).style.hide(axis<span class="op">=</span><span class="st">"index"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="tbl-relegated" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2026-04-29T23:55:44.546759Z&quot;,&quot;start_time&quot;:&quot;2026-04-29T23:55:44.518317Z&quot;}}" data-execution_count="7">
+<div id="tbl-relegated" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="7" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2026-04-29T23:55:44.546759Z&quot;,&quot;start_time&quot;:&quot;2026-04-29T23:55:44.518317Z&quot;}}">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-relegated-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;2: Most frequently relegated clubs (1992-2025)
@@ -4940,7 +4943,7 @@ Figure&nbsp;3: Clubs relegated most often from the Premier League (1992-2025)
 <span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>display_df.style.background_gradient(</span>
 <span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>   subset<span class="op">=</span>[<span class="st">"Gap"</span>], cmap<span class="op">=</span><span class="st">"YlOrRd"</span></span>
 <span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>).hide(axis<span class="op">=</span><span class="st">"index"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="tbl-full-data" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2026-04-30T01:12:03.151802Z&quot;,&quot;start_time&quot;:&quot;2026-04-30T01:12:03.123710Z&quot;}}" data-execution_count="77">
+<div id="tbl-full-data" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="77" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2026-04-30T01:12:03.151802Z&quot;,&quot;start_time&quot;:&quot;2026-04-30T01:12:03.123710Z&quot;}}">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-full-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;3: Complete Premier League season data (scroll to see all)
@@ -5545,7 +5548,7 @@ Table&nbsp;3: Complete Premier League season data (scroll to see all)
 <span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>era_comparison <span class="op">=</span> pd.DataFrame(era_stats)</span>
 <span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>era_comparison.style.<span class="bu">format</span>({<span class="st">"Avg Ratio"</span>: <span class="st">"</span><span class="sc">{:.2f}</span><span class="st">x"</span>}).hide(axis<span class="op">=</span><span class="st">"index"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="tbl-era-comparison" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2026-04-30T01:12:12.643873Z&quot;,&quot;start_time&quot;:&quot;2026-04-30T01:12:12.623481Z&quot;}}" data-execution_count="78">
+<div id="tbl-era-comparison" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="78" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2026-04-30T01:12:12.643873Z&quot;,&quot;start_time&quot;:&quot;2026-04-30T01:12:12.623481Z&quot;}}">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-era-comparison-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;4: Points comparison across Premier League eras
@@ -5755,7 +5758,7 @@ Table&nbsp;4: Points comparison across Premier League eras
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/eschnitger\.github\.io\/");
+        var filterRegex = new RegExp('/' + window.location.host + '/');
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
