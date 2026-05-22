@@ -2,4 +2,4 @@
 title: "About"
 ---
 
-About this site
+Things to tell about this site. Or maybe me. Or probably both. But they aren't here yet.
