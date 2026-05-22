@@ -19,7 +19,7 @@ div.sourceCode {
 }
 
 /* Prevent embedded Jupyter notebooks from generating ghost right margins */
-.cell-output-display, 
+.cell-output-display,
 .cell-output {
   max-width: 100% !important;
   overflow-x: auto;
