@@ -1,0 +1,46 @@
+---
+title: "Highest Human Speed Each Year"
+author: "Eric Schnitger"
+date: 2026-05-01
+format:
+  html:
+    toc: true
+    toc-location: left
+---
+
+## Overview
+
+With the Artemis II mission successfully paving the way for our return to deep space, a fascinating question emerged: *What is the absolute fastest humans have traveled each year, and how frequently have we shattered those limits?*
+
+Looking at human velocity on a century-long time scale highlights an astonishing reality: for millennia, our speed boundary was tied directly to the stride of a horse. Within a mere handful of generations, that boundary shifted exponentially from steam power to aviation, jet propulsion, and eventually atmospheric escape.
+
+## Technical Architecture & Data Prep
+
+To reconstruct this historical timeline, I compiled and cross-verified historical velocity benchmarks using generative AI workflows, then isolated key architectural leaps. 
+
+To maintain a clean layout for non-technical readers while keeping the core replication pipeline accessible, you can expand my underlying data preparation steps below.
+
+::: {.panel-tabset}
+
+### 🐍 Data Engineering Pipeline
+{{< embed highest-human-speed.ipynb >}}
+
+### 🛠️ Methodology Insights
+* **Verification Loop:** Initial data structures generated via LLMs were cross-checked manually against aviation and aerospace records to ensure peak milestone accuracy (e.g., separating atmospheric jet records from low-Earth orbit velocities).
+* **Scope:** The dataset normalizes peak vehicle speeds carrying human crews relative to the Earth's surface or orbital reference frames.
+* **AI Tooling:** The base dataset was generated via Claude and double-checked for chronological anomalies using Gemini.
+:::
+
+## Interactive Dashboard
+
+The dynamic shifts in human acceleration are visualized below. 
+
+*Note: For the best experience on desktop or mobile, interact with the data filters directly inside the fluid frame.*
+
+```{=html}
+<div class="tableau-container">
+  <iframe 
+    src="[https://public.tableau.com/views/fastest-human/Comparison?:showVizHome=no&:embed=true](https://public.tableau.com/views/fastest-human/Comparison?:showVizHome=no&:embed=true)"
+    allowfullscreen="true">
+  </iframe>
+</div>

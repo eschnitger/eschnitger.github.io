@@ -3,8 +3,20 @@
     "listing": "/projects/index.html",
     "items": [
       "/projects/automation/index.html",
+      "/projects/eschnitger.github.io/index.html",
+      "/projects/eschnitger.github.io/projects/automation/index.html",
+      "/projects/eschnitger.github.io/projects/index.html",
+      "/projects/eschnitger.github.io/writing/index.html",
       "/projects/fastest-human/index.html",
+      "/projects/eschnitger.github.io/projects/premier-league/index.html",
       "/projects/premier-league/index.html"
+    ]
+  },
+  {
+    "listing": "/projects/eschnitger.github.io/projects/index.html",
+    "items": [
+      "/projects/eschnitger.github.io/projects/automation/index.html",
+      "/projects/eschnitger.github.io/projects/premier-league/index.html"
     ]
   }
 ]

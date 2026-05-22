@@ -1,0 +1,37 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <list>
+          <option value="spacy" />
+          <option value="spacy-transformers" />
+          <option value="transformers" />
+          <option value="torch" />
+          <option value="sentence-transformers" />
+          <option value="booknlp" />
+          <option value="nrclex" />
+          <option value="nltk" />
+          <option value="textacy" />
+          <option value="gensim" />
+          <option value="pandas" />
+          <option value="numpy" />
+          <option value="scipy" />
+          <option value="scikit-learn" />
+          <option value="statsmodels" />
+          <option value="ruptures" />
+          <option value="plotly" />
+          <option value="matplotlib" />
+          <option value="seaborn" />
+          <option value="umap-learn" />
+          <option value="dash" />
+          <option value="dash-bootstrap-components" />
+          <option value="networkx" />
+          <option value="tqdm" />
+          <option value="pyyaml" />
+          <option value="jsonlines" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
