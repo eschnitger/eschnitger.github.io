@@ -1,9 +1,11 @@
 ---
 title: "Data Projects"
 listing:
- type: grid
- categories: true
- sort: "date desc"
- grid-columns: 3
- contents: "*/index.qmd"
+  type: grid
+  categories: true
+  sort: "date desc"
+  grid-columns: 3
+  contents:
+    - "*/index.qmd"
+    - "!eschnitger.github.io/**"
 ---
