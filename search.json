@@ -14,221 +14,88 @@
     "text": "Things to tell about this site. Or maybe me. Or probably both. But they aren’t here yet."
   },
   {
-    "objectID": "projects/RootBeer/RootBeer.html",
-    "href": "projects/RootBeer/RootBeer.html",
-    "title": "Root Beer Blind Taste Test Analysis",
+    "objectID": "projects/fastest-human/index.html",
+    "href": "projects/fastest-human/index.html",
+    "title": "Highest Human Speed Each Year",
     "section": "",
-    "text": "Available renderers: ['plotly_mimetype', 'jupyterlab', 'nteract', 'vscode', 'notebook', 'notebook_connected', 'kaggle', 'azure', 'colab', 'cocalc', 'databricks', 'json', 'png', 'jpeg', 'jpg', 'svg', 'pdf', 'browser', 'firefox', 'chrome', 'chromium', 'iframe', 'iframe_connected', 'sphinx_gallery', 'sphinx_gallery_png']\n\n\n    \n    \n        \n        Loading BokehJS ...\n    \n\n\n\n\n\n\n\n      A&W  Mug  Summit  Virgil's  Weinhardt  Barq's\nGEBS    3    5       1         4          6       2\nAWMS    2    4       1         5          6       3\nEES     1    2       4         6          3       5\nEJMS    3    4       2         6          5       1\nLM      3    4       1         5          6       2\nSES     2    3       1         6          5       4\nDAS     2    5       1         3          6       4\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n                                                    \n\n\n\n\n                                                    \n\n\n\n\n                                                    \n\n\n\n\n                                                    \n\n\n\n\n                                                    \n\n\n\n\n                                                    \n\n\n##Altair\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBokeh\nhvPlot"
+    "text": "With the Artemis II mission successfully paving the way for our return to deep space, a fascinating question emerged: What is the absolute fastest humans have traveled each year, and how frequently have we shattered those limits?\nLooking at human velocity on a century-long time scale highlights an astonishing reality: for millennia, our speed boundary was tied directly to the stride of a horse. Within a mere handful of generations, that boundary shifted exponentially from steam power to aviation, jet propulsion, and eventually atmospheric escape."
   },
   {
-    "objectID": "projects/fastest-human/highest-human-speed.html",
-    "href": "projects/fastest-human/highest-human-speed.html",
-    "title": "How fast are humans going?",
+    "objectID": "projects/fastest-human/index.html#overview",
+    "href": "projects/fastest-human/index.html#overview",
+    "title": "Highest Human Speed Each Year",
     "section": "",
-    "text": "I was curious about the fastest a human had gone each year. My initial thought was that humans traveled around the speed of a horse galloping for centuries. But when did bicycles or motorized technology take off? And when did flying and then space flight expand?\nI couldn’t find a good dataset, so Claude provided one and Gemini double-checked it. I was more interested in the visualization than the data scraping.\n\n\nExported 3 CSV files:\n  1) speed_peak_full_6000bce.csv — 8,027 rows\n  2) speed_peak_1700.csv         — 327 rows\n  3) speed_peak_1850.csv         — 177 rows"
+    "text": "With the Artemis II mission successfully paving the way for our return to deep space, a fascinating question emerged: What is the absolute fastest humans have traveled each year, and how frequently have we shattered those limits?\nLooking at human velocity on a century-long time scale highlights an astonishing reality: for millennia, our speed boundary was tied directly to the stride of a horse. Within a mere handful of generations, that boundary shifted exponentially from steam power to aviation, jet propulsion, and eventually atmospheric escape."
   },
   {
-    "objectID": "projects/index.html",
-    "href": "projects/index.html",
-    "title": "Projects",
+    "objectID": "projects/fastest-human/index.html#technical-architecture-data-prep",
+    "href": "projects/fastest-human/index.html#technical-architecture-data-prep",
+    "title": "Highest Human Speed Each Year",
+    "section": "Technical Architecture & Data Prep",
+    "text": "Technical Architecture & Data Prep\nTo reconstruct this historical timeline, I compiled and cross-verified historical velocity benchmarks using generative AI workflows, then isolated key architectural leaps.\nTo maintain a clean layout for non-technical readers while keeping the core replication pipeline accessible, you can expand my underlying data preparation steps below.\n\n🐍 Data Engineering Pipeline🛠️ Methodology Insights\n\n\n\nHow fast are humans going?\nI was curious about the fastest a human had gone each year. My initial thought was that humans traveled around the speed of a horse galloping for centuries. But when did bicycles or motorized technology take off? And when did flying and then space flight expand?\nI couldn’t find a good dataset, so Claude provided one and Gemini double-checked it. I was more interested in the visualization than the data scraping.\n\n\nExported 3 CSV files:\n  1) speed_peak_full_6000bce.csv — 8,027 rows\n  2) speed_peak_1700.csv         — 327 rows\n  3) speed_peak_1850.csv         — 177 rows\n\n\nSource: How fast are humans going?\n\n\n\nVerification Loop: Initial data structures generated via LLMs were cross-checked manually against aviation and aerospace records to ensure peak milestone accuracy (e.g., separating atmospheric jet records from low-Earth orbit velocities).\nScope: The dataset normalizes peak vehicle speeds carrying human crews relative to the Earth’s surface or orbital reference frames.\nAI Tooling: The base dataset was generated via Claude and double-checked for chronological anomalies using Gemini."
+  },
+  {
+    "objectID": "projects/fastest-human/index.html#interactive-dashboard",
+    "href": "projects/fastest-human/index.html#interactive-dashboard",
+    "title": "Highest Human Speed Each Year",
+    "section": "Interactive Dashboard",
+    "text": "Interactive Dashboard\nThe dynamic shifts in human acceleration are visualized below.\nNote: For the best experience on desktop or mobile, interact with the data filters directly inside the fluid frame."
+  },
+  {
+    "objectID": "projects/LACountyPolluters/LACountyPolluters.html",
+    "href": "projects/LACountyPolluters/LACountyPolluters.html",
+    "title": "LA County Greenhouse Gas Emissions Analysis",
     "section": "",
-    "text": "Top and Bottom of the Premiere League\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHow fast are humans going?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRoot Beer Blind Taste Test Analysis\n\n\n\nPython\n\nData Visualization\n\n\n\nVisualizing rankings and preferences across root beer brands using Plotly and Bokeh.\n\n\n\nEric Schnitger\n\n\nMay 15, 2026\n\n\n\n\n\n\n\n\n\n\n\nBirth, Wealth, and Income Analysis\n\n\n\nPython\n\nEconomics\n\n\n\nAn analysis of generational mobility data.\n\n\n\n\n\n\nMay 1, 2026\n\n\n\n\n\n\nNo matching items"
+    "text": "Data Sources: | Source | Coverage | Granularity | Time Range | |——–|———-|————-|————| | EPA GHGRP (Greenhouse Gas Reporting Program) | Facilities emitting 25k+ metric tons CO2e/yr | Individual facility | 2010-present | | CARB MRR (Mandatory Reporting Regulation) | California-specific, lower threshold | Facility + sector | 2008-present | | CARB GHG Inventory | Statewide by sector, scalable to county | Sector | 2000-present |\nTime Windows: Last year (2025), 5 years (2021-2025), decade (2016-2025), full history (2010-2025)"
   },
   {
-    "objectID": "projects/premier-league/PremLeague.html",
-    "href": "projects/premier-league/PremLeague.html",
-    "title": "Top and Bottom of the Premiere League",
+    "objectID": "projects/LACountyPolluters/LACountyPolluters.html#overview",
+    "href": "projects/LACountyPolluters/LACountyPolluters.html#overview",
+    "title": "LA County Greenhouse Gas Emissions Analysis",
     "section": "",
-    "text": "BIn 1992/93, Manchester United won the first Premier League title with 84 points. Coventry City survived relegation with 49. The gap: 35 points.\nIn 2019/20, Liverpool won with 99 points. Aston Villa survived with 34. The gap: 65 points.\nIs the Premier League becoming a two-tier league? And if so, when did the divergence accelerate? This analysis pulls live data from Wikipedia to find out.\n\nData Collection\nThe dataset is scraped live from Wikipedia’s season-by-season Premier League articles. For each of the 33 completed seasons, the scraper extracts:\n\nChampion and their points total\nTop 4 finishers (Champions League qualifiers since 2001/02)\n17th-place finisher (the lowest team to survive relegation)\nRelegated teams (18th, 19th, 20th)\n\n\n\nUsing cached data (0.0 days old)\nDataset: 33 seasons loaded\n\n\n\n\nChampions League & Relegation Overview\nBefore diving into the trend analysis, here’s a quick look at which clubs have dominated the top 4 and which have faced the drop.\n\n\n\n\nTable 1: Most frequent Top 4 finishers (1992-2025)\n\n\n\n\n\n\n\n\nClub\nTop 4 Finishes\nPercentage\n\n\n\n\nManchester United\n26\n78.8%\n\n\nArsenal\n24\n72.7%\n\n\nLiverpool\n21\n63.6%\n\n\nChelsea\n20\n60.6%\n\n\nManchester City\n15\n45.5%\n\n\nTottenham Hotspur\n7\n21.2%\n\n\nNewcastle United\n6\n18.2%\n\n\nBlackburn Rovers\n3\n9.1%\n\n\nAston Villa\n3\n9.1%\n\n\nLeeds United\n3\n9.1%\n\n\n\n\n\n\n\n\n\n\n\n\nTable 2: Most frequently relegated clubs (1992-2025)\n\n\n\n\n\n\n\n\nClub\nTimes Relegated\n\n\n\n\nNorwich City\n6\n\n\nLeicester City\n5\n\n\nWest Bromwich Albion\n5\n\n\nSheffield United\n4\n\n\nSunderland\n4\n\n\nMiddlesbrough\n4\n\n\nNottingham Forest\n4\n\n\nWatford\n4\n\n\nCrystal Palace\n3\n\n\nBolton Wanderers\n3\n\n\n\n\n\n\n\n\n\n\nInteractive Analysis\nUse the dropdown menu in the top-left of the chart to explore different eras. Each era recalculates its own trend line independently.\nHover over any point to see the champion, the surviving team, or the full top 4.\n\n\n\n\n                                                    \n\n\nFigure 1: Premier League points analysis across three dimensions: absolute points, gap, and ratio. Use the dropdown to switch between eras.\n\n\n\n\n\n\nThe Top 4 Lock-Out\nOne of the most striking patterns is how few clubs have occupied the Champions League places over 33 seasons.\n\n\n\n\n                                                    \n\n\nFigure 2: Distribution of Top 4 finishes across all 33 Premier League seasons (132 total slots)\n\n\n\n\n\n\nThe Relegation Revolving Door\nWhile the top is locked down by a handful of clubs, the bottom is chaos.\n\n\n\n\n                                                    \n\n\nFigure 3: Clubs relegated most often from the Premier League (1992-2025)\n\n\n\n\n\n\nSeason-by-Season Detail\n\n\n\n\nTable 3: Complete Premier League season data (scroll to see all)\n\n\n\n\n\n\n\n\nSeason\nChampion\nChamp Pts\n2nd\n3rd\n4th\nSurvived\nSurvival Pts\nRel. 1\nRel. 2\nRel. 3\nGap\n\n\n\n\n1992/93\nManchester United\n84\nAston Villa\nNorwich City\nBlackburn Rovers\nOldham Athletic\n49\nCrystal Palace\nMiddlesbrough\nNottingham Forest\n35\n\n\n1993/94\nManchester United\n92\nBlackburn Rovers\nNewcastle United\nArsenal\nIpswich Town\n43\nSheffield United\nOldham Athletic\nSwindon Town\n49\n\n\n1994/95\nBlackburn Rovers\n89\nManchester United\nNottingham Forest\nLiverpool\nCrystal Palace\n45\nNorwich City\nLeicester City\nIpswich Town\n44\n\n\n1995/96\nManchester United\n82\nNewcastle United\nLiverpool\nAston Villa\nSouthampton\n38\nManchester City\nQueens Park Rangers\nBolton Wanderers\n44\n\n\n1996/97\nManchester United\n75\nArsenal\nLiverpool\nNewcastle United\nCoventry City\n41\nSunderland\nNottingham Forest\nMiddlesbrough\n34\n\n\n1997/98\nArsenal\n78\nManchester United\nLiverpool\nChelsea\nEverton\n40\nBolton Wanderers\nBarnsley\nCrystal Palace\n38\n\n\n1998/99\nManchester United\n79\nArsenal\nChelsea\nLeeds United\nSouthampton\n41\nCharlton Athletic\nBlackburn Rovers\nNottingham Forest\n38\n\n\n1999/00\nManchester United\n91\nArsenal\nLeeds United\nLiverpool\nBradford City\n36\nWimbledon\nSheffield Wednesday\nWatford\n55\n\n\n2000/01\nManchester United\n80\nArsenal\nLiverpool\nLeeds United\nDerby County\n42\nManchester City\nCoventry City\nBradford City\n38\n\n\n2001/02\nArsenal\n87\nLiverpool\nManchester United\nNewcastle United\nSunderland\n40\nIpswich Town\nDerby County\nLeicester City\n47\n\n\n2002/03\nManchester United\n83\nArsenal\nNewcastle United\nChelsea\nBolton Wanderers\n44\nWest Ham United\nWest Bromwich Albion\nSunderland\n39\n\n\n2003/04\nArsenal\n90\nChelsea\nManchester United\nLiverpool\nEverton\n39\nLeicester City\nLeeds United\nWolverhampton Wanderers\n51\n\n\n2004/05\nChelsea\n95\nArsenal\nManchester United\nEverton\nWest Bromwich Albion\n34\nCrystal Palace\nNorwich City\nSouthampton\n61\n\n\n2005/06\nChelsea\n91\nManchester United\nLiverpool\nArsenal\nPortsmouth\n38\nBirmingham City\nWest Bromwich Albion\nSunderland\n53\n\n\n2006/07\nManchester United\n89\nChelsea\nLiverpool\nArsenal\nWigan Athletic\n38\nSheffield United\nCharlton Athletic\nWatford\n51\n\n\n2007/08\nManchester United\n87\nChelsea\nArsenal\nLiverpool\nFulham\n36\nReading\nBirmingham City\nDerby County\n51\n\n\n2008/09\nManchester United\n90\nLiverpool\nChelsea\nArsenal\nHull City\n35\nNewcastle United\nMiddlesbrough\nWest Bromwich Albion\n55\n\n\n2009/10\nChelsea\n86\nManchester United\nArsenal\nTottenham Hotspur\nWest Ham United\n35\nBurnley\nHull City\nPortsmouth\n51\n\n\n2010/11\nManchester United\n80\nChelsea\nManchester City\nArsenal\nWolverhampton Wanderers\n40\nBirmingham City\nBlackpool\nWest Ham United\n40\n\n\n2011/12\nManchester City\n89\nManchester United\nArsenal\nTottenham Hotspur\nQueens Park Rangers\n37\nBolton Wanderers\nBlackburn Rovers\nWolverhampton Wanderers\n52\n\n\n2012/13\nManchester United\n89\nManchester City\nChelsea\nArsenal\nSunderland\n39\nWigan Athletic\nReading\nQueens Park Rangers\n50\n\n\n2013/14\nManchester City\n86\nLiverpool\nChelsea\nArsenal\nWest Bromwich Albion\n36\nNorwich City\nFulham\nCardiff City\n50\n\n\n2014/15\nChelsea\n87\nManchester City\nArsenal\nManchester United\nAston Villa\n38\nHull City\nBurnley\nQueens Park Rangers\n49\n\n\n2015/16\nLeicester City\n81\nArsenal\nTottenham Hotspur\nManchester City\nSunderland\n39\nNewcastle United\nNorwich City\nAston Villa\n42\n\n\n2016/17\nChelsea\n93\nTottenham Hotspur\nManchester City\nLiverpool\nWatford\n40\nHull City\nMiddlesbrough\nSunderland\n53\n\n\n2017/18\nManchester City\n100\nManchester United\nTottenham Hotspur\nLiverpool\nSouthampton\n36\nSwansea City\nStoke City\nWest Bromwich Albion\n64\n\n\n2018/19\nManchester City\n98\nLiverpool\nChelsea\nTottenham Hotspur\nBrighton & Hove Albion\n36\nCardiff City\nFulham\nHuddersfield Town\n62\n\n\n2019/20\nLiverpool\n99\nManchester City\nManchester United\nChelsea\nAston Villa\n35\nBournemouth\nWatford\nNorwich City\n64\n\n\n2020/21\nManchester City\n86\nManchester United\nLiverpool\nChelsea\nBurnley\n39\nFulham\nWest Bromwich Albion\nSheffield United\n47\n\n\n2021/22\nManchester City\n93\nLiverpool\nChelsea\nTottenham Hotspur\nLeeds United\n38\nBurnley\nWatford\nNorwich City\n55\n\n\n2022/23\nManchester City\n89\nArsenal\nManchester United\nNewcastle United\nEverton\n36\nLeicester City\nLeeds United\nSouthampton\n53\n\n\n2023/24\nManchester City\n91\nArsenal\nLiverpool\nAston Villa\nBurnley\n24\nSheffield United\nEverton\nNottingham Forest\n67\n\n\n2024/25\nLiverpool\n84\nArsenal\nManchester City\nChelsea\nTottenham Hotspur\n38\nLeicester City\nIpswich Town\nSouthampton\n46\n\n\n\n\n\n\n\n\n\n\nEra-by-Era Breakdown\n\nPre-Abramovich (1992-2003): The Fergie Monopoly\nThe early Premier League was dominated by a single manager. Sir Alex Ferguson’s Manchester United won 8 of 11 titles, but the points required to win were not exceptionally high (average: ~83 pts). The league was competitive enough that Blackburn (1995) and Arsenal (1998, 2002, 2004) could break through.\nRelegation survival averaged ~39 points, notably higher than any subsequent era. The financial gap between top and bottom had not yet become a chasm.\n\n\nThe Oligarch Era (2003-2016): Money Changes Everything\nRoman Abramovich’s purchase of Chelsea in 2003 marked a turning point. Then Manchester City’s 2008 takeover created a third “super-club.” Title-winning points climbed to an average of ~88 pts, while relegation survival drifted down to ~35 points.\nThe Leicester miracle (2015/16, 81 pts) was the exception that proved the rule.\n\n\nThe Pep/Klopp Era (2016-2025): The Arms Race\n\n\n\n\nTable 4: Points comparison across Premier League eras\n\n\n\n\n\n\n\n\nEra\nSeasons\nAvg Title Pts\nAvg Survival Pts\nAvg Gap\nAvg Ratio\n\n\n\n\nPre-Abramovich\n11\n83.600000\n41.700000\n41.900000\n2.02x\n\n\nOligarch Era\n13\n87.700000\n37.200000\n50.500000\n2.36x\n\n\nPep/Klopp Era\n9\n92.600000\n35.800000\n56.800000\n2.64x\n\n\nPost-COVID\n5\n88.600000\n35.000000\n53.600000\n2.63x\n\n\n\n\n\n\n\n\nThe arrival of Guardiola and peak Klopp created an unprecedented arms race. City’s 100-point season (2017/18) forced Liverpool to respond with 97 points just to finish second. The average title total: ~92 pts. The average survival threshold: ~35 pts. The gap: ~57 pts.\n\n\n\nMethodology & Technical Notes\n\n\n\n\n\n\nNoteTechnical details (click to expand)\n\n\n\n\n\nData source: Scraped from Wikipedia’s individual season articles using requests and pandas.read_html(). Team names are cleaned of citation markers, qualification tags, and Unicode artifacts.\nCaching: Results are cached to a local CSV (pl_data_cache.csv) with a 7-day expiry to avoid unnecessary requests to Wikipedia. The freeze: auto setting in Quarto further ensures the notebook only re-executes when source code changes.\nRate limiting: A 1.5-second delay between requests respects Wikipedia’s usage guidelines.\n22-team seasons: The first three seasons (1992/93 through 1994/95) had 22 teams. Relegation positions are adjusted accordingly (19th survived, 20th-22nd relegated).\nChampions League qualification: The number of CL spots changed over time (1 in the early 1990s, gradually expanding to 4 by 2001/02). This analysis consistently tracks the top 4 finishers regardless of how many actually qualified for the Champions League in that era.\nTrend lines: Linear regression via numpy.polyfit(x, y, 1), calculated independently per era.\n\n\n\n\n\n\n\n\n\nNoteWhat I’d Explore Next (click to expand)\n\n\n\n\n\n\nRevenue correlation: Does the gap track with TV deal sizes? The 2016/17 season (start of the current mega-deal) aligns with the gap widening.\nWage bill ratio: How closely does the points gap mirror the spending gap?\nPromotion bounce-back rate: Of the clubs relegated, how quickly (if ever) do they return?\nEuropean comparison: Do La Liga, Bundesliga, and Serie A show the same stratification, or is this a Premier League-specific phenomenon?\n\n\n\n\n\n\nSource Code\nThe complete source for this project is available on GitHub.\n\nData scraped from Wikipedia. Built with Python, Pandas, NumPy, Plotly, and Requests. Published with Quarto."
+    "text": "Data Sources: | Source | Coverage | Granularity | Time Range | |——–|———-|————-|————| | EPA GHGRP (Greenhouse Gas Reporting Program) | Facilities emitting 25k+ metric tons CO2e/yr | Individual facility | 2010-present | | CARB MRR (Mandatory Reporting Regulation) | California-specific, lower threshold | Facility + sector | 2008-present | | CARB GHG Inventory | Statewide by sector, scalable to county | Sector | 2000-present |\nTime Windows: Last year (2025), 5 years (2021-2025), decade (2016-2025), full history (2010-2025)"
   },
   {
-    "objectID": "projects/european-football-divide/notebooks/03_la_liga.html",
-    "href": "projects/european-football-divide/notebooks/03_la_liga.html",
-    "title": "La Liga: The Duopoly and Beyond",
-    "section": "",
-    "text": "33 seasons of Real-Barca dominance in Spain\nEric Schnitger, 2026"
+    "objectID": "projects/LACountyPolluters/LACountyPolluters.html#notebook-2-data-processing-analysis",
+    "href": "projects/LACountyPolluters/LACountyPolluters.html#notebook-2-data-processing-analysis",
+    "title": "LA County Greenhouse Gas Emissions Analysis",
+    "section": "Notebook 2: Data Processing & Analysis",
+    "text": "Notebook 2: Data Processing & Analysis"
   },
   {
-    "objectID": "projects/european-football-divide/notebooks/03_la_liga.html#key-findings",
-    "href": "projects/european-football-divide/notebooks/03_la_liga.html#key-findings",
-    "title": "La Liga: The Duopoly and Beyond",
-    "section": "Key Findings",
-    "text": "Key Findings\n\nReal + Barca account for ~27 of 33 titles\nAtletico’s 2014 title is the only genuine interruption\nTitle points peaked at 100 (2011/12 and 2012/13)\n\n\n\n  [LL] cache hit (0.0d old)\nLoaded 31 seasons\n\n\n\n\n\n\n\n\n\nSeason\nStart Year\nNum Teams\nMatches\nChampion\nTitle-Winning Points\n2nd Place\n2nd Place Points\n3rd Place\n3rd Place Points\n...\nRelegated 2\nRelegated 3\nGap\nRatio\nTitle PPG\nSurvival PPG\nGap PPG\nTitle Pts (38-game)\nSurvival Pts (38-game)\nGap (38-game)\n\n\n\n\n21\n2015/16\n2015\n20\n38\nBarcelona\n91\nReal Madrid\n90\nAtlético Madrid\n88\n...\nGetafe\nLevante\n52\n2.33\n2.395\n1.026\n1.369\n91.0\n39.0\n52.0\n\n\n22\n2016/17\n2016\n20\n38\nReal Madrid\n93\nBarcelona\n90\nAtlético Madrid\n78\n...\nOsasuna\nGranada\n58\n2.66\n2.447\n0.921\n1.526\n93.0\n35.0\n58.0\n\n\n23\n2017/18\n2017\n20\n38\nBarcelona\n93\nAtlético Madrid\n79\nReal Madrid\n76\n...\nLas Palmas\nMálaga\n50\n2.16\n2.447\n1.132\n1.315\n93.0\n43.0\n50.0\n\n\n24\n2018/19\n2018\n20\n38\nBarcelona\n87\nAtlético Madrid\n76\nReal Madrid\n68\n...\nHuesca\nRayo Vallecano\n46\n2.12\n2.289\n1.079\n1.210\n87.0\n41.0\n46.0\n\n\n25\n2019/20\n2019\n20\n38\nReal Madrid\n87\nBarcelona\n82\nAtlético Madrid\n70\n...\nMallorca\nEspanyol\n50\n2.35\n2.289\n0.974\n1.315\n87.0\n37.0\n50.0\n\n\n26\n2020/21\n2020\n20\n38\nAtlético Madrid\n86\nReal Madrid\n84\nBarcelona\n79\n...\nValladolid\nEibar\n50\n2.39\n2.263\n0.947\n1.316\n86.0\n36.0\n50.0\n\n\n27\n2021/22\n2021\n20\n38\nReal Madrid\n86\nBarcelona\n73\nAtlético Madrid\n71\n...\nLevante\nAlavés\n47\n2.21\n2.263\n1.026\n1.237\n86.0\n39.0\n47.0\n\n\n28\n2022/23\n2022\n20\n38\nBarcelona\n88\nReal Madrid\n78\nAtlético Madrid\n77\n...\nEspanyol\nElche\n47\n2.15\n2.316\n1.079\n1.237\n88.0\n41.0\n47.0\n\n\n29\n2023/24\n2023\n20\n38\nReal Madrid\n95\nBarcelona\n85\nGirona\n81\n...\nAlmería\nGranada\n57\n2.50\n2.500\n1.000\n1.500\n95.0\n38.0\n57.0\n\n\n30\n2024/25\n2024\n20\n38\nBarcelona\n88\nReal Madrid\n84\nAtlético Madrid\n76\n...\nLas Palmas\nValladolid\n47\n2.15\n2.316\n1.079\n1.237\n88.0\n41.0\n47.0\n\n\n\n\n10 rows × 25 columns"
-  },
-  {
-    "objectID": "projects/european-football-divide/notebooks/03_la_liga.html#interactive-analysis",
-    "href": "projects/european-football-divide/notebooks/03_la_liga.html#interactive-analysis",
-    "title": "La Liga: The Duopoly and Beyond",
-    "section": "Interactive Analysis",
-    "text": "Interactive Analysis"
-  },
-  {
-    "objectID": "projects/european-football-divide/notebooks/03_la_liga.html#top-4-concentration",
-    "href": "projects/european-football-divide/notebooks/03_la_liga.html#top-4-concentration",
-    "title": "La Liga: The Duopoly and Beyond",
-    "section": "Top 4 Concentration",
-    "text": "Top 4 Concentration\n\n\n\n\n\n\n\nClub\nTop 4 Finishes\nPercentage\n\n\n\n\nBarcelona\n30\n96.8%\n\n\nReal Madrid\n30\n96.8%\n\n\nAtlético Madrid\n16\n51.6%\n\n\nValencia\n13\n41.9%\n\n\nDeportivo La Coruña\n7\n22.6%\n\n\nSevilla\n7\n22.6%\n\n\nReal Sociedad\n4\n12.9%\n\n\nVillarreal\n4\n12.9%\n\n\nAthletic Bilbao\n3\n9.7%\n\n\nReal Betis\n2\n6.5%"
-  },
-  {
-    "objectID": "projects/european-football-divide/notebooks/03_la_liga.html#relegated-clubs",
-    "href": "projects/european-football-divide/notebooks/03_la_liga.html#relegated-clubs",
-    "title": "La Liga: The Duopoly and Beyond",
-    "section": "Relegated Clubs",
-    "text": "Relegated Clubs\n\n\n\n\n\n\n\nClub\nTimes Relegated\n\n\n\n\nValladolid\n8\n\n\nSporting Gijón\n4\n\n\nLevante\n4\n\n\nLas Palmas\n3\n\n\nAlavés\n3\n\n\nZaragoza\n3\n\n\nDeportivo La Coruña\n3\n\n\nOsasuna\n3\n\n\nRayo Vallecano\n3\n\n\nGranada\n3"
-  },
-  {
-    "objectID": "projects/european-football-divide/notebooks/01_premier_league.html",
-    "href": "projects/european-football-divide/notebooks/01_premier_league.html",
+    "objectID": "projects/premier-league/index.html",
+    "href": "projects/premier-league/index.html",
     "title": "Premier League: The Growing Divide",
     "section": "",
-    "text": "33 seasons of English football’s increasing stratification\nEric Schnitger, 2026"
+    "text": "An interactive analysis of how the gap between Premier League champions and relegation survivors has grown from 1992 to 2025."
   },
   {
-    "objectID": "projects/european-football-divide/notebooks/01_premier_league.html#key-findings",
-    "href": "projects/european-football-divide/notebooks/01_premier_league.html#key-findings",
+    "objectID": "projects/premier-league/index.html#overview",
+    "href": "projects/premier-league/index.html#overview",
+    "title": "Premier League: The Growing Divide",
+    "section": "",
+    "text": "An interactive analysis of how the gap between Premier League champions and relegation survivors has grown from 1992 to 2025."
+  },
+  {
+    "objectID": "projects/premier-league/index.html#key-findings",
+    "href": "projects/premier-league/index.html#key-findings",
     "title": "Premier League: The Growing Divide",
     "section": "Key Findings",
-    "text": "Key Findings\n\nTitle-winning points trend upward at roughly +0.25 pts/season\nRelegation survival points are flat or declining at -0.15 pts/season\nThe gap has nearly doubled since 1992\nSharpest inflection: 2016/17 (Pep + Klopp arms race)\nThe same six clubs dominate the top 4\n\n\n\n  [PL] cache hit (0.8d old)\nLoaded 33 seasons\n\n\n\n\n\n\n\n\n\nSeason\nChampion\nTitle-Winning Points\nSurvived Relegation\nRelegation Survival Points\nRelegated 1\nRelegated 2\nRelegated 3\n\n\n\n\n23\n2015/16\nLeicester City\n81\nSunderland\n39\nNewcastle United\nNorwich City\nAston Villa\n\n\n24\n2016/17\nChelsea\n93\nWatford\n40\nHull City\nMiddlesbrough\nSunderland\n\n\n25\n2017/18\nManchester City\n100\nSouthampton\n36\nSwansea City\nStoke City\nWest Bromwich Albion\n\n\n26\n2018/19\nManchester City\n98\nBrighton & Hove Albion\n36\nCardiff City\nFulham\nHuddersfield Town\n\n\n27\n2019/20\nLiverpool\n99\nAston Villa\n35\nBournemouth\nWatford\nNorwich City\n\n\n28\n2020/21\nManchester City\n86\nBurnley\n39\nFulham\nWest Bromwich Albion\nSheffield United\n\n\n29\n2021/22\nManchester City\n93\nLeeds United\n38\nBurnley\nWatford\nNorwich City\n\n\n30\n2022/23\nManchester City\n89\nEverton\n36\nLeicester City\nLeeds United\nSouthampton\n\n\n31\n2023/24\nManchester City\n91\nBrentford\n39\nLuton Town\nBurnley\nSheffield United\n\n\n32\n2024/25\nLiverpool\n84\nTottenham Hotspur\n38\nLeicester City\nIpswich Town\nSouthampton"
+    "text": "Key Findings\n\nTitle-winning points trend upward (+0.25 pts/season)\nRelegation survival points are flat or declining\nThe gap has grown from ~35-50 pts to 50-65 pts"
   },
   {
-    "objectID": "projects/european-football-divide/notebooks/01_premier_league.html#interactive-analysis",
-    "href": "projects/european-football-divide/notebooks/01_premier_league.html#interactive-analysis",
+    "objectID": "projects/premier-league/index.html#the-whole-project",
+    "href": "projects/premier-league/index.html#the-whole-project",
     "title": "Premier League: The Growing Divide",
-    "section": "Interactive Analysis",
-    "text": "Interactive Analysis\nUse the dropdown to switch eras."
+    "section": "The Whole Project",
+    "text": "The Whole Project\n\n\n\nTop and Bottom of the Premiere League\nBIn 1992/93, Manchester United won the first Premier League title with 84 points. Coventry City survived relegation with 49. The gap: 35 points.\nIn 2019/20, Liverpool won with 99 points. Aston Villa survived with 34. The gap: 65 points.\nIs the Premier League becoming a two-tier league? And if so, when did the divergence accelerate? This analysis pulls live data from Wikipedia to find out.\n\nData Collection\nThe dataset is scraped live from Wikipedia’s season-by-season Premier League articles. For each of the 33 completed seasons, the scraper extracts:\n\nChampion and their points total\nTop 4 finishers (Champions League qualifiers since 2001/02)\n17th-place finisher (the lowest team to survive relegation)\nRelegated teams (18th, 19th, 20th)\n\n\n\nUsing cached data (0.0 days old)\nDataset: 33 seasons loaded\n\n\n\n\nChampions League & Relegation Overview\nBefore diving into the trend analysis, here’s a quick look at which clubs have dominated the top 4 and which have faced the drop.\n\n\n\n\nTable 1: Most frequent Top 4 finishers (1992-2025)\n\n\n\n\n\n\n\n\nClub\nTop 4 Finishes\nPercentage\n\n\n\n\nManchester United\n26\n78.8%\n\n\nArsenal\n24\n72.7%\n\n\nLiverpool\n21\n63.6%\n\n\nChelsea\n20\n60.6%\n\n\nManchester City\n15\n45.5%\n\n\nTottenham Hotspur\n7\n21.2%\n\n\nNewcastle United\n6\n18.2%\n\n\nBlackburn Rovers\n3\n9.1%\n\n\nAston Villa\n3\n9.1%\n\n\nLeeds United\n3\n9.1%\n\n\n\n\n\n\n\n\n\n\n\n\nTable 2: Most frequently relegated clubs (1992-2025)\n\n\n\n\n\n\n\n\nClub\nTimes Relegated\n\n\n\n\nNorwich City\n6\n\n\nLeicester City\n5\n\n\nWest Bromwich Albion\n5\n\n\nSheffield United\n4\n\n\nSunderland\n4\n\n\nMiddlesbrough\n4\n\n\nNottingham Forest\n4\n\n\nWatford\n4\n\n\nCrystal Palace\n3\n\n\nBolton Wanderers\n3\n\n\n\n\n\n\n\n\n\n\nInteractive Analysis\nUse the dropdown menu in the top-left of the chart to explore different eras. Each era recalculates its own trend line independently.\nHover over any point to see the champion, the surviving team, or the full top 4.\n\n\n\n\n                                                    \n\n\nFigure 1: Premier League points analysis across three dimensions: absolute points, gap, and ratio. Use the dropdown to switch between eras.\n\n\n\n\n\n\nThe Top 4 Lock-Out\nOne of the most striking patterns is how few clubs have occupied the Champions League places over 33 seasons.\n\n\n\n\n                                                    \n\n\nFigure 2: Distribution of Top 4 finishes across all 33 Premier League seasons (132 total slots)\n\n\n\n\n\n\nThe Relegation Revolving Door\nWhile the top is locked down by a handful of clubs, the bottom is chaos.\n\n\n\n\n                                                    \n\n\nFigure 3: Clubs relegated most often from the Premier League (1992-2025)\n\n\n\n\n\n\nSeason-by-Season Detail\n\n\n\n\nTable 3: Complete Premier League season data (scroll to see all)\n\n\n\n\n\n\n\n\nSeason\nChampion\nChamp Pts\n2nd\n3rd\n4th\nSurvived\nSurvival Pts\nRel. 1\nRel. 2\nRel. 3\nGap\n\n\n\n\n1992/93\nManchester United\n84\nAston Villa\nNorwich City\nBlackburn Rovers\nOldham Athletic\n49\nCrystal Palace\nMiddlesbrough\nNottingham Forest\n35\n\n\n1993/94\nManchester United\n92\nBlackburn Rovers\nNewcastle United\nArsenal\nIpswich Town\n43\nSheffield United\nOldham Athletic\nSwindon Town\n49\n\n\n1994/95\nBlackburn Rovers\n89\nManchester United\nNottingham Forest\nLiverpool\nCrystal Palace\n45\nNorwich City\nLeicester City\nIpswich Town\n44\n\n\n1995/96\nManchester United\n82\nNewcastle United\nLiverpool\nAston Villa\nSouthampton\n38\nManchester City\nQueens Park Rangers\nBolton Wanderers\n44\n\n\n1996/97\nManchester United\n75\nArsenal\nLiverpool\nNewcastle United\nCoventry City\n41\nSunderland\nNottingham Forest\nMiddlesbrough\n34\n\n\n1997/98\nArsenal\n78\nManchester United\nLiverpool\nChelsea\nEverton\n40\nBolton Wanderers\nBarnsley\nCrystal Palace\n38\n\n\n1998/99\nManchester United\n79\nArsenal\nChelsea\nLeeds United\nSouthampton\n41\nCharlton Athletic\nBlackburn Rovers\nNottingham Forest\n38\n\n\n1999/00\nManchester United\n91\nArsenal\nLeeds United\nLiverpool\nBradford City\n36\nWimbledon\nSheffield Wednesday\nWatford\n55\n\n\n2000/01\nManchester United\n80\nArsenal\nLiverpool\nLeeds United\nDerby County\n42\nManchester City\nCoventry City\nBradford City\n38\n\n\n2001/02\nArsenal\n87\nLiverpool\nManchester United\nNewcastle United\nSunderland\n40\nIpswich Town\nDerby County\nLeicester City\n47\n\n\n2002/03\nManchester United\n83\nArsenal\nNewcastle United\nChelsea\nBolton Wanderers\n44\nWest Ham United\nWest Bromwich Albion\nSunderland\n39\n\n\n2003/04\nArsenal\n90\nChelsea\nManchester United\nLiverpool\nEverton\n39\nLeicester City\nLeeds United\nWolverhampton Wanderers\n51\n\n\n2004/05\nChelsea\n95\nArsenal\nManchester United\nEverton\nWest Bromwich Albion\n34\nCrystal Palace\nNorwich City\nSouthampton\n61\n\n\n2005/06\nChelsea\n91\nManchester United\nLiverpool\nArsenal\nPortsmouth\n38\nBirmingham City\nWest Bromwich Albion\nSunderland\n53\n\n\n2006/07\nManchester United\n89\nChelsea\nLiverpool\nArsenal\nWigan Athletic\n38\nSheffield United\nCharlton Athletic\nWatford\n51\n\n\n2007/08\nManchester United\n87\nChelsea\nArsenal\nLiverpool\nFulham\n36\nReading\nBirmingham City\nDerby County\n51\n\n\n2008/09\nManchester United\n90\nLiverpool\nChelsea\nArsenal\nHull City\n35\nNewcastle United\nMiddlesbrough\nWest Bromwich Albion\n55\n\n\n2009/10\nChelsea\n86\nManchester United\nArsenal\nTottenham Hotspur\nWest Ham United\n35\nBurnley\nHull City\nPortsmouth\n51\n\n\n2010/11\nManchester United\n80\nChelsea\nManchester City\nArsenal\nWolverhampton Wanderers\n40\nBirmingham City\nBlackpool\nWest Ham United\n40\n\n\n2011/12\nManchester City\n89\nManchester United\nArsenal\nTottenham Hotspur\nQueens Park Rangers\n37\nBolton Wanderers\nBlackburn Rovers\nWolverhampton Wanderers\n52\n\n\n2012/13\nManchester United\n89\nManchester City\nChelsea\nArsenal\nSunderland\n39\nWigan Athletic\nReading\nQueens Park Rangers\n50\n\n\n2013/14\nManchester City\n86\nLiverpool\nChelsea\nArsenal\nWest Bromwich Albion\n36\nNorwich City\nFulham\nCardiff City\n50\n\n\n2014/15\nChelsea\n87\nManchester City\nArsenal\nManchester United\nAston Villa\n38\nHull City\nBurnley\nQueens Park Rangers\n49\n\n\n2015/16\nLeicester City\n81\nArsenal\nTottenham Hotspur\nManchester City\nSunderland\n39\nNewcastle United\nNorwich City\nAston Villa\n42\n\n\n2016/17\nChelsea\n93\nTottenham Hotspur\nManchester City\nLiverpool\nWatford\n40\nHull City\nMiddlesbrough\nSunderland\n53\n\n\n2017/18\nManchester City\n100\nManchester United\nTottenham Hotspur\nLiverpool\nSouthampton\n36\nSwansea City\nStoke City\nWest Bromwich Albion\n64\n\n\n2018/19\nManchester City\n98\nLiverpool\nChelsea\nTottenham Hotspur\nBrighton & Hove Albion\n36\nCardiff City\nFulham\nHuddersfield Town\n62\n\n\n2019/20\nLiverpool\n99\nManchester City\nManchester United\nChelsea\nAston Villa\n35\nBournemouth\nWatford\nNorwich City\n64\n\n\n2020/21\nManchester City\n86\nManchester United\nLiverpool\nChelsea\nBurnley\n39\nFulham\nWest Bromwich Albion\nSheffield United\n47\n\n\n2021/22\nManchester City\n93\nLiverpool\nChelsea\nTottenham Hotspur\nLeeds United\n38\nBurnley\nWatford\nNorwich City\n55\n\n\n2022/23\nManchester City\n89\nArsenal\nManchester United\nNewcastle United\nEverton\n36\nLeicester City\nLeeds United\nSouthampton\n53\n\n\n2023/24\nManchester City\n91\nArsenal\nLiverpool\nAston Villa\nBurnley\n24\nSheffield United\nEverton\nNottingham Forest\n67\n\n\n2024/25\nLiverpool\n84\nArsenal\nManchester City\nChelsea\nTottenham Hotspur\n38\nLeicester City\nIpswich Town\nSouthampton\n46\n\n\n\n\n\n\n\n\n\n\n\nEra-by-Era Breakdown\n\nPre-Abramovich (1992-2003): The Fergie Monopoly\nThe early Premier League was dominated by a single manager. Sir Alex Ferguson’s Manchester United won 8 of 11 titles, but the points required to win were not exceptionally high (average: ~83 pts). The league was competitive enough that Blackburn (1995) and Arsenal (1998, 2002, 2004) could break through.\nRelegation survival averaged ~39 points, notably higher than any subsequent era. The financial gap between top and bottom had not yet become a chasm.\n\n\nThe Oligarch Era (2003-2016): Money Changes Everything\nRoman Abramovich’s purchase of Chelsea in 2003 marked a turning point. Then Manchester City’s 2008 takeover created a third “super-club.” Title-winning points climbed to an average of ~88 pts, while relegation survival drifted down to ~35 points.\nThe Leicester miracle (2015/16, 81 pts) was the exception that proved the rule.\n\n\nThe Pep/Klopp Era (2016-2025): The Arms Race\n\n\n\n\nTable 4: Points comparison across Premier League eras\n\n\n\n\n\n\n\n\nEra\nSeasons\nAvg Title Pts\nAvg Survival Pts\nAvg Gap\nAvg Ratio\n\n\n\n\nPre-Abramovich\n11\n83.600000\n41.700000\n41.900000\n2.02x\n\n\nOligarch Era\n13\n87.700000\n37.200000\n50.500000\n2.36x\n\n\nPep/Klopp Era\n9\n92.600000\n35.800000\n56.800000\n2.64x\n\n\nPost-COVID\n5\n88.600000\n35.000000\n53.600000\n2.63x\n\n\n\n\n\n\n\n\nThe arrival of Guardiola and peak Klopp created an unprecedented arms race. City’s 100-point season (2017/18) forced Liverpool to respond with 97 points just to finish second. The average title total: ~92 pts. The average survival threshold: ~35 pts. The gap: ~57 pts.\n\n\n\nMethodology & Technical Notes\n\n\n\n\n\n\nNoteTechnical details (click to expand)\n\n\n\n\n\nData source: Scraped from Wikipedia’s individual season articles using requests and pandas.read_html(). Team names are cleaned of citation markers, qualification tags, and Unicode artifacts.\nCaching: Results are cached to a local CSV (pl_data_cache.csv) with a 7-day expiry to avoid unnecessary requests to Wikipedia. The freeze: auto setting in Quarto further ensures the notebook only re-executes when source code changes.\nRate limiting: A 1.5-second delay between requests respects Wikipedia’s usage guidelines.\n22-team seasons: The first three seasons (1992/93 through 1994/95) had 22 teams. Relegation positions are adjusted accordingly (19th survived, 20th-22nd relegated).\nChampions League qualification: The number of CL spots changed over time (1 in the early 1990s, gradually expanding to 4 by 2001/02). This analysis consistently tracks the top 4 finishers regardless of how many actually qualified for the Champions League in that era.\nTrend lines: Linear regression via numpy.polyfit(x, y, 1), calculated independently per era.\n\n\n\n\n\n\n\n\n\nNoteWhat I’d Explore Next (click to expand)\n\n\n\n\n\n\nRevenue correlation: Does the gap track with TV deal sizes? The 2016/17 season (start of the current mega-deal) aligns with the gap widening.\nWage bill ratio: How closely does the points gap mirror the spending gap?\nPromotion bounce-back rate: Of the clubs relegated, how quickly (if ever) do they return?\nEuropean comparison: Do La Liga, Bundesliga, and Serie A show the same stratification, or is this a Premier League-specific phenomenon?\n\n\n\n\n\n\nSource Code\nThe complete source for this project is available on GitHub.\n\nData scraped from Wikipedia. Built with Python, Pandas, NumPy, Plotly, and Requests. Published with Quarto.\n\nSource: Top and Bottom of the Premiere League"
   },
   {
-    "objectID": "projects/european-football-divide/notebooks/01_premier_league.html#champions-league-concentration",
-    "href": "projects/european-football-divide/notebooks/01_premier_league.html#champions-league-concentration",
+    "objectID": "projects/premier-league/index.html#code",
+    "href": "projects/premier-league/index.html#code",
     "title": "Premier League: The Growing Divide",
-    "section": "Champions League Concentration",
-    "text": "Champions League Concentration\n\n\n\n\n\n\n\nClub\nTop 4 Finishes\nPercentage\n\n\n\n\nManchester United\n26\n78.8%\n\n\nArsenal\n24\n72.7%\n\n\nLiverpool\n21\n63.6%\n\n\nChelsea\n20\n60.6%\n\n\nManchester City\n15\n45.5%\n\n\nTottenham Hotspur\n7\n21.2%\n\n\nNewcastle United\n6\n18.2%\n\n\nBlackburn Rovers\n3\n9.1%\n\n\nAston Villa\n3\n9.1%\n\n\nLeeds United\n3\n9.1%"
-  },
-  {
-    "objectID": "projects/european-football-divide/notebooks/01_premier_league.html#relegated-clubs",
-    "href": "projects/european-football-divide/notebooks/01_premier_league.html#relegated-clubs",
-    "title": "Premier League: The Growing Divide",
-    "section": "Relegated Clubs",
-    "text": "Relegated Clubs\n\n\n\n\n\n\n\nClub\nTimes Relegated\n\n\n\n\nNorwich City\n6\n\n\nLeicester City\n5\n\n\nWest Bromwich Albion\n5\n\n\nSheffield United\n4\n\n\nBurnley\n4\n\n\nSunderland\n4\n\n\nWatford\n4\n\n\nCrystal Palace\n3\n\n\nBolton Wanderers\n3\n\n\nIpswich Town\n3"
-  },
-  {
-    "objectID": "projects/european-football-divide/notebooks/01_premier_league.html#era-comparison",
-    "href": "projects/european-football-divide/notebooks/01_premier_league.html#era-comparison",
-    "title": "Premier League: The Growing Divide",
-    "section": "Era Comparison",
-    "text": "Era Comparison\n\n\n\n\n\n\n\nEra\nSeasons\nAvg Title\nAvg Survival\nAvg Gap\nAvg Ratio\n\n\n\n\nFull History\n33\n87.700000\n38.800000\n48.800000\n2.28x\n\n\nPre-Abramovich\n11\n83.600000\n41.700000\n41.900000\n2.02x\n\n\nOligarch Era\n13\n87.700000\n37.300000\n50.400000\n2.36x\n\n\nPep/Klopp Era\n9\n92.600000\n37.400000\n55.100000\n2.48x"
-  },
-  {
-    "objectID": "projects/european-football-divide/notebooks/04_ligue_1.html",
-    "href": "projects/european-football-divide/notebooks/04_ligue_1.html",
-    "title": "Ligue 1: The PSG Effect",
-    "section": "",
-    "text": "French football before and after the Qatari takeover\nEric Schnitger, 2026"
-  },
-  {
-    "objectID": "projects/european-football-divide/notebooks/04_ligue_1.html#key-findings",
-    "href": "projects/european-football-divide/notebooks/04_ligue_1.html#key-findings",
-    "title": "Ligue 1: The PSG Effect",
-    "section": "Key Findings",
-    "text": "Key Findings\n\nPre-PSG: 8 different champions in 20 seasons\nPost-PSG: PSG have won ~10 of 13 titles\nMontpellier (2012), Monaco (2017), Lille (2021) are remarkable upsets\n\n\n\n  [L1] cache hit (0.0d old)\nLoaded 31 seasons\n\n\n\n\n\n\n\n\n\nSeason\nStart Year\nNum Teams\nMatches\nChampion\nTitle-Winning Points\n2nd Place\n2nd Place Points\n3rd Place\n3rd Place Points\n...\nRelegated 2\nRelegated 3\nGap\nRatio\nTitle PPG\nSurvival PPG\nGap PPG\nTitle Pts (38-game)\nSurvival Pts (38-game)\nGap (38-game)\n\n\n\n\n21\n2014/15\n2014\n20\n38\nParis Saint-Germain\n83\nLyon\n75\nMonaco\n71\n...\nMetz\nLens\n41\n1.98\n2.184\n1.105\n1.079\n83.0\n42.0\n41.0\n\n\n22\n2015/16\n2015\n20\n38\nParis Saint-Germain\n96\nMonaco\n65\nLyon\n65\n...\nGazélec Ajaccio\nTroyes\n56\n2.40\n2.526\n1.053\n1.473\n96.0\n40.0\n56.0\n\n\n23\n2016/17\n2016\n20\n38\nMonaco\n95\nParis Saint-Germain\n87\nNice\n78\n...\nNancy\nBastia\n58\n2.57\n2.500\n0.974\n1.526\n95.0\n37.0\n58.0\n\n\n24\n2017/18\n2017\n20\n38\nParis Saint-Germain\n93\nMonaco\n80\nLyon\n78\n...\nTroyes\nMetz\n55\n2.45\n2.447\n1.000\n1.447\n93.0\n38.0\n55.0\n\n\n25\n2018/19\n2018\n20\n38\nParis Saint-Germain\n91\nLille\n75\nLyon\n72\n...\nCaen\nGuingamp\n55\n2.53\n2.395\n0.947\n1.448\n91.0\n36.0\n55.0\n\n\n26\n2019/20\n2019\n20\n38\nParis Saint-Germain\n68\nMarseille\n56\nRennes\n50\n...\nAmiens\nToulouse\n38\n2.27\n1.789\n0.789\n1.000\n68.0\n30.0\n38.0\n\n\n27\n2020/21\n2020\n20\n38\nLille\n83\nParis Saint-Germain\n82\nMonaco\n78\n...\nNîmes\nDijon\n42\n2.02\n2.184\n1.079\n1.105\n83.0\n41.0\n42.0\n\n\n28\n2022/23\n2022\n20\n38\nParis Saint-Germain\n85\nLens\n84\nMarseille\n73\n...\nTroyes\nAngers\n50\n2.43\n2.237\n0.921\n1.316\n85.0\n35.0\n50.0\n\n\n29\n2023/24\n2023\n18\n34\nParis Saint-Germain\n76\nMonaco\n67\nBrest\n61\n...\nLorient\nClermont\n44\n2.38\n2.235\n0.941\n1.294\n84.9\n35.8\n49.2\n\n\n30\n2024/25\n2024\n18\n34\nParis Saint-Germain\n84\nMarseille\n65\nMonaco\n61\n...\nSaint-Étienne\nMontpellier\n50\n2.47\n2.471\n1.000\n1.471\n93.9\n38.0\n55.9\n\n\n\n\n10 rows × 25 columns"
-  },
-  {
-    "objectID": "projects/european-football-divide/notebooks/04_ligue_1.html#interactive-analysis",
-    "href": "projects/european-football-divide/notebooks/04_ligue_1.html#interactive-analysis",
-    "title": "Ligue 1: The PSG Effect",
-    "section": "Interactive Analysis",
-    "text": "Interactive Analysis"
-  },
-  {
-    "objectID": "projects/european-football-divide/notebooks/04_ligue_1.html#top-4-concentration",
-    "href": "projects/european-football-divide/notebooks/04_ligue_1.html#top-4-concentration",
-    "title": "Ligue 1: The PSG Effect",
-    "section": "Top 4 Concentration",
-    "text": "Top 4 Concentration\n\n\n\n\n\n\n\nClub\nTop 4 Finishes\nPercentage\n\n\n\n\nParis Saint-Germain\n21\n67.7%\n\n\nLyon\n21\n67.7%\n\n\nMarseille\n16\n51.6%\n\n\nMonaco\n16\n51.6%\n\n\nLille\n11\n35.5%\n\n\nBordeaux\n9\n29.0%\n\n\nAuxerre\n6\n19.4%\n\n\nLens\n4\n12.9%\n\n\nNice\n4\n12.9%\n\n\nRennes\n4\n12.9%"
-  },
-  {
-    "objectID": "projects/european-football-divide/notebooks/04_ligue_1.html#relegated-clubs",
-    "href": "projects/european-football-divide/notebooks/04_ligue_1.html#relegated-clubs",
-    "title": "Ligue 1: The PSG Effect",
-    "section": "Relegated Clubs",
-    "text": "Relegated Clubs\n\n\n\n\n\n\n\nClub\nTimes Relegated\n\n\n\n\nTroyes\n6\n\n\nMetz\n6\n\n\nToulouse\n5\n\n\nCaen\n5\n\n\nSaint-Étienne\n4\n\n\nGuingamp\n4\n\n\nLorient\n4\n\n\nNancy\n3\n\n\nAjaccio\n3\n\n\nLens\n3"
-  },
-  {
-    "objectID": "projects/birth-wealth-income/birth_wealth_income.html",
-    "href": "projects/birth-wealth-income/birth_wealth_income.html",
-    "title": "Birth, Wealth, and Income Analysis",
-    "section": "",
-    "text": "Fetching and verifying data from FRED..."
-  },
-  {
-    "objectID": "projects/european-football-divide/notebooks/05_serie_a.html",
-    "href": "projects/european-football-divide/notebooks/05_serie_a.html",
-    "title": "Serie A: From Seven Sisters to Juve’s Nine",
-    "section": "",
-    "text": "Italian football’s collapse and partial recovery\nEric Schnitger, 2026"
-  },
-  {
-    "objectID": "projects/european-football-divide/notebooks/05_serie_a.html#key-findings",
-    "href": "projects/european-football-divide/notebooks/05_serie_a.html#key-findings",
-    "title": "Serie A: From Seven Sisters to Juve’s Nine",
-    "section": "Key Findings",
-    "text": "Key Findings\n\nSeven Sisters (1992-2006): 5 different champions\nCalciopoli (2006) broke the old order\nJuventus 2012-2020: nine consecutive titles\nPost-Juve: Inter (2021, 2024), Milan (2022), Napoli (2023)\n\n\n\n  [SA] scraping 1992-2025...\n    1992/93... OK\n    1993/94... OK\n    1994/95... OK\n    1995/96... OK\n    1996/97... OK\n    1997/98... OK\n    1998/99... OK\n    1999/00... OK\n    2000/01... OK\n    2001/02... OK\n    2002/03... OK\n    2003/04... OK\n    2004/05... OK\n    2005/06... OK\n    2006/07... OK\n    2007/08... OK\n    2008/09... OK\n    2009/10... OK\n    2010/11... OK\n    2011/12... OK\n    2012/13... OK\n    2013/14... OK\n    2014/15... OK\n    2015/16... OK\n    2016/17... OK\n    2017/18... OK\n    2018/19... OK\n    2019/20... OK\n    2020/21... OK\n    2021/22... OK\n    2022/23... OK\n    2023/24... OK\n    2024/25... OK\n  [SA] cached 33 seasons, 0 failures\nLoaded 33 seasons\n\n\n\n\n\n\n\n\n\nSeason\nStart Year\nNum Teams\nMatches\nChampion\nTitle-Winning Points\n2nd Place\n2nd Place Points\n3rd Place\n3rd Place Points\n...\nRelegated 2\nRelegated 3\nGap\nRatio\nTitle PPG\nSurvival PPG\nGap PPG\nTitle Pts (38-game)\nSurvival Pts (38-game)\nGap (38-game)\n\n\n\n\n23\n2015/16\n2015\n20\n38\nJuventus\n91\nNapoli\n82\nRoma\n80\n...\nFrosinone\nHellas Verona\n52\n2.33\n2.395\n1.026\n1.369\n91.0\n39.0\n52.0\n\n\n24\n2016/17\n2016\n20\n38\nJuventus\n91\nRoma\n87\nNapoli\n86\n...\nPalermo\nPescara\n57\n2.68\n2.395\n0.895\n1.500\n91.0\n34.0\n57.0\n\n\n25\n2017/18\n2017\n20\n38\nJuventus\n95\nNapoli\n91\nRoma\n77\n...\nHellas Verona\nBenevento\n57\n2.50\n2.500\n1.000\n1.500\n95.0\n38.0\n57.0\n\n\n26\n2018/19\n2018\n20\n38\nJuventus\n90\nNapoli\n79\nAtalanta\n69\n...\nFrosinone\nChievo\n52\n2.37\n2.368\n1.000\n1.368\n90.0\n38.0\n52.0\n\n\n27\n2019/20\n2019\n20\n38\nJuventus\n83\nInternazionale\n82\nAtalanta\n78\n...\nBrescia\nSPAL\n44\n2.13\n2.184\n1.026\n1.158\n83.0\n39.0\n44.0\n\n\n28\n2020/21\n2020\n20\n38\nInter Milan\n91\nMilan\n79\nAtalanta\n78\n...\nCrotone\nParma\n54\n2.46\n2.395\n0.974\n1.421\n91.0\n37.0\n54.0\n\n\n29\n2021/22\n2021\n20\n38\nMilan\n86\nInter Milan\n84\nNapoli\n79\n...\nGenoa\nVenezia\n55\n2.77\n2.263\n0.816\n1.447\n86.0\n31.0\n55.0\n\n\n30\n2022/23\n2022\n20\n38\nNapoli\n90\nLazio\n74\nInter Milan\n72\n...\nCremonese\nSampdoria\n59\n2.90\n2.368\n0.816\n1.552\n90.0\n31.0\n59.0\n\n\n31\n2023/24\n2023\n20\n38\nInter Milan\n94\nMilan\n75\nJuventus\n71\n...\nSassuolo\nSalernitana\n58\n2.61\n2.474\n0.947\n1.527\n94.0\n36.0\n58.0\n\n\n32\n2024/25\n2024\n20\n38\nNapoli\n82\nInter Milan\n81\nAtalanta\n74\n...\nVenezia\nMonza\n48\n2.41\n2.158\n0.895\n1.263\n82.0\n34.0\n48.0\n\n\n\n\n10 rows × 25 columns"
-  },
-  {
-    "objectID": "projects/european-football-divide/notebooks/05_serie_a.html#interactive-analysis",
-    "href": "projects/european-football-divide/notebooks/05_serie_a.html#interactive-analysis",
-    "title": "Serie A: From Seven Sisters to Juve’s Nine",
-    "section": "Interactive Analysis",
-    "text": "Interactive Analysis"
-  },
-  {
-    "objectID": "projects/european-football-divide/notebooks/05_serie_a.html#top-4-concentration",
-    "href": "projects/european-football-divide/notebooks/05_serie_a.html#top-4-concentration",
-    "title": "Serie A: From Seven Sisters to Juve’s Nine",
-    "section": "Top 4 Concentration",
-    "text": "Top 4 Concentration\n\n\n\n\n\n\n\nClub\nTop 4 Finishes\nPercentage\n\n\n\n\nJuventus\n28\n84.8%\n\n\nMilan\n21\n63.6%\n\n\nInternazionale\n16\n48.5%\n\n\nLazio\n13\n39.4%\n\n\nRoma\n13\n39.4%\n\n\nNapoli\n10\n30.3%\n\n\nInter Milan\n7\n21.2%\n\n\nFiorentina\n7\n21.2%\n\n\nAtalanta\n6\n18.2%\n\n\nParma\n5\n15.2%"
-  },
-  {
-    "objectID": "projects/european-football-divide/notebooks/05_serie_a.html#relegated-clubs",
-    "href": "projects/european-football-divide/notebooks/05_serie_a.html#relegated-clubs",
-    "title": "Serie A: From Seven Sisters to Juve’s Nine",
-    "section": "Relegated Clubs",
-    "text": "Relegated Clubs\n\n\n\n\n\n\n\nClub\nTimes Relegated\n\n\n\n\nLecce\n7\n\n\nEmpoli\n6\n\n\nAtalanta\n4\n\n\nVenezia\n4\n\n\nHellas Verona\n4\n\n\nBrescia\n4\n\n\nTorino\n3\n\n\nSampdoria\n3\n\n\nCagliari\n3\n\n\nFrosinone\n3"
-  },
-  {
-    "objectID": "projects/european-football-divide/notebooks/02_bundesliga.html",
-    "href": "projects/european-football-divide/notebooks/02_bundesliga.html",
-    "title": "Bundesliga: Bayern’s Iron Grip",
-    "section": "",
-    "text": "32 seasons of German football’s competitive imbalance\nEric Schnitger, 2026"
-  },
-  {
-    "objectID": "projects/european-football-divide/notebooks/02_bundesliga.html#key-findings",
-    "href": "projects/european-football-divide/notebooks/02_bundesliga.html#key-findings",
-    "title": "Bundesliga: Bayern’s Iron Grip",
-    "section": "Key Findings",
-    "text": "Key Findings\n\nBayern have won ~21 of 32 titles (66%) since 1992\nGap trend is flatter than England (dominance already entrenched)\nDortmund 2010-12 is the only sustained challenge\n\n\n\n  [BL] scraping 1992-2025...\n    1992/93... OK\n    1993/94... OK\n    1994/95... OK\n    1995/96... OK\n    1996/97... OK\n    1997/98... OK\n    1998/99... OK\n    1999/00... FAIL\n    2000/01... OK\n    2001/02... OK\n    2002/03... OK\n    2003/04... OK\n    2004/05... OK\n    2005/06... OK\n    2006/07... OK\n    2007/08... OK\n    2008/09... OK\n    2009/10... OK\n    2010/11... OK\n    2011/12... OK\n    2012/13... OK\n    2013/14... OK\n    2014/15... OK\n    2015/16... OK\n    2016/17... OK\n    2017/18... OK\n    2018/19... OK\n    2019/20... OK\n    2020/21... OK\n    2021/22... OK\n    2022/23... OK\n    2023/24... OK\n    2024/25... OK\n  [BL] cached 32 seasons, 1 failures\n    failed: [1999]\nLoaded 32 seasons\n\n\n\n\n\n\n\n\n\nSeason\nChampion\nTitle-Winning Points\nSurvived Relegation\nRelegation Survival Points\n\n\n\n\n22\n2015/16\nBayern Munich\n88\n1899 Hoffenheim\n37\n\n\n23\n2016/17\nBayern Munich\n82\nMainz 05\n37\n\n\n24\n2017/18\nBayern Munich\n84\nSC Freiburg\n36\n\n\n25\n2018/19\nBayern Munich\n78\nFC Augsburg\n32\n\n\n26\n2019/20\nBayern Munich\n82\nFC Augsburg\n36\n\n\n27\n2020/21\nBayern Munich\n78\nArminia Bielefeld\n35\n\n\n28\n2021/22\nBayern Munich\n77\nVfB Stuttgart\n33\n\n\n29\n2022/23\nBayern Munich\n71\nFC Augsburg\n34\n\n\n30\n2023/24\nBayer Leverkusen\n90\nUnion Berlin\n33\n\n\n31\n2024/25\nBayern Munich\n82\nTSG Hoffenheim\n32"
-  },
-  {
-    "objectID": "projects/european-football-divide/notebooks/02_bundesliga.html#interactive-analysis",
-    "href": "projects/european-football-divide/notebooks/02_bundesliga.html#interactive-analysis",
-    "title": "Bundesliga: Bayern’s Iron Grip",
-    "section": "Interactive Analysis",
-    "text": "Interactive Analysis"
-  },
-  {
-    "objectID": "projects/european-football-divide/notebooks/02_bundesliga.html#top-4-concentration",
-    "href": "projects/european-football-divide/notebooks/02_bundesliga.html#top-4-concentration",
-    "title": "Bundesliga: Bayern’s Iron Grip",
-    "section": "Top 4 Concentration",
-    "text": "Top 4 Concentration\n\n\n\n\n\n\n\nClub\nTop 4 Finishes\nPercentage\n\n\n\n\nBayern Munich\n31\n96.9%\n\n\nBorussia Dortmund\n22\n68.8%\n\n\nBayer Leverkusen\n17\n53.1%\n\n\nSchalke 04\n11\n34.4%\n\n\nWerder Bremen\n8\n25.0%\n\n\nVfB Stuttgart\n7\n21.9%\n\n\nRB Leipzig\n7\n21.9%\n\n\nBorussia Mönchengladbach\n5\n15.6%\n\n\nHertha BSC\n4\n12.5%\n\n\n1. FC Kaiserslautern\n3\n9.4%"
-  },
-  {
-    "objectID": "projects/european-football-divide/notebooks/02_bundesliga.html#relegated-clubs",
-    "href": "projects/european-football-divide/notebooks/02_bundesliga.html#relegated-clubs",
-    "title": "Bundesliga: Bayern’s Iron Grip",
-    "section": "Relegated Clubs",
-    "text": "Relegated Clubs\n\n\n\n\n\n\n\nClub\nTimes Relegated\n\n\n\n\nVfL Bochum\n8\n\n\n1. FC Köln\n8\n\n\n1. FC Nürnberg\n7\n\n\nEintracht Frankfurt\n5\n\n\nSC Freiburg\n4\n\n\nArminia Bielefeld\n4\n\n\nHertha BSC\n4\n\n\n1. FC Kaiserslautern\n3\n\n\nFortuna Düsseldorf\n3\n\n\nBorussia Mönchengladbach\n3"
+    "section": "Code",
+    "text": "Code\nThe full source notebook is available on GitHub."
   },
   {
     "objectID": "projects/european-football-divide/notebooks/06_comparison.html",
@@ -301,88 +168,221 @@
     "text": "Conclusions\n\nThe divergence is universal. Every top-5 European league is more stratified in 2025 than in 1992.\nThe causes are structural. TV revenue concentration and Champions League prize money create a feedback loop.\nThe rate differs by league. England and Spain accelerated fastest; Germany was already uneven; France had a single shock; Italy has been chaotic.\nSurvival thresholds are universal. ~33-37 points (38-game equivalent) across all leagues.\nNo regulation has worked. Not 50+1, not collective TV deals, not FFP."
   },
   {
-    "objectID": "projects/premier-league/index.html",
-    "href": "projects/premier-league/index.html",
-    "title": "Premier League: The Growing Divide",
+    "objectID": "projects/european-football-divide/notebooks/02_bundesliga.html",
+    "href": "projects/european-football-divide/notebooks/02_bundesliga.html",
+    "title": "Bundesliga: Bayern’s Iron Grip",
     "section": "",
-    "text": "An interactive analysis of how the gap between Premier League champions and relegation survivors has grown from 1992 to 2025."
+    "text": "32 seasons of German football’s competitive imbalance\nEric Schnitger, 2026"
   },
   {
-    "objectID": "projects/premier-league/index.html#overview",
-    "href": "projects/premier-league/index.html#overview",
-    "title": "Premier League: The Growing Divide",
-    "section": "",
-    "text": "An interactive analysis of how the gap between Premier League champions and relegation survivors has grown from 1992 to 2025."
+    "objectID": "projects/european-football-divide/notebooks/02_bundesliga.html#key-findings",
+    "href": "projects/european-football-divide/notebooks/02_bundesliga.html#key-findings",
+    "title": "Bundesliga: Bayern’s Iron Grip",
+    "section": "Key Findings",
+    "text": "Key Findings\n\nBayern have won ~21 of 32 titles (66%) since 1992\nGap trend is flatter than England (dominance already entrenched)\nDortmund 2010-12 is the only sustained challenge\n\n\n\n  [BL] scraping 1992-2025...\n    1992/93... OK\n    1993/94... OK\n    1994/95... OK\n    1995/96... OK\n    1996/97... OK\n    1997/98... OK\n    1998/99... OK\n    1999/00... FAIL\n    2000/01... OK\n    2001/02... OK\n    2002/03... OK\n    2003/04... OK\n    2004/05... OK\n    2005/06... OK\n    2006/07... OK\n    2007/08... OK\n    2008/09... OK\n    2009/10... OK\n    2010/11... OK\n    2011/12... OK\n    2012/13... OK\n    2013/14... OK\n    2014/15... OK\n    2015/16... OK\n    2016/17... OK\n    2017/18... OK\n    2018/19... OK\n    2019/20... OK\n    2020/21... OK\n    2021/22... OK\n    2022/23... OK\n    2023/24... OK\n    2024/25... OK\n  [BL] cached 32 seasons, 1 failures\n    failed: [1999]\nLoaded 32 seasons\n\n\n\n\n\n\n\n\n\nSeason\nChampion\nTitle-Winning Points\nSurvived Relegation\nRelegation Survival Points\n\n\n\n\n22\n2015/16\nBayern Munich\n88\n1899 Hoffenheim\n37\n\n\n23\n2016/17\nBayern Munich\n82\nMainz 05\n37\n\n\n24\n2017/18\nBayern Munich\n84\nSC Freiburg\n36\n\n\n25\n2018/19\nBayern Munich\n78\nFC Augsburg\n32\n\n\n26\n2019/20\nBayern Munich\n82\nFC Augsburg\n36\n\n\n27\n2020/21\nBayern Munich\n78\nArminia Bielefeld\n35\n\n\n28\n2021/22\nBayern Munich\n77\nVfB Stuttgart\n33\n\n\n29\n2022/23\nBayern Munich\n71\nFC Augsburg\n34\n\n\n30\n2023/24\nBayer Leverkusen\n90\nUnion Berlin\n33\n\n\n31\n2024/25\nBayern Munich\n82\nTSG Hoffenheim\n32"
   },
   {
-    "objectID": "projects/premier-league/index.html#key-findings",
-    "href": "projects/premier-league/index.html#key-findings",
+    "objectID": "projects/european-football-divide/notebooks/02_bundesliga.html#interactive-analysis",
+    "href": "projects/european-football-divide/notebooks/02_bundesliga.html#interactive-analysis",
+    "title": "Bundesliga: Bayern’s Iron Grip",
+    "section": "Interactive Analysis",
+    "text": "Interactive Analysis"
+  },
+  {
+    "objectID": "projects/european-football-divide/notebooks/02_bundesliga.html#top-4-concentration",
+    "href": "projects/european-football-divide/notebooks/02_bundesliga.html#top-4-concentration",
+    "title": "Bundesliga: Bayern’s Iron Grip",
+    "section": "Top 4 Concentration",
+    "text": "Top 4 Concentration\n\n\n\n\n\n\n\nClub\nTop 4 Finishes\nPercentage\n\n\n\n\nBayern Munich\n31\n96.9%\n\n\nBorussia Dortmund\n22\n68.8%\n\n\nBayer Leverkusen\n17\n53.1%\n\n\nSchalke 04\n11\n34.4%\n\n\nWerder Bremen\n8\n25.0%\n\n\nVfB Stuttgart\n7\n21.9%\n\n\nRB Leipzig\n7\n21.9%\n\n\nBorussia Mönchengladbach\n5\n15.6%\n\n\nHertha BSC\n4\n12.5%\n\n\n1. FC Kaiserslautern\n3\n9.4%"
+  },
+  {
+    "objectID": "projects/european-football-divide/notebooks/02_bundesliga.html#relegated-clubs",
+    "href": "projects/european-football-divide/notebooks/02_bundesliga.html#relegated-clubs",
+    "title": "Bundesliga: Bayern’s Iron Grip",
+    "section": "Relegated Clubs",
+    "text": "Relegated Clubs\n\n\n\n\n\n\n\nClub\nTimes Relegated\n\n\n\n\nVfL Bochum\n8\n\n\n1. FC Köln\n8\n\n\n1. FC Nürnberg\n7\n\n\nEintracht Frankfurt\n5\n\n\nSC Freiburg\n4\n\n\nArminia Bielefeld\n4\n\n\nHertha BSC\n4\n\n\n1. FC Kaiserslautern\n3\n\n\nFortuna Düsseldorf\n3\n\n\nBorussia Mönchengladbach\n3"
+  },
+  {
+    "objectID": "projects/european-football-divide/notebooks/05_serie_a.html",
+    "href": "projects/european-football-divide/notebooks/05_serie_a.html",
+    "title": "Serie A: From Seven Sisters to Juve’s Nine",
+    "section": "",
+    "text": "Italian football’s collapse and partial recovery\nEric Schnitger, 2026"
+  },
+  {
+    "objectID": "projects/european-football-divide/notebooks/05_serie_a.html#key-findings",
+    "href": "projects/european-football-divide/notebooks/05_serie_a.html#key-findings",
+    "title": "Serie A: From Seven Sisters to Juve’s Nine",
+    "section": "Key Findings",
+    "text": "Key Findings\n\nSeven Sisters (1992-2006): 5 different champions\nCalciopoli (2006) broke the old order\nJuventus 2012-2020: nine consecutive titles\nPost-Juve: Inter (2021, 2024), Milan (2022), Napoli (2023)\n\n\n\n  [SA] scraping 1992-2025...\n    1992/93... OK\n    1993/94... OK\n    1994/95... OK\n    1995/96... OK\n    1996/97... OK\n    1997/98... OK\n    1998/99... OK\n    1999/00... OK\n    2000/01... OK\n    2001/02... OK\n    2002/03... OK\n    2003/04... OK\n    2004/05... OK\n    2005/06... OK\n    2006/07... OK\n    2007/08... OK\n    2008/09... OK\n    2009/10... OK\n    2010/11... OK\n    2011/12... OK\n    2012/13... OK\n    2013/14... OK\n    2014/15... OK\n    2015/16... OK\n    2016/17... OK\n    2017/18... OK\n    2018/19... OK\n    2019/20... OK\n    2020/21... OK\n    2021/22... OK\n    2022/23... OK\n    2023/24... OK\n    2024/25... OK\n  [SA] cached 33 seasons, 0 failures\nLoaded 33 seasons\n\n\n\n\n\n\n\n\n\nSeason\nStart Year\nNum Teams\nMatches\nChampion\nTitle-Winning Points\n2nd Place\n2nd Place Points\n3rd Place\n3rd Place Points\n...\nRelegated 2\nRelegated 3\nGap\nRatio\nTitle PPG\nSurvival PPG\nGap PPG\nTitle Pts (38-game)\nSurvival Pts (38-game)\nGap (38-game)\n\n\n\n\n23\n2015/16\n2015\n20\n38\nJuventus\n91\nNapoli\n82\nRoma\n80\n...\nFrosinone\nHellas Verona\n52\n2.33\n2.395\n1.026\n1.369\n91.0\n39.0\n52.0\n\n\n24\n2016/17\n2016\n20\n38\nJuventus\n91\nRoma\n87\nNapoli\n86\n...\nPalermo\nPescara\n57\n2.68\n2.395\n0.895\n1.500\n91.0\n34.0\n57.0\n\n\n25\n2017/18\n2017\n20\n38\nJuventus\n95\nNapoli\n91\nRoma\n77\n...\nHellas Verona\nBenevento\n57\n2.50\n2.500\n1.000\n1.500\n95.0\n38.0\n57.0\n\n\n26\n2018/19\n2018\n20\n38\nJuventus\n90\nNapoli\n79\nAtalanta\n69\n...\nFrosinone\nChievo\n52\n2.37\n2.368\n1.000\n1.368\n90.0\n38.0\n52.0\n\n\n27\n2019/20\n2019\n20\n38\nJuventus\n83\nInternazionale\n82\nAtalanta\n78\n...\nBrescia\nSPAL\n44\n2.13\n2.184\n1.026\n1.158\n83.0\n39.0\n44.0\n\n\n28\n2020/21\n2020\n20\n38\nInter Milan\n91\nMilan\n79\nAtalanta\n78\n...\nCrotone\nParma\n54\n2.46\n2.395\n0.974\n1.421\n91.0\n37.0\n54.0\n\n\n29\n2021/22\n2021\n20\n38\nMilan\n86\nInter Milan\n84\nNapoli\n79\n...\nGenoa\nVenezia\n55\n2.77\n2.263\n0.816\n1.447\n86.0\n31.0\n55.0\n\n\n30\n2022/23\n2022\n20\n38\nNapoli\n90\nLazio\n74\nInter Milan\n72\n...\nCremonese\nSampdoria\n59\n2.90\n2.368\n0.816\n1.552\n90.0\n31.0\n59.0\n\n\n31\n2023/24\n2023\n20\n38\nInter Milan\n94\nMilan\n75\nJuventus\n71\n...\nSassuolo\nSalernitana\n58\n2.61\n2.474\n0.947\n1.527\n94.0\n36.0\n58.0\n\n\n32\n2024/25\n2024\n20\n38\nNapoli\n82\nInter Milan\n81\nAtalanta\n74\n...\nVenezia\nMonza\n48\n2.41\n2.158\n0.895\n1.263\n82.0\n34.0\n48.0\n\n\n\n\n10 rows × 25 columns"
+  },
+  {
+    "objectID": "projects/european-football-divide/notebooks/05_serie_a.html#interactive-analysis",
+    "href": "projects/european-football-divide/notebooks/05_serie_a.html#interactive-analysis",
+    "title": "Serie A: From Seven Sisters to Juve’s Nine",
+    "section": "Interactive Analysis",
+    "text": "Interactive Analysis"
+  },
+  {
+    "objectID": "projects/european-football-divide/notebooks/05_serie_a.html#top-4-concentration",
+    "href": "projects/european-football-divide/notebooks/05_serie_a.html#top-4-concentration",
+    "title": "Serie A: From Seven Sisters to Juve’s Nine",
+    "section": "Top 4 Concentration",
+    "text": "Top 4 Concentration\n\n\n\n\n\n\n\nClub\nTop 4 Finishes\nPercentage\n\n\n\n\nJuventus\n28\n84.8%\n\n\nMilan\n21\n63.6%\n\n\nInternazionale\n16\n48.5%\n\n\nLazio\n13\n39.4%\n\n\nRoma\n13\n39.4%\n\n\nNapoli\n10\n30.3%\n\n\nInter Milan\n7\n21.2%\n\n\nFiorentina\n7\n21.2%\n\n\nAtalanta\n6\n18.2%\n\n\nParma\n5\n15.2%"
+  },
+  {
+    "objectID": "projects/european-football-divide/notebooks/05_serie_a.html#relegated-clubs",
+    "href": "projects/european-football-divide/notebooks/05_serie_a.html#relegated-clubs",
+    "title": "Serie A: From Seven Sisters to Juve’s Nine",
+    "section": "Relegated Clubs",
+    "text": "Relegated Clubs\n\n\n\n\n\n\n\nClub\nTimes Relegated\n\n\n\n\nLecce\n7\n\n\nEmpoli\n6\n\n\nAtalanta\n4\n\n\nVenezia\n4\n\n\nHellas Verona\n4\n\n\nBrescia\n4\n\n\nTorino\n3\n\n\nSampdoria\n3\n\n\nCagliari\n3\n\n\nFrosinone\n3"
+  },
+  {
+    "objectID": "projects/birth-wealth-income/birth_wealth_income.html",
+    "href": "projects/birth-wealth-income/birth_wealth_income.html",
+    "title": "Birth, Wealth, and Income Analysis",
+    "section": "",
+    "text": "Fetching and verifying data from FRED..."
+  },
+  {
+    "objectID": "projects/european-football-divide/notebooks/04_ligue_1.html",
+    "href": "projects/european-football-divide/notebooks/04_ligue_1.html",
+    "title": "Ligue 1: The PSG Effect",
+    "section": "",
+    "text": "French football before and after the Qatari takeover\nEric Schnitger, 2026"
+  },
+  {
+    "objectID": "projects/european-football-divide/notebooks/04_ligue_1.html#key-findings",
+    "href": "projects/european-football-divide/notebooks/04_ligue_1.html#key-findings",
+    "title": "Ligue 1: The PSG Effect",
+    "section": "Key Findings",
+    "text": "Key Findings\n\nPre-PSG: 8 different champions in 20 seasons\nPost-PSG: PSG have won ~10 of 13 titles\nMontpellier (2012), Monaco (2017), Lille (2021) are remarkable upsets\n\n\n\n  [L1] cache hit (0.0d old)\nLoaded 31 seasons\n\n\n\n\n\n\n\n\n\nSeason\nStart Year\nNum Teams\nMatches\nChampion\nTitle-Winning Points\n2nd Place\n2nd Place Points\n3rd Place\n3rd Place Points\n...\nRelegated 2\nRelegated 3\nGap\nRatio\nTitle PPG\nSurvival PPG\nGap PPG\nTitle Pts (38-game)\nSurvival Pts (38-game)\nGap (38-game)\n\n\n\n\n21\n2014/15\n2014\n20\n38\nParis Saint-Germain\n83\nLyon\n75\nMonaco\n71\n...\nMetz\nLens\n41\n1.98\n2.184\n1.105\n1.079\n83.0\n42.0\n41.0\n\n\n22\n2015/16\n2015\n20\n38\nParis Saint-Germain\n96\nMonaco\n65\nLyon\n65\n...\nGazélec Ajaccio\nTroyes\n56\n2.40\n2.526\n1.053\n1.473\n96.0\n40.0\n56.0\n\n\n23\n2016/17\n2016\n20\n38\nMonaco\n95\nParis Saint-Germain\n87\nNice\n78\n...\nNancy\nBastia\n58\n2.57\n2.500\n0.974\n1.526\n95.0\n37.0\n58.0\n\n\n24\n2017/18\n2017\n20\n38\nParis Saint-Germain\n93\nMonaco\n80\nLyon\n78\n...\nTroyes\nMetz\n55\n2.45\n2.447\n1.000\n1.447\n93.0\n38.0\n55.0\n\n\n25\n2018/19\n2018\n20\n38\nParis Saint-Germain\n91\nLille\n75\nLyon\n72\n...\nCaen\nGuingamp\n55\n2.53\n2.395\n0.947\n1.448\n91.0\n36.0\n55.0\n\n\n26\n2019/20\n2019\n20\n38\nParis Saint-Germain\n68\nMarseille\n56\nRennes\n50\n...\nAmiens\nToulouse\n38\n2.27\n1.789\n0.789\n1.000\n68.0\n30.0\n38.0\n\n\n27\n2020/21\n2020\n20\n38\nLille\n83\nParis Saint-Germain\n82\nMonaco\n78\n...\nNîmes\nDijon\n42\n2.02\n2.184\n1.079\n1.105\n83.0\n41.0\n42.0\n\n\n28\n2022/23\n2022\n20\n38\nParis Saint-Germain\n85\nLens\n84\nMarseille\n73\n...\nTroyes\nAngers\n50\n2.43\n2.237\n0.921\n1.316\n85.0\n35.0\n50.0\n\n\n29\n2023/24\n2023\n18\n34\nParis Saint-Germain\n76\nMonaco\n67\nBrest\n61\n...\nLorient\nClermont\n44\n2.38\n2.235\n0.941\n1.294\n84.9\n35.8\n49.2\n\n\n30\n2024/25\n2024\n18\n34\nParis Saint-Germain\n84\nMarseille\n65\nMonaco\n61\n...\nSaint-Étienne\nMontpellier\n50\n2.47\n2.471\n1.000\n1.471\n93.9\n38.0\n55.9\n\n\n\n\n10 rows × 25 columns"
+  },
+  {
+    "objectID": "projects/european-football-divide/notebooks/04_ligue_1.html#interactive-analysis",
+    "href": "projects/european-football-divide/notebooks/04_ligue_1.html#interactive-analysis",
+    "title": "Ligue 1: The PSG Effect",
+    "section": "Interactive Analysis",
+    "text": "Interactive Analysis"
+  },
+  {
+    "objectID": "projects/european-football-divide/notebooks/04_ligue_1.html#top-4-concentration",
+    "href": "projects/european-football-divide/notebooks/04_ligue_1.html#top-4-concentration",
+    "title": "Ligue 1: The PSG Effect",
+    "section": "Top 4 Concentration",
+    "text": "Top 4 Concentration\n\n\n\n\n\n\n\nClub\nTop 4 Finishes\nPercentage\n\n\n\n\nParis Saint-Germain\n21\n67.7%\n\n\nLyon\n21\n67.7%\n\n\nMarseille\n16\n51.6%\n\n\nMonaco\n16\n51.6%\n\n\nLille\n11\n35.5%\n\n\nBordeaux\n9\n29.0%\n\n\nAuxerre\n6\n19.4%\n\n\nLens\n4\n12.9%\n\n\nNice\n4\n12.9%\n\n\nRennes\n4\n12.9%"
+  },
+  {
+    "objectID": "projects/european-football-divide/notebooks/04_ligue_1.html#relegated-clubs",
+    "href": "projects/european-football-divide/notebooks/04_ligue_1.html#relegated-clubs",
+    "title": "Ligue 1: The PSG Effect",
+    "section": "Relegated Clubs",
+    "text": "Relegated Clubs\n\n\n\n\n\n\n\nClub\nTimes Relegated\n\n\n\n\nTroyes\n6\n\n\nMetz\n6\n\n\nToulouse\n5\n\n\nCaen\n5\n\n\nSaint-Étienne\n4\n\n\nGuingamp\n4\n\n\nLorient\n4\n\n\nNancy\n3\n\n\nAjaccio\n3\n\n\nLens\n3"
+  },
+  {
+    "objectID": "projects/european-football-divide/notebooks/01_premier_league.html",
+    "href": "projects/european-football-divide/notebooks/01_premier_league.html",
+    "title": "Premier League: The Growing Divide",
+    "section": "",
+    "text": "33 seasons of English football’s increasing stratification\nEric Schnitger, 2026"
+  },
+  {
+    "objectID": "projects/european-football-divide/notebooks/01_premier_league.html#key-findings",
+    "href": "projects/european-football-divide/notebooks/01_premier_league.html#key-findings",
     "title": "Premier League: The Growing Divide",
     "section": "Key Findings",
-    "text": "Key Findings\n\nTitle-winning points trend upward (+0.25 pts/season)\nRelegation survival points are flat or declining\nThe gap has grown from ~35-50 pts to 50-65 pts"
+    "text": "Key Findings\n\nTitle-winning points trend upward at roughly +0.25 pts/season\nRelegation survival points are flat or declining at -0.15 pts/season\nThe gap has nearly doubled since 1992\nSharpest inflection: 2016/17 (Pep + Klopp arms race)\nThe same six clubs dominate the top 4\n\n\n\n  [PL] cache hit (0.8d old)\nLoaded 33 seasons\n\n\n\n\n\n\n\n\n\nSeason\nChampion\nTitle-Winning Points\nSurvived Relegation\nRelegation Survival Points\nRelegated 1\nRelegated 2\nRelegated 3\n\n\n\n\n23\n2015/16\nLeicester City\n81\nSunderland\n39\nNewcastle United\nNorwich City\nAston Villa\n\n\n24\n2016/17\nChelsea\n93\nWatford\n40\nHull City\nMiddlesbrough\nSunderland\n\n\n25\n2017/18\nManchester City\n100\nSouthampton\n36\nSwansea City\nStoke City\nWest Bromwich Albion\n\n\n26\n2018/19\nManchester City\n98\nBrighton & Hove Albion\n36\nCardiff City\nFulham\nHuddersfield Town\n\n\n27\n2019/20\nLiverpool\n99\nAston Villa\n35\nBournemouth\nWatford\nNorwich City\n\n\n28\n2020/21\nManchester City\n86\nBurnley\n39\nFulham\nWest Bromwich Albion\nSheffield United\n\n\n29\n2021/22\nManchester City\n93\nLeeds United\n38\nBurnley\nWatford\nNorwich City\n\n\n30\n2022/23\nManchester City\n89\nEverton\n36\nLeicester City\nLeeds United\nSouthampton\n\n\n31\n2023/24\nManchester City\n91\nBrentford\n39\nLuton Town\nBurnley\nSheffield United\n\n\n32\n2024/25\nLiverpool\n84\nTottenham Hotspur\n38\nLeicester City\nIpswich Town\nSouthampton"
   },
   {
-    "objectID": "projects/premier-league/index.html#the-whole-project",
-    "href": "projects/premier-league/index.html#the-whole-project",
+    "objectID": "projects/european-football-divide/notebooks/01_premier_league.html#interactive-analysis",
+    "href": "projects/european-football-divide/notebooks/01_premier_league.html#interactive-analysis",
     "title": "Premier League: The Growing Divide",
-    "section": "The Whole Project",
-    "text": "The Whole Project\n\n\n\nTop and Bottom of the Premiere League\nBIn 1992/93, Manchester United won the first Premier League title with 84 points. Coventry City survived relegation with 49. The gap: 35 points.\nIn 2019/20, Liverpool won with 99 points. Aston Villa survived with 34. The gap: 65 points.\nIs the Premier League becoming a two-tier league? And if so, when did the divergence accelerate? This analysis pulls live data from Wikipedia to find out.\n\nData Collection\nThe dataset is scraped live from Wikipedia’s season-by-season Premier League articles. For each of the 33 completed seasons, the scraper extracts:\n\nChampion and their points total\nTop 4 finishers (Champions League qualifiers since 2001/02)\n17th-place finisher (the lowest team to survive relegation)\nRelegated teams (18th, 19th, 20th)\n\n\n\nUsing cached data (0.0 days old)\nDataset: 33 seasons loaded\n\n\n\n\nChampions League & Relegation Overview\nBefore diving into the trend analysis, here’s a quick look at which clubs have dominated the top 4 and which have faced the drop.\n\n\n\n\nTable 1: Most frequent Top 4 finishers (1992-2025)\n\n\n\n\n\n\n\n\nClub\nTop 4 Finishes\nPercentage\n\n\n\n\nManchester United\n26\n78.8%\n\n\nArsenal\n24\n72.7%\n\n\nLiverpool\n21\n63.6%\n\n\nChelsea\n20\n60.6%\n\n\nManchester City\n15\n45.5%\n\n\nTottenham Hotspur\n7\n21.2%\n\n\nNewcastle United\n6\n18.2%\n\n\nBlackburn Rovers\n3\n9.1%\n\n\nAston Villa\n3\n9.1%\n\n\nLeeds United\n3\n9.1%\n\n\n\n\n\n\n\n\n\n\n\n\nTable 2: Most frequently relegated clubs (1992-2025)\n\n\n\n\n\n\n\n\nClub\nTimes Relegated\n\n\n\n\nNorwich City\n6\n\n\nLeicester City\n5\n\n\nWest Bromwich Albion\n5\n\n\nSheffield United\n4\n\n\nSunderland\n4\n\n\nMiddlesbrough\n4\n\n\nNottingham Forest\n4\n\n\nWatford\n4\n\n\nCrystal Palace\n3\n\n\nBolton Wanderers\n3\n\n\n\n\n\n\n\n\n\n\nInteractive Analysis\nUse the dropdown menu in the top-left of the chart to explore different eras. Each era recalculates its own trend line independently.\nHover over any point to see the champion, the surviving team, or the full top 4.\n\n\n\n\n                                                    \n\n\nFigure 1: Premier League points analysis across three dimensions: absolute points, gap, and ratio. Use the dropdown to switch between eras.\n\n\n\n\n\n\nThe Top 4 Lock-Out\nOne of the most striking patterns is how few clubs have occupied the Champions League places over 33 seasons.\n\n\n\n\n                                                    \n\n\nFigure 2: Distribution of Top 4 finishes across all 33 Premier League seasons (132 total slots)\n\n\n\n\n\n\nThe Relegation Revolving Door\nWhile the top is locked down by a handful of clubs, the bottom is chaos.\n\n\n\n\n                                                    \n\n\nFigure 3: Clubs relegated most often from the Premier League (1992-2025)\n\n\n\n\n\n\nSeason-by-Season Detail\n\n\n\n\nTable 3: Complete Premier League season data (scroll to see all)\n\n\n\n\n\n\n\n\nSeason\nChampion\nChamp Pts\n2nd\n3rd\n4th\nSurvived\nSurvival Pts\nRel. 1\nRel. 2\nRel. 3\nGap\n\n\n\n\n1992/93\nManchester United\n84\nAston Villa\nNorwich City\nBlackburn Rovers\nOldham Athletic\n49\nCrystal Palace\nMiddlesbrough\nNottingham Forest\n35\n\n\n1993/94\nManchester United\n92\nBlackburn Rovers\nNewcastle United\nArsenal\nIpswich Town\n43\nSheffield United\nOldham Athletic\nSwindon Town\n49\n\n\n1994/95\nBlackburn Rovers\n89\nManchester United\nNottingham Forest\nLiverpool\nCrystal Palace\n45\nNorwich City\nLeicester City\nIpswich Town\n44\n\n\n1995/96\nManchester United\n82\nNewcastle United\nLiverpool\nAston Villa\nSouthampton\n38\nManchester City\nQueens Park Rangers\nBolton Wanderers\n44\n\n\n1996/97\nManchester United\n75\nArsenal\nLiverpool\nNewcastle United\nCoventry City\n41\nSunderland\nNottingham Forest\nMiddlesbrough\n34\n\n\n1997/98\nArsenal\n78\nManchester United\nLiverpool\nChelsea\nEverton\n40\nBolton Wanderers\nBarnsley\nCrystal Palace\n38\n\n\n1998/99\nManchester United\n79\nArsenal\nChelsea\nLeeds United\nSouthampton\n41\nCharlton Athletic\nBlackburn Rovers\nNottingham Forest\n38\n\n\n1999/00\nManchester United\n91\nArsenal\nLeeds United\nLiverpool\nBradford City\n36\nWimbledon\nSheffield Wednesday\nWatford\n55\n\n\n2000/01\nManchester United\n80\nArsenal\nLiverpool\nLeeds United\nDerby County\n42\nManchester City\nCoventry City\nBradford City\n38\n\n\n2001/02\nArsenal\n87\nLiverpool\nManchester United\nNewcastle United\nSunderland\n40\nIpswich Town\nDerby County\nLeicester City\n47\n\n\n2002/03\nManchester United\n83\nArsenal\nNewcastle United\nChelsea\nBolton Wanderers\n44\nWest Ham United\nWest Bromwich Albion\nSunderland\n39\n\n\n2003/04\nArsenal\n90\nChelsea\nManchester United\nLiverpool\nEverton\n39\nLeicester City\nLeeds United\nWolverhampton Wanderers\n51\n\n\n2004/05\nChelsea\n95\nArsenal\nManchester United\nEverton\nWest Bromwich Albion\n34\nCrystal Palace\nNorwich City\nSouthampton\n61\n\n\n2005/06\nChelsea\n91\nManchester United\nLiverpool\nArsenal\nPortsmouth\n38\nBirmingham City\nWest Bromwich Albion\nSunderland\n53\n\n\n2006/07\nManchester United\n89\nChelsea\nLiverpool\nArsenal\nWigan Athletic\n38\nSheffield United\nCharlton Athletic\nWatford\n51\n\n\n2007/08\nManchester United\n87\nChelsea\nArsenal\nLiverpool\nFulham\n36\nReading\nBirmingham City\nDerby County\n51\n\n\n2008/09\nManchester United\n90\nLiverpool\nChelsea\nArsenal\nHull City\n35\nNewcastle United\nMiddlesbrough\nWest Bromwich Albion\n55\n\n\n2009/10\nChelsea\n86\nManchester United\nArsenal\nTottenham Hotspur\nWest Ham United\n35\nBurnley\nHull City\nPortsmouth\n51\n\n\n2010/11\nManchester United\n80\nChelsea\nManchester City\nArsenal\nWolverhampton Wanderers\n40\nBirmingham City\nBlackpool\nWest Ham United\n40\n\n\n2011/12\nManchester City\n89\nManchester United\nArsenal\nTottenham Hotspur\nQueens Park Rangers\n37\nBolton Wanderers\nBlackburn Rovers\nWolverhampton Wanderers\n52\n\n\n2012/13\nManchester United\n89\nManchester City\nChelsea\nArsenal\nSunderland\n39\nWigan Athletic\nReading\nQueens Park Rangers\n50\n\n\n2013/14\nManchester City\n86\nLiverpool\nChelsea\nArsenal\nWest Bromwich Albion\n36\nNorwich City\nFulham\nCardiff City\n50\n\n\n2014/15\nChelsea\n87\nManchester City\nArsenal\nManchester United\nAston Villa\n38\nHull City\nBurnley\nQueens Park Rangers\n49\n\n\n2015/16\nLeicester City\n81\nArsenal\nTottenham Hotspur\nManchester City\nSunderland\n39\nNewcastle United\nNorwich City\nAston Villa\n42\n\n\n2016/17\nChelsea\n93\nTottenham Hotspur\nManchester City\nLiverpool\nWatford\n40\nHull City\nMiddlesbrough\nSunderland\n53\n\n\n2017/18\nManchester City\n100\nManchester United\nTottenham Hotspur\nLiverpool\nSouthampton\n36\nSwansea City\nStoke City\nWest Bromwich Albion\n64\n\n\n2018/19\nManchester City\n98\nLiverpool\nChelsea\nTottenham Hotspur\nBrighton & Hove Albion\n36\nCardiff City\nFulham\nHuddersfield Town\n62\n\n\n2019/20\nLiverpool\n99\nManchester City\nManchester United\nChelsea\nAston Villa\n35\nBournemouth\nWatford\nNorwich City\n64\n\n\n2020/21\nManchester City\n86\nManchester United\nLiverpool\nChelsea\nBurnley\n39\nFulham\nWest Bromwich Albion\nSheffield United\n47\n\n\n2021/22\nManchester City\n93\nLiverpool\nChelsea\nTottenham Hotspur\nLeeds United\n38\nBurnley\nWatford\nNorwich City\n55\n\n\n2022/23\nManchester City\n89\nArsenal\nManchester United\nNewcastle United\nEverton\n36\nLeicester City\nLeeds United\nSouthampton\n53\n\n\n2023/24\nManchester City\n91\nArsenal\nLiverpool\nAston Villa\nBurnley\n24\nSheffield United\nEverton\nNottingham Forest\n67\n\n\n2024/25\nLiverpool\n84\nArsenal\nManchester City\nChelsea\nTottenham Hotspur\n38\nLeicester City\nIpswich Town\nSouthampton\n46\n\n\n\n\n\n\n\n\n\n\n\nEra-by-Era Breakdown\n\nPre-Abramovich (1992-2003): The Fergie Monopoly\nThe early Premier League was dominated by a single manager. Sir Alex Ferguson’s Manchester United won 8 of 11 titles, but the points required to win were not exceptionally high (average: ~83 pts). The league was competitive enough that Blackburn (1995) and Arsenal (1998, 2002, 2004) could break through.\nRelegation survival averaged ~39 points, notably higher than any subsequent era. The financial gap between top and bottom had not yet become a chasm.\n\n\nThe Oligarch Era (2003-2016): Money Changes Everything\nRoman Abramovich’s purchase of Chelsea in 2003 marked a turning point. Then Manchester City’s 2008 takeover created a third “super-club.” Title-winning points climbed to an average of ~88 pts, while relegation survival drifted down to ~35 points.\nThe Leicester miracle (2015/16, 81 pts) was the exception that proved the rule.\n\n\nThe Pep/Klopp Era (2016-2025): The Arms Race\n\n\n\n\nTable 4: Points comparison across Premier League eras\n\n\n\n\n\n\n\n\nEra\nSeasons\nAvg Title Pts\nAvg Survival Pts\nAvg Gap\nAvg Ratio\n\n\n\n\nPre-Abramovich\n11\n83.600000\n41.700000\n41.900000\n2.02x\n\n\nOligarch Era\n13\n87.700000\n37.200000\n50.500000\n2.36x\n\n\nPep/Klopp Era\n9\n92.600000\n35.800000\n56.800000\n2.64x\n\n\nPost-COVID\n5\n88.600000\n35.000000\n53.600000\n2.63x\n\n\n\n\n\n\n\n\nThe arrival of Guardiola and peak Klopp created an unprecedented arms race. City’s 100-point season (2017/18) forced Liverpool to respond with 97 points just to finish second. The average title total: ~92 pts. The average survival threshold: ~35 pts. The gap: ~57 pts.\n\n\n\nMethodology & Technical Notes\n\n\n\n\n\n\nNoteTechnical details (click to expand)\n\n\n\n\n\nData source: Scraped from Wikipedia’s individual season articles using requests and pandas.read_html(). Team names are cleaned of citation markers, qualification tags, and Unicode artifacts.\nCaching: Results are cached to a local CSV (pl_data_cache.csv) with a 7-day expiry to avoid unnecessary requests to Wikipedia. The freeze: auto setting in Quarto further ensures the notebook only re-executes when source code changes.\nRate limiting: A 1.5-second delay between requests respects Wikipedia’s usage guidelines.\n22-team seasons: The first three seasons (1992/93 through 1994/95) had 22 teams. Relegation positions are adjusted accordingly (19th survived, 20th-22nd relegated).\nChampions League qualification: The number of CL spots changed over time (1 in the early 1990s, gradually expanding to 4 by 2001/02). This analysis consistently tracks the top 4 finishers regardless of how many actually qualified for the Champions League in that era.\nTrend lines: Linear regression via numpy.polyfit(x, y, 1), calculated independently per era.\n\n\n\n\n\n\n\n\n\nNoteWhat I’d Explore Next (click to expand)\n\n\n\n\n\n\nRevenue correlation: Does the gap track with TV deal sizes? The 2016/17 season (start of the current mega-deal) aligns with the gap widening.\nWage bill ratio: How closely does the points gap mirror the spending gap?\nPromotion bounce-back rate: Of the clubs relegated, how quickly (if ever) do they return?\nEuropean comparison: Do La Liga, Bundesliga, and Serie A show the same stratification, or is this a Premier League-specific phenomenon?\n\n\n\n\n\n\nSource Code\nThe complete source for this project is available on GitHub.\n\nData scraped from Wikipedia. Built with Python, Pandas, NumPy, Plotly, and Requests. Published with Quarto.\n\nSource: Top and Bottom of the Premiere League"
+    "section": "Interactive Analysis",
+    "text": "Interactive Analysis\nUse the dropdown to switch eras."
   },
   {
-    "objectID": "projects/premier-league/index.html#code",
-    "href": "projects/premier-league/index.html#code",
+    "objectID": "projects/european-football-divide/notebooks/01_premier_league.html#champions-league-concentration",
+    "href": "projects/european-football-divide/notebooks/01_premier_league.html#champions-league-concentration",
     "title": "Premier League: The Growing Divide",
-    "section": "Code",
-    "text": "Code\nThe full source notebook is available on GitHub."
+    "section": "Champions League Concentration",
+    "text": "Champions League Concentration\n\n\n\n\n\n\n\nClub\nTop 4 Finishes\nPercentage\n\n\n\n\nManchester United\n26\n78.8%\n\n\nArsenal\n24\n72.7%\n\n\nLiverpool\n21\n63.6%\n\n\nChelsea\n20\n60.6%\n\n\nManchester City\n15\n45.5%\n\n\nTottenham Hotspur\n7\n21.2%\n\n\nNewcastle United\n6\n18.2%\n\n\nBlackburn Rovers\n3\n9.1%\n\n\nAston Villa\n3\n9.1%\n\n\nLeeds United\n3\n9.1%"
   },
   {
-    "objectID": "projects/LACountyPolluters/LACountyPolluters.html",
-    "href": "projects/LACountyPolluters/LACountyPolluters.html",
-    "title": "LA County Greenhouse Gas Emissions Analysis",
+    "objectID": "projects/european-football-divide/notebooks/01_premier_league.html#relegated-clubs",
+    "href": "projects/european-football-divide/notebooks/01_premier_league.html#relegated-clubs",
+    "title": "Premier League: The Growing Divide",
+    "section": "Relegated Clubs",
+    "text": "Relegated Clubs\n\n\n\n\n\n\n\nClub\nTimes Relegated\n\n\n\n\nNorwich City\n6\n\n\nLeicester City\n5\n\n\nWest Bromwich Albion\n5\n\n\nSheffield United\n4\n\n\nBurnley\n4\n\n\nSunderland\n4\n\n\nWatford\n4\n\n\nCrystal Palace\n3\n\n\nBolton Wanderers\n3\n\n\nIpswich Town\n3"
+  },
+  {
+    "objectID": "projects/european-football-divide/notebooks/01_premier_league.html#era-comparison",
+    "href": "projects/european-football-divide/notebooks/01_premier_league.html#era-comparison",
+    "title": "Premier League: The Growing Divide",
+    "section": "Era Comparison",
+    "text": "Era Comparison\n\n\n\n\n\n\n\nEra\nSeasons\nAvg Title\nAvg Survival\nAvg Gap\nAvg Ratio\n\n\n\n\nFull History\n33\n87.700000\n38.800000\n48.800000\n2.28x\n\n\nPre-Abramovich\n11\n83.600000\n41.700000\n41.900000\n2.02x\n\n\nOligarch Era\n13\n87.700000\n37.300000\n50.400000\n2.36x\n\n\nPep/Klopp Era\n9\n92.600000\n37.400000\n55.100000\n2.48x"
+  },
+  {
+    "objectID": "projects/european-football-divide/notebooks/03_la_liga.html",
+    "href": "projects/european-football-divide/notebooks/03_la_liga.html",
+    "title": "La Liga: The Duopoly and Beyond",
     "section": "",
-    "text": "Data Sources: | Source | Coverage | Granularity | Time Range | |——–|———-|————-|————| | EPA GHGRP (Greenhouse Gas Reporting Program) | Facilities emitting 25k+ metric tons CO2e/yr | Individual facility | 2010-present | | CARB MRR (Mandatory Reporting Regulation) | California-specific, lower threshold | Facility + sector | 2008-present | | CARB GHG Inventory | Statewide by sector, scalable to county | Sector | 2000-present |\nTime Windows: Last year (2025), 5 years (2021-2025), decade (2016-2025), full history (2010-2025)"
+    "text": "33 seasons of Real-Barca dominance in Spain\nEric Schnitger, 2026"
   },
   {
-    "objectID": "projects/LACountyPolluters/LACountyPolluters.html#overview",
-    "href": "projects/LACountyPolluters/LACountyPolluters.html#overview",
-    "title": "LA County Greenhouse Gas Emissions Analysis",
+    "objectID": "projects/european-football-divide/notebooks/03_la_liga.html#key-findings",
+    "href": "projects/european-football-divide/notebooks/03_la_liga.html#key-findings",
+    "title": "La Liga: The Duopoly and Beyond",
+    "section": "Key Findings",
+    "text": "Key Findings\n\nReal + Barca account for ~27 of 33 titles\nAtletico’s 2014 title is the only genuine interruption\nTitle points peaked at 100 (2011/12 and 2012/13)\n\n\n\n  [LL] cache hit (0.0d old)\nLoaded 31 seasons\n\n\n\n\n\n\n\n\n\nSeason\nStart Year\nNum Teams\nMatches\nChampion\nTitle-Winning Points\n2nd Place\n2nd Place Points\n3rd Place\n3rd Place Points\n...\nRelegated 2\nRelegated 3\nGap\nRatio\nTitle PPG\nSurvival PPG\nGap PPG\nTitle Pts (38-game)\nSurvival Pts (38-game)\nGap (38-game)\n\n\n\n\n21\n2015/16\n2015\n20\n38\nBarcelona\n91\nReal Madrid\n90\nAtlético Madrid\n88\n...\nGetafe\nLevante\n52\n2.33\n2.395\n1.026\n1.369\n91.0\n39.0\n52.0\n\n\n22\n2016/17\n2016\n20\n38\nReal Madrid\n93\nBarcelona\n90\nAtlético Madrid\n78\n...\nOsasuna\nGranada\n58\n2.66\n2.447\n0.921\n1.526\n93.0\n35.0\n58.0\n\n\n23\n2017/18\n2017\n20\n38\nBarcelona\n93\nAtlético Madrid\n79\nReal Madrid\n76\n...\nLas Palmas\nMálaga\n50\n2.16\n2.447\n1.132\n1.315\n93.0\n43.0\n50.0\n\n\n24\n2018/19\n2018\n20\n38\nBarcelona\n87\nAtlético Madrid\n76\nReal Madrid\n68\n...\nHuesca\nRayo Vallecano\n46\n2.12\n2.289\n1.079\n1.210\n87.0\n41.0\n46.0\n\n\n25\n2019/20\n2019\n20\n38\nReal Madrid\n87\nBarcelona\n82\nAtlético Madrid\n70\n...\nMallorca\nEspanyol\n50\n2.35\n2.289\n0.974\n1.315\n87.0\n37.0\n50.0\n\n\n26\n2020/21\n2020\n20\n38\nAtlético Madrid\n86\nReal Madrid\n84\nBarcelona\n79\n...\nValladolid\nEibar\n50\n2.39\n2.263\n0.947\n1.316\n86.0\n36.0\n50.0\n\n\n27\n2021/22\n2021\n20\n38\nReal Madrid\n86\nBarcelona\n73\nAtlético Madrid\n71\n...\nLevante\nAlavés\n47\n2.21\n2.263\n1.026\n1.237\n86.0\n39.0\n47.0\n\n\n28\n2022/23\n2022\n20\n38\nBarcelona\n88\nReal Madrid\n78\nAtlético Madrid\n77\n...\nEspanyol\nElche\n47\n2.15\n2.316\n1.079\n1.237\n88.0\n41.0\n47.0\n\n\n29\n2023/24\n2023\n20\n38\nReal Madrid\n95\nBarcelona\n85\nGirona\n81\n...\nAlmería\nGranada\n57\n2.50\n2.500\n1.000\n1.500\n95.0\n38.0\n57.0\n\n\n30\n2024/25\n2024\n20\n38\nBarcelona\n88\nReal Madrid\n84\nAtlético Madrid\n76\n...\nLas Palmas\nValladolid\n47\n2.15\n2.316\n1.079\n1.237\n88.0\n41.0\n47.0\n\n\n\n\n10 rows × 25 columns"
+  },
+  {
+    "objectID": "projects/european-football-divide/notebooks/03_la_liga.html#interactive-analysis",
+    "href": "projects/european-football-divide/notebooks/03_la_liga.html#interactive-analysis",
+    "title": "La Liga: The Duopoly and Beyond",
+    "section": "Interactive Analysis",
+    "text": "Interactive Analysis"
+  },
+  {
+    "objectID": "projects/european-football-divide/notebooks/03_la_liga.html#top-4-concentration",
+    "href": "projects/european-football-divide/notebooks/03_la_liga.html#top-4-concentration",
+    "title": "La Liga: The Duopoly and Beyond",
+    "section": "Top 4 Concentration",
+    "text": "Top 4 Concentration\n\n\n\n\n\n\n\nClub\nTop 4 Finishes\nPercentage\n\n\n\n\nBarcelona\n30\n96.8%\n\n\nReal Madrid\n30\n96.8%\n\n\nAtlético Madrid\n16\n51.6%\n\n\nValencia\n13\n41.9%\n\n\nDeportivo La Coruña\n7\n22.6%\n\n\nSevilla\n7\n22.6%\n\n\nReal Sociedad\n4\n12.9%\n\n\nVillarreal\n4\n12.9%\n\n\nAthletic Bilbao\n3\n9.7%\n\n\nReal Betis\n2\n6.5%"
+  },
+  {
+    "objectID": "projects/european-football-divide/notebooks/03_la_liga.html#relegated-clubs",
+    "href": "projects/european-football-divide/notebooks/03_la_liga.html#relegated-clubs",
+    "title": "La Liga: The Duopoly and Beyond",
+    "section": "Relegated Clubs",
+    "text": "Relegated Clubs\n\n\n\n\n\n\n\nClub\nTimes Relegated\n\n\n\n\nValladolid\n8\n\n\nSporting Gijón\n4\n\n\nLevante\n4\n\n\nLas Palmas\n3\n\n\nAlavés\n3\n\n\nZaragoza\n3\n\n\nDeportivo La Coruña\n3\n\n\nOsasuna\n3\n\n\nRayo Vallecano\n3\n\n\nGranada\n3"
+  },
+  {
+    "objectID": "projects/premier-league/PremLeague.html",
+    "href": "projects/premier-league/PremLeague.html",
+    "title": "Top and Bottom of the Premiere League",
     "section": "",
-    "text": "Data Sources: | Source | Coverage | Granularity | Time Range | |——–|———-|————-|————| | EPA GHGRP (Greenhouse Gas Reporting Program) | Facilities emitting 25k+ metric tons CO2e/yr | Individual facility | 2010-present | | CARB MRR (Mandatory Reporting Regulation) | California-specific, lower threshold | Facility + sector | 2008-present | | CARB GHG Inventory | Statewide by sector, scalable to county | Sector | 2000-present |\nTime Windows: Last year (2025), 5 years (2021-2025), decade (2016-2025), full history (2010-2025)"
+    "text": "BIn 1992/93, Manchester United won the first Premier League title with 84 points. Coventry City survived relegation with 49. The gap: 35 points.\nIn 2019/20, Liverpool won with 99 points. Aston Villa survived with 34. The gap: 65 points.\nIs the Premier League becoming a two-tier league? And if so, when did the divergence accelerate? This analysis pulls live data from Wikipedia to find out.\n\nData Collection\nThe dataset is scraped live from Wikipedia’s season-by-season Premier League articles. For each of the 33 completed seasons, the scraper extracts:\n\nChampion and their points total\nTop 4 finishers (Champions League qualifiers since 2001/02)\n17th-place finisher (the lowest team to survive relegation)\nRelegated teams (18th, 19th, 20th)\n\n\n\nUsing cached data (0.0 days old)\nDataset: 33 seasons loaded\n\n\n\n\nChampions League & Relegation Overview\nBefore diving into the trend analysis, here’s a quick look at which clubs have dominated the top 4 and which have faced the drop.\n\n\n\n\nTable 1: Most frequent Top 4 finishers (1992-2025)\n\n\n\n\n\n\n\n\nClub\nTop 4 Finishes\nPercentage\n\n\n\n\nManchester United\n26\n78.8%\n\n\nArsenal\n24\n72.7%\n\n\nLiverpool\n21\n63.6%\n\n\nChelsea\n20\n60.6%\n\n\nManchester City\n15\n45.5%\n\n\nTottenham Hotspur\n7\n21.2%\n\n\nNewcastle United\n6\n18.2%\n\n\nBlackburn Rovers\n3\n9.1%\n\n\nAston Villa\n3\n9.1%\n\n\nLeeds United\n3\n9.1%\n\n\n\n\n\n\n\n\n\n\n\n\nTable 2: Most frequently relegated clubs (1992-2025)\n\n\n\n\n\n\n\n\nClub\nTimes Relegated\n\n\n\n\nNorwich City\n6\n\n\nLeicester City\n5\n\n\nWest Bromwich Albion\n5\n\n\nSheffield United\n4\n\n\nSunderland\n4\n\n\nMiddlesbrough\n4\n\n\nNottingham Forest\n4\n\n\nWatford\n4\n\n\nCrystal Palace\n3\n\n\nBolton Wanderers\n3\n\n\n\n\n\n\n\n\n\n\nInteractive Analysis\nUse the dropdown menu in the top-left of the chart to explore different eras. Each era recalculates its own trend line independently.\nHover over any point to see the champion, the surviving team, or the full top 4.\n\n\n\n\n                                                    \n\n\nFigure 1: Premier League points analysis across three dimensions: absolute points, gap, and ratio. Use the dropdown to switch between eras.\n\n\n\n\n\n\nThe Top 4 Lock-Out\nOne of the most striking patterns is how few clubs have occupied the Champions League places over 33 seasons.\n\n\n\n\n                                                    \n\n\nFigure 2: Distribution of Top 4 finishes across all 33 Premier League seasons (132 total slots)\n\n\n\n\n\n\nThe Relegation Revolving Door\nWhile the top is locked down by a handful of clubs, the bottom is chaos.\n\n\n\n\n                                                    \n\n\nFigure 3: Clubs relegated most often from the Premier League (1992-2025)\n\n\n\n\n\n\nSeason-by-Season Detail\n\n\n\n\nTable 3: Complete Premier League season data (scroll to see all)\n\n\n\n\n\n\n\n\nSeason\nChampion\nChamp Pts\n2nd\n3rd\n4th\nSurvived\nSurvival Pts\nRel. 1\nRel. 2\nRel. 3\nGap\n\n\n\n\n1992/93\nManchester United\n84\nAston Villa\nNorwich City\nBlackburn Rovers\nOldham Athletic\n49\nCrystal Palace\nMiddlesbrough\nNottingham Forest\n35\n\n\n1993/94\nManchester United\n92\nBlackburn Rovers\nNewcastle United\nArsenal\nIpswich Town\n43\nSheffield United\nOldham Athletic\nSwindon Town\n49\n\n\n1994/95\nBlackburn Rovers\n89\nManchester United\nNottingham Forest\nLiverpool\nCrystal Palace\n45\nNorwich City\nLeicester City\nIpswich Town\n44\n\n\n1995/96\nManchester United\n82\nNewcastle United\nLiverpool\nAston Villa\nSouthampton\n38\nManchester City\nQueens Park Rangers\nBolton Wanderers\n44\n\n\n1996/97\nManchester United\n75\nArsenal\nLiverpool\nNewcastle United\nCoventry City\n41\nSunderland\nNottingham Forest\nMiddlesbrough\n34\n\n\n1997/98\nArsenal\n78\nManchester United\nLiverpool\nChelsea\nEverton\n40\nBolton Wanderers\nBarnsley\nCrystal Palace\n38\n\n\n1998/99\nManchester United\n79\nArsenal\nChelsea\nLeeds United\nSouthampton\n41\nCharlton Athletic\nBlackburn Rovers\nNottingham Forest\n38\n\n\n1999/00\nManchester United\n91\nArsenal\nLeeds United\nLiverpool\nBradford City\n36\nWimbledon\nSheffield Wednesday\nWatford\n55\n\n\n2000/01\nManchester United\n80\nArsenal\nLiverpool\nLeeds United\nDerby County\n42\nManchester City\nCoventry City\nBradford City\n38\n\n\n2001/02\nArsenal\n87\nLiverpool\nManchester United\nNewcastle United\nSunderland\n40\nIpswich Town\nDerby County\nLeicester City\n47\n\n\n2002/03\nManchester United\n83\nArsenal\nNewcastle United\nChelsea\nBolton Wanderers\n44\nWest Ham United\nWest Bromwich Albion\nSunderland\n39\n\n\n2003/04\nArsenal\n90\nChelsea\nManchester United\nLiverpool\nEverton\n39\nLeicester City\nLeeds United\nWolverhampton Wanderers\n51\n\n\n2004/05\nChelsea\n95\nArsenal\nManchester United\nEverton\nWest Bromwich Albion\n34\nCrystal Palace\nNorwich City\nSouthampton\n61\n\n\n2005/06\nChelsea\n91\nManchester United\nLiverpool\nArsenal\nPortsmouth\n38\nBirmingham City\nWest Bromwich Albion\nSunderland\n53\n\n\n2006/07\nManchester United\n89\nChelsea\nLiverpool\nArsenal\nWigan Athletic\n38\nSheffield United\nCharlton Athletic\nWatford\n51\n\n\n2007/08\nManchester United\n87\nChelsea\nArsenal\nLiverpool\nFulham\n36\nReading\nBirmingham City\nDerby County\n51\n\n\n2008/09\nManchester United\n90\nLiverpool\nChelsea\nArsenal\nHull City\n35\nNewcastle United\nMiddlesbrough\nWest Bromwich Albion\n55\n\n\n2009/10\nChelsea\n86\nManchester United\nArsenal\nTottenham Hotspur\nWest Ham United\n35\nBurnley\nHull City\nPortsmouth\n51\n\n\n2010/11\nManchester United\n80\nChelsea\nManchester City\nArsenal\nWolverhampton Wanderers\n40\nBirmingham City\nBlackpool\nWest Ham United\n40\n\n\n2011/12\nManchester City\n89\nManchester United\nArsenal\nTottenham Hotspur\nQueens Park Rangers\n37\nBolton Wanderers\nBlackburn Rovers\nWolverhampton Wanderers\n52\n\n\n2012/13\nManchester United\n89\nManchester City\nChelsea\nArsenal\nSunderland\n39\nWigan Athletic\nReading\nQueens Park Rangers\n50\n\n\n2013/14\nManchester City\n86\nLiverpool\nChelsea\nArsenal\nWest Bromwich Albion\n36\nNorwich City\nFulham\nCardiff City\n50\n\n\n2014/15\nChelsea\n87\nManchester City\nArsenal\nManchester United\nAston Villa\n38\nHull City\nBurnley\nQueens Park Rangers\n49\n\n\n2015/16\nLeicester City\n81\nArsenal\nTottenham Hotspur\nManchester City\nSunderland\n39\nNewcastle United\nNorwich City\nAston Villa\n42\n\n\n2016/17\nChelsea\n93\nTottenham Hotspur\nManchester City\nLiverpool\nWatford\n40\nHull City\nMiddlesbrough\nSunderland\n53\n\n\n2017/18\nManchester City\n100\nManchester United\nTottenham Hotspur\nLiverpool\nSouthampton\n36\nSwansea City\nStoke City\nWest Bromwich Albion\n64\n\n\n2018/19\nManchester City\n98\nLiverpool\nChelsea\nTottenham Hotspur\nBrighton & Hove Albion\n36\nCardiff City\nFulham\nHuddersfield Town\n62\n\n\n2019/20\nLiverpool\n99\nManchester City\nManchester United\nChelsea\nAston Villa\n35\nBournemouth\nWatford\nNorwich City\n64\n\n\n2020/21\nManchester City\n86\nManchester United\nLiverpool\nChelsea\nBurnley\n39\nFulham\nWest Bromwich Albion\nSheffield United\n47\n\n\n2021/22\nManchester City\n93\nLiverpool\nChelsea\nTottenham Hotspur\nLeeds United\n38\nBurnley\nWatford\nNorwich City\n55\n\n\n2022/23\nManchester City\n89\nArsenal\nManchester United\nNewcastle United\nEverton\n36\nLeicester City\nLeeds United\nSouthampton\n53\n\n\n2023/24\nManchester City\n91\nArsenal\nLiverpool\nAston Villa\nBurnley\n24\nSheffield United\nEverton\nNottingham Forest\n67\n\n\n2024/25\nLiverpool\n84\nArsenal\nManchester City\nChelsea\nTottenham Hotspur\n38\nLeicester City\nIpswich Town\nSouthampton\n46\n\n\n\n\n\n\n\n\n\n\nEra-by-Era Breakdown\n\nPre-Abramovich (1992-2003): The Fergie Monopoly\nThe early Premier League was dominated by a single manager. Sir Alex Ferguson’s Manchester United won 8 of 11 titles, but the points required to win were not exceptionally high (average: ~83 pts). The league was competitive enough that Blackburn (1995) and Arsenal (1998, 2002, 2004) could break through.\nRelegation survival averaged ~39 points, notably higher than any subsequent era. The financial gap between top and bottom had not yet become a chasm.\n\n\nThe Oligarch Era (2003-2016): Money Changes Everything\nRoman Abramovich’s purchase of Chelsea in 2003 marked a turning point. Then Manchester City’s 2008 takeover created a third “super-club.” Title-winning points climbed to an average of ~88 pts, while relegation survival drifted down to ~35 points.\nThe Leicester miracle (2015/16, 81 pts) was the exception that proved the rule.\n\n\nThe Pep/Klopp Era (2016-2025): The Arms Race\n\n\n\n\nTable 4: Points comparison across Premier League eras\n\n\n\n\n\n\n\n\nEra\nSeasons\nAvg Title Pts\nAvg Survival Pts\nAvg Gap\nAvg Ratio\n\n\n\n\nPre-Abramovich\n11\n83.600000\n41.700000\n41.900000\n2.02x\n\n\nOligarch Era\n13\n87.700000\n37.200000\n50.500000\n2.36x\n\n\nPep/Klopp Era\n9\n92.600000\n35.800000\n56.800000\n2.64x\n\n\nPost-COVID\n5\n88.600000\n35.000000\n53.600000\n2.63x\n\n\n\n\n\n\n\n\nThe arrival of Guardiola and peak Klopp created an unprecedented arms race. City’s 100-point season (2017/18) forced Liverpool to respond with 97 points just to finish second. The average title total: ~92 pts. The average survival threshold: ~35 pts. The gap: ~57 pts.\n\n\n\nMethodology & Technical Notes\n\n\n\n\n\n\nNoteTechnical details (click to expand)\n\n\n\n\n\nData source: Scraped from Wikipedia’s individual season articles using requests and pandas.read_html(). Team names are cleaned of citation markers, qualification tags, and Unicode artifacts.\nCaching: Results are cached to a local CSV (pl_data_cache.csv) with a 7-day expiry to avoid unnecessary requests to Wikipedia. The freeze: auto setting in Quarto further ensures the notebook only re-executes when source code changes.\nRate limiting: A 1.5-second delay between requests respects Wikipedia’s usage guidelines.\n22-team seasons: The first three seasons (1992/93 through 1994/95) had 22 teams. Relegation positions are adjusted accordingly (19th survived, 20th-22nd relegated).\nChampions League qualification: The number of CL spots changed over time (1 in the early 1990s, gradually expanding to 4 by 2001/02). This analysis consistently tracks the top 4 finishers regardless of how many actually qualified for the Champions League in that era.\nTrend lines: Linear regression via numpy.polyfit(x, y, 1), calculated independently per era.\n\n\n\n\n\n\n\n\n\nNoteWhat I’d Explore Next (click to expand)\n\n\n\n\n\n\nRevenue correlation: Does the gap track with TV deal sizes? The 2016/17 season (start of the current mega-deal) aligns with the gap widening.\nWage bill ratio: How closely does the points gap mirror the spending gap?\nPromotion bounce-back rate: Of the clubs relegated, how quickly (if ever) do they return?\nEuropean comparison: Do La Liga, Bundesliga, and Serie A show the same stratification, or is this a Premier League-specific phenomenon?\n\n\n\n\n\n\nSource Code\nThe complete source for this project is available on GitHub.\n\nData scraped from Wikipedia. Built with Python, Pandas, NumPy, Plotly, and Requests. Published with Quarto."
   },
   {
-    "objectID": "projects/LACountyPolluters/LACountyPolluters.html#notebook-2-data-processing-analysis",
-    "href": "projects/LACountyPolluters/LACountyPolluters.html#notebook-2-data-processing-analysis",
-    "title": "LA County Greenhouse Gas Emissions Analysis",
-    "section": "Notebook 2: Data Processing & Analysis",
-    "text": "Notebook 2: Data Processing & Analysis"
-  },
-  {
-    "objectID": "projects/fastest-human/index.html",
-    "href": "projects/fastest-human/index.html",
-    "title": "Highest Human Speed Each Year",
+    "objectID": "projects/index.html",
+    "href": "projects/index.html",
+    "title": "Projects",
     "section": "",
-    "text": "With the Artemis II mission successfully paving the way for our return to deep space, a fascinating question emerged: What is the absolute fastest humans have traveled each year, and how frequently have we shattered those limits?\nLooking at human velocity on a century-long time scale highlights an astonishing reality: for millennia, our speed boundary was tied directly to the stride of a horse. Within a mere handful of generations, that boundary shifted exponentially from steam power to aviation, jet propulsion, and eventually atmospheric escape."
+    "text": "Top and Bottom of the Premiere League\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHow fast are humans going?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBirth, Wealth, and Income Analysis\n\n\n\nPython\n\nEconomics\n\n\n\nAn analysis of generational mobility data.\n\n\n\n\n\n\nMay 1, 2026\n\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "projects/fastest-human/index.html#overview",
-    "href": "projects/fastest-human/index.html#overview",
-    "title": "Highest Human Speed Each Year",
+    "objectID": "projects/fastest-human/highest-human-speed.html",
+    "href": "projects/fastest-human/highest-human-speed.html",
+    "title": "How fast are humans going?",
     "section": "",
-    "text": "With the Artemis II mission successfully paving the way for our return to deep space, a fascinating question emerged: What is the absolute fastest humans have traveled each year, and how frequently have we shattered those limits?\nLooking at human velocity on a century-long time scale highlights an astonishing reality: for millennia, our speed boundary was tied directly to the stride of a horse. Within a mere handful of generations, that boundary shifted exponentially from steam power to aviation, jet propulsion, and eventually atmospheric escape."
+    "text": "I was curious about the fastest a human had gone each year. My initial thought was that humans traveled around the speed of a horse galloping for centuries. But when did bicycles or motorized technology take off? And when did flying and then space flight expand?\nI couldn’t find a good dataset, so Claude provided one and Gemini double-checked it. I was more interested in the visualization than the data scraping.\n\n\nExported 3 CSV files:\n  1) speed_peak_full_6000bce.csv — 8,027 rows\n  2) speed_peak_1700.csv         — 327 rows\n  3) speed_peak_1850.csv         — 177 rows"
   },
   {
-    "objectID": "projects/fastest-human/index.html#technical-architecture-data-prep",
-    "href": "projects/fastest-human/index.html#technical-architecture-data-prep",
-    "title": "Highest Human Speed Each Year",
-    "section": "Technical Architecture & Data Prep",
-    "text": "Technical Architecture & Data Prep\nTo reconstruct this historical timeline, I compiled and cross-verified historical velocity benchmarks using generative AI workflows, then isolated key architectural leaps.\nTo maintain a clean layout for non-technical readers while keeping the core replication pipeline accessible, you can expand my underlying data preparation steps below.\n\n🐍 Data Engineering Pipeline🛠️ Methodology Insights\n\n\n\nHow fast are humans going?\nI was curious about the fastest a human had gone each year. My initial thought was that humans traveled around the speed of a horse galloping for centuries. But when did bicycles or motorized technology take off? And when did flying and then space flight expand?\nI couldn’t find a good dataset, so Claude provided one and Gemini double-checked it. I was more interested in the visualization than the data scraping.\n\n\nExported 3 CSV files:\n  1) speed_peak_full_6000bce.csv — 8,027 rows\n  2) speed_peak_1700.csv         — 327 rows\n  3) speed_peak_1850.csv         — 177 rows\n\n\nSource: How fast are humans going?\n\n\n\nVerification Loop: Initial data structures generated via LLMs were cross-checked manually against aviation and aerospace records to ensure peak milestone accuracy (e.g., separating atmospheric jet records from low-Earth orbit velocities).\nScope: The dataset normalizes peak vehicle speeds carrying human crews relative to the Earth’s surface or orbital reference frames.\nAI Tooling: The base dataset was generated via Claude and double-checked for chronological anomalies using Gemini."
-  },
-  {
-    "objectID": "projects/fastest-human/index.html#interactive-dashboard",
-    "href": "projects/fastest-human/index.html#interactive-dashboard",
-    "title": "Highest Human Speed Each Year",
-    "section": "Interactive Dashboard",
-    "text": "Interactive Dashboard\nThe dynamic shifts in human acceleration are visualized below.\nNote: For the best experience on desktop or mobile, interact with the data filters directly inside the fluid frame."
+    "objectID": "projects/RootBeer/RootBeer.html",
+    "href": "projects/RootBeer/RootBeer.html",
+    "title": "Eric Eliot Schnitger's Portfolio",
+    "section": "",
+    "text": "Available renderers: ['plotly_mimetype', 'jupyterlab', 'nteract', 'vscode', 'notebook', 'notebook_connected', 'kaggle', 'azure', 'colab', 'cocalc', 'databricks', 'json', 'png', 'jpeg', 'jpg', 'svg', 'pdf', 'browser', 'firefox', 'chrome', 'chromium', 'iframe', 'iframe_connected', 'sphinx_gallery', 'sphinx_gallery_png']\n\n\n    \n    \n        \n        Loading BokehJS ...\n    \n\n\n\n\n\n\n\n      A&W  Mug  Summit  Virgil's  Weinhardt  Barq's\nGEBS    3    5       1         4          6       2\nAWMS    2    4       1         5          6       3\nEES     1    2       4         6          3       5\nEJMS    3    4       2         6          5       1\nLM      3    4       1         5          6       2\nSES     2    3       1         6          5       4\nDAS     2    5       1         3          6       4\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n                                                    \n\n\n\n\n                                                    \n\n\n\n\n                                                    \n\n\n\n\n                                                    \n\n\n\n\n                                                    \n\n\n\n\n                                                    \n\n\n##Altair\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBokeh\nhvPlot"
   },
   {
     "objectID": "index.html",
