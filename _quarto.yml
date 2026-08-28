@@ -10,7 +10,7 @@ website:
        href: index.qmd
      - text: "Projects"
        href: projects/index.qmd
-     - text: "Writing"
+     - text: "Writings"
        href: writing/index.qmd
      - text: "About"
        href: about.qmd
@@ -26,4 +26,4 @@ format:
    toc-location: left
 
 execute:
-  freeze: true  # Or use 'auto'
+  freeze: auto  # Or use 'true'
