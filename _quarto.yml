@@ -27,3 +27,6 @@ format:
 
 execute:
   freeze: auto  # Or use 'true'
+  echo: false      # Hides the code input blocks globally
+  warning: false   # Optional: hides Python runtime warnings
+  message: false   # Optional: hides Python package messages
