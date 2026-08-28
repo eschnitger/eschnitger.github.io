@@ -3,14 +3,12 @@ title: "Premier League: The Growing Divide"
 description: "Analyzing 33 seasons of title-winning and relegation survival points"
 date: 2026-04-27
 update: 2026-05-21
-categories: [data-viz, sports, python]
+categories: [data-viz, sports, python, plotly, soccer]
 image: thumbnail.png
 format: 
   html:
     self-contained: true  # This helps ensure all JS is bundled in one file
     page-layout: full
-execute:
-  enabled: true
 jupyter: python3
 ---
 
