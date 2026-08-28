@@ -1,0 +1,22 @@
+[
+  {
+    "listing": "/writing/index.html",
+    "items": []
+  },
+  {
+    "listing": "/projects/index.html",
+    "items": [
+      "/projects/european-football-divide/notebooks/04_ligue_1.html",
+      "/projects/european-football-divide/notebooks/05_serie_a.html",
+      "/projects/european-football-divide/notebooks/01_premier_league.html",
+      "/projects/european-football-divide/notebooks/02_bundesliga.html",
+      "/projects/european-football-divide/notebooks/03_la_liga.html",
+      "/projects/european-football-divide/notebooks/06_comparison.html",
+      "/projects/premier-league/PremLeague.html",
+      "/projects/LACountyPolluters/LACountyPolluters.html",
+      "/projects/fastest-human/highest-human-speed.html",
+      "/projects/RootBeer/RootBeer.html",
+      "/projects/birth-wealth-income/birth_wealth_income.html"
+    ]
+  }
+]
