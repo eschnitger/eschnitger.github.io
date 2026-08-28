@@ -1,5 +1,14 @@
 ---
 title: "Eric Eliot Schnitger's Portfolio"
+listing:
+  contents:
+    - "."              # Pulls posts in the projects/ folder
+    - "!index.qmd"     # Excludes this landing page itself
+    - "!../projects"
+    - "*/index.qmd"
+    - "!eschnitger.github.io/**"
+  type: default
+  sort: "date desc"
 ---
 
 Ah. Well. No writings for you yet. They will be coming. When I get my act together.

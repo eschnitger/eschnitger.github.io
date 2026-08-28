@@ -6,6 +6,9 @@ listing:
   sort: "date desc"
   grid-columns: 3
   contents:
+    - "."              # Pulls posts in the projects/ folder
+    - "!index.qmd"     # Excludes this landing page itself
+    - "!../writing"
     - "*/index.qmd"
     - "!eschnitger.github.io/**"
 ---
