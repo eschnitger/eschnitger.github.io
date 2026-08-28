@@ -1,0 +1,12 @@
+---
+title: "Root Beer Blind Taste Test Analysis"
+description: "Visualizing rankings and preferences across root beer brands using Plotly and Bokeh."
+author: "Eric Schnitger"
+date: "2026-05-15"
+categories: [Python, Data Visualization, Root Beer]
+format:
+    html:
+        toc: true
+        toc-location: left
+        page-layout: full
+---
