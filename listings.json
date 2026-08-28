@@ -3,30 +3,8 @@
     "listing": "/projects/index.html",
     "items": [
       "/projects/automation/index.html",
-      "/projects/eschnitger.github.io/index.html",
-      "/projects/eschnitger.github.io/projects/index.html",
-      "/projects/eschnitger.github.io/writing/index.html",
-      "/projects/eschnitger.github.io/writing/2026-08-28-polycrisis/index.html",
-      "/projects/eschnitger.github.io/writing/first_post_test/index.html",
-      "/projects/eschnitger.github.io/projects/rootbeer/index.html",
-      "/projects/eschnitger.github.io/projects/fastest-human/index.html",
       "/projects/fastest-human/index.html",
-      "/projects/eschnitger.github.io/projects/premier-league/index.html",
       "/projects/premier-league/index.html"
-    ]
-  },
-  {
-    "listing": "/projects/eschnitger.github.io/writing/index.html",
-    "items": []
-  },
-  {
-    "listing": "/projects/eschnitger.github.io/projects/index.html",
-    "items": [
-      "/projects/eschnitger.github.io/projects/birth-wealth-income/birth_wealth_income.html",
-      "/projects/eschnitger.github.io/projects/premier-league/PremLeague.html",
-      "/projects/eschnitger.github.io/projects/LACountyPolluters/LACountyPolluters.html",
-      "/projects/eschnitger.github.io/projects/fastest-human/highest-human-speed.html",
-      "/projects/eschnitger.github.io/projects/rootbeer/rootbeer.html"
     ]
   }
 ]
