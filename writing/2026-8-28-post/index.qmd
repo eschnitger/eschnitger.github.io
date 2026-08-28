@@ -1,0 +1,14 @@
+---
+title: "First Post"
+description: "Brief summary for listing pages and preview cards"
+author: "ees"
+date: "2026-08-28"
+date-modified:
+categories: [second, thoughts]
+image: "feature-img.png
+draft: false
+---
+
+## Overview
+
+Testing a second post

@@ -1,0 +1,15 @@
+---
+title: "First Post"
+description: "Brief summary for listing pages and preview cards"
+author: "ees"
+date: "2026-08-28"
+date-modified:
+categories: [first, post]
+image: "feature-img.png
+draft: true
+---
+
+## Overview
+
+Write your introduction here. Quarto supports callout blocks, math notation, and code execution.
+

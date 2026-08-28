@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Chasing the Sun</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@stlite/browser@0.76.0/build/style.css" />
+  </head>
+  <body>
+    <streamlit-app>
+import streamlit as st
+import pandas as pd
+import numpy as np
+import plotly.graph_objects as go
+from datetime import date, timedelta
+import math
+import json
+from pyodide.http import pyfetch
+from urllib.parse import urlencode
+import js  # for accessing window.location in the browser
+
+st.set_page_config(page_title="Chasing the Sun", layout="wide", page_icon="☀️")
+
+# ============================================================
+# CUSTOM CSS — cosmic dusk theme
+# ============================================================
+st.markdown("""
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700;900&display=swap');
+
+  .stApp {
+    background:
+      radial-gradient(circle at 15% 0%, rgba(255,140,66,0.15), transparent 40%),
+      radial-gradient(circle at 85% 10%, rgba(80,180,220,0.15), transparent 40%),
+      linear-gradient(180deg, #0a0e27 0%, #14143a 40%, #2d1b4e 100%);
+    color: #f0e9d2;
+    font-family: 'Inter', sans-serif;
+  }
+  h1, h2, h3, h4 {
+    font-family: 'Playfair Display', serif !important;
+    color: #ffd97d !important;
+    letter-spacing: 0.5px;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 4.5rem;
+    font-weight: 900;
+    background: linear-gradient(90deg, #ffd97d 0%, #ff8c42 50%, #c84b31 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+    margin: 1.5rem 0 0.5rem 0;
+    line-height: 1.1;
+  }
+  .hero-subtitle {
+    text-align: center; font-size: 1.15rem; color: #d4c4a0;
+    margin-bottom: 2.5rem; font-style: italic;
+    max-width: 720px; margin-left: auto; margin-right: auto;
+  }
+  .city-tag {
+    display: inline-block; padding: 0.25rem 0.75rem; border-radius: 20px;
+    font-weight: 700; font-size: 0.85rem; letter-spacing: 0.05em;
+    margin-right: 0.5rem;
+  }
+  .tag-a { background: rgba(255,140,66,0.18); color: #ffb347; border: 1px solid rgba(255,140,66,0.4); }
+  .tag-b { background: rgba(80,180,220,0.18); color: #7ed4ee; border: 1px solid rgba(80,180,220,0.4); }
+
+  .fact-card {
+    background: linear-gradient(135deg, rgba(255,217,125,0.08), rgba(255,140,66,0.04));
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,217,125,0.25);
+    border-radius: 14px;
+    padding: 1.2rem 1.4rem; margin: 0.4rem 0;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .fact-card.b {
+    background: linear-gradient(135deg, rgba(80,180,220,0.10), rgba(80,180,220,0.04));
+    border: 1px solid rgba(80,180,220,0.30);
+  }
+  .fact-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(255,140,66,0.18);
+  }
+  .fact-card.b:hover {
+    box-shadow: 0 8px 24px rgba(80,180,220,0.22);
+  }
+  .fact-label { color: #ffd97d; font-size: 0.72rem; text-transform: uppercase;
+    letter-spacing: 0.15em; font-weight: 700; opacity: 0.9; }
+  .fact-card.b .fact-label { color: #7ed4ee; }
+  .fact-value { color: #ffffff; font-size: 1.5rem; font-weight: 700;
+    margin-top: 0.2rem; font-family: 'Playfair Display', serif; }
+  .fact-sub { color: #d4c4a0; font-size: 0.8rem; margin-top: 0.2rem; opacity: 0.75; }
+
+  .insight-banner {
+    background: linear-gradient(135deg, rgba(200,75,49,0.20), rgba(255,140,66,0.10));
+    border-left: 4px solid #ffd97d;
+    border-radius: 10px; padding: 1.2rem 1.5rem; margin: 1.5rem 0;
+    color: #f0e9d2; font-size: 1.05rem; line-height: 1.6;
+  }
+
+  .stTextInput input, .stNumberInput input {
+    background: rgba(255,255,255,0.06) !important;
+    color: white !important;
+    border: 1px solid rgba(255,217,125,0.25) !important;
+    border-radius: 8px !important;
+  }
+  .stButton > button {
+    background: linear-gradient(135deg, #ff8c42, #c84b31) !important;
+    color: white !important; border: none !important; border-radius: 8px !important;
+    font-weight: 600 !important; padding: 0.5rem 1.2rem !important;
+  }
+  .stButton > button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(255,140,66,0.35);
+  }
+  label, .stMarkdown p { color: #d4c4a0 !important; }
+  [data-testid="stExpander"] summary { color: #ffd97d !important; }
+  [data-testid="stToggle"] label { color: #ffd97d !important; }
+</style>
+""", unsafe_allow_html=True)
+
+# ============================================================
+# HERO
+# ============================================================
+st.markdown('<div class="hero-title">Chasing the Sun</div>', unsafe_allow_html=True)
+st.markdown('<div class="hero-subtitle">The longest day of the year is not the day of the latest sunset. The shortest day is not the day of the earliest sunset. Welcome to the strange geometry of our sky.</div>', unsafe_allow_html=True)
+
+# ============================================================
+# SESSION STATE
+# ============================================================
+defaults = {
+    "a_lat": 37.77, "a_lon": -122.42, "a_tz": -8.0, "a_name": "San Francisco",
+    "b_lat": 64.15, "b_lon": -21.94, "b_tz": 0.0,   "b_name": "Reykjavík",
+    "compare": False,
+    "url_year": 2026,
+}
+for k, v in defaults.items():
+    if k not in st.session_state:
+        st.session_state[k] = v
+
+# Load state from URL query parameters (only once per session)
+if "url_loaded" not in st.session_state:
+    params = st.query_params
+    if "compare" in params:
+        st.session_state.compare = params["compare"] == "1"
+    if "year" in params:
+        try: st.session_state.url_year = int(params["year"])
+        except ValueError: pass
+    for prefix in ["a", "b"]:
+        if f"{prefix}_name" in params:
+            st.session_state[f"{prefix}_name"] = params[f"{prefix}_name"]
+        for field, caster in [("lat", float), ("lon", float), ("tz", float)]:
+            key = f"{prefix}_{field}"
+            if key in params:
+                try: st.session_state[key] = caster(params[key])
+                except ValueError: pass
+    st.session_state.url_loaded = True
+# ============================================================
+# API HELPERS
+# ============================================================
+async def geocode(query):
+    url = f"https://nominatim.openstreetmap.org/search?q={query}&format=json&limit=1"
+    resp = await pyfetch(url, headers={"User-Agent": "sun-explorer-demo"})
+    data = json.loads(await resp.string())
+    if not data: return None
+    r = data[0]
+    short = r["display_name"].split(",")[0]
+    country = r["display_name"].split(",")[-1].strip()
+    return float(r["lat"]), float(r["lon"]), f"{short}, {country}"
+
+async def get_tz_offset(lat, lon):
+    url = f"https://timeapi.io/api/TimeZone/coordinate?latitude={lat}&longitude={lon}"
+    try:
+        resp = await pyfetch(url)
+        data = json.loads(await resp.string())
+        return data["currentUtcOffset"]["seconds"] / 3600
+    except Exception:
+        return round(lon / 15)
+
+async def lookup_into(query, prefix):
+    result = await geocode(query)
+    if result:
+        lat, lon, name = result
+        tz = await get_tz_offset(lat, lon)
+        st.session_state[f"{prefix}_lat"] = lat
+        st.session_state[f"{prefix}_lon"] = lon
+        st.session_state[f"{prefix}_tz"]  = tz
+        st.session_state[f"{prefix}_name"] = name
+        return name
+    return None
+
+# ============================================================
+# INPUT UI
+# ============================================================
+st.session_state.compare = st.toggle("⚖️ Compare two cities", value=st.session_state.compare)
+
+if st.session_state.compare:
+    colA, colB, colY = st.columns([2, 2, 1])
+    with colA:
+        st.markdown('<span class="city-tag tag-a">CITY A</span>', unsafe_allow_html=True)
+        sub_a1, sub_a2 = st.columns([3, 1])
+        with sub_a1:
+            qA = st.text_input("City A", st.session_state.a_name, label_visibility="collapsed", key="qA")
+        with sub_a2:
+            goA = st.button("🔍", key="goA")
+    with colB:
+        st.markdown('<span class="city-tag tag-b">CITY B</span>', unsafe_allow_html=True)
+        sub_b1, sub_b2 = st.columns([3, 1])
+        with sub_b1:
+            qB = st.text_input("City B", st.session_state.b_name, label_visibility="collapsed", key="qB")
+        with sub_b2:
+            goB = st.button("🔍", key="goB")
+    with colY:
+        year = st.number_input("Year", 1900, 2100, st.session_state.url_year)
+        st.session_state.url_year = year
+
+    if goA and qA:
+        with st.spinner(f"Finding {qA}..."):
+            name = await lookup_into(qA, "a")
+            if name: st.success(f"📍 A: {name}")
+            else: st.error("City A not found.")
+    if goB and qB:
+        with st.spinner(f"Finding {qB}..."):
+            name = await lookup_into(qB, "b")
+            if name: st.success(f"📍 B: {name}")
+            else: st.error("City B not found.")
+else:
+    col1, col2, col3 = st.columns([4, 1, 1.2])
+    with col1:
+        qA = st.text_input("Search for a city", st.session_state.a_name, key="qA_solo")
+    with col2:
+        st.write(""); st.write("")
+        goA = st.button("🔍 Look up", key="goA_solo")
+    with col3:
+        year = st.number_input("Year", 1900, 2100, st.session_state.url_year)
+        st.session_state.url_year = year
+    if goA and qA:
+        with st.spinner(f"Finding {qA}..."):
+            name = await lookup_into(qA, "a")
+            if name: st.success(f"📍 {name}")
+            else: st.error("City not found.")
+
+with st.expander("Adjust coordinates manually"):
+    if st.session_state.compare:
+        st.markdown('<span class="city-tag tag-a">CITY A</span>', unsafe_allow_html=True)
+        ca1, ca2, ca3 = st.columns(3)
+        with ca1: st.session_state.a_lat = st.number_input("Lat A", -89.0, 89.0, st.session_state.a_lat, 0.01)
+        with ca2: st.session_state.a_lon = st.number_input("Lon A", -180.0, 180.0, st.session_state.a_lon, 0.01)
+        with ca3: st.session_state.a_tz  = st.number_input("UTC A", -12.0, 14.0, st.session_state.a_tz, 0.25)
+        st.markdown('<span class="city-tag tag-b">CITY B</span>', unsafe_allow_html=True)
+        cb1, cb2, cb3 = st.columns(3)
+        with cb1: st.session_state.b_lat = st.number_input("Lat B", -89.0, 89.0, st.session_state.b_lat, 0.01)
+        with cb2: st.session_state.b_lon = st.number_input("Lon B", -180.0, 180.0, st.session_state.b_lon, 0.01)
+        with cb3: st.session_state.b_tz  = st.number_input("UTC B", -12.0, 14.0, st.session_state.b_tz, 0.25)
+    else:
+        c1, c2, c3 = st.columns(3)
+        with c1: st.session_state.a_lat = st.number_input("Latitude", -89.0, 89.0, st.session_state.a_lat, 0.01)
+        with c2: st.session_state.a_lon = st.number_input("Longitude", -180.0, 180.0, st.session_state.a_lon, 0.01)
+        with c3: st.session_state.a_tz  = st.number_input("UTC offset", -12.0, 14.0, st.session_state.a_tz, 0.25)
+
+# ============================================================
+# SOLAR MATH (NOAA)
+# ============================================================
+def sun_event(d, lat, lon, tz_offset, zenith=90.833):
+    n = (d - date(d.year, 1, 1)).days + 1
+    gamma = 2 * math.pi / 365 * (n - 1 + 12/24)
+    eqtime = 229.18 * (0.000075 + 0.001868*math.cos(gamma) - 0.032077*math.sin(gamma)
+                       - 0.014615*math.cos(2*gamma) - 0.040849*math.sin(2*gamma))
+    decl = (0.006918 - 0.399912*math.cos(gamma) + 0.070257*math.sin(gamma)
+            - 0.006758*math.cos(2*gamma) + 0.000907*math.sin(2*gamma)
+            - 0.002697*math.cos(3*gamma) + 0.00148*math.sin(3*gamma))
+    lat_r = math.radians(lat)
+    cos_ha = (math.cos(math.radians(zenith)) / (math.cos(lat_r)*math.cos(decl))
+              - math.tan(lat_r)*math.tan(decl))
+    if cos_ha > 1 or cos_ha < -1:
+        return None, None, eqtime, math.degrees(decl)
+    ha = math.degrees(math.acos(cos_ha))
+    solar_noon_utc = 720 - 4*lon - eqtime
+    return (solar_noon_utc - 4*ha)/60 + tz_offset, (solar_noon_utc + 4*ha)/60 + tz_offset, eqtime, math.degrees(decl)
+
+def build_dataset(year, lat, lon, tz):
+    rows = []
+    d = date(year, 1, 1); end = date(year, 12, 31)
+    while d <= end:
+        sr, ss, eot, decl = sun_event(d, lat, lon, tz, 90.833)
+        cdr, cds, _, _    = sun_event(d, lat, lon, tz, 96)
+        ndr, nds, _, _    = sun_event(d, lat, lon, tz, 102)
+        adr, ads, _, _    = sun_event(d, lat, lon, tz, 108)
+        rows.append({
+            "date": d, "sunrise": sr, "sunset": ss,
+            "civil_dawn": cdr, "civil_dusk": cds,
+            "naut_dawn": ndr, "naut_dusk": nds,
+            "astro_dawn": adr, "astro_dusk": ads,
+            "eot_min": eot, "declination": decl,
+            "daylight": (ss - sr) if (sr is not None and ss is not None) else None,
+        })
+        d += timedelta(days=1)
+    return pd.DataFrame(rows)
+
+# ============================================================
+# BUILD DATASETS
+# ============================================================
+dfA = build_dataset(year, st.session_state.a_lat, st.session_state.a_lon, st.session_state.a_tz)
+dfB = build_dataset(year, st.session_state.b_lat, st.session_state.b_lon, st.session_state.b_tz) if st.session_state.compare else None
+
+def get_extremes(df):
+    valid = df.dropna(subset=["sunrise", "sunset", "daylight"])
+    if len(valid) == 0: return None
+    return {
+        "Earliest sunrise": valid.loc[valid["sunrise"].idxmin()],
+        "Latest sunrise":   valid.loc[valid["sunrise"].idxmax()],
+        "Earliest sunset":  valid.loc[valid["sunset"].idxmin()],
+        "Latest sunset":    valid.loc[valid["sunset"].idxmax()],
+        "Shortest day":     valid.loc[valid["daylight"].idxmin()],
+        "Longest day":      valid.loc[valid["daylight"].idxmax()],
+    }
+exA = get_extremes(dfA)
+exB = get_extremes(dfB) if dfB is not None else None
+
+# ============================================================
+# CHART 1 — DAYLIGHT THROUGH THE YEAR
+# ============================================================
+if st.session_state.compare:
+    st.markdown(f"### A year of light: <span class='city-tag tag-a'>{st.session_state.a_name}</span> vs <span class='city-tag tag-b'>{st.session_state.b_name}</span>", unsafe_allow_html=True)
+else:
+    st.markdown(f"### A year of light in {st.session_state.a_name}")
+
+def add_band(fig, x, lower, upper, color):
+    fig.add_trace(go.Scatter(x=x, y=lower, line=dict(width=0), showlegend=False, hoverinfo="skip"))
+    fig.add_trace(go.Scatter(x=x, y=upper, fill="tonexty", fillcolor=color,
+                             line=dict(width=0), showlegend=False, hoverinfo="skip"))
+
+fig1 = go.Figure()
+x = dfA["date"]
+
+if not st.session_state.compare:
+    # Single-city: show full twilight bands
+    add_band(fig1, x, dfA["astro_dawn"], dfA["naut_dawn"], "rgba(40,30,80,0.55)")
+    add_band(fig1, x, dfA["naut_dawn"],  dfA["civil_dawn"], "rgba(70,60,130,0.55)")
+    add_band(fig1, x, dfA["civil_dawn"], dfA["sunrise"],    "rgba(180,100,90,0.55)")
+    add_band(fig1, x, dfA["sunrise"],    dfA["sunset"],     "rgba(255,210,100,0.45)")
+    add_band(fig1, x, dfA["sunset"],     dfA["civil_dusk"], "rgba(180,100,90,0.55)")
+    add_band(fig1, x, dfA["civil_dusk"], dfA["naut_dusk"],  "rgba(70,60,130,0.55)")
+    add_band(fig1, x, dfA["naut_dusk"],  dfA["astro_dusk"], "rgba(40,30,80,0.55)")
+
+    fig1.add_trace(go.Scatter(x=x, y=dfA["sunrise"], name="Sunrise",
+                              line=dict(color="#ffb347", width=2.5),
+                              hovertemplate="%{x|%b %d}<br>Sunrise: %{y:.2f}h<extra></extra>"))
+    fig1.add_trace(go.Scatter(x=x, y=dfA["sunset"], name="Sunset",
+                              line=dict(color="#c84b8f", width=2.5),
+                              hovertemplate="%{x|%b %d}<br>Sunset: %{y:.2f}h<extra></extra>"))
+else:
+    # Comparison: skip twilight bands; shaded daylight per city instead
+    fig1.add_trace(go.Scatter(x=x, y=dfA["sunrise"], line=dict(width=0),
+                              showlegend=False, hoverinfo="skip"))
+    fig1.add_trace(go.Scatter(x=x, y=dfA["sunset"], fill="tonexty",
+                              fillcolor="rgba(255,179,71,0.18)",
+                              line=dict(width=0), showlegend=False, hoverinfo="skip"))
+    fig1.add_trace(go.Scatter(x=x, y=dfB["sunrise"], line=dict(width=0),
+                              showlegend=False, hoverinfo="skip"))
+    fig1.add_trace(go.Scatter(x=x, y=dfB["sunset"], fill="tonexty",
+                              fillcolor="rgba(126,212,238,0.18)",
+                              line=dict(width=0), showlegend=False, hoverinfo="skip"))
+
+    fig1.add_trace(go.Scatter(x=x, y=dfA["sunrise"],
+                              name=f"☀️ {st.session_state.a_name} sunrise",
+                              line=dict(color="#ffb347", width=2.5),
+                              hovertemplate="%{x|%b %d}<br>Sunrise: %{y:.2f}h<extra></extra>"))
+    fig1.add_trace(go.Scatter(x=x, y=dfA["sunset"],
+                              name=f"🌇 {st.session_state.a_name} sunset",
+                              line=dict(color="#ff6b9d", width=2.5),
+                              hovertemplate="%{x|%b %d}<br>Sunset: %{y:.2f}h<extra></extra>"))
+    fig1.add_trace(go.Scatter(x=x, y=dfB["sunrise"],
+                              name=f"☀️ {st.session_state.b_name} sunrise",
+                              line=dict(color="#7ed4ee", width=2.5, dash="dash"),
+                              hovertemplate="%{x|%b %d}<br>Sunrise: %{y:.2f}h<extra></extra>"))
+    fig1.add_trace(go.Scatter(x=x, y=dfB["sunset"],
+                              name=f"🌇 {st.session_state.b_name} sunset",
+                              line=dict(color="#5fa8d3", width=2.5, dash="dash"),
+                              hovertemplate="%{x|%b %d}<br>Sunset: %{y:.2f}h<extra></extra>"))
+
+# Solstice / equinox guides
+for m, day_, label in [(3,20,"Mar equinox"),(6,21,"Jun solstice"),
+                        (9,22,"Sep equinox"),(12,21,"Dec solstice")]:
+    try:
+        dd = date(year, m, day_)
+        fig1.add_vline(x=dd, line=dict(color="rgba(255,217,125,0.35)", width=1, dash="dot"))
+        fig1.add_annotation(x=dd, y=24, text=label, showarrow=False,
+                            font=dict(color="#ffd97d", size=10), yshift=-6)
+    except Exception:
+        pass
+
+# Star markers on extremes (only for primary city to avoid clutter)
+star_specs_a = [
+    ("Earliest sunrise", "sunrise", -55, "#fff48a"),
+    ("Latest sunrise",   "sunrise", -55, "#fff48a"),
+    ("Earliest sunset",  "sunset",   55, "#ff9ad6"),
+    ("Latest sunset",    "sunset",   55, "#ff9ad6"),
+]
+for label, col, ay, color in star_specs_a:
+    row = exA[label]
+    fig1.add_trace(go.Scatter(x=[row["date"]], y=[row[col]], mode="markers",
+                              marker=dict(size=16, color=color, symbol="star",
+                                          line=dict(color="white", width=1.5)),
+                              showlegend=False, hoverinfo="skip"))
+    fig1.add_annotation(
+        x=row["date"], y=row[col], text=f"<b>{label}</b><br>{row['date'].strftime('%b %d')}",
+        showarrow=True, arrowhead=0, arrowcolor=color, arrowwidth=1.2,
+        ay=ay, ax=0, font=dict(color="white", size=10),
+        bgcolor="rgba(20,20,58,0.85)", bordercolor=color, borderwidth=1,
+        borderpad=5,
+    )
+
+if st.session_state.compare and exB is not None:
+    # Add small markers for city B without labels (to avoid clutter)
+    for label, col, _, _ in star_specs_a:
+        row = exB[label]
+        fig1.add_trace(go.Scatter(x=[row["date"]], y=[row[col]], mode="markers",
+                                  marker=dict(size=12, color="#7ed4ee", symbol="diamond",
+                                              line=dict(color="white", width=1)),
+                                  showlegend=False,
+                                  hovertemplate=f"<b>{label} (B)</b><br>{row['date'].strftime('%b %d')}<extra></extra>"))
+
+fig1.update_layout(
+    template="plotly_dark",
+    paper_bgcolor="rgba(0,0,0,0)",
+    plot_bgcolor="rgba(10,14,39,0.6)",
+    height=620,
+    margin=dict(l=60, r=30, t=30, b=50),
+    yaxis=dict(title="Local hour of day", range=[0, 24],
+               tickvals=[0,3,6,9,12,15,18,21,24],
+               gridcolor="rgba(255,255,255,0.06)"),
+    xaxis=dict(title="", gridcolor="rgba(255,255,255,0.06)"),
+    legend=dict(orientation="h", y=-0.12, x=0.5, xanchor="center",
+                bgcolor="rgba(0,0,0,0)"),
+    font=dict(family="Inter, sans-serif", color="#f0e9d2"),
+    hoverlabel=dict(bgcolor="#14143a", font_color="white", bordercolor="#ffd97d"),
+)
+st.plotly_chart(fig1, use_container_width=True)
+
+if st.session_state.compare:
+    st.caption("Solid lines: City A. Dashed lines: City B. Stars mark City A extremes; diamonds mark City B extremes. Notice how the sunrise/sunset 'pinch' is much more dramatic at higher latitudes.")
+else:
+    st.caption("The bright gold band is the day. Lighter purple bands are civil, nautical, and astronomical twilight. Stars mark the four 'extreme' days that don't line up with the solstices.")
+
+# ============================================================
+# DAYLIGHT HOURS COMPARISON (only in compare mode)
+# ============================================================
+if st.session_state.compare:
+    st.markdown("### Daylight hours head-to-head")
+    figD = go.Figure()
+    figD.add_trace(go.Scatter(x=dfA["date"], y=dfA["daylight"],
+                              name=st.session_state.a_name,
+                              line=dict(color="#ffb347", width=3),
+                              fill="tozeroy", fillcolor="rgba(255,179,71,0.10)",
+                              hovertemplate="%{x|%b %d}<br>Daylight: %{y:.2f}h<extra></extra>"))
+    figD.add_trace(go.Scatter(x=dfB["date"], y=dfB["daylight"],
+                              name=st.session_state.b_name,
+                              line=dict(color="#7ed4ee", width=3),
+                              fill="tozeroy", fillcolor="rgba(126,212,238,0.10)",
+                              hovertemplate="%{x|%b %d}<br>Daylight: %{y:.2f}h<extra></extra>"))
+    figD.add_hline(y=12, line=dict(color="rgba(255,217,125,0.4)", width=1, dash="dot"),
+                   annotation_text="12h equinox line", annotation_font_color="#ffd97d")
+    figD.update_layout(
+        template="plotly_dark",
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(10,14,39,0.6)",
+        height=400,
+        margin=dict(l=60, r=30, t=30, b=50),
+        yaxis=dict(title="Hours of daylight", range=[0, 24],
+                   gridcolor="rgba(255,255,255,0.06)"),
+        xaxis=dict(title="", gridcolor="rgba(255,255,255,0.06)"),
+        legend=dict(orientation="h", y=-0.15, x=0.5, xanchor="center",
+                    bgcolor="rgba(0,0,0,0)"),
+        font=dict(family="Inter, sans-serif", color="#f0e9d2"),
+    )
+    st.plotly_chart(figD, use_container_width=True)
+
+# ============================================================
+# THE BIG REVEAL — fact cards
+# ============================================================
+st.markdown("### The surprising offset")
+st.markdown('<div class="insight-banner">Look closely. The <b>shortest day</b> and the <b>earliest sunset</b> are different dates. So are the <b>longest day</b> and the <b>latest sunset</b>. Even though the sun reaches its lowest and highest paths on the solstices, the clock is also drifting underneath us.</div>', unsafe_allow_html=True)
+
+def fact_card(label, dt, sub="", variant=""):
+    cls = "fact-card b" if variant == "b" else "fact-card"
+    return f"""
+    <div class="{cls}">
+      <div class="fact-label">{label}</div>
+      <div class="fact-value">{dt.strftime('%b %d')}</div>
+      <div class="fact-sub">{sub}</div>
+    </div>
+    """
+
+if st.session_state.compare:
+    # Two columns per city, with city tags
+    colA1, colA2, colB1, colB2 = st.columns(4)
+    with colA1:
+        st.markdown(f'<span class="city-tag tag-a">{st.session_state.a_name}</span>', unsafe_allow_html=True)
+        st.markdown("**❄️ Winter**")
+        st.markdown(fact_card("Earliest sunset", exA["Earliest sunset"]["date"],
+                              f"{exA['Earliest sunset']['sunset']:.2f}h"), unsafe_allow_html=True)
+        st.markdown(fact_card("Shortest day", exA["Shortest day"]["date"],
+                              f"{exA['Shortest day']['daylight']:.2f}h daylight"), unsafe_allow_html=True)
+        st.markdown(fact_card("Latest sunrise", exA["Latest sunrise"]["date"],
+                              f"{exA['Latest sunrise']['sunrise']:.2f}h"), unsafe_allow_html=True)
+    with colA2:
+        st.markdown("&nbsp;", unsafe_allow_html=True)
+        st.markdown("**☀️ Summer**")
+        st.markdown(fact_card("Earliest sunrise", exA["Earliest sunrise"]["date"],
+                              f"{exA['Earliest sunrise']['sunrise']:.2f}h"), unsafe_allow_html=True)
+        st.markdown(fact_card("Longest day", exA["Longest day"]["date"],
+                              f"{exA['Longest day']['daylight']:.2f}h daylight"), unsafe_allow_html=True)
+        st.markdown(fact_card("Latest sunset", exA["Latest sunset"]["date"],
+                              f"{exA['Latest sunset']['sunset']:.2f}h"), unsafe_allow_html=True)
+    with colB1:
+        st.markdown(f'<span class="city-tag tag-b">{st.session_state.b_name}</span>', unsafe_allow_html=True)
+        st.markdown("**❄️ Winter**")
+        st.markdown(fact_card("Earliest sunset", exB["Earliest sunset"]["date"],
+                              f"{exB['Earliest sunset']['sunset']:.2f}h", "b"), unsafe_allow_html=True)
+        st.markdown(fact_card("Shortest day", exB["Shortest day"]["date"],
+                              f"{exB['Shortest day']['daylight']:.2f}h daylight", "b"), unsafe_allow_html=True)
+        st.markdown(fact_card("Latest sunrise", exB["Latest sunrise"]["date"],
+                              f"{exB['Latest sunrise']['sunrise']:.2f}h", "b"), unsafe_allow_html=True)
+    with colB2:
+        st.markdown("&nbsp;", unsafe_allow_html=True)
+        st.markdown("**☀️ Summer**")
+        st.markdown(fact_card("Earliest sunrise", exB["Earliest sunrise"]["date"],
+                              f"{exB['Earliest sunrise']['sunrise']:.2f}h", "b"), unsafe_allow_html=True)
+        st.markdown(fact_card("Longest day", exB["Longest day"]["date"],
+                              f"{exB['Longest day']['daylight']:.2f}h daylight", "b"), unsafe_allow_html=True)
+        st.markdown(fact_card("Latest sunset", exB["Latest sunset"]["date"],
+                              f"{exB['Latest sunset']['sunset']:.2f}h", "b"), unsafe_allow_html=True)
+
+    # Latitude effect callout
+    diff_a = abs(exA["Longest day"]["daylight"] - exA["Shortest day"]["daylight"])
+    diff_b = abs(exB["Longest day"]["daylight"] - exB["Shortest day"]["daylight"])
+    st.markdown(f'<div class="insight-banner">📏 <b>Daylight swing:</b> {st.session_state.a_name} varies by <b>{diff_a:.2f} hours</b> across the year, while {st.session_state.b_name} varies by <b>{diff_b:.2f} hours</b>. The closer to the poles, the wilder the swing.</div>', unsafe_allow_html=True)
+else:
+    cw1, cw2 = st.columns(2)
+    with cw1:
+        st.markdown("#### ❄️ Around winter")
+        st.markdown(fact_card("Earliest sunset", exA["Earliest sunset"]["date"],
+                              f"{exA['Earliest sunset']['sunset']:.2f}h local"), unsafe_allow_html=True)
+        st.markdown(fact_card("Shortest day", exA["Shortest day"]["date"],
+                              f"{exA['Shortest day']['daylight']:.2f}h of daylight"), unsafe_allow_html=True)
+        st.markdown(fact_card("Latest sunrise", exA["Latest sunrise"]["date"],
+                              f"{exA['Latest sunrise']['sunrise']:.2f}h local"), unsafe_allow_html=True)
+    with cw2:
+        st.markdown("#### ☀️ Around summer")
+        st.markdown(fact_card("Earliest sunrise", exA["Earliest sunrise"]["date"],
+                              f"{exA['Earliest sunrise']['sunrise']:.2f}h local"), unsafe_allow_html=True)
+        st.markdown(fact_card("Longest day", exA["Longest day"]["date"],
+                              f"{exA['Longest day']['daylight']:.2f}h of daylight"), unsafe_allow_html=True)
+        st.markdown(fact_card("Latest sunset", exA["Latest sunset"]["date"],
+                              f"{exA['Latest sunset']['sunset']:.2f}h local"), unsafe_allow_html=True)
+
+# ============================================================
+# CHART 2 — THE ANALEMMA (overlay if comparing)
+# ============================================================
+st.markdown("### 🎱 The analemma — a year of suns at the same hour")
+st.markdown('<div class="insight-banner">Photograph the sun at the same clock-time every day for a year and it traces this figure-8 in the sky. The horizontal axis shows how far solar noon drifts from clock noon (the <b>equation of time</b>); the vertical axis is the sun\'s declination. Notice that the <i>shape</i> of the analemma is identical for every place on Earth — it depends only on Earth\'s tilt and orbit, not on where you stand.</div>', unsafe_allow_html=True)
+
+fig2 = go.Figure()
+
+# Glow halo for City A
+for size, alpha in [(22, 0.06), (14, 0.10), (8, 0.18)]:
+    fig2.add_trace(go.Scatter(
+        x=dfA["eot_min"], y=dfA["declination"], mode="markers",
+        marker=dict(size=size, color=f"rgba(255,200,100,{alpha})", line=dict(width=0)),
+        showlegend=False, hoverinfo="skip"))
+
+fig2.add_trace(go.Scatter(
+    x=dfA["eot_min"], y=dfA["declination"], mode="lines+markers",
+    marker=dict(size=5, color=dfA.index, colorscale="Plasma",
+                colorbar=dict(title=dict(text="Day of year", font=dict(color="#ffd97d")),
+                              tickfont=dict(color="#f0e9d2"),
+                              outlinecolor="rgba(255,217,125,0.3)")),
+    line=dict(color="rgba(255,217,125,0.45)", width=1.5),
+    text=[dt.strftime("%b %d") for dt in dfA["date"]],
+    hovertemplate=f"<b>{st.session_state.a_name}</b><br>%{{text}}<br>EoT: %{{x:.1f}} min<br>Decl: %{{y:.2f}}°<extra></extra>",
+    name=st.session_state.a_name
+))
+
+if st.session_state.compare and dfB is not None:
+    # Glow for City B in cool tones
+    for size, alpha in [(22, 0.06), (14, 0.10), (8, 0.18)]:
+        fig2.add_trace(go.Scatter(
+            x=dfB["eot_min"], y=dfB["declination"], mode="markers",
+            marker=dict(size=size, color=f"rgba(126,212,238,{alpha})", line=dict(width=0)),
+            showlegend=False, hoverinfo="skip"))
+    fig2.add_trace(go.Scatter(
+        x=dfB["eot_min"], y=dfB["declination"], mode="lines",
+        line=dict(color="rgba(126,212,238,0.85)", width=2.5, dash="dash"),
+        text=[dt.strftime("%b %d") for dt in dfB["date"]],
+        hovertemplate=f"<b>{st.session_state.b_name}</b><br>%{{text}}<br>EoT: %{{x:.1f}} min<br>Decl: %{{y:.2f}}°<extra></extra>",
+        name=st.session_state.b_name
+    ))
+    st.caption("The two analemmas overlap almost perfectly — that's the point! Latitude doesn't change the figure-8 shape, only what you see in the sky from your local horizon.")
+
+# Solstices/equinoxes (from City A — they're the same dates anyway)
+for m, day_, label, emoji in [(3,20,"March equinox","🌱"),
+                               (6,21,"June solstice","☀️"),
+                               (9,22,"September equinox","🍂"),
+                               (12,21,"December solstice","❄️")]:
+    try:
+        row = dfA[dfA["date"] == date(year, m, day_)].iloc[0]
+        fig2.add_trace(go.Scatter(
+            x=[row["eot_min"]], y=[row["declination"]],
+            mode="markers+text", text=[f"{emoji} {label}"],
+            textposition="top center",
+            textfont=dict(color="#ffd97d", size=12, family="Playfair Display"),
+            marker=dict(size=18, color="#fff48a", symbol="star",
+                        line=dict(color="white", width=2)),
+            showlegend=False,
+            hovertemplate=f"<b>{label}</b><br>%{{x:.1f}} min<br>%{{y:.2f}}°<extra></extra>"))
+    except IndexError:
+        pass
+
+fig2.update_layout(
+    template="plotly_dark",
+    paper_bgcolor="rgba(0,0,0,0)",
+    plot_bgcolor="rgba(10,14,39,0.6)",
+    height=680,
+    margin=dict(l=60, r=30, t=30, b=60),
+    xaxis=dict(title="Equation of time (minutes) — sun behind clock ← → sun ahead of clock",
+               zeroline=True, zerolinecolor="rgba(255,217,125,0.25)",
+               gridcolor="rgba(255,255,255,0.06)"),
+    yaxis=dict(title="Solar declination (°)",
+               zeroline=True, zerolinecolor="rgba(255,217,125,0.25)",
+               gridcolor="rgba(255,255,255,0.06)"),
+    legend=dict(orientation="h", y=-0.12, x=0.5, xanchor="center",
+                bgcolor="rgba(0,0,0,0)"),
+    font=dict(family="Inter, sans-serif", color="#f0e9d2"),
+    hoverlabel=dict(bgcolor="#14143a", font_color="white", bordercolor="#ffd97d"),
+)
+st.plotly_chart(fig2, use_container_width=True)
+
+# ============================================================
+# FOOTER
+# ============================================================
+st.markdown("### Why does this happen?")
+st.markdown("""
+<div class="insight-banner">
+Two effects conspire to drift solar noon away from clock noon throughout the year:
+<br><br>
+<b>1. Earth's axial tilt</b> (~23.5°) means the sun's apparent path tilts as the seasons change.
+<br>
+<b>2. Earth's elliptical orbit</b> means we move faster around the sun in early January (perihelion) than in July (aphelion).
+<br><br>
+Combined, these create the <b>equation of time</b>: a sinusoidal-ish drift of up to ±16 minutes between solar and clock noon. So while the <i>length of day</i> peaks on the solstice, the actual <i>clock times</i> of sunrise and sunset peak weeks earlier or later. The figure-8 of the analemma is literally this drift drawn in the sky.
+</div>
+""", unsafe_allow_html=True)
+
+# ============================================================
+# SHARE LINK
+# ============================================================
+st.markdown("### 🔗 Share this view")
+
+def make_share_url():
+    p = {
+        "compare": "1" if st.session_state.compare else "0",
+        "year": int(year),
+        "a_name": st.session_state.a_name,
+        "a_lat": f"{st.session_state.a_lat:.4f}",
+        "a_lon": f"{st.session_state.a_lon:.4f}",
+        "a_tz":  f"{st.session_state.a_tz}",
+    }
+    if st.session_state.compare:
+        p.update({
+            "b_name": st.session_state.b_name,
+            "b_lat": f"{st.session_state.b_lat:.4f}",
+            "b_lon": f"{st.session_state.b_lon:.4f}",
+            "b_tz":  f"{st.session_state.b_tz}",
+        })
+    qs = urlencode(p)
+    try:
+        base = str(js.window.location.origin) + str(js.window.location.pathname)
+    except Exception:
+        base = ""
+    return f"{base}?{qs}"
+
+share_url = make_share_url()
+st.markdown('<div class="insight-banner">Copy the link below to share your current view. Anyone who opens it will see the same cities, year, and comparison settings.</div>', unsafe_allow_html=True)
+st.code(share_url, language=None)
+
+st.caption("Try comparing Reykjavík vs Quito (massive latitude effect), San Francisco vs Sydney (hemisphere flip), or Tromsø vs anywhere (polar day & night). Solar calculations follow NOAA's algorithm. Geocoding by OpenStreetMap.")
+    </streamlit-app>
+    <script src="https://cdn.jsdelivr.net/npm/@stlite/browser@0.76.0/build/stlite.js"></script>
+  </body>
+</html>
