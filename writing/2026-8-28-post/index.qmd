@@ -5,7 +5,7 @@ author: "ees"
 date: "2026-08-28"
 date-modified:
 categories: [second, thoughts, test]
-image: "feature-img.png
+image: "feature-img.png"
 draft: false
 ---
 
