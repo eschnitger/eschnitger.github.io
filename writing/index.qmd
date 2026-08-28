@@ -2,8 +2,9 @@
 title: "Eric Eliot Schnitger's Writings"
 listing:
   contents:
-    - "."
-    - "!index.qmd"     # Excludes this landing page itself
+    - "*/*.qmd"
+    - "*.qmd"
+    - "!index.qmd"
   type: default
   sort: "date desc"
   categories: true
