@@ -1,14 +1,13 @@
 ---
-title: "Data Projects"
+title: "Projects"
 listing:
   type: grid
   categories: true
   sort: "date desc"
   grid-columns: 3
+  image-height: "200px"
   contents:
     - "."              # Pulls posts in the projects/ folder
     - "!index.qmd"     # Excludes this landing page itself
     - "!../writing"
-    - "*/index.qmd"
-    - "!eschnitger.github.io/**"
 ---
