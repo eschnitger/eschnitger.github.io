@@ -8,6 +8,7 @@ image: thumbnail.png
 format: 
   html:
     self-contained: true  # This helps ensure all JS is bundled in one file
+    page-layout: full
 execute:
   enabled: true
 jupyter: python3
