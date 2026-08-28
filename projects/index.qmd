@@ -10,4 +10,5 @@ listing:
     - "."              # Pulls posts in the projects/ folder
     - "!index.qmd"     # Excludes this landing page itself
     - "!../writing"
+    - "!european-football-divide"   #in draft still
 ---
