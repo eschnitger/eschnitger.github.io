@@ -2,3 +2,13 @@
 **/*.quarto_ipynb
 .Rproj.user
 .positai
+
+# Virtual environments & Jupyter cache
+/.venv/
+/.ipynb_checkpoints/
+/__pycache__/
+docs/
+/docs/
+
+# Mac OS system files
+.DS_Store
