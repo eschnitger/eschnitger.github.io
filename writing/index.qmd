@@ -1,10 +1,9 @@
 ---
-title: "Eric Eliot Schnitger's Portfolio"
+title: "Eric Eliot Schnitger's Writings"
 listing:
   contents:
-    - "."              # Pulls posts in the projects/ folder
+    - "."
     - "!index.qmd"     # Excludes this landing page itself
-    - "!../projects"
   type: default
   sort: "date desc"
   categories: true
