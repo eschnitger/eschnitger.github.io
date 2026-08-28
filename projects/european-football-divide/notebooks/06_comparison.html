@@ -23,41 +23,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -219,29 +184,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Serie A</strong> is the most volatile (Calciopoli, bankruptcies)</li>
 <li><strong>No league has reversed the trend</strong> through regulation alone</li>
 </ul>
-<div id="0b8169b2" class="cell" data-execution_count="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>sys.path.insert(<span class="dv">0</span>, <span class="bu">str</span>(Path.cwd().parent))</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> _utils <span class="im">import</span> (</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>   LEAGUES, scrape_league, enrich_dataframe,</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>   build_league_chart, build_comparison_chart, build_frequency_tables,</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.graph_objects <span class="im">as</span> go</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
 <div id="22eed7ea" class="cell" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>league_data <span class="op">=</span> {}</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> key <span class="kw">in</span> [<span class="st">"premier_league"</span>, <span class="st">"bundesliga"</span>, <span class="st">"la_liga"</span>, <span class="st">"ligue_1"</span>, <span class="st">"serie_a"</span>]:</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>   config <span class="op">=</span> LEAGUES[key]</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>   raw <span class="op">=</span> scrape_league(key, cache_dir<span class="op">=</span><span class="st">"../data"</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>   league_data[key] <span class="op">=</span> enrich_dataframe(raw)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>   <span class="bu">print</span>(<span class="ss">f"  </span><span class="sc">{</span>config<span class="sc">.</span>name<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span><span class="bu">len</span>(league_data[key])<span class="sc">}</span><span class="ss"> seasons"</span>)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>total <span class="op">=</span> <span class="bu">sum</span>(<span class="bu">len</span>(v) <span class="cf">for</span> v <span class="kw">in</span> league_data.values())</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Total: </span><span class="sc">{</span>total<span class="sc">}</span><span class="ss"> season-records across 5 leagues"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  [PL] cache hit (0.0d old)
   Premier League: 33 seasons
@@ -261,12 +204,6 @@ Total: 160 season-records across 5 leagues</code></pre>
 <section id="the-gap-over-time-normalized-to-38-games" class="level2">
 <h2 class="anchored" data-anchor-id="the-gap-over-time-normalized-to-38-games">The Gap Over Time (Normalized to 38 games)</h2>
 <div id="4ba5c6d0" class="cell" data-execution_count="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> build_comparison_chart(</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>   league_data,</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>   metric<span class="op">=</span><span class="st">"Gap (38-game)"</span>,</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>   title<span class="op">=</span><span class="st">"The Growing Divide: Gap Between Champions and Survival (Normalized)"</span>,</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>fig</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -279,12 +216,6 @@ Total: 160 season-records across 5 leagues</code></pre>
 <section id="title-winning-points-normalized" class="level2">
 <h2 class="anchored" data-anchor-id="title-winning-points-normalized">Title-Winning Points (Normalized)</h2>
 <div id="312738e1" class="cell" data-execution_count="6">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> build_comparison_chart(</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>   league_data,</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>   metric<span class="op">=</span><span class="st">"Title Pts (38-game)"</span>,</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>   title<span class="op">=</span><span class="st">"Title-Winning Points Across Europe (38-Game Equivalent)"</span>,</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>fig</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -297,12 +228,6 @@ Total: 160 season-records across 5 leagues</code></pre>
 <section id="relegation-survival-points-normalized" class="level2">
 <h2 class="anchored" data-anchor-id="relegation-survival-points-normalized">Relegation Survival Points (Normalized)</h2>
 <div id="cc50608b" class="cell" data-execution_count="7">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> build_comparison_chart(</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>   league_data,</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>   metric<span class="op">=</span><span class="st">"Survival Pts (38-game)"</span>,</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>   title<span class="op">=</span><span class="st">"Relegation Survival Points Across Europe (38-Game Equivalent)"</span>,</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>fig</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -315,12 +240,6 @@ Total: 160 season-records across 5 leagues</code></pre>
 <section id="points-ratio-unit-free" class="level2">
 <h2 class="anchored" data-anchor-id="points-ratio-unit-free">Points Ratio (Unit-Free)</h2>
 <div id="8bcfa976" class="cell" data-execution_count="8">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> build_comparison_chart(</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>   league_data, metric<span class="op">=</span><span class="st">"Ratio"</span>,</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>   title<span class="op">=</span><span class="st">"Competitive Inequality: Champion-to-Survival Points Ratio"</span>,</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>fig.update_layout(yaxis<span class="op">=</span><span class="bu">dict</span>(title<span class="op">=</span><span class="st">"Ratio (champion pts / survival pts)"</span>))</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>fig</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -333,29 +252,6 @@ Total: 160 season-records across 5 leagues</code></pre>
 <section id="league-summary-statistics" class="level2">
 <h2 class="anchored" data-anchor-id="league-summary-statistics">League Summary Statistics</h2>
 <div id="06348749" class="cell" data-execution_count="9">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> []</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> key, df <span class="kw">in</span> league_data.items():</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>   config <span class="op">=</span> LEAGUES[key]</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>   row <span class="op">=</span> {</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>       <span class="st">"League"</span>: config.name, <span class="st">"Country"</span>: config.country,</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>       <span class="st">"Seasons"</span>: <span class="bu">len</span>(df), <span class="st">"Teams"</span>: config.num_teams,</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>       <span class="st">"Avg Title (38g)"</span>:    <span class="bu">round</span>(df[<span class="st">"Title Pts (38-game)"</span>].mean(), <span class="dv">1</span>),</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>       <span class="st">"Avg Survival (38g)"</span>: <span class="bu">round</span>(df[<span class="st">"Survival Pts (38-game)"</span>].mean(), <span class="dv">1</span>),</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>       <span class="st">"Avg Gap (38g)"</span>:      <span class="bu">round</span>(df[<span class="st">"Gap (38-game)"</span>].mean(), <span class="dv">1</span>),</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>       <span class="st">"Avg Ratio"</span>: <span class="bu">round</span>(df[<span class="st">"Ratio"</span>].mean(), <span class="dv">2</span>),</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>       <span class="st">"Max Ratio"</span>: <span class="bu">round</span>(df[<span class="st">"Ratio"</span>].<span class="bu">max</span>(), <span class="dv">2</span>),</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>   }</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>   x <span class="op">=</span> np.arange(<span class="bu">len</span>(df)).astype(<span class="bu">float</span>)</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>   y <span class="op">=</span> df[<span class="st">"Gap (38-game)"</span>].values.astype(<span class="bu">float</span>)</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>   mask <span class="op">=</span> <span class="op">~</span>np.isnan(y)</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>   <span class="cf">if</span> mask.<span class="bu">sum</span>() <span class="op">&gt;=</span> <span class="dv">3</span>:</span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>       row[<span class="st">"Gap Trend (pts/yr)"</span>] <span class="op">=</span> <span class="bu">round</span>(np.polyfit(x[mask], y[mask], <span class="dv">1</span>)[<span class="dv">0</span>], <span class="dv">3</span>)</span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>   rows.append(row)</span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(rows).style.<span class="bu">format</span>({</span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>   <span class="st">"Avg Ratio"</span>: <span class="st">"</span><span class="sc">{:.2f}</span><span class="st">x"</span>, <span class="st">"Max Ratio"</span>: <span class="st">"</span><span class="sc">{:.2f}</span><span class="st">x"</span>,</span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>   <span class="st">"Gap Trend (pts/yr)"</span>: <span class="st">"</span><span class="sc">{:+.3f}</span><span class="st">"</span>,</span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>}).hide(axis<span class="op">=</span><span class="st">"index"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
 <style type="text/css">
 </style>
@@ -444,30 +340,6 @@ Total: 160 season-records across 5 leagues</code></pre>
 <section id="top-3-club-concentration" class="level2">
 <h2 class="anchored" data-anchor-id="top-3-club-concentration">Top-3 Club Concentration</h2>
 <div id="7a9b0044" class="cell" data-execution_count="10">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>conc <span class="op">=</span> []</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> key, df <span class="kw">in</span> league_data.items():</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>   config <span class="op">=</span> LEAGUES[key]</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>   top4, _ <span class="op">=</span> build_frequency_tables(df, config)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>   total_slots <span class="op">=</span> <span class="bu">len</span>(df) <span class="op">*</span> <span class="dv">4</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>   share <span class="op">=</span> top4.head(<span class="dv">3</span>)[<span class="st">"Top 4 Finishes"</span>].<span class="bu">sum</span>() <span class="op">/</span> total_slots <span class="op">*</span> <span class="dv">100</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>   conc.append({<span class="st">"League"</span>: config.name,</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Top 3 Share (%)"</span>: <span class="bu">round</span>(share, <span class="dv">1</span>),</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Color"</span>: config.color})</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>conc_df <span class="op">=</span> pd.DataFrame(conc).sort_values(<span class="st">"Top 3 Share (%)"</span>)</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> go.Figure(data<span class="op">=</span>[go.Bar(</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>   x<span class="op">=</span>conc_df[<span class="st">"Top 3 Share (%)"</span>], y<span class="op">=</span>conc_df[<span class="st">"League"</span>], orientation<span class="op">=</span><span class="st">"h"</span>,</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>   marker<span class="op">=</span><span class="bu">dict</span>(color<span class="op">=</span>conc_df[<span class="st">"Color"</span>].tolist()),</span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>   hovertemplate<span class="op">=</span><span class="st">"&lt;b&gt;%</span><span class="sc">{y}</span><span class="st">&lt;/b&gt;&lt;br&gt;%</span><span class="sc">{x:.1f}% o</span><span class="st">f all top-4 slots&lt;extra&gt;&lt;/extra&gt;"</span>,</span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>)])</span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>fig.update_layout(</span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>   template<span class="op">=</span><span class="st">"plotly_dark"</span>,</span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>   title<span class="op">=</span><span class="st">"Competitive Concentration: Top 3 Clubs' Share of Top-4 Finishes"</span>,</span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>   xaxis<span class="op">=</span><span class="bu">dict</span>(title<span class="op">=</span><span class="st">"</span><span class="sc">% o</span><span class="st">f Top-4 Slots"</span>, <span class="bu">range</span><span class="op">=</span>[<span class="dv">0</span>, <span class="dv">100</span>]),</span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>   height<span class="op">=</span><span class="dv">400</span>, width<span class="op">=</span><span class="dv">900</span>,</span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>fig</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -480,38 +352,6 @@ Total: 160 season-records across 5 leagues</code></pre>
 <section id="decade-by-decade-gap" class="level2">
 <h2 class="anchored" data-anchor-id="decade-by-decade-gap">Decade-by-Decade Gap</h2>
 <div id="9d30101c" class="cell" data-execution_count="11">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> []</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> key, df <span class="kw">in</span> league_data.items():</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>   config <span class="op">=</span> LEAGUES[key]</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>   tmp <span class="op">=</span> df.copy()</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>   tmp[<span class="st">"Decade"</span>] <span class="op">=</span> (tmp[<span class="st">"Start Year"</span>] <span class="op">//</span> <span class="dv">10</span>) <span class="op">*</span> <span class="dv">10</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>   tmp[<span class="st">"Decade Label"</span>] <span class="op">=</span> tmp[<span class="st">"Decade"</span>].astype(<span class="bu">str</span>) <span class="op">+</span> <span class="st">"s"</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>   <span class="cf">for</span> decade, group <span class="kw">in</span> tmp.groupby(<span class="st">"Decade Label"</span>):</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>       rows.append({</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>           <span class="st">"League"</span>: config.name, <span class="st">"Decade"</span>: decade,</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>           <span class="st">"Avg Gap (38g)"</span>: <span class="bu">round</span>(group[<span class="st">"Gap (38-game)"</span>].mean(), <span class="dv">1</span>),</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>       })</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>decade_df <span class="op">=</span> pd.DataFrame(rows)</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> go.Figure()</span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> key <span class="kw">in</span> league_data:</span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>   config <span class="op">=</span> LEAGUES[key]</span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>   sub <span class="op">=</span> decade_df[decade_df[<span class="st">"League"</span>] <span class="op">==</span> config.name].sort_values(<span class="st">"Decade"</span>)</span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>   fig.add_trace(go.Bar(</span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>       x<span class="op">=</span>sub[<span class="st">"Decade"</span>], y<span class="op">=</span>sub[<span class="st">"Avg Gap (38g)"</span>],</span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>       name<span class="op">=</span>config.name, marker<span class="op">=</span><span class="bu">dict</span>(color<span class="op">=</span>config.color, opacity<span class="op">=</span><span class="fl">0.85</span>),</span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>   ))</span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>fig.update_layout(</span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>   template<span class="op">=</span><span class="st">"plotly_dark"</span>,</span>
-<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>   title<span class="op">=</span><span class="st">"Average Gap by Decade (38-Game Normalized)"</span>,</span>
-<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>   barmode<span class="op">=</span><span class="st">"group"</span>,</span>
-<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>   xaxis<span class="op">=</span><span class="bu">dict</span>(title<span class="op">=</span><span class="st">"Decade"</span>),</span>
-<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>   yaxis<span class="op">=</span><span class="bu">dict</span>(title<span class="op">=</span><span class="st">"Avg Gap (38g equivalent)"</span>),</span>
-<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>   height<span class="op">=</span><span class="dv">500</span>, width<span class="op">=</span><span class="dv">1000</span>,</span>
-<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>   legend<span class="op">=</span><span class="bu">dict</span>(orientation<span class="op">=</span><span class="st">"h"</span>, yanchor<span class="op">=</span><span class="st">"bottom"</span>, y<span class="op">=</span><span class="fl">1.02</span>,</span>
-<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>               xanchor<span class="op">=</span><span class="st">"center"</span>, x<span class="op">=</span><span class="fl">0.5</span>),</span>
-<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>fig</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
