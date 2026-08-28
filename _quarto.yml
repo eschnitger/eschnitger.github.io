@@ -1,6 +1,8 @@
 project:
  type: website
  output-dir: docs
+ render:
+   - "!projects/eschnitger.github.io/"
 
 website:
  title: "Eric Eliot Schnitger's Portfolio"
