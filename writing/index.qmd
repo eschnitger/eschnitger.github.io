@@ -1,10 +1,7 @@
 ---
 title: "Eric Eliot Schnitger's Writings"
 listing:
-  contents:
-    - "*/*.qmd"
-    - "*.qmd"
-    - "!index.qmd"
+  contents: writing
   type: default
   sort: "date desc"
   categories: true
