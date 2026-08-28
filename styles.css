@@ -92,6 +92,7 @@ div.sourceCode {
   transition: all 0.25s ease-in-out;
 }
 
-.tableau-container:hover {
+.quarto-grid-item:hover {
   transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
 }

@@ -2,9 +2,24 @@
   {
     "listing": "/projects/index.html",
     "items": [
-      "/projects/rootbeer/index.html",
+      "/projects/automation/index.html",
+      "/projects/eschnitger.github.io/index.html",
+      "/projects/eschnitger.github.io/projects/index.html",
+      "/projects/eschnitger.github.io/writing/index.html",
+      "/projects/eschnitger.github.io/writing/first_post_test/index.html",
+      "/projects/eschnitger.github.io/projects/rootbeer/index.html",
+      "/projects/eschnitger.github.io/projects/fastest-human/index.html",
       "/projects/fastest-human/index.html",
+      "/projects/eschnitger.github.io/projects/premier-league/index.html",
       "/projects/premier-league/index.html"
+    ]
+  },
+  {
+    "listing": "/projects/eschnitger.github.io/projects/index.html",
+    "items": [
+      "/projects/eschnitger.github.io/projects/rootbeer/index.html",
+      "/projects/eschnitger.github.io/projects/fastest-human/index.html",
+      "/projects/eschnitger.github.io/projects/premier-league/index.html"
     ]
   }
 ]
