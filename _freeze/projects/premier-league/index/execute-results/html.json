@@ -1,8 +1,8 @@
 {
-  "hash": "3770969a5269432f94c7155be17b4372",
+  "hash": "a7345c883fb87b15454f4b8f277f0193",
   "result": {
     "engine": "jupyter",
-    "markdown": "---\ntitle: \"Premier League: The Growing Divide\"\ndescription: \"Analyzing 33 seasons of title-winning and relegation survival points\"\ndate: 2026-04-27\nupdate: 2026-05-21\ncategories: [data-viz, sports, python]\nimage: thumbnail.png\nformat: \n  html:\n    self-contained: true  # This helps ensure all JS is bundled in one file\n    page-layout: full\nexecute:\n  enabled: true\njupyter: python3\n---\n\n## Overview\n\nAn interactive analysis of how the gap between Premier League champions\nand relegation survivors has grown from 1992 to 2025.\n\n## Key Findings\n\n- Title-winning points trend upward (+0.25 pts/season)\n- Relegation survival points are flat or declining\n- The gap has grown from ~35-50 pts to 50-65 pts\n\n## The Whole Project\n\n::: {.column-page}\n{{< embed PremLeague.ipynb >}}\n:::\n\n## Code\n\nThe full source notebook is available on\n[GitHub](https://github.com/eschnitger/PremLeague).\n\n",
+    "markdown": "---\ntitle: \"Premier League: The Growing Divide\"\ndescription: \"Analyzing 33 seasons of title-winning and relegation survival points\"\ndate: 2026-04-27\nupdate: 2026-05-21\ncategories: [data-viz, sports, python, plotly, soccer]\nimage: thumbnail.png\nformat: \n  html:\n    self-contained: true  # This helps ensure all JS is bundled in one file\n    page-layout: full\njupyter: python3\n---\n\n## Overview\n\nAn interactive analysis of how the gap between Premier League champions\nand relegation survivors has grown from 1992 to 2025.\n\n## Key Findings\n\n- Title-winning points trend upward (+0.25 pts/season)\n- Relegation survival points are flat or declining\n- The gap has grown from ~35-50 pts to 50-65 pts\n\n## The Whole Project\n\n::: {.column-page}\n{{< embed PremLeague.ipynb >}}\n:::\n\n## Code\n\nThe full source notebook is available on\n[GitHub](https://github.com/eschnitger/PremLeague).\n\n",
     "supporting": [
       "index_files/figure-html"
     ],
