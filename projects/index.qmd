@@ -13,5 +13,5 @@ listing:
     - "!european-football-divide"   #in draft
     - "!LACountyPolluters"          #in draft
     - "!sunrise-sunset"
-    - "!birth-wealth-income"
+    - "!penalty_kicks"
 ---
