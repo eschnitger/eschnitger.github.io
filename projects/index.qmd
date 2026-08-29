@@ -12,6 +12,5 @@ listing:
     - "!../writing"
     - "!european-football-divide"   #in draft
     - "!LACountyPolluters"          #in draft
-    - "!sunrise-sunset"
-    - "!penalty_kicks"
+    - "!penalty_kicks"              #in draft
 ---
