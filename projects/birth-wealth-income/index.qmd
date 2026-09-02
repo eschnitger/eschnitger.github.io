@@ -1,0 +1,32 @@
+---
+title: ""
+description: "An exploration of birth rates with family wealth and income"
+date: 2026-09-01
+update: 2026-09-02
+categories: [data-viz, birth, demographics, economics, wealth, income]
+image: thumbnail.png
+format:
+  html:
+    self-contained: true  # This helps ensure all JS is bundled in one file
+    page-layout: full
+jupyter: python3
+---
+
+## Overview
+
+Test
+
+## Key Findings
+
+Test
+
+## The Whole Project
+
+::: {.column-page}
+{{< embed birth_wealth_income.ipynb >}}
+:::
+
+## Code
+
+The full source notebook is available on
+[GitHub](https://github.com/eschnitger/).
