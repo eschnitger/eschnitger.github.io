@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The bill is going up again — 2027 ACA rate story mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F3EC;
+    --paper-dim:#EEE8DA;
+    --ink:#20232C;
+    --ink-soft:#5B5F6B;
+    --rust:#B8420F;
+    --rust-soft:#E9C6B2;
+    --teal:#2E6659;
+    --teal-soft:#C9DCD4;
+    --line:#D7D0BF;
+    --max-w:760px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:transparent;}
+  body{
+    font-family:'IBM Plex Sans', sans-serif;
+    color:var(--ink);
+    background:var(--paper);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  .page{max-width:var(--max-w); margin:0 auto; padding:56px 24px 90px;}
+
+  /* ---- shared type ---- */
+  h1,h2,h3{font-family:'Fraunces', serif; font-weight:500; margin:0; letter-spacing:-0.01em;}
+  .num{font-variant-numeric: tabular-nums;}
+
+  /* ---- meta strip ---- */
+  .meta{
+    display:flex; justify-content:space-between; align-items:baseline;
+    font-size:13px; color:var(--ink-soft); border-bottom:1px solid var(--line);
+    padding-bottom:14px; margin-bottom:40px;
+  }
+
+  /* ---- hero ---- */
+  .hero h1{font-size:44px; line-height:1.08; max-width:15ch;}
+  .hero .dek{
+    font-size:18px; color:var(--ink-soft); max-width:52ch; margin-top:18px;
+  }
+  .hero-figure{
+    margin-top:36px; display:flex; align-items:baseline; gap:14px; flex-wrap:wrap;
+  }
+  .hero-figure .big{
+    font-family:'Fraunces', serif; font-weight:500; font-size:64px; color:var(--rust); line-height:1;
+  }
+  .hero-figure .label{font-size:15px; color:var(--ink-soft); max-width:24ch;}
+
+  /* ---- section rhythm ---- */
+  section{margin-top:76px;}
+  .kicker{
+    font-size:13px; color:var(--rust); margin-bottom:8px;
+  }
+  h2{font-size:26px; max-width:22ch; margin-bottom:14px;}
+  .lede{font-size:16px; color:var(--ink-soft); max-width:58ch; margin-bottom:32px;}
+
+  /* ---- range strip (floor/ceiling) ---- */
+  .strip-block{margin-bottom:40px;}
+  .strip-caption{
+    display:flex; justify-content:space-between; font-size:14px; margin-bottom:10px;
+  }
+  .strip-caption strong{font-weight:600;}
+  .strip{
+    position:relative; height:10px; background:var(--paper-dim);
+    border-radius:0; border:1px solid var(--line);
+  }
+  .strip .fill{
+    position:absolute; top:0; bottom:0; left:0;
+    background:var(--rust-soft);
+  }
+  .strip .avg-tick{
+    position:absolute; top:-6px; bottom:-6px; width:2px; background:var(--ink);
+  }
+  .strip .avg-tick .tick-label{
+    position:absolute; top:-22px; left:50%; transform:translateX(-50%);
+    font-size:12px; white-space:nowrap; color:var(--ink);
+  }
+  .strip-ends{
+    display:flex; justify-content:space-between; font-size:13px; color:var(--ink-soft); margin-top:8px;
+  }
+
+  /* ---- checkpoints ---- */
+  .checkpoints{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:24px;
+  }
+  .checkpoint{
+    border-top:2px solid var(--ink); padding-top:16px;
+  }
+  .checkpoint.surprise{border-top-color:var(--rust);}
+  .checkpoint .state{font-size:16px; font-weight:600; margin-bottom:10px;}
+  .checkpoint .bars{display:flex; flex-direction:column; gap:8px; margin-bottom:10px;}
+  .bar-row{display:flex; align-items:center; gap:8px; font-size:12px; color:var(--ink-soft);}
+  .bar-row .track{flex:1; height:8px; background:var(--paper-dim); border:1px solid var(--line); position:relative;}
+  .bar-row .track .v{position:absolute; top:0; bottom:0; left:0; background:var(--ink-soft);}
+  .bar-row.final .track .v{background:var(--rust);}
+  .bar-row .val{width:44px; text-align:right; font-variant-numeric: tabular-nums;}
+  .checkpoint .note{font-size:13px; color:var(--ink-soft);}
+
+  /* ---- wildcard callout ---- */
+  .wildcard{
+    background:var(--paper-dim); border:1px solid var(--line);
+    padding:28px 28px; display:flex; gap:24px; align-items:flex-start;
+  }
+  .wildcard .mark{
+    font-family:'Fraunces', serif; font-size:40px; color:var(--rust); flex-shrink:0; line-height:1;
+  }
+  .wildcard p{margin:0 0 10px; font-size:15px; color:var(--ink-soft);}
+  .wildcard p:last-child{margin-bottom:0;}
+  .wildcard strong{color:var(--ink); font-weight:600;}
+
+  /* ---- number line (rate increase by state) ---- */
+  .nl-wrap{overflow-x:auto; padding-bottom:6px;}
+  .numberline{position:relative; height:150px; margin:34px 0 4px; min-width:560px;}
+  .nl-axis-line{position:absolute; left:0; right:0; bottom:30px; height:1px; background:var(--ink);}
+  .nl-tick{position:absolute; bottom:24px; width:1px; height:6px; background:var(--ink-soft);}
+  .nl-tick-label{position:absolute; bottom:6px; font-size:11px; color:var(--ink-soft); transform:translateX(-50%);}
+  .nl-avg-line{position:absolute; bottom:24px; width:1px; height:100px; background:var(--ink-soft); border-left:1px dashed var(--ink-soft); background:none;}
+  .nl-avg-label{position:absolute; font-size:11px; color:var(--ink-soft); transform:translateX(-50%); white-space:nowrap;}
+  .nl-point{
+    position:absolute; bottom:30px; width:10px; height:10px; border-radius:50%;
+    background:var(--rust); transform:translate(-50%,50%); cursor:pointer; border:none; padding:0;
+  }
+  .nl-point:hover, .nl-point:focus{background:var(--ink); outline:none;}
+  .nl-point.ghost{background:var(--paper); border:1.5px solid var(--ink-soft); width:8px; height:8px; cursor:default;}
+  .nl-bracket{position:absolute; bottom:44px; height:1px; border-top:1px dashed var(--ink-soft);}
+  .nl-leader{position:absolute; bottom:30px; width:1px; background:var(--line);}
+  .nl-label{
+    position:absolute; font-size:12px; color:var(--ink); white-space:nowrap; transform:translateX(-50%); max-width:26ch;
+  }
+  .nl-note{font-size:13px; color:var(--ink-soft); margin-top:10px;}
+  .ladder-hint{font-size:13px; color:var(--ink-soft); margin-top:14px;}
+  .detail{
+    margin-top:18px; border:1px solid var(--line); background:var(--paper-dim);
+    padding:18px 20px; font-size:14px; display:none;
+  }
+  .detail.show{display:block;}
+  .detail .d-state{font-family:'Fraunces', serif; font-size:20px; margin-bottom:6px;}
+  .detail .d-body{color:var(--ink-soft);}
+
+  /* ---- footer ---- */
+  .closer{
+    margin-top:80px; padding-top:28px; border-top:1px solid var(--line);
+  }
+  .closer h2{max-width:26ch;}
+  .options{display:flex; flex-direction:column; gap:18px; margin-top:22px;}
+  .option{display:flex; gap:16px;}
+  .option .who{width:120px; flex-shrink:0; font-size:13px; color:var(--ink-soft); padding-top:2px;}
+  .option .what{font-size:15px;}
+  .source{
+    margin-top:56px; font-size:12px; color:var(--ink-soft); border-top:1px solid var(--line); padding-top:16px;
+  }
+
+  @media (max-width:640px){
+    .hero h1{font-size:32px;}
+    .hero-figure .big{font-size:46px;}
+    .checkpoints{grid-template-columns:1fr; gap:32px;}
+    .wildcard{flex-direction:column;}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="meta">
+    <span>Preliminary 2027 individual market filings</span>
+    <span>50 states + DC</span>
+  </div>
+
+  <div class="hero">
+    <h1>Your health plan is about to cost more — again.</h1>
+    <p class="dek">Insurers have filed their asking price for 2027, and if you buy ACA coverage without a subsidy, the number is up almost everywhere. Here's what the filings actually say, state by state.</p>
+    <div class="hero-figure">
+      <div class="big num">+$113<span style="font-size:24px;">/mo</span></div>
+      <div class="label">the average extra an unsubsidized enrollee would pay in 2027 — about <strong style="color:var(--ink)">$1,300 for the year</strong>.</div>
+    </div>
+  </div>
+
+  <section>
+    <div class="kicker">The spread</div>
+    <h2>Some states barely feel it. Others feel it a lot.</h2>
+    <p class="lede">Every state filed a different number, and the range is wide — this isn't one national story, it's fifty different ones.</p>
+
+    <div class="strip-block">
+      <div class="strip-caption"><strong>Rate increase requested</strong><span>Arkansas → Arizona</span></div>
+      <div class="strip">
+        <div class="fill" style="width:100%"></div>
+        <div class="avg-tick" style="left:53%"><span class="tick-label">avg +15.2%</span></div>
+      </div>
+      <div class="strip-ends"><span>Arkansas <strong class="num">+6%</strong></span><span>Arizona <strong class="num">+22.9%</strong></span></div>
+    </div>
+
+    <div class="strip-block">
+      <div class="strip-caption"><strong>Average 2027 monthly premium</strong><span>Idaho → West Virginia</span></div>
+      <div class="strip">
+        <div class="fill" style="width:100%"></div>
+      </div>
+      <div class="strip-ends"><span>Idaho <strong class="num">$576/mo</strong></span><span>West Virginia <strong class="num">$1,542/mo</strong></span></div>
+    </div>
+    <p class="lede" style="margin-top:-14px;">A West Virginia enrollee's sticker price is <strong style="color:var(--ink)">2.7×</strong> an Idaho enrollee's — for the same kind of plan, under the same law.</p>
+  </section>
+
+  <section>
+    <div class="kicker">The homework we can already check</div>
+    <h2>Three states have final numbers. One held a surprise.</h2>
+    <p class="lede">Preliminary filings aren't the final word — regulators still weigh in. Two states saw their number come down slightly. The third went the opposite direction.</p>
+
+    <div class="checkpoints">
+      <div class="checkpoint">
+        <div class="state">Vermont</div>
+        <div class="bars">
+          <div class="bar-row"><span style="width:34px;">Prelim</span><div class="track"><div class="v" style="width:78%"></div></div><span class="val num">—</span></div>
+          <div class="bar-row final"><span style="width:34px;">Final</span><div class="track"><div class="v" style="width:71%"></div></div><span class="val num">↓</span></div>
+        </div>
+        <div class="note">Regulators trimmed the filed increase by a couple of points.</div>
+      </div>
+      <div class="checkpoint">
+        <div class="state">Maine</div>
+        <div class="bars">
+          <div class="bar-row"><span style="width:34px;">Prelim</span><div class="track"><div class="v" style="width:66%"></div></div><span class="val num">—</span></div>
+          <div class="bar-row final"><span style="width:34px;">Final</span><div class="track"><div class="v" style="width:59%"></div></div><span class="val num">↓</span></div>
+        </div>
+        <div class="note">Same story: a modest reduction from the filed rate.</div>
+      </div>
+      <div class="checkpoint surprise">
+        <div class="state">Oregon</div>
+        <div class="bars">
+          <div class="bar-row"><span style="width:34px;">Prelim</span><div class="track"><div class="v" style="width:54%"></div></div><span class="val num">17.2%</span></div>
+          <div class="bar-row final"><span style="width:34px;">Final</span><div class="track"><div class="v" style="width:68%"></div></div><span class="val num">21.6%</span></div>
+        </div>
+        <div class="note">Regulators pushed the increase <strong style="color:var(--rust)">higher</strong> than insurers even asked for.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker">The wildcard</div>
+    <div class="wildcard">
+      <div class="mark">FL</div>
+      <div>
+        <p><strong>Florida has the largest ACA market in the country — and the least visible data.</strong> State "trade secret" rules redact carrier-level enrollment, so the 15.3% average below is unweighted, not a true statewide figure.</p>
+        <p>Carriers are asking for anywhere from <strong>3.9%</strong> to <strong>39%</strong>. Because Florida is so large, wherever its real weighted number lands could shift the <em>national</em> average by a couple of points on its own.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker">Find your state</div>
+    <h2>Where does your state fall on the ladder?</h2>
+    <p class="lede">Ranked by requested rate increase, lowest to highest. The labeled states are the ones in this story — the rest follow the same filing process, state by state.</p>
+
+    <div class="ladder-wrap">
+      <div class="ladder" id="ladder"></div>
+    </div>
+    <div class="ladder-axis"><span>lower increase</span><span>higher increase</span></div>
+    <p class="ladder-hint">Tap a marked state for its number.</p>
+    <div class="detail" id="detail">
+      <div class="d-state" id="d-state"></div>
+      <div class="d-body" id="d-body"></div>
+    </div>
+  </section>
+
+  <div class="closer">
+    <h2>What this means depending on your coverage</h2>
+    <div class="options">
+      <div class="option"><div class="who">If you're subsidized</div><div class="what">Your tax credit generally rises with the benchmark plan, so your out-of-pocket cost may move less than the headline number — but it's worth re-checking at enrollment.</div></div>
+      <div class="option"><div class="who">If you're unsubsidized</div><div class="what">You're likely to feel the full increase directly. Comparing plans during open enrollment, rather than auto-renewing, is the main lever you have.</div></div>
+      <div class="option"><div class="who">Either way</div><div class="what">These are still preliminary filings in most states — the final number in your state could move before enrollment opens.</div></div>
+    </div>
+  </div>
+
+  <div class="source">Structural mockup built from Charles Gaba's 2027 ACA rate filing analysis, ACA Signups, published Aug 31, 2026. Ladder positions for unlabeled states are illustrative placeholders, not reported figures.</div>
+
+</div>
+
+<script>
+(function(){
+  // labeled anchor states, positioned 0 (lowest increase) to 100 (highest increase)
+  var tagged = [
+    {code:'AR', name:'Arkansas', pos:2,  detail:'Lowest requested increase in the country: +6%.'},
+    {code:'ME', name:'Maine', pos:30, detail:'Prelim filing trimmed by regulators in the final decision.'},
+    {code:'VT', name:'Vermont', pos:34, detail:'Also reduced from its preliminary filing — and among the priciest premiums in dollar terms, above $1,000/mo.'},
+    {code:'FL', name:'Florida', pos:47, detail:'15.3% average, but unweighted — real carrier enrollment is redacted under state trade-secret rules. Largest ACA market in the US.'},
+    {code:'OR', name:'Oregon', pos:60, detail:'Regulators raised the final rate to 21.6%, well above the 17.2% insurers originally filed.'},
+    {code:'WV', name:'West Virginia', pos:74, detail:'Highest average dollar premium in the country for 2027: $1,542/month.'},
+    {code:'AZ', name:'Arizona', pos:97, detail:'Highest requested percentage increase in the country: +22.9%.'}
+  ];
+
+  // decorative unlabeled dots to suggest "the other ~44 states" along the ladder
+  var filler = [4,7,10,13,16,19,22,25,28,32,37,40,43,50,53,56,58,63,66,69,72,77,80,83,86,89,92,95,99];
+
+  var ladder = document.getElementById('ladder');
+  var h = 156, baseY = 0;
+
+  filler.forEach(function(p){
+    var d = document.createElement('div');
+    d.className = 'dot';
+    d.style.left = p + '%';
+    d.style.bottom = (8 + (p % 37)) + 'px';
+    ladder.appendChild(d);
+  });
+
+  tagged.forEach(function(s){
+    var y = 14 + (s.pos % 41) + (s.pos > 60 ? 30 : 10);
+    var d = document.createElement('div');
+    d.className = 'dot tagged';
+    d.style.left = s.pos + '%';
+    d.style.bottom = y + 'px';
+    d.setAttribute('tabindex','0');
+    d.setAttribute('role','button');
+    d.setAttribute('aria-label', s.name);
+    ladder.appendChild(d);
+
+    var lbl = document.createElement('div');
+    lbl.className = 'dot-label';
+    lbl.style.left = s.pos + '%';
+    lbl.style.bottom = (y + 14) + 'px';
+    lbl.textContent = s.code;
+    ladder.appendChild(lbl);
+
+    function show(){
+      document.getElementById('d-state').textContent = s.name;
+      document.getElementById('d-body').textContent = s.detail;
+      document.getElementById('detail').classList.add('show');
+    }
+    d.addEventListener('click', show);
+    d.addEventListener('keydown', function(e){ if(e.key==='Enter' || e.key===' '){ e.preventDefault(); show(); } });
+  });
+})();
+</script>
+
+</body>
+</html>
