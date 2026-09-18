@@ -9,9 +9,6 @@ format:
   html:
     self-contained: true  # This helps ensure all JS is bundled in one file
     page-layout: article
-    grid:
-      body-width: 900px
-      sidebar-width: 200px
 jupyter: python3
 ---
 
