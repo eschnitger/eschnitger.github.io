@@ -1,0 +1,41 @@
+{
+ "site": {
+   "name": "Altadena", "zip": "91104", "zone": "10b",
+   "latitude": 34.2, "rotation_start": "2026-10",
+   "last_frost": "02-20", "first_frost": null,
+   "annual_rain_in": 19, "annual_et_in": 50,
+   "summer_rain": false, "chill_hours": 400
+ },
+ "hardware": {
+   "emitter_gph": 0.598, "emitter_spacing_in": 12,
+   "target_lateral_spacing_in": 12, "edge_margin_in": 6,
+   "controller_stations": 16, "start_time": "04:30"
+ },
+ "beds": [
+   {"name": "Bed L", "width_in": 51, "length_in": 144,
+    "split_at_in": [72], "shared_solenoid": true,
+    "sun_hours": 7, "header_end": "narrow"},
+   {"name": "Bed M", "width_in": 56.5, "length_in": 116, "sun_hours": 7},
+   {"name": "Bed S", "width_in": 53, "length_in": 79, "sun_hours": 7}
+ ],
+ "open_ground": [
+   {"name": "annex", "width_in": 96, "length_in": 240,
+    "sun_hours": 8, "role": "sprawlers", "rotated": false}
+ ],
+ "shade_pockets": [
+   {"near": "Bed S", "side": "north", "use": "summer greens"},
+   {"near": "Bed L", "side": "west", "use": "vine run"}
+ ],
+ "containers": {"station": 4, "count": 8, "size_gal": 15},
+ "preferences": {
+   "exclude": ["eggplant", "cabbage", "beet", "chard"],
+   "must_have": [
+     {"crop": "pickling cucumber", "min": 4, "every_year": true},
+     {"crop": "carving pumpkin", "min": 1, "harvest_by": "10-25"},
+     {"crop": "watermelon", "min": 1}, {"crop": "cantaloupe", "min": 1},
+     {"crop": "sweet corn", "min": 16, "note": "block, not a row"}
+   ],
+   "emphasise": ["kale", "spinach", "pepper", "tomato"],
+   "tolerate_shared_valve": true
+ }
+}

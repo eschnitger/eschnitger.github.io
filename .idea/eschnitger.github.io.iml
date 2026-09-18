@@ -9,6 +9,8 @@
       <excludeFolder url="file://$MODULE_DIR$/projects/WelcomeScreen/.venv" />
       <excludeFolder url="file://$MODULE_DIR$/projects/european-football-divide/.venv" />
       <excludeFolder url="file://$MODULE_DIR$/projects/fastest-human/.venv" />
+      <excludeFolder url="file://$MODULE_DIR$/projects/GardenProject/.venv" />
+      <excludeFolder url="file://$MODULE_DIR$/projects/GovernmentAIAdoption/.venv" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.13 (.venv)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
