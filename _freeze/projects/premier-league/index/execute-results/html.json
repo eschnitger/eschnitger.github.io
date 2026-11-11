@@ -1,8 +1,8 @@
 {
-  "hash": "76f323346b2a8c1a76a8ee087b65e584",
+  "hash": "c17114798c2c14cc512b0184595afba3",
   "result": {
     "engine": "jupyter",
-    "markdown": "---\ntitle: \"Premier League: The Growing Divide\"\ndescription: \"Analyzing 33 seasons of title-winning and relegation survival points\"\ndate: 2026-04-27\nupdate: 2026-05-21\ncategories: [data-viz, sports, python, matplotlib, soccer]\nimage: thumbnail.png\nformat: \n  html:\n    self-contained: true  # This helps ensure all JS is bundled in one file\n    page-layout: full\njupyter: python3\n---\n\n## Overview\n\nAn analysis of how the gap between Premier League champions\nand relegation survivors has grown from 1992 to 2025.\n\n## Key Findings\n\n- Title-winning points trend upward (+0.25 pts/season)\n- Relegation survival points are flat or declining\n- The gap has grown from ~35-50 pts to 50-65 pts\n\n## The Whole Project\n\n{{< embed PremLeague.ipynb >}}\n\n## Code\n\nThe full source notebook is available on\n[GitHub](https://github.com/eschnitger/PremLeague).\n\n",
+    "markdown": "---\ntitle: \"Premier League: The Growing Divide\"\ndescription: \"Title-winning and relegation survival points across every Premier League season\"\ndate: 2026-04-27\nupdate: 2026-05-21\ncategories: [data-viz, sports, python, matplotlib, soccer]\nimage: thumbnail.png\nformat: \n  html:\n    self-contained: true  # This helps ensure all JS is bundled in one file\n    page-layout: full\njupyter: python3\n---\n\n## Overview\n\n\nAn analysis of how the gap between Premier League champions\nand relegation survivors has grown over 34 seasons,\nfrom 1992 to 2026.\n\n## Key Findings\n\n- Title-winning points trend upward (+0.25 pts/season)\n- Relegation survival points are flat or declining\n- The gap has grown from ~35-50 pts to 50-65 pts\n\n## The Whole Project\n\n{{< embed PremLeague.ipynb >}}\n\n## Code\n\nThe full source notebook is available on\n[GitHub](https://github.com/eschnitger/PremLeague).\n\n",
     "supporting": [
       "index_files/figure-html"
     ],
