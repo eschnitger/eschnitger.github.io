@@ -1,11 +1,5 @@
 [
   {
-    "listing": "/writing/index.html",
-    "items": [
-      "/writing/2026-08-28-polycrisis/index.html"
-    ]
-  },
-  {
     "listing": "/projects/index.html",
     "items": [
       "/projects/road-paving/road-paving.html",
@@ -14,6 +8,12 @@
       "/projects/RootBeer/index.html",
       "/projects/fastest-human/index.html",
       "/projects/premier-league/index.html"
+    ]
+  },
+  {
+    "listing": "/writing/index.html",
+    "items": [
+      "/writing/2026-11-11-seventh-generation/index.html"
     ]
   }
 ]
