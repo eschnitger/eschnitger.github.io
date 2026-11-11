@@ -1,6 +1,6 @@
 ---
 title: "Premier League: The Growing Divide"
-description: "Analyzing 33 seasons of title-winning and relegation survival points"
+description: "Title-winning and relegation survival points across every Premier League season"
 date: 2026-04-27
 update: 2026-05-21
 categories: [data-viz, sports, python, matplotlib, soccer]
@@ -14,8 +14,20 @@ jupyter: python3
 
 ## Overview
 
+```{python}
+#| include: false
+# Season count and years come from the data the notebook pulled.
+import pandas as pd
+
+seasons = pd.read_csv("pl_data_cache.csv")["Season"]
+n_seasons = len(seasons)
+first_year = int(seasons.iloc[0][:4])
+last_year = int(seasons.iloc[-1][:4]) + 1
+```
+
 An analysis of how the gap between Premier League champions
-and relegation survivors has grown from 1992 to 2025.
+and relegation survivors has grown over `{python} n_seasons` seasons,
+from `{python} first_year` to `{python} last_year`.
 
 ## Key Findings
 
