@@ -286,6 +286,11 @@ h1.title {
   border-radius: 0;
 }
 
+/* Show the whole thumbnail; narrow cards would otherwise crop charts */
+.quarto-listing .quarto-grid-item .card-img-top img.thumbnail-image {
+  object-fit: contain;
+}
+
 .quarto-grid-item .card-body {
   padding: 1.1rem 1.15rem 1.25rem;
 }
