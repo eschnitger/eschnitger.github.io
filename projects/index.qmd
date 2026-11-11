@@ -7,10 +7,10 @@ listing:
   grid-columns: 3
   image-height: "200px"
   contents:
-    - "."              # Pulls posts in the projects/ folder
-    - "!index.qmd"     # Excludes this landing page itself
-    - "!../writing"
-    - "!european-football-divide"   #in draft
-    - "!LACountyPolluters"          #in draft
-    - "!penalty_kicks"              #in draft
+    # One card per project: each project's own index.qmd.
+    # (Do not add "!index.qmd" here; it also drops every project's index page.)
+    # Drafts stay out of the grid until they have an index.qmd:
+    # european-football-divide, LACountyPolluters, penalty_kicks.
+    - "*/index.qmd"
+    - "road-paving/road-paving.ipynb"   # no index page yet, so list the notebook
 ---

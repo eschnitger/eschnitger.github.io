@@ -3,6 +3,7 @@ title: "Highest Human Speed Each Year"
 author: "Eric Schnitger"
 date: 2026-05-01
 categories: [data-viz, tableau, python, velocity]
+image: thumbnail.png
 format:
   html:
     toc: true

@@ -4,9 +4,19 @@ description: "Visualizing rankings and preferences across root beer brands using
 author: "Eric Schnitger"
 date: "2026-05-15"
 categories: [Python, Data Visualization, Root Beer]
+image: thumbnail.png
 format:
     html:
         toc: true
         toc-location: left
         page-layout: full
 ---
+## Overview
+
+Seven tasters blind-ranked six root beers from best (1) to worst (6). The notebook below draws the same results with several Python charting libraries.
+
+## The Whole Project
+
+::: {.column-page}
+{{< embed RootBeer.ipynb >}}
+:::

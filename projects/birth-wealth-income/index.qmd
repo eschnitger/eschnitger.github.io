@@ -1,5 +1,5 @@
 ---
-title: ""
+title: "Birth, Wealth, and Income Analysis"
 description: "An exploration of birth rates with family wealth and income"
 date: 2026-09-01
 update: 2026-09-02
