@@ -4,6 +4,7 @@ project:
 
 website:
  title: "Eric Eliot Schnitger's Portfolio"
+ favicon: assets/favicon.svg
  navbar:
    left:
      - text: "Home"
@@ -20,8 +21,15 @@ website:
 
 format:
  html:
-   theme: cosmo        # or: flatly, cosmo, lux, journal, sandstone
+   theme: [cosmo, theme.scss]   # theme.scss holds the site colours and fonts
    css: styles.css
+   include-in-header:
+     text: |
+       <link rel="preconnect" href="https://api.fontshare.com">
+       <link rel="preconnect" href="https://fonts.googleapis.com">
+       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+       <link href="https://api.fontshare.com/v2/css?f[]=zodiak@400,500,600&f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+       <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
    toc: true
    toc-location: left
 

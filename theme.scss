@@ -1,0 +1,523 @@
+/*-- scss:defaults --*/
+
+// Site theme for eschnitger.github.io.
+// Warm paper, brick accent, editorial serif (Zodiak) over a technical sans (Satoshi).
+// Layered on top of cosmo in _quarto.yml:  theme: [cosmo, theme.scss]
+// The same colours live in site_style.py for charts. Change both together.
+
+$paper:   #faf9f5;
+$ink:     #23211b;
+$muted:   #6d6a60;
+$divider: #e4e1d8;
+$brick:   #a63d2f;
+
+$body-bg:    $paper;
+$body-color: $ink;
+$primary:    $brick;
+$secondary:  $muted;
+$link-color: $brick;
+$border-color: $divider;
+
+$font-family-sans-serif: "Satoshi", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-family-monospace:  "JetBrains Mono", "SFMono-Regular", Menlo, "Courier New", monospace;
+$headings-font-family:   "Zodiak", Georgia, "Times New Roman", serif;
+$headings-font-weight:   500;
+$headings-color:         $ink;
+
+$navbar-bg: $paper;
+$navbar-fg: $muted;
+$navbar-hl: $brick;
+
+$code-bg:    #f1efe8;
+$code-color: $ink;
+
+
+/*-- scss:rules --*/
+
+/* ============================================================
+   Tokens
+   ============================================================ */
+:root {
+  --color-bg: #faf9f5;
+  --color-surface: #fdfcf9;
+  --color-surface-offset: #f1efe8;
+  --color-divider: #e4e1d8;
+  --color-border: rgba(35, 33, 27, 0.14);
+
+  --color-text: #23211b;
+  --color-text-muted: #6d6a60;
+  --color-text-faint: #a8a49a;
+
+  --color-accent: #a63d2f;
+  --color-accent-hover: #83301f;
+  --color-accent-soft: rgba(166, 61, 47, 0.08);
+
+  --font-display: "Zodiak", Georgia, "Times New Roman", serif;
+  --font-body: "Satoshi", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-mono: "JetBrains Mono", "SFMono-Regular", Menlo, "Courier New", monospace;
+
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+}
+
+/* ============================================================
+   Base
+   ============================================================ */
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: rgba(166, 61, 47, 0.18);
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: var(--font-display);
+  color: var(--color-text);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+h1, .h1 {
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  line-height: 1.1;
+}
+
+main.content h2, main.content .h2 {
+  margin-top: 2.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--color-divider);
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+a:hover {
+  color: var(--color-accent-hover);
+}
+
+hr {
+  border-top: 1px solid var(--color-divider);
+  opacity: 1;
+}
+
+/* ============================================================
+   Masthead / navbar
+   ============================================================ */
+.navbar {
+  background-color: rgba(250, 249, 245, 0.92) !important;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--color-divider);
+  box-shadow: none;
+}
+
+.navbar .navbar-brand,
+.navbar .navbar-brand .navbar-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.25rem;
+  letter-spacing: -0.01em;
+  color: var(--color-text) !important;
+}
+
+.navbar .navbar-nav .nav-link {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--color-text-muted) !important;
+}
+.navbar .navbar-nav .nav-link:hover {
+  color: var(--color-accent) !important;
+}
+.navbar .navbar-nav .nav-link.active {
+  color: var(--color-text) !important;
+}
+.navbar .navbar-nav .nav-link.active .menu-text {
+  padding-bottom: 0.2rem;
+  border-bottom: 2px solid var(--color-accent);
+}
+
+.navbar .quarto-navbar-tools .bi,
+.navbar .navbar-nav .nav-link .bi {
+  color: var(--color-text-muted);
+}
+
+.navbar .navbar-toggler {
+  border-color: var(--color-border);
+}
+
+/* ============================================================
+   Page title block
+   ============================================================ */
+.quarto-title-block .quarto-title .title,
+h1.title {
+  font-size: clamp(2rem, 1.2rem + 2.5vw, 3.25rem);
+  font-weight: 500;
+  line-height: 1.08;
+  margin-bottom: 0.75rem;
+}
+
+.quarto-title-block .description,
+.quarto-title-block .description p {
+  font-size: 1.2rem;
+  line-height: 1.55;
+  color: var(--color-text-muted);
+}
+
+.quarto-title-meta,
+.quarto-title-meta-heading,
+.quarto-title-meta-contents {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+  color: var(--color-text-muted);
+}
+.quarto-title-meta-heading {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-faint);
+}
+
+/* Category tags: mono microcopy in the accent colour */
+.quarto-title .quarto-categories .quarto-category,
+.quarto-listing .listing-categories .listing-category,
+.quarto-listing .listing-category {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-accent);
+  background: transparent;
+  border: 1px solid rgba(166, 61, 47, 0.3);
+  border-radius: var(--radius-sm);
+  opacity: 1;
+}
+.quarto-title .quarto-categories .quarto-category a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ============================================================
+   Table of contents and sidebars
+   ============================================================ */
+.sidebar nav[role="doc-toc"] > h2,
+.sidebar nav[role="doc-toc"] #toc-title,
+.quarto-listing-category-title {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-faint);
+  border-bottom: none;
+}
+
+#quarto-sidebar,
+.sidebar,
+.sidebar.sidebar-navigation,
+.quarto-sidebar-collapse-item {
+  background-color: transparent !important;
+}
+
+.sidebar h2,
+.sidebar .h2,
+.sidebar nav[role="doc-toc"] ~ * h2 {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-faint);
+  border-bottom: none;
+}
+.sidebar a {
+  color: var(--color-text-muted);
+}
+
+.sidebar nav[role="doc-toc"] ul > li > a {
+  color: var(--color-text-muted);
+  border-left: 1px solid var(--color-divider);
+}
+.sidebar nav[role="doc-toc"] ul > li > a:hover {
+  color: var(--color-accent);
+}
+.sidebar nav[role="doc-toc"] ul > li > a.active {
+  color: var(--color-text) !important;
+  border-left: 2px solid var(--color-accent);
+}
+
+.quarto-listing-category .category {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+}
+.quarto-listing-category .category:hover,
+.quarto-listing-category .category.active {
+  color: var(--color-accent);
+}
+
+/* ============================================================
+   Listings: project grid
+   ============================================================ */
+.quarto-listing .quarto-grid-item.card,
+.quarto-grid-item {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md) !important;
+  box-shadow: none;
+  overflow: hidden;
+}
+.quarto-grid-item:hover {
+  border-color: rgba(166, 61, 47, 0.45);
+  transform: translateY(-2px);
+}
+
+.quarto-grid-item .card-img-top,
+.quarto-grid-item .listing-item-img-placeholder {
+  background-color: var(--color-surface-offset);
+  border-bottom: 1px solid var(--color-divider);
+  border-radius: 0;
+}
+
+.quarto-grid-item .card-body {
+  padding: 1.1rem 1.15rem 1.25rem;
+}
+
+.quarto-listing .listing-title,
+.quarto-grid-item .card-title {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--color-text);
+  margin-bottom: 0.5rem;
+}
+
+.quarto-listing .listing-description,
+.quarto-grid-item .card-text {
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--color-text-muted);
+}
+
+.quarto-listing .listing-date,
+.quarto-listing .listing-author,
+.quarto-listing .listing-reading-time,
+.quarto-grid-item .card-attribution {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+  color: var(--color-text-faint);
+}
+
+.quarto-listing a,
+.quarto-grid-item a {
+  text-decoration: none;
+}
+
+/* ============================================================
+   Listings: writing index (default list)
+   ============================================================ */
+.quarto-listing-default .quarto-post {
+  padding-block: 1.5rem;
+  border-bottom: 1px solid var(--color-divider);
+}
+.quarto-listing-default .quarto-post:last-child {
+  border-bottom: none;
+}
+.quarto-listing-default .quarto-post .listing-title,
+.quarto-listing-default .quarto-post .listing-title a {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+.quarto-listing-default .quarto-post .listing-categories .listing-category {
+  color: var(--color-accent);
+  border-color: rgba(166, 61, 47, 0.3);
+}
+.quarto-listing-default .quarto-post .listing-title:hover,
+.quarto-grid-item:hover .card-title {
+  color: var(--color-accent);
+}
+.quarto-listing-default .quarto-post .metadata {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+/* ============================================================
+   Prose details
+   ============================================================ */
+main.content p,
+main.content li {
+  line-height: 1.7;
+}
+
+blockquote,
+.blockquote {
+  margin-block: 2rem;
+  padding-left: 1.5rem;
+  border-left: 2px solid var(--color-accent);
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  line-height: 1.5;
+  font-style: italic;
+  color: var(--color-text);
+}
+
+code,
+pre,
+kbd {
+  font-family: var(--font-mono);
+}
+p code:not(.sourceCode),
+li code:not(.sourceCode),
+td code:not(.sourceCode) {
+  background-color: var(--color-surface-offset);
+  color: var(--color-text);
+  border-radius: 0.25rem;
+  padding: 0.1em 0.35em;
+  font-size: 0.875em;
+}
+div.sourceCode,
+pre.sourceCode {
+  background-color: var(--color-surface-offset);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.table {
+  --bs-table-bg: transparent;
+  color: var(--color-text);
+  border-color: var(--color-divider);
+  font-size: 0.95rem;
+}
+.table > thead {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-muted);
+  border-bottom: 1px solid var(--color-text);
+}
+
+/* Tabsets */
+.nav-tabs {
+  border-bottom: 1px solid var(--color-divider);
+}
+.nav-tabs .nav-link {
+  color: var(--color-text-muted);
+  font-weight: 500;
+  border: none;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+}
+.nav-tabs .nav-link:hover {
+  color: var(--color-accent);
+}
+.nav-tabs .nav-link.active {
+  color: var(--color-text);
+  background: transparent;
+  border-bottom: 2px solid var(--color-accent);
+}
+.tab-content {
+  border: none;
+  border-bottom: 1px solid var(--color-divider);
+  padding-inline: 0;
+}
+
+/* Collapsed code and callouts */
+details > summary {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+.callout {
+  background: var(--color-surface);
+  border-color: var(--color-border);
+}
+
+/* ============================================================
+   Figures and charts
+   ============================================================ */
+figure figcaption,
+.figure-caption,
+.quarto-float-caption {
+  margin-top: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+  text-align: left;
+}
+
+.cell-output-display img,
+.cell-output-display svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Wrap any chart in ::: {.chart-frame} for the bordered panel look */
+.chart-frame {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  margin-block: 2rem;
+}
+
+/* Tableau and other embeds sit in the same quiet frame as charts */
+.tableau-container,
+.tableauPlaceholder {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md) !important;
+  box-shadow: none !important;
+}
+.tableau-container:hover {
+  transform: none !important;
+}
+
+/* ============================================================
+   Footer, search, buttons
+   ============================================================ */
+.nav-footer {
+  border-top: 1px solid var(--color-text);
+  margin-top: 4rem;
+  padding-block: 1.5rem;
+  background: transparent;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-text-faint);
+}
+.nav-footer a {
+  color: var(--color-text-muted);
+}
+
+.btn-primary {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+.btn-primary:hover {
+  background-color: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
+}
+
+.aa-Form,
+.aa-Panel,
+.aa-DetachedOverlay .aa-DetachedContainer {
+  background-color: var(--color-surface) !important;
+  color: var(--color-text);
+}
+
+@media (max-width: 640px) {
+  .chart-frame {
+    padding: 1rem;
+  }
+}
