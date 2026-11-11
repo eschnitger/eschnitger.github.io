@@ -3,7 +3,7 @@ title: "Premier League: The Growing Divide"
 description: "Analyzing 33 seasons of title-winning and relegation survival points"
 date: 2026-04-27
 update: 2026-05-21
-categories: [data-viz, sports, python, plotly, soccer]
+categories: [data-viz, sports, python, matplotlib, soccer]
 image: thumbnail.png
 format: 
   html:
@@ -14,7 +14,7 @@ jupyter: python3
 
 ## Overview
 
-An interactive analysis of how the gap between Premier League champions
+An analysis of how the gap between Premier League champions
 and relegation survivors has grown from 1992 to 2025.
 
 ## Key Findings
@@ -25,9 +25,7 @@ and relegation survivors has grown from 1992 to 2025.
 
 ## The Whole Project
 
-::: {.column-page}
 {{< embed PremLeague.ipynb >}}
-:::
 
 ## Code
 
