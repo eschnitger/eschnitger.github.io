@@ -1,5 +1,134 @@
 ---
 title: "About"
+toc: false
 ---
 
-Things to tell about this site. Or maybe me. Or probably both. But they aren't here yet.
+<!-- The heading is the toggle; styled by .collapsible-section in theme.scss -->
+<details class="collapsible-section">
+<summary><h2>Resume</h2></summary>
+
+**Eric Schnitger, Ph.D.**\
+Pasadena, CA
+
+### Professional Summary
+
+Researcher, analyst, and operations professional with a Ph.D. in Ethics, 17 years of experience at Apple, and a decade of nonprofit leadership and community organizing. Deep expertise in economic justice, climate policy, and technology ethics, combined with strong technical data skills (Python, SQL, R, Tableau) and demonstrated experience building organizational systems, managing budgets, and translating complex research into actionable insight.
+
+### Core Skills
+
+* **Research and Analysis:** Qualitative and Quantitative Research · Literature Reviews · Policy Analysis · Program Evaluation · Data Visualization · Statistical Analysis
+* **Technical:** Python · SQL · R · Tableau · Excel · QuickBooks · Google Workspace · Microsoft Office
+* **Operations:** Budget and Financial Management · Project Management · Stakeholder Management · Process Improvement · Systems Design
+* **Communication:** Academic and Policy Writing · Report Writing · Curriculum Design · Facilitation · Public Speaking · Technical Translation for Non-Technical Audiences
+
+### Professional Experience
+
+**Genius, Apple, Inc.**\
+Pasadena, CA · 2008–Present
+
+* Manage high-volume operational case load with consistent accuracy across Apple's internal database and record management systems, ensuring data integrity and timely resolution of discrepancies.
+* Review diagnostic and performance reports to spot recurring problems, then drive fixes through to resolution.
+* Translate complex technical concepts into clear, accessible language for diverse audiences at all levels of technical literacy.
+* Coordinate across departments to ensure operational continuity in a fast-paced, complex organizational environment.
+* Mentor and train technicians; recognized consistently for knowledge transfer, team development, and operational excellence.
+
+**Internship: Automation Engineer, Apple, Inc.**\
+July–December 2023
+
+* Designed and built Python frameworks for automated data collection, processing, and ingestion across multiple lab environments, including data pipeline maintenance, validation, and quality assurance.
+* Managed and maintained technical lab infrastructure including one lab in San Diego and one in Santa Clara Valley.
+* Analyzed large datasets and delivered clear, documented analysis to cross-functional technical teams.
+* Ported data workflows across environments, ensuring consistency and reproducibility of analytical outputs.
+
+**Market Trainer ISGT, Apple, Inc.**\
+Los Angeles County · 2015–2017
+
+* Designed and implemented operational training programs across six retail locations in Los Angeles County.
+* Built metrics-based tracking and evaluation systems to assess staff performance and identify process improvements.
+* Developed documentation and reporting tools to support decision-making.
+* Collaborated with market and corporate leadership to align training strategy with organizational goals.
+
+**Research Analyst, Making Housing and Community Happen**\
+Pasadena, CA · 2022–2023
+
+* Conducted literature reviews and policy research supporting affordable housing initiatives, synthesizing findings into a written summary with accompanying data visualization for organizational review.
+* Built and maintained a large, heavyweight spreadsheet merging housing and tenant data from multiple sources, combining manual data entry with imported data, to support ongoing research needs.
+
+**Adjunct Professor of Philosophy and Writing, Azusa Pacific University**\
+Azusa, CA · 2019–2022
+
+* Designed inquiry-based curriculum centering ethics, equity, and critical thinking for undergraduate adult learners.
+* Produced clear, structured written feedback and reports translating complex analysis for diverse audiences.
+* Facilitated inclusive discussion across students from a wide range of backgrounds, identities, and levels of preparation.
+
+**Adjunct Professor of Religious Studies, Azusa Pacific University**\
+Azusa, CA · 2015–2022
+
+* Developed and disseminated new instructional materials department-wide, centering equity and systemic analysis.
+* Revised curriculum through sociological and ethical frameworks, integrating diverse perspectives and lived experiences.
+
+**Physics and Physical Science Teacher, Maranatha Preparatory High School**\
+Pasadena, CA · 2007–2008
+
+### Freelance and Financial Experience
+
+**Bookkeeper, Private Therapy Practice**\
+Pasadena, CA · 2023–Present
+
+* Manage full-cycle bookkeeping using QuickBooks, including monthly account reconciliation, expense tracking, and tax preparation support.
+* Maintain accurate financial records and prepare documentation for CPA review.
+
+### Leadership and Volunteer Experience
+
+**Chair of the Board, Full Circle Thrift Store**\
+Pasadena, CA · 2019–2023
+
+* Served as primary operational and strategic leader of a nonprofit organization, managing budget oversight and resource allocation.
+* Stewarded relationships across an executive funding committee, store management, staff, and constituent donor base.
+* Developed and enforced organizational policies and procedures; ensured governance compliance and board accountability.
+* Led strategic planning, facilitated board meetings, and developed governance materials including agendas, reports, and presentations.
+* Directed crisis operations during the COVID-19 shutdown, developing alternative revenue strategies to maintain organizational continuity.
+
+**Chair of Mutual Aid Committee, Pasadena Mennonite Church**\
+Pasadena, CA · 2020–2025
+
+* Founded and built a mutual aid program from the ground up, designing all operational, financial, and communications systems from scratch.
+* Maintained meticulous financial tracking of contributions and disbursements; directed over $110,000 to community members with strict accountability and confidentiality.
+* Coordinated volunteers, managed community-facing communications, and reported financial outcomes to organizational leadership.
+* Collected and reported program data on outcomes and community impact.
+
+**Math Field Day Coach, Jackson DLIP STEM Elementary School**\
+Pasadena, CA · 2023
+
+* Designed curriculum and training program; team placed first in procedural skills at district competition.
+
+### Education and Certifications
+
+* **Doctor of Philosophy in Ethics, Minor in Philosophy of Religion**\
+  Dissertation passed with Distinction: *Community, Complicity, and the Coin: A Story of Anabaptist Relationships with Liberal Capitalism*
+* **Master of Theology**\
+  Co-chair, Peace and Justice Concerns Committee
+* **A.B. in Physics, Minor in Mathematics**
+* **Certificates:** Python Programming · Python for Data Science · Analytics in R · Data Science with SQL and Tableau
+
+### Conference Presentations
+
+* Public Policy and Environmental Justice (Co-Chair), Society for Christian Ethics Annual Meeting, January 2026
+* Migration and Climate Justice (Co-Chair), Society for Christian Ethics Annual Meeting, January 2025
+* Climate Justice and Public Health (Co-Chair), Society for Christian Ethics Annual Meeting, January 2024
+* Contingency, Disparity, and Vulnerability: Why Isn't Everyone Paid Enough?, Society for Christian Ethics Annual Meeting, January 2022
+* Mutual Aid and MCC: A Way of Understanding Just Economic Relationships, MCC at 100: Mennonites, Service, and the Humanitarian Impulse, University of Winnipeg, October 2021
+* (de)Growing Monetary Policy?: A Christian Engagement with the Degrowth Movement, Society for Christian Ethics Annual Meeting, January 2020
+* Designing Engaging Learning Experiences, Faculty Development Day, Azusa Pacific University, June 2017
+* The Places of Community: Economic Valuing and Virtuous Flourishing, PhD Student Symposium Challenge, hosted by Southeastern Baptist Theological Seminary, June 2016
+
+### Book Reviews
+
+* Review of *Law's Virtue: Fostering Autonomy and Solidarity in American Society*, by Cathleen Kaveny. *Journal of the Society of Christian Ethics* 35, no. 1 (Spring/Summer 2015): 212-3.
+* Review of *René Girard and Secular Modernity: Christ, Culture and Crisis*, by Scott Cowdell. *Political Theology: The Journal of Christian Socialism* 16, no. 3 (May 2015): 293-5.
+
+### Popular Writings
+
+* "Reflections on Protesting and Faith," with Frank Scoffield Nellesen. Mennonite Church USA. [mennoniteusa.org](https://www.mennoniteusa.org/menno-snapshots/reflections-protesting-and-faith)
+
+</details>
