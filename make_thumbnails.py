@@ -130,7 +130,23 @@ def road_paving():
     _save(fig, "road-paving")
 
 
+def marriage_county():
+    # The pipeline has not produced data yet, so this is a mark, not a chart.
+    from matplotlib.patches import Circle
+
+    fig, ax = _figure()
+    fig.subplots_adjust(left=0, right=1, top=1, bottom=0)
+    ax.set_axis_off()
+    ax.set_xlim(0, 6)
+    ax.set_ylim(0, 4)
+    ax.set_aspect("equal")
+    for x, color in ((2.45, ss.BRICK), (3.55, ss.INDIGO)):
+        ax.add_patch(Circle((x, 2), 0.95, fill=False, edgecolor=color, linewidth=7))
+    _save(fig, "marriage-county")
+
+
 THUMBNAILS = {
+    "marriage-county": marriage_county,
     "premier-league": premier_league,
     "fastest-human": fastest_human,
     "rootbeer": rootbeer,

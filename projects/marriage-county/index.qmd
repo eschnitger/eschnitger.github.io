@@ -1,0 +1,88 @@
+---
+title: "Marriage, Religion, and Politics by County"
+author: "Eric Schnitger"
+description: "The first step in a larger project: government-recorded marriage by county, layered with economics, religion, politics, and city size."
+date: 2026-11-10
+categories: [r, tableau, demographics, marriage, religion, politics]
+image: thumbnail.png
+format:
+  html:
+    toc: true
+    toc-location: left
+    page-layout: article
+---
+
+::: {.callout-note}
+## Work in progress
+The data pipeline is written and published here. Findings and the interactive dashboard will be added once the full run is validated.
+:::
+
+## Overview
+
+This is the first step in a larger project on how people form lasting relationships in the United States, and what the places they live have to do with it.
+
+I am starting from the simplest case: marriage as the government sanctions and records it. That choice is about what can be counted, not about which relationships matter. Polyamorous relationships are not tracked here, and neither are domestic partnerships or other arrangements that fall outside a marriage license. Those would be valuable to add in future, as data allows.
+
+With the marriage information in place for every county (how many people are married, how long current marriages have lasted, and how old people are when they first marry), I add other layers one at a time:
+
+* **Economics:** income, poverty, inequality, employment, and housing costs
+* **Religion:** the mix of religious traditions and the share of people with no affiliation
+* **Political leanings:** measured on more than one axis, described below
+* **City size:** from large metro areas to rural counties
+
+The aim at this stage is descriptive: to see what correlations appear between marriage and each of these layers, before asking why.
+
+## Politics on more than one axis
+
+A single Democrat-versus-Republican number hides a lot. Two counties with the same vote share today can have arrived there from opposite directions, and a county where few people vote is not the same as one where everyone does. The pipeline therefore builds several separate measures from county presidential returns:
+
+| Dimension | Measure | What it captures |
+|---|---|---|
+| Partisanship | Democratic minus Republican share, 2020 | The familiar left-right split |
+| Realignment | Swing from 2012 to 2016, and from 2016 to 2024 | Where a county came from, not just where it is |
+| Participation | Turnout among voting-age citizens | Engagement versus withdrawal |
+| Party attachment | Third-party share in 2016 | Dissatisfaction with both major parties |
+| Stability | Variation in lean across four elections | Settled versus volatile places |
+
+A principal components analysis then shows how many independent political dimensions the counties actually have.
+
+## Data
+
+| Source | What it provides |
+|---|---|
+| American Community Survey, 2019--2023 five-year estimates | Marital status, median duration of current marriage, median age at first marriage, household types, income, education |
+| MIT Election Data and Science Lab | County presidential returns, 2012--2024 |
+| U.S. Religion Census, 2020 | Adherents by religious tradition |
+| USDA Rural-Urban Continuum Codes, 2023 | Metro and rural classification |
+
+## Method
+
+::: {.panel-tabset}
+
+### Pipeline
+
+The pipeline is a single R script that pulls every Census table in one pass, joins the election, religion, and rural-urban files by county code, and writes one row per county for Tableau.
+
+* **Label check before any data is pulled.** Each Census variable code is compared with the Census Bureau's own label for it. A wrong code stops the run and prints the real table layout. An earlier draft of this project used misaligned marital-status codes that summed to 165% of the population; this check exists so that cannot happen silently again.
+* **Marital status that adds up.** The Census counts separated people inside "now married," so the pipeline subtracts them before reporting the five categories. The run fails unless every county sums to 100%.
+* **Connecticut.** Recent Census files report Connecticut by planning region instead of county, which does not match the election or religion data. Connecticut is taken from the 2017--2021 estimates, the last with the historical counties.
+
+### Reading the measures
+
+* **Duration is a snapshot.** It is the median length of marriages that are still intact, so counties with older residents score higher almost automatically. It is always read alongside median age and a separate divorce rate.
+* **Small counties are noisy.** Margins of error are carried through for the duration and age-at-marriage medians.
+* **Places, not people.** A link between a county's religious makeup and its marriage patterns describes the county. It does not show that members of that tradition behave that way.
+
+### Tooling
+
+The pipeline was drafted with Claude and its Census codes are verified against Census labels at run time.
+
+:::
+
+## Findings
+
+*To come.*
+
+## Code
+
+The full pipeline is on [GitHub](https://github.com/eschnitger/eschnitger.github.io/blob/main/projects/marriage-county/county_pipeline.R).
