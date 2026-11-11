@@ -9,10 +9,10 @@
     "listing": "/projects/index.html",
     "items": [
       "/projects/road-paving/road-paving.html",
-      "/projects/premier-league/PremLeague.html",
-      "/projects/fastest-human/highest-human-speed.html",
-      "/projects/RootBeer/RootBeer.html",
-      "/projects/birth-wealth-income/birth_wealth_income.html"
+      "/projects/birth-wealth-income/index.html",
+      "/projects/RootBeer/index.html",
+      "/projects/fastest-human/index.html",
+      "/projects/premier-league/index.html"
     ]
   }
 ]

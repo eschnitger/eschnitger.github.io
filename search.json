@@ -14,6 +14,27 @@
     "text": "Things to tell about this site. Or maybe me. Or probably both. But they aren’t here yet."
   },
   {
+    "objectID": "projects/RootBeer/index.html",
+    "href": "projects/RootBeer/index.html",
+    "title": "Root Beer Blind Taste Test Analysis",
+    "section": "",
+    "text": "Seven tasters blind-ranked six root beers from best (1) to worst (6). The notebook below draws the same results with several Python charting libraries."
+  },
+  {
+    "objectID": "projects/RootBeer/index.html#overview",
+    "href": "projects/RootBeer/index.html#overview",
+    "title": "Root Beer Blind Taste Test Analysis",
+    "section": "",
+    "text": "Seven tasters blind-ranked six root beers from best (1) to worst (6). The notebook below draws the same results with several Python charting libraries."
+  },
+  {
+    "objectID": "projects/RootBeer/index.html#the-whole-project",
+    "href": "projects/RootBeer/index.html#the-whole-project",
+    "title": "Root Beer Blind Taste Test Analysis",
+    "section": "The Whole Project",
+    "text": "The Whole Project\n\n\n\n\nAvailable renderers: ['plotly_mimetype', 'jupyterlab', 'nteract', 'vscode', 'notebook', 'notebook_connected', 'kaggle', 'azure', 'colab', 'cocalc', 'databricks', 'json', 'png', 'jpeg', 'jpg', 'svg', 'pdf', 'browser', 'firefox', 'chrome', 'chromium', 'iframe', 'iframe_connected', 'sphinx_gallery', 'sphinx_gallery_png']\n\n\n    \n    \n        \n        Loading BokehJS ...\n    \n\n\n\n\n\n\n\n      A&W  Mug  Summit  Virgil's  Weinhardt  Barq's\nGEBS    3    5       1         4          6       2\nAWMS    2    4       1         5          6       3\nEES     1    2       4         6          3       5\nEJMS    3    4       2         6          5       1\nLM      3    4       1         5          6       2\nSES     2    3       1         6          5       4\nDAS     2    5       1         3          6       4\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n                                                    \n\n\n\n\n                                                    \n\n\n\n\n                                                    \n\n\n\n\n                                                    \n\n\n\n\n                                                    \n\n\n\n\n                                                    \n\n\n##Altair\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBokeh\nhvPlot\n\n\n\n\n\n\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\n  \n\n\n\n\nSource: RootBeer.ipynb"
+  },
+  {
     "objectID": "projects/fastest-human/index.html",
     "href": "projects/fastest-human/index.html",
     "title": "Highest Human Speed Each Year",
@@ -410,7 +431,7 @@
     "href": "projects/index.html",
     "title": "Projects",
     "section": "",
-    "text": "US Road Paving and Resurfacing: Data Acquisition\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTop and Bottom of the Premiere League\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHow fast are humans going?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBirth, Wealth, and Income Analysis\n\n\n\nPython\n\nEconomics\n\n\n\nAn analysis of generational mobility data.\n\n\n\n\n\n\nMay 1, 2026\n\n\n\n\n\n\nNo matching items"
+    "text": "US Road Paving and Resurfacing: Data Acquisition\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBirth, Wealth, and Income Analysis\n\n\n\ndata-viz\n\nbirth\n\ndemographics\n\neconomics\n\nwealth\n\nincome\n\n\n\nAn exploration of birth rates with family wealth and income\n\n\n\n\n\n\nSep 1, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nRoot Beer Blind Taste Test Analysis\n\n\n\nPython\n\nData Visualization\n\nRoot Beer\n\n\n\nVisualizing rankings and preferences across root beer brands using Plotly and Bokeh.\n\n\n\nEric Schnitger\n\n\nMay 15, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nHighest Human Speed Each Year\n\n\n\ndata-viz\n\ntableau\n\npython\n\nvelocity\n\n\n\n\n\n\n\nEric Schnitger\n\n\nMay 1, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nPremier League: The Growing Divide\n\n\n\ndata-viz\n\nsports\n\npython\n\nplotly\n\nsoccer\n\n\n\nAnalyzing 33 seasons of title-winning and relegation survival points\n\n\n\n\n\n\nApr 27, 2026\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "projects/fastest-human/highest-human-speed.html",
