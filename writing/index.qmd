@@ -6,5 +6,3 @@ listing:
   sort: "date desc"
   categories: true
 ---
-
-Ah. Well. No writings for you yet. They will be coming. When I get my act together.
