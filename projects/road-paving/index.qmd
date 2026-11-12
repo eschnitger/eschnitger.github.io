@@ -1,6 +1,6 @@
 ---
 title: "How Much Do States Spend Repaving Roads?"
-description: "What state highway agencies spend on resurfacing and repair, from FHWA's Highway Statistics."
+description: "What state highway agencies spend on resurfacing and repair, what that buys after inflation, and how many miles it covers."
 author: "Eric Schnitger"
 date: 2026-09-02
 categories: [data-viz, python, infrastructure, public finance]
@@ -18,46 +18,58 @@ jupyter: python3
 # Figures in the text come from the data the notebook produced.
 import pandas as pd
 
-national = pd.read_csv("data/processed/national_outlay_by_group.csv")
-billions = national.pivot(index="year", columns="group", values="dollars_thousands") / 1e6
-three_r = billions["Repaving and repair (3R)"]
-share = three_r / billions.sum(axis=1)
+spend = pd.read_csv("data/processed/national_3r_summary.csv", index_col="year")
+miles = pd.read_csv("data/processed/federal_aid_repaving_miles.csv", index_col="year")
 
-first, last = int(three_r.index[0]), int(three_r.index[-1])
-peak = int(share.idxmax())
-growth = three_r[last] / three_r[first] - 1
+first, last = int(spend.index[0]), int(spend.index[-1])
+base = int(spend["base_year"].iloc[0])
+nominal, real, share = spend["three_r_bn"], spend["three_r_real_bn"], spend["three_r_share"]
+prices = spend["nhcci"][last] / spend["nhcci"][first] - 1
+real_change = real[last] / real[first] - 1
+real_peak = int(real.idxmax())
+
+m_first, m_last = int(miles.index[0]), int(miles.index[-1])
+per_million = miles["miles_per_million_real"]
+
+
+def direction(change, down="fell", up="rose"):
+    return f"{down if change < 0 else up} {abs(change):.0%}"
 ```
-
-::: {.callout-note}
-## Work in progress
-The spending data is in place. Miles of road improved, and an adjustment for inflation, are still to come.
-:::
 
 ## Overview
 
-Every year each state reports to the Federal Highway Administration what its highway agency spent on capital projects, and what kind of work the money paid for. This project pulls those reports for `{python} first` to `{python} last` and asks a simple question: how much of it goes to repaving and repairing the roads that already exist?
+Every year each state reports to the Federal Highway Administration what its highway agency spent on capital projects, and what kind of work the money paid for. This project pulls those reports for `{python} first` to `{python} last` and asks three questions. How much goes to repaving and repairing the roads that already exist? What is that money worth once rising construction prices are taken out? And how many miles of road does it cover?
 
-The reports do not single out resurfacing. Most states fold it into a broader line, so the measure here is FHWA's "3R" group: resurfacing, restoration, rehabilitation, and minor widening.
+The spending reports do not single out resurfacing. Most states fold it into a broader line, so the spending measure is FHWA's "3R" group: resurfacing, restoration, rehabilitation, and minor widening.
 
 ## Key Findings
 
-- States spent \$`{python} f"{three_r[last]:.1f}"` billion on 3R work in `{python} last`, up from \$`{python} f"{three_r[first]:.1f}"` billion in `{python} first`. That is a `{python} f"{growth:.0%}"` rise before inflation.
-- 3R work took `{python} f"{share[last]:.0%}"` of state highway capital spending in `{python} last`, against `{python} f"{share[first]:.0%}"` in `{python} first`. The share peaked at `{python} f"{share[peak]:.0%}"` in `{python} peak`.
-- It is the largest single use of the money, ahead of new roads and added capacity.
+- **Spending rose on paper.** States spent \$`{python} f"{nominal[last]:.1f}"` billion on 3R work in `{python} last`, against \$`{python} f"{nominal[first]:.1f}"` billion in `{python} first`.
+- **Prices rose faster.** Highway construction prices rose `{python} f"{prices:.0%}"` over the same years. In `{python} base` prices, 3R spending `{python} direction(real_change)` between `{python} first` and `{python} last`, and it peaked in `{python} real_peak`.
+- **The share held steady.** 3R work took `{python} f"{share[last]:.0%}"` of state highway capital spending in `{python} last`, against `{python} f"{share[first]:.0%}"` in `{python} first`. It is the largest single use of the money.
+- **Fewer miles, and fewer miles per dollar.** Federal-aid repaving projects covered `{python} f"{miles['miles'][m_first]:,.0f}"` miles in `{python} m_first` and `{python} f"{miles['miles'][m_last]:,.0f}"` in `{python} m_last`. A million dollars, in `{python} base` prices, covered `{python} f"{per_million[m_first]:.1f}"` miles in `{python} m_first` and `{python} f"{per_million[m_last]:.1f}"` in `{python} m_last`.
+
+## Spending
 
 {{< embed road-paving.ipynb#fig-3r-trend >}}
 
 {{< embed road-paving.ipynb#fig-outlay-mix >}}
 
+## Miles
+
+{{< embed road-paving.ipynb#fig-miles >}}
+
 ## Reading the Numbers
 
-- **Dollars are not adjusted for inflation.** Construction costs rose over these years, so the increase in dollars overstates the increase in work done. The share of spending is not affected.
+- **Inflation adjustment.** Dollars are restated in `{python} base` prices using FHWA's National Highway Construction Cost Index, averaged over each calendar year.
+- **Two different sets of projects.** Spending comes from what state highway agencies paid out. Miles come from projects with federal-aid funds authorized that fiscal year, and are divided only by those projects' own costs. The two charts should not be combined.
+- **Miles per dollar is not only about prices.** Prices are already taken out, so a fall can also mean heavier work per mile, more urban and multi-lane roads, or more safety and drainage work inside the same project. The table counts centerline miles, not lane-miles.
 - **State agencies only.** What cities and counties spend on their own streets is not in these reports.
-- **Local-class roads are left out.** They only appear in the table from 2015, so they are dropped to keep every year comparable.
-- **Reused figures.** When a state does not report, FHWA carries its previous year's numbers forward.
+- **Local-class roads are left out of spending.** They only appear in the table from 2015, so they are dropped to keep every year comparable.
+- **Gaps and reused figures.** FHWA published no miles table in its 2021 edition. When a state does not report, FHWA carries its previous year's numbers forward.
 
 ## Data and Code
 
-The source is FHWA Highway Statistics, Table SF-12A, one workbook per year. The [data notebook](road-paving.ipynb) downloads the workbooks, reads every sheet, and checks each column against the totals FHWA publishes before any figure is used.
+The sources are FHWA Highway Statistics Tables SF-12A and FA-10, one workbook per year, and FHWA's National Highway Construction Cost Index. The [data notebook](road-paving.ipynb) downloads them, reads every sheet, and checks each column against the totals FHWA publishes before any figure is used.
 
 The code is on [GitHub](https://github.com/eschnitger/eschnitger.github.io/tree/main/projects/road-paving).
