@@ -117,16 +117,15 @@ def birth_wealth_income():
 
 
 def road_paving():
-    national = pd.read_csv(PROJECTS / "road-paving" / "data" / "processed"
-                           / "national_outlay_by_group.csv")
-    billions = national.pivot(index="year", columns="group",
-                              values="dollars_thousands") / 1e6
-    three_r = billions["Repaving and repair (3R)"]
+    summary = pd.read_csv(PROJECTS / "road-paving" / "data" / "processed"
+                          / "national_3r_summary.csv", index_col="year")
+    real = summary["three_r_real_bn"]
     fig, ax = _figure()
-    ax.bar(three_r.index, three_r.values, width=0.7, color=ss.BRICK, alpha=0.85)
-    ax.set_yticks([0, 10, 20, 30], ["$0", "$10bn", "$20bn", "$30bn"])
-    ax.set_xticks([three_r.index[0], 2016, 2020, three_r.index[-1]])
-    ss.axis_heading(ax, "State spending on road repair")
+    ax.bar(real.index, real.values, width=0.7, color=ss.BRICK, alpha=0.85)
+    ticks = list(range(0, int(real.max()) + 1, 10))
+    ax.set_yticks(ticks, ["$0"] + [f"${t}bn" for t in ticks[1:]])
+    ax.set_xticks([real.index[0], 2016, 2020, real.index[-1]])
+    ss.axis_heading(ax, f"Road repair spending, {int(summary['base_year'].iloc[0])} prices")
     _save(fig, "road-paving")
 
 
@@ -145,7 +144,37 @@ def marriage_county():
     _save(fig, "marriage-county")
 
 
+def temperature_animation():
+    # Ten years of daily highs and lows for the page's default place (Pasadena),
+    # from the same Open-Meteo archive the page itself reads.
+    import datetime as dt
+    import json
+    import urllib.request
+
+    last = dt.date.today().year - 1
+    url = ("https://archive-api.open-meteo.com/v1/archive?latitude=34.1478&longitude=-118.1445"
+           f"&start_date={last - 9}-01-01&end_date={last}-12-31"
+           "&daily=temperature_2m_max,temperature_2m_min&temperature_unit=fahrenheit&timezone=auto")
+    with urllib.request.urlopen(url, timeout=60) as response:
+        daily = pd.DataFrame(json.load(response)["daily"])
+    daily["time"] = pd.to_datetime(daily["time"])
+    daily["doy"] = daily["time"].dt.dayofyear
+
+    fig, ax = _figure()
+    for year, d in daily.groupby(daily["time"].dt.year):
+        newest = year == last
+        style = dict(linewidth=1.6 if newest else 0.7, alpha=1.0 if newest else 0.22)
+        ax.plot(d["doy"], d["temperature_2m_max"], color=ss.BRICK, **style)
+        ax.plot(d["doy"], d["temperature_2m_min"], color=ss.INDIGO, **style)
+    ax.set_xlim(1, 366)
+    ax.set_xticks([1, 91, 182, 274], ["Jan", "Apr", "Jul", "Oct"])
+    ax.set_yticks([40, 60, 80, 100], ["40", "60", "80", "100°F"])
+    ss.axis_heading(ax, "Daily high and low")
+    _save(fig, "temperature-animation")
+
+
 THUMBNAILS = {
+    "temperature-animation": temperature_animation,
     "marriage-county": marriage_county,
     "premier-league": premier_league,
     "fastest-human": fastest_human,
