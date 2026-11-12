@@ -117,16 +117,16 @@ def birth_wealth_income():
 
 
 def road_paving():
-    # The notebook only gathers data so far, so there is no chart to show yet.
+    national = pd.read_csv(PROJECTS / "road-paving" / "data" / "processed"
+                           / "national_outlay_by_group.csv")
+    billions = national.pivot(index="year", columns="group",
+                              values="dollars_thousands") / 1e6
+    three_r = billions["Repaving and repair (3R)"]
     fig, ax = _figure()
-    ax.set_axis_off()
-    ax.set_xlim(0, 1)
-    ax.set_ylim(0, 1)
-    ax.fill_between([0, 1], 0.40, 0.60, color=ss.MUTED, linewidth=0)
-    ax.plot([0.04, 0.96], [0.5, 0.5], color=SURFACE, linewidth=3,
-            dashes=(4, 3))
-    ax.text(0, 0.72, "FHWA Highway Statistics + HPMS", fontsize=11, color=ss.MUTED)
-    ax.text(0, 0.22, "Data acquisition", fontsize=11, color=ss.MUTED)
+    ax.bar(three_r.index, three_r.values, width=0.7, color=ss.BRICK, alpha=0.85)
+    ax.set_yticks([0, 10, 20, 30], ["$0", "$10bn", "$20bn", "$30bn"])
+    ax.set_xticks([three_r.index[0], 2016, 2020, three_r.index[-1]])
+    ss.axis_heading(ax, "State spending on road repair")
     _save(fig, "road-paving")
 
 

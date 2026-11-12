@@ -1,0 +1,63 @@
+---
+title: "How Much Do States Spend Repaving Roads?"
+description: "What state highway agencies spend on resurfacing and repair, from FHWA's Highway Statistics."
+author: "Eric Schnitger"
+date: 2026-09-02
+categories: [data-viz, python, infrastructure, public finance]
+image: thumbnail.png
+format:
+  html:
+    toc: true
+    toc-location: left
+    page-layout: full
+jupyter: python3
+---
+
+```{python}
+#| include: false
+# Figures in the text come from the data the notebook produced.
+import pandas as pd
+
+national = pd.read_csv("data/processed/national_outlay_by_group.csv")
+billions = national.pivot(index="year", columns="group", values="dollars_thousands") / 1e6
+three_r = billions["Repaving and repair (3R)"]
+share = three_r / billions.sum(axis=1)
+
+first, last = int(three_r.index[0]), int(three_r.index[-1])
+peak = int(share.idxmax())
+growth = three_r[last] / three_r[first] - 1
+```
+
+::: {.callout-note}
+## Work in progress
+The spending data is in place. Miles of road improved, and an adjustment for inflation, are still to come.
+:::
+
+## Overview
+
+Every year each state reports to the Federal Highway Administration what its highway agency spent on capital projects, and what kind of work the money paid for. This project pulls those reports for `{python} first` to `{python} last` and asks a simple question: how much of it goes to repaving and repairing the roads that already exist?
+
+The reports do not single out resurfacing. Most states fold it into a broader line, so the measure here is FHWA's "3R" group: resurfacing, restoration, rehabilitation, and minor widening.
+
+## Key Findings
+
+- States spent \$`{python} f"{three_r[last]:.1f}"` billion on 3R work in `{python} last`, up from \$`{python} f"{three_r[first]:.1f}"` billion in `{python} first`. That is a `{python} f"{growth:.0%}"` rise before inflation.
+- 3R work took `{python} f"{share[last]:.0%}"` of state highway capital spending in `{python} last`, against `{python} f"{share[first]:.0%}"` in `{python} first`. The share peaked at `{python} f"{share[peak]:.0%}"` in `{python} peak`.
+- It is the largest single use of the money, ahead of new roads and added capacity.
+
+{{< embed road-paving.ipynb#fig-3r-trend >}}
+
+{{< embed road-paving.ipynb#fig-outlay-mix >}}
+
+## Reading the Numbers
+
+- **Dollars are not adjusted for inflation.** Construction costs rose over these years, so the increase in dollars overstates the increase in work done. The share of spending is not affected.
+- **State agencies only.** What cities and counties spend on their own streets is not in these reports.
+- **Local-class roads are left out.** They only appear in the table from 2015, so they are dropped to keep every year comparable.
+- **Reused figures.** When a state does not report, FHWA carries its previous year's numbers forward.
+
+## Data and Code
+
+The source is FHWA Highway Statistics, Table SF-12A, one workbook per year. The [data notebook](road-paving.ipynb) downloads the workbooks, reads every sheet, and checks each column against the totals FHWA publishes before any figure is used.
+
+The code is on [GitHub](https://github.com/eschnitger/eschnitger.github.io/tree/main/projects/road-paving).

@@ -12,5 +12,4 @@ listing:
     # Drafts stay out of the grid until they have an index.qmd:
     # european-football-divide, LACountyPolluters, penalty_kicks.
     - "*/index.qmd"
-    - "road-paving/road-paving.ipynb"   # no index page yet, so list the notebook
 ---

@@ -12,3 +12,6 @@ docs/
 
 # Mac OS system files
 .DS_Store
+
+# Downloaded source workbooks; the notebook fetches them again
+projects/road-paving/data/raw/
