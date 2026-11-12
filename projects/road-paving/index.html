@@ -8,7 +8,7 @@
 
 <meta name="author" content="Eric Schnitger">
 <meta name="dcterms.date" content="2026-09-02">
-<meta name="description" content="What state highway agencies spend on resurfacing and repair, from FHWA’s Highway Statistics.">
+<meta name="description" content="What state highway agencies spend on resurfacing and repair, what that buys after inflation, and how many miles it covers.">
 
 <title>How Much Do States Spend Repaving Roads? – Eric Eliot Schnitger’s Portfolio</title>
 <style>
@@ -144,6 +144,8 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
   <li><a href="#key-findings" id="toc-key-findings" class="nav-link" data-scroll-target="#key-findings">Key Findings</a></li>
+  <li><a href="#spending" id="toc-spending" class="nav-link" data-scroll-target="#spending">Spending</a></li>
+  <li><a href="#miles" id="toc-miles" class="nav-link" data-scroll-target="#miles">Miles</a></li>
   <li><a href="#reading-the-numbers" id="toc-reading-the-numbers" class="nav-link" data-scroll-target="#reading-the-numbers">Reading the Numbers</a></li>
   <li><a href="#data-and-code" id="toc-data-and-code" class="nav-link" data-scroll-target="#data-and-code">Data and Code</a></li>
   </ul>
@@ -169,7 +171,7 @@ ul.task-list li input[type="checkbox"] {
 
 <div>
   <div class="description">
-    What state highway agencies spend on resurfacing and repair, from FHWA’s Highway Statistics.
+    What state highway agencies spend on resurfacing and repair, what that buys after inflation, and how many miles it covers.
   </div>
 </div>
 
@@ -198,33 +200,24 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Work in progress
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The spending data is in place. Miles of road improved, and an adjustment for inflation, are still to come.</p>
-</div>
-</div>
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>Every year each state reports to the Federal Highway Administration what its highway agency spent on capital projects, and what kind of work the money paid for. This project pulls those reports for 2012 to 2023 and asks a simple question: how much of it goes to repaving and repairing the roads that already exist?</p>
-<p>The reports do not single out resurfacing. Most states fold it into a broader line, so the measure here is FHWA’s “3R” group: resurfacing, restoration, rehabilitation, and minor widening.</p>
+<p>Every year each state reports to the Federal Highway Administration what its highway agency spent on capital projects, and what kind of work the money paid for. This project pulls those reports for 2012 to 2024 and asks three questions. How much goes to repaving and repairing the roads that already exist? What is that money worth once rising construction prices are taken out? And how many miles of road does it cover?</p>
+<p>The spending reports do not single out resurfacing. Most states fold it into a broader line, so the spending measure is FHWA’s “3R” group: resurfacing, restoration, rehabilitation, and minor widening.</p>
 </section>
 <section id="key-findings" class="level2">
 <h2 class="anchored" data-anchor-id="key-findings">Key Findings</h2>
 <ul>
-<li>States spent $29.2 billion on 3R work in 2023, up from $18.0 billion in 2012. That is a 63% rise before inflation.</li>
-<li>3R work took 31% of state highway capital spending in 2023, against 27% in 2012. The share peaked at 33% in 2020.</li>
-<li>It is the largest single use of the money, ahead of new roads and added capacity.</li>
+<li><strong>Spending rose on paper.</strong> States spent $35.1 billion on 3R work in 2024, against $18.0 billion in 2012.</li>
+<li><strong>Prices rose faster.</strong> Highway construction prices rose 102% over the same years. In 2024 prices, 3R spending fell 3% between 2012 and 2024, and it peaked in 2020.</li>
+<li><strong>The share held steady.</strong> 3R work took 33% of state highway capital spending in 2024, against 27% in 2012. It is the largest single use of the money.</li>
+<li><strong>Fewer miles, and fewer miles per dollar.</strong> Federal-aid repaving projects covered 54,079 miles in 2012 and 31,308 in 2024. A million dollars, in 2024 prices, covered 2.6 miles in 2012 and 1.9 in 2024.</li>
 </ul>
+</section>
+<section id="spending" class="level2">
+<h2 class="anchored" data-anchor-id="spending">Spending</h2>
 <div class="quarto-embed-nb-cell">
-<div id="cell-fig-3r-trend" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-12T01:44:56.054705Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-12T01:44:56.054629Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-12T01:44:56.130129Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-12T01:44:56.129586Z&quot;}}" data-execution_count="6">
+<div id="cell-fig-3r-trend" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-12T02:07:23.078919Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-12T02:07:23.078765Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-12T02:07:23.161263Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-12T02:07:23.160499Z&quot;}}" data-execution_count="7">
 <div class="cell-output cell-output-display">
 <div id="fig-3r-trend" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -232,7 +225,7 @@ ul.task-list li input[type="checkbox"] {
 <img src="index_files/figure-html/road-paving-fig-3r-trend-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3r-trend-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: State highway agency capital outlay on resurfacing, restoration, rehabilitation and minor widening (3R), as a share of all capital outlay and in dollars. Local-class roads excluded.
+Figure&nbsp;1: State highway agency capital outlay on resurfacing, restoration, rehabilitation and minor widening (3R): its share of all capital outlay, and the dollars before and after adjusting for construction prices. Local-class roads excluded.
 </figcaption>
 </figure>
 </div>
@@ -240,7 +233,7 @@ Figure&nbsp;1: State highway agency capital outlay on resurfacing, restoration, 
 </div>
 <a class="quarto-notebook-link" id="nblink-1" href="road-paving-preview.html#cell-fig-3r-trend">Source: US Road Paving and Repair: Data Notebook</a></div>
 <div class="quarto-embed-nb-cell">
-<div id="cell-fig-outlay-mix" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-12T01:44:56.131663Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-12T01:44:56.131568Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-12T01:44:56.167719Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-12T01:44:56.167220Z&quot;}}" data-execution_count="7">
+<div id="cell-fig-outlay-mix" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-12T02:07:23.163058Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-12T02:07:23.162976Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-12T02:07:23.196842Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-12T02:07:23.196498Z&quot;}}" data-execution_count="8">
 <div class="cell-output cell-output-display">
 <div id="fig-outlay-mix" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -256,18 +249,39 @@ Figure&nbsp;2: State highway agency capital outlay by kind of work, latest year.
 </div>
 </div>
 </section>
+<section id="miles" class="level2">
+<h2 class="anchored" data-anchor-id="miles">Miles</h2>
+<div class="quarto-embed-nb-cell">
+<div id="cell-fig-miles" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-12T02:07:23.556464Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-12T02:07:23.556374Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-12T02:07:23.628250Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-12T02:07:23.627741Z&quot;}}" data-execution_count="11">
+<div class="cell-output cell-output-display">
+<div id="fig-miles" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-miles-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/road-paving-fig-miles-output-1.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-miles-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Federal-aid resurfacing, restoration and rehabilitation projects by fiscal year: miles covered, and miles per million dollars of project cost after adjusting for construction prices.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
 <section id="reading-the-numbers" class="level2">
 <h2 class="anchored" data-anchor-id="reading-the-numbers">Reading the Numbers</h2>
 <ul>
-<li><strong>Dollars are not adjusted for inflation.</strong> Construction costs rose over these years, so the increase in dollars overstates the increase in work done. The share of spending is not affected.</li>
+<li><strong>Inflation adjustment.</strong> Dollars are restated in 2024 prices using FHWA’s National Highway Construction Cost Index, averaged over each calendar year.</li>
+<li><strong>Two different sets of projects.</strong> Spending comes from what state highway agencies paid out. Miles come from projects with federal-aid funds authorized that fiscal year, and are divided only by those projects’ own costs. The two charts should not be combined.</li>
+<li><strong>Miles per dollar is not only about prices.</strong> Prices are already taken out, so a fall can also mean heavier work per mile, more urban and multi-lane roads, or more safety and drainage work inside the same project. The table counts centerline miles, not lane-miles.</li>
 <li><strong>State agencies only.</strong> What cities and counties spend on their own streets is not in these reports.</li>
-<li><strong>Local-class roads are left out.</strong> They only appear in the table from 2015, so they are dropped to keep every year comparable.</li>
-<li><strong>Reused figures.</strong> When a state does not report, FHWA carries its previous year’s numbers forward.</li>
+<li><strong>Local-class roads are left out of spending.</strong> They only appear in the table from 2015, so they are dropped to keep every year comparable.</li>
+<li><strong>Gaps and reused figures.</strong> FHWA published no miles table in its 2021 edition. When a state does not report, FHWA carries its previous year’s numbers forward.</li>
 </ul>
 </section>
 <section id="data-and-code" class="level2">
 <h2 class="anchored" data-anchor-id="data-and-code">Data and Code</h2>
-<p>The source is FHWA Highway Statistics, Table SF-12A, one workbook per year. The <a href="../../projects/road-paving/road-paving.html">data notebook</a> downloads the workbooks, reads every sheet, and checks each column against the totals FHWA publishes before any figure is used.</p>
+<p>The sources are FHWA Highway Statistics Tables SF-12A and FA-10, one workbook per year, and FHWA’s National Highway Construction Cost Index. The <a href="../../projects/road-paving/road-paving.html">data notebook</a> downloads them, reads every sheet, and checks each column against the totals FHWA publishes before any figure is used.</p>
 <p>The code is on <a href="https://github.com/eschnitger/eschnitger.github.io/tree/main/projects/road-paving">GitHub</a>.</p>
 
 

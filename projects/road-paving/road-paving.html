@@ -140,9 +140,11 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#download" id="toc-download" class="nav-link active" data-scroll-target="#download">Download</a></li>
-  <li><a href="#read-every-sheet" id="toc-read-every-sheet" class="nav-link" data-scroll-target="#read-every-sheet">Read every sheet</a></li>
-  <li><a href="#national-series" id="toc-national-series" class="nav-link" data-scroll-target="#national-series">National series</a></li>
-  <li><a href="#not-done-yet" id="toc-not-done-yet" class="nav-link" data-scroll-target="#not-done-yet">Not done yet</a></li>
+  <li><a href="#spending-read-every-sheet-of-sf-12a" id="toc-spending-read-every-sheet-of-sf-12a" class="nav-link" data-scroll-target="#spending-read-every-sheet-of-sf-12a">Spending: read every sheet of SF-12A</a></li>
+  <li><a href="#inflation-the-highway-construction-cost-index" id="toc-inflation-the-highway-construction-cost-index" class="nav-link" data-scroll-target="#inflation-the-highway-construction-cost-index">Inflation: the highway construction cost index</a></li>
+  <li><a href="#national-spending-series" id="toc-national-spending-series" class="nav-link" data-scroll-target="#national-spending-series">National spending series</a></li>
+  <li><a href="#miles-table-fa-10" id="toc-miles-table-fa-10" class="nav-link" data-scroll-target="#miles-table-fa-10">Miles: Table FA-10</a></li>
+  <li><a href="#reading-miles-per-dollar-with-care" id="toc-reading-miles-per-dollar-with-care" class="nav-link" data-scroll-target="#reading-miles-per-dollar-with-care">Reading miles per dollar with care</a></li>
   </ul>
 </nav>
 </nav>
@@ -172,135 +174,215 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>This notebook builds the data behind the road paving project.</p>
-<p>It reads FHWA Highway Statistics Table SF-12A, which reports what each state highway agency spent on capital projects, split by the kind of work. One workbook is published per year, with one sheet per road class in rural or urban areas.</p>
-<p>Resurfacing is not reported on its own in most years. States that use the revised reporting form fold it into “restoration and rehabilitation”, so the measure used here is FHWA’s whole <strong>3R</strong> group: resurfacing, restoration, rehabilitation, and minor widening.</p>
+<p>This notebook builds the data behind the road paving project from three FHWA sources.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Source</th>
+<th>What it gives</th>
+<th>Used for</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Highway Statistics, Table SF-12A</td>
+<td>State highway agency capital outlay by kind of work</td>
+<td>Dollars spent on repair</td>
+</tr>
+<tr class="even">
+<td>National Highway Construction Cost Index (NHCCI)</td>
+<td>Price index for highway construction</td>
+<td>Adjusting dollars for inflation</td>
+</tr>
+<tr class="odd">
+<td>Highway Statistics, Table FA-10</td>
+<td>Miles and cost of federal-aid projects by kind of work</td>
+<td>Miles repaved, and miles per dollar</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Two different measures of “repair”</strong></p>
+<ul>
+<li>SF-12A does not report resurfacing on its own in most years, so spending uses FHWA’s whole <strong>3R</strong> group: resurfacing, restoration, rehabilitation, and minor widening.</li>
+<li>FA-10 reports <strong>resurfacing</strong> and <strong>restoration and rehabilitation</strong> separately, with miles. Those two lines are added together.</li>
+</ul>
 <p><strong>Caveats</strong></p>
 <ul>
-<li>Dollars are nominal. Construction costs rose over the period, so the rise in dollars overstates the rise in work done. Shares of spending are not affected.</li>
-<li>These are state highway agency outlays. Spending by cities and counties on their own roads is not included.</li>
-<li>Local-class roads only appear in the table from 2015, so they are left out to keep the years comparable.</li>
+<li>SF-12A covers what state highway agencies spent. FA-10 covers only projects with federal-aid funds authorized that fiscal year. The two are not the same set of projects, so miles are only ever divided by FA-10’s own costs.</li>
+<li>Local-class roads only appear in SF-12A from 2015, so they are left out to keep the years comparable.</li>
 <li>When a state did not report, FHWA reuses its previous year’s figures.</li>
+<li>FHWA published no FA-10 table in its 2021 edition.</li>
 </ul>
 <section id="download" class="level3">
 <h3 class="anchored" data-anchor-id="download">Download</h3>
-<p>Workbooks are downloaded once into <code>data/raw/</code> and reused after that. Set <code>REFRESH = True</code> above to pick up a newly published year.</p>
-<div id="e03e90aebe494e3c" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-12T01:44:48.099768Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-12T01:44:48.099611Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-12T01:44:48.104913Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-12T01:44:48.104497Z&quot;}}" data-execution_count="2">
+<p>Files are downloaded once into <code>data/raw/</code> and reused after that. Set <code>REFRESH = True</code> above to pick up a newly published year.</p>
+<div id="86a97220cf164560" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-12T02:07:14.705147Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-12T02:07:14.704990Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-12T02:07:14.711047Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-12T02:07:14.710486Z&quot;}}" data-execution_count="2">
 <div class="cell-output cell-output-stdout">
-<pre><code>12 SF-12A workbooks, 2012 to 2023</code></pre>
+<pre><code>sf12a: 13 workbooks, 2012 to 2024
+fa10: 12 workbooks, 2012 to 2024</code></pre>
 </div>
 </div>
 </section>
-<section id="read-every-sheet" class="level3">
-<h3 class="anchored" data-anchor-id="read-every-sheet">Read every sheet</h3>
-<p>Each sheet has the states down the side and the improvement types across the top. Headings are matched by name, and an unrecognised heading stops the run, so a change in FHWA’s layout cannot slip through as a wrong number.</p>
-<div id="3cdc13b62d3f4844" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-12T01:44:48.114656Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-12T01:44:48.114589Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-12T01:44:55.984037Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-12T01:44:55.983586Z&quot;}}" data-execution_count="4">
+<section id="spending-read-every-sheet-of-sf-12a" class="level3">
+<h3 class="anchored" data-anchor-id="spending-read-every-sheet-of-sf-12a">Spending: read every sheet of SF-12A</h3>
+<p>Each sheet has the states down the side and the improvement types across the top, for one road class in rural or urban areas. Headings are matched by name, and an unrecognised heading stops the run, so a change in FHWA’s layout cannot slip through as a wrong number.</p>
+<div id="794b6a4b4a3c4de5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-12T02:07:14.720713Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-12T02:07:14.720637Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-12T02:07:23.003005Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-12T02:07:23.002618Z&quot;}}" data-execution_count="4">
 <div class="cell-output cell-output-stdout">
-<pre><code>122,706 rows from 12 workbooks; every column total matches the published Total row.</code></pre>
+<pre><code>134,844 rows from 13 workbooks; every column total matches the published Total row.</code></pre>
 </div>
 </div>
 </section>
-<section id="national-series" class="level3">
-<h3 class="anchored" data-anchor-id="national-series">National series</h3>
+<section id="inflation-the-highway-construction-cost-index" class="level3">
+<h3 class="anchored" data-anchor-id="inflation-the-highway-construction-cost-index">Inflation: the highway construction cost index</h3>
+<p>NHCCI is quarterly. Each year’s index is the average of its four quarters, and dollars are restated in the prices of the latest year of spending data.</p>
+<div id="92b09310049c449c" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-12T02:07:23.004581Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-12T02:07:23.004491Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-12T02:07:23.023382Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-12T02:07:23.023010Z&quot;}}" data-execution_count="5">
+<div class="cell-output cell-output-stdout">
+<pre><code>Construction prices rose 102% from 2012 to 2024. Dollars below are in 2024 prices.</code></pre>
+</div>
+</div>
+</section>
+<section id="national-spending-series" class="level3">
+<h3 class="anchored" data-anchor-id="national-spending-series">National spending series</h3>
 <p>Local-class roads are dropped here so that every year covers the same road classes: Interstates, other arterials, and collectors.</p>
-<div id="a52c3536a8824351" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-12T01:44:55.985455Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-12T01:44:55.985371Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-12T01:44:56.053519Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-12T01:44:56.052992Z&quot;}}" data-execution_count="5">
-<div class="cell-output cell-output-display" data-execution_count="5">
+<div id="f68e3dc18f844176" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-12T02:07:23.024607Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-12T02:07:23.024534Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-12T02:07:23.077312Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-12T02:07:23.076477Z&quot;}}" data-execution_count="6">
+<div class="cell-output cell-output-display" data-execution_count="6">
 <style type="text/css">
 </style>
 
-<table id="T_82a0b" class="caption-top table table-sm table-striped small">
+<table id="T_41210" class="caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th class="blank level0" data-quarto-table-cell-role="th">&nbsp;</th>
-<th id="T_82a0b_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">3R outlay ($bn)</th>
-<th id="T_82a0b_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">All capital outlay ($bn)</th>
-<th id="T_82a0b_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">3R share</th>
+<th id="T_41210_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">3R outlay ($bn)</th>
+<th id="T_41210_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">All capital outlay ($bn)</th>
+<th id="T_41210_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">3R share</th>
+<th id="T_41210_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">NHCCI</th>
+<th id="T_41210_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">3R outlay (2024 $bn)</th>
 </tr>
 <tr class="even">
 <th class="index_name level0" data-quarto-table-cell-role="th">year</th>
 <th class="blank col0" data-quarto-table-cell-role="th">&nbsp;</th>
 <th class="blank col1" data-quarto-table-cell-role="th">&nbsp;</th>
 <th class="blank col2" data-quarto-table-cell-role="th">&nbsp;</th>
+<th class="blank col3" data-quarto-table-cell-role="th">&nbsp;</th>
+<th class="blank col4" data-quarto-table-cell-role="th">&nbsp;</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<th id="T_82a0b_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th">2012</th>
-<td id="T_82a0b_row0_col0" class="data row0 col0">18.0</td>
-<td id="T_82a0b_row0_col1" class="data row0 col1">65.8</td>
-<td id="T_82a0b_row0_col2" class="data row0 col2">27%</td>
+<th id="T_41210_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th">2012</th>
+<td id="T_41210_row0_col0" class="data row0 col0">18.0</td>
+<td id="T_41210_row0_col1" class="data row0 col1">65.8</td>
+<td id="T_41210_row0_col2" class="data row0 col2">27%</td>
+<td id="T_41210_row0_col3" class="data row0 col3">1.60</td>
+<td id="T_41210_row0_col4" class="data row0 col4">36.3</td>
 </tr>
 <tr class="even">
-<th id="T_82a0b_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th">2013</th>
-<td id="T_82a0b_row1_col0" class="data row1 col0">18.2</td>
-<td id="T_82a0b_row1_col1" class="data row1 col1">65.0</td>
-<td id="T_82a0b_row1_col2" class="data row1 col2">28%</td>
+<th id="T_41210_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th">2013</th>
+<td id="T_41210_row1_col0" class="data row1 col0">18.2</td>
+<td id="T_41210_row1_col1" class="data row1 col1">65.0</td>
+<td id="T_41210_row1_col2" class="data row1 col2">28%</td>
+<td id="T_41210_row1_col3" class="data row1 col3">1.61</td>
+<td id="T_41210_row1_col4" class="data row1 col4">36.5</td>
 </tr>
 <tr class="odd">
-<th id="T_82a0b_level0_row2" class="row_heading level0 row2" data-quarto-table-cell-role="th">2014</th>
-<td id="T_82a0b_row2_col0" class="data row2 col0">21.4</td>
-<td id="T_82a0b_row2_col1" class="data row2 col1">68.4</td>
-<td id="T_82a0b_row2_col2" class="data row2 col2">31%</td>
+<th id="T_41210_level0_row2" class="row_heading level0 row2" data-quarto-table-cell-role="th">2014</th>
+<td id="T_41210_row2_col0" class="data row2 col0">21.4</td>
+<td id="T_41210_row2_col1" class="data row2 col1">68.4</td>
+<td id="T_41210_row2_col2" class="data row2 col2">31%</td>
+<td id="T_41210_row2_col3" class="data row2 col3">1.68</td>
+<td id="T_41210_row2_col4" class="data row2 col4">41.2</td>
 </tr>
 <tr class="even">
-<th id="T_82a0b_level0_row3" class="row_heading level0 row3" data-quarto-table-cell-role="th">2015</th>
-<td id="T_82a0b_row3_col0" class="data row3 col0">22.3</td>
-<td id="T_82a0b_row3_col1" class="data row3 col1">69.0</td>
-<td id="T_82a0b_row3_col2" class="data row3 col2">32%</td>
+<th id="T_41210_level0_row3" class="row_heading level0 row3" data-quarto-table-cell-role="th">2015</th>
+<td id="T_41210_row3_col0" class="data row3 col0">22.3</td>
+<td id="T_41210_row3_col1" class="data row3 col1">69.0</td>
+<td id="T_41210_row3_col2" class="data row3 col2">32%</td>
+<td id="T_41210_row3_col3" class="data row3 col3">1.70</td>
+<td id="T_41210_row3_col4" class="data row3 col4">42.5</td>
 </tr>
 <tr class="odd">
-<th id="T_82a0b_level0_row4" class="row_heading level0 row4" data-quarto-table-cell-role="th">2016</th>
-<td id="T_82a0b_row4_col0" class="data row4 col0">19.9</td>
-<td id="T_82a0b_row4_col1" class="data row4 col1">70.1</td>
-<td id="T_82a0b_row4_col2" class="data row4 col2">28%</td>
+<th id="T_41210_level0_row4" class="row_heading level0 row4" data-quarto-table-cell-role="th">2016</th>
+<td id="T_41210_row4_col0" class="data row4 col0">19.9</td>
+<td id="T_41210_row4_col1" class="data row4 col1">70.1</td>
+<td id="T_41210_row4_col2" class="data row4 col2">28%</td>
+<td id="T_41210_row4_col3" class="data row4 col3">1.66</td>
+<td id="T_41210_row4_col4" class="data row4 col4">38.7</td>
 </tr>
 <tr class="even">
-<th id="T_82a0b_level0_row5" class="row_heading level0 row5" data-quarto-table-cell-role="th">2017</th>
-<td id="T_82a0b_row5_col0" class="data row5 col0">23.5</td>
-<td id="T_82a0b_row5_col1" class="data row5 col1">75.0</td>
-<td id="T_82a0b_row5_col2" class="data row5 col2">31%</td>
+<th id="T_41210_level0_row5" class="row_heading level0 row5" data-quarto-table-cell-role="th">2017</th>
+<td id="T_41210_row5_col0" class="data row5 col0">23.5</td>
+<td id="T_41210_row5_col1" class="data row5 col1">75.0</td>
+<td id="T_41210_row5_col2" class="data row5 col2">31%</td>
+<td id="T_41210_row5_col3" class="data row5 col3">1.67</td>
+<td id="T_41210_row5_col4" class="data row5 col4">45.5</td>
 </tr>
 <tr class="odd">
-<th id="T_82a0b_level0_row6" class="row_heading level0 row6" data-quarto-table-cell-role="th">2018</th>
-<td id="T_82a0b_row6_col0" class="data row6 col0">27.0</td>
-<td id="T_82a0b_row6_col1" class="data row6 col1">84.3</td>
-<td id="T_82a0b_row6_col2" class="data row6 col2">32%</td>
+<th id="T_41210_level0_row6" class="row_heading level0 row6" data-quarto-table-cell-role="th">2018</th>
+<td id="T_41210_row6_col0" class="data row6 col0">27.0</td>
+<td id="T_41210_row6_col1" class="data row6 col1">84.3</td>
+<td id="T_41210_row6_col2" class="data row6 col2">32%</td>
+<td id="T_41210_row6_col3" class="data row6 col3">1.79</td>
+<td id="T_41210_row6_col4" class="data row6 col4">49.0</td>
 </tr>
 <tr class="even">
-<th id="T_82a0b_level0_row7" class="row_heading level0 row7" data-quarto-table-cell-role="th">2019</th>
-<td id="T_82a0b_row7_col0" class="data row7 col0">26.1</td>
-<td id="T_82a0b_row7_col1" class="data row7 col1">81.7</td>
-<td id="T_82a0b_row7_col2" class="data row7 col2">32%</td>
+<th id="T_41210_level0_row7" class="row_heading level0 row7" data-quarto-table-cell-role="th">2019</th>
+<td id="T_41210_row7_col0" class="data row7 col0">26.1</td>
+<td id="T_41210_row7_col1" class="data row7 col1">81.7</td>
+<td id="T_41210_row7_col2" class="data row7 col2">32%</td>
+<td id="T_41210_row7_col3" class="data row7 col3">1.92</td>
+<td id="T_41210_row7_col4" class="data row7 col4">43.9</td>
 </tr>
 <tr class="odd">
-<th id="T_82a0b_level0_row8" class="row_heading level0 row8" data-quarto-table-cell-role="th">2020</th>
-<td id="T_82a0b_row8_col0" class="data row8 col0">29.1</td>
-<td id="T_82a0b_row8_col1" class="data row8 col1">89.1</td>
-<td id="T_82a0b_row8_col2" class="data row8 col2">33%</td>
+<th id="T_41210_level0_row8" class="row_heading level0 row8" data-quarto-table-cell-role="th">2020</th>
+<td id="T_41210_row8_col0" class="data row8 col0">29.1</td>
+<td id="T_41210_row8_col1" class="data row8 col1">89.1</td>
+<td id="T_41210_row8_col2" class="data row8 col2">33%</td>
+<td id="T_41210_row8_col3" class="data row8 col3">1.92</td>
+<td id="T_41210_row8_col4" class="data row8 col4">49.0</td>
 </tr>
 <tr class="even">
-<th id="T_82a0b_level0_row9" class="row_heading level0 row9" data-quarto-table-cell-role="th">2021</th>
-<td id="T_82a0b_row9_col0" class="data row9 col0">27.8</td>
-<td id="T_82a0b_row9_col1" class="data row9 col1">86.4</td>
-<td id="T_82a0b_row9_col2" class="data row9 col2">32%</td>
+<th id="T_41210_level0_row9" class="row_heading level0 row9" data-quarto-table-cell-role="th">2021</th>
+<td id="T_41210_row9_col0" class="data row9 col0">27.8</td>
+<td id="T_41210_row9_col1" class="data row9 col1">86.4</td>
+<td id="T_41210_row9_col2" class="data row9 col2">32%</td>
+<td id="T_41210_row9_col3" class="data row9 col3">2.06</td>
+<td id="T_41210_row9_col4" class="data row9 col4">43.7</td>
 </tr>
 <tr class="odd">
-<th id="T_82a0b_level0_row10" class="row_heading level0 row10" data-quarto-table-cell-role="th">2022</th>
-<td id="T_82a0b_row10_col0" class="data row10 col0">25.8</td>
-<td id="T_82a0b_row10_col1" class="data row10 col1">86.0</td>
-<td id="T_82a0b_row10_col2" class="data row10 col2">30%</td>
+<th id="T_41210_level0_row10" class="row_heading level0 row10" data-quarto-table-cell-role="th">2022</th>
+<td id="T_41210_row10_col0" class="data row10 col0">25.8</td>
+<td id="T_41210_row10_col1" class="data row10 col1">86.0</td>
+<td id="T_41210_row10_col2" class="data row10 col2">30%</td>
+<td id="T_41210_row10_col3" class="data row10 col3">2.60</td>
+<td id="T_41210_row10_col4" class="data row10 col4">32.1</td>
 </tr>
 <tr class="even">
-<th id="T_82a0b_level0_row11" class="row_heading level0 row11" data-quarto-table-cell-role="th">2023</th>
-<td id="T_82a0b_row11_col0" class="data row11 col0">29.2</td>
-<td id="T_82a0b_row11_col1" class="data row11 col1">94.5</td>
-<td id="T_82a0b_row11_col2" class="data row11 col2">31%</td>
+<th id="T_41210_level0_row11" class="row_heading level0 row11" data-quarto-table-cell-role="th">2023</th>
+<td id="T_41210_row11_col0" class="data row11 col0">29.2</td>
+<td id="T_41210_row11_col1" class="data row11 col1">94.5</td>
+<td id="T_41210_row11_col2" class="data row11 col2">31%</td>
+<td id="T_41210_row11_col3" class="data row11 col3">3.01</td>
+<td id="T_41210_row11_col4" class="data row11 col4">31.4</td>
+</tr>
+<tr class="odd">
+<th id="T_41210_level0_row12" class="row_heading level0 row12" data-quarto-table-cell-role="th">2024</th>
+<td id="T_41210_row12_col0" class="data row12 col0">35.1</td>
+<td id="T_41210_row12_col1" class="data row12 col1">107.7</td>
+<td id="T_41210_row12_col2" class="data row12 col2">33%</td>
+<td id="T_41210_row12_col3" class="data row12 col3">3.24</td>
+<td id="T_41210_row12_col4" class="data row12 col4">35.1</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<div id="cell-fig-3r-trend" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-12T01:44:56.054705Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-12T01:44:56.054629Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-12T01:44:56.130129Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-12T01:44:56.129586Z&quot;}}" data-execution_count="6">
+<div id="cell-fig-3r-trend" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-12T02:07:23.078919Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-12T02:07:23.078765Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-12T02:07:23.161263Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-12T02:07:23.160499Z&quot;}}" data-execution_count="7">
 <div class="cell-output cell-output-display">
 <div id="fig-3r-trend" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -308,13 +390,13 @@ ul.task-list li input[type="checkbox"] {
 <img src="road-paving_files/figure-html/fig-3r-trend-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3r-trend-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: State highway agency capital outlay on resurfacing, restoration, rehabilitation and minor widening (3R), as a share of all capital outlay and in dollars. Local-class roads excluded.
+Figure&nbsp;1: State highway agency capital outlay on resurfacing, restoration, rehabilitation and minor widening (3R): its share of all capital outlay, and the dollars before and after adjusting for construction prices. Local-class roads excluded.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<div id="cell-fig-outlay-mix" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-12T01:44:56.131663Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-12T01:44:56.131568Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-12T01:44:56.167719Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-12T01:44:56.167220Z&quot;}}" data-execution_count="7">
+<div id="cell-fig-outlay-mix" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-12T02:07:23.163058Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-12T02:07:23.162976Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-12T02:07:23.196842Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-12T02:07:23.196498Z&quot;}}" data-execution_count="8">
 <div class="cell-output cell-output-display">
 <div id="fig-outlay-mix" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -329,12 +411,142 @@ Figure&nbsp;2: State highway agency capital outlay by kind of work, latest year.
 </div>
 </div>
 </section>
-<section id="not-done-yet" class="level3">
-<h3 class="anchored" data-anchor-id="not-done-yet">Not done yet</h3>
-<ul>
-<li><strong>Miles, not just dollars.</strong> The plan was to add miles improved per year from FHWA’s HPMS public release. Its download page no longer links the files directly, so that source still needs a working route in.</li>
-<li><strong>Inflation.</strong> Deflating by a highway construction cost index would show how much of the dollar increase is real.</li>
-</ul>
+<section id="miles-table-fa-10" class="level3">
+<h3 class="anchored" data-anchor-id="miles-table-fa-10">Miles: Table FA-10</h3>
+<p>FA-10 lists, for projects with federal-aid funds authorized in each fiscal year, the miles covered and the total project cost by kind of work. Miles here are divided only by FA-10’s own costs, restated in the base year’s prices.</p>
+<p>The split between “resurfacing” and “restoration and rehabilitation” moves around a lot from year to year, which looks like reclassification, so the two are added together.</p>
+<div id="b129675606274df2" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-12T02:07:23.202789Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-12T02:07:23.202714Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-12T02:07:23.554963Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-12T02:07:23.554308Z&quot;}}" data-execution_count="10">
+<div class="cell-output cell-output-stdout">
+<pre><code>No FA-10 table for: [2021]</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<style type="text/css">
+</style>
+
+<table id="T_2649d" class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th class="blank level0" data-quarto-table-cell-role="th">&nbsp;</th>
+<th id="T_2649d_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Miles</th>
+<th id="T_2649d_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Total cost ($bn)</th>
+<th id="T_2649d_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">Total cost (2024 $bn)</th>
+<th id="T_2649d_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">Miles per $1m (2024 $)</th>
+</tr>
+<tr class="even">
+<th class="index_name level0" data-quarto-table-cell-role="th">year</th>
+<th class="blank col0" data-quarto-table-cell-role="th">&nbsp;</th>
+<th class="blank col1" data-quarto-table-cell-role="th">&nbsp;</th>
+<th class="blank col2" data-quarto-table-cell-role="th">&nbsp;</th>
+<th class="blank col3" data-quarto-table-cell-role="th">&nbsp;</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th id="T_2649d_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th">2012</th>
+<td id="T_2649d_row0_col0" class="data row0 col0">54,079</td>
+<td id="T_2649d_row0_col1" class="data row0 col1">10.3</td>
+<td id="T_2649d_row0_col2" class="data row0 col2">20.8</td>
+<td id="T_2649d_row0_col3" class="data row0 col3">2.61</td>
+</tr>
+<tr class="even">
+<th id="T_2649d_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th">2013</th>
+<td id="T_2649d_row1_col0" class="data row1 col0">62,367</td>
+<td id="T_2649d_row1_col1" class="data row1 col1">10.3</td>
+<td id="T_2649d_row1_col2" class="data row1 col2">20.8</td>
+<td id="T_2649d_row1_col3" class="data row1 col3">3.00</td>
+</tr>
+<tr class="odd">
+<th id="T_2649d_level0_row2" class="row_heading level0 row2" data-quarto-table-cell-role="th">2014</th>
+<td id="T_2649d_row2_col0" class="data row2 col0">45,138</td>
+<td id="T_2649d_row2_col1" class="data row2 col1">10.3</td>
+<td id="T_2649d_row2_col2" class="data row2 col2">19.8</td>
+<td id="T_2649d_row2_col3" class="data row2 col3">2.28</td>
+</tr>
+<tr class="even">
+<th id="T_2649d_level0_row3" class="row_heading level0 row3" data-quarto-table-cell-role="th">2015</th>
+<td id="T_2649d_row3_col0" class="data row3 col0">46,115</td>
+<td id="T_2649d_row3_col1" class="data row3 col1">11.7</td>
+<td id="T_2649d_row3_col2" class="data row3 col2">22.3</td>
+<td id="T_2649d_row3_col3" class="data row3 col3">2.07</td>
+</tr>
+<tr class="odd">
+<th id="T_2649d_level0_row4" class="row_heading level0 row4" data-quarto-table-cell-role="th">2016</th>
+<td id="T_2649d_row4_col0" class="data row4 col0">35,198</td>
+<td id="T_2649d_row4_col1" class="data row4 col1">8.7</td>
+<td id="T_2649d_row4_col2" class="data row4 col2">17.0</td>
+<td id="T_2649d_row4_col3" class="data row4 col3">2.07</td>
+</tr>
+<tr class="even">
+<th id="T_2649d_level0_row5" class="row_heading level0 row5" data-quarto-table-cell-role="th">2017</th>
+<td id="T_2649d_row5_col0" class="data row5 col0">32,781</td>
+<td id="T_2649d_row5_col1" class="data row5 col1">10.1</td>
+<td id="T_2649d_row5_col2" class="data row5 col2">19.6</td>
+<td id="T_2649d_row5_col3" class="data row5 col3">1.67</td>
+</tr>
+<tr class="odd">
+<th id="T_2649d_level0_row6" class="row_heading level0 row6" data-quarto-table-cell-role="th">2018</th>
+<td id="T_2649d_row6_col0" class="data row6 col0">44,312</td>
+<td id="T_2649d_row6_col1" class="data row6 col1">13.3</td>
+<td id="T_2649d_row6_col2" class="data row6 col2">24.2</td>
+<td id="T_2649d_row6_col3" class="data row6 col3">1.83</td>
+</tr>
+<tr class="even">
+<th id="T_2649d_level0_row7" class="row_heading level0 row7" data-quarto-table-cell-role="th">2019</th>
+<td id="T_2649d_row7_col0" class="data row7 col0">43,754</td>
+<td id="T_2649d_row7_col1" class="data row7 col1">15.4</td>
+<td id="T_2649d_row7_col2" class="data row7 col2">25.9</td>
+<td id="T_2649d_row7_col3" class="data row7 col3">1.69</td>
+</tr>
+<tr class="odd">
+<th id="T_2649d_level0_row8" class="row_heading level0 row8" data-quarto-table-cell-role="th">2020</th>
+<td id="T_2649d_row8_col0" class="data row8 col0">38,676</td>
+<td id="T_2649d_row8_col1" class="data row8 col1">15.0</td>
+<td id="T_2649d_row8_col2" class="data row8 col2">25.3</td>
+<td id="T_2649d_row8_col3" class="data row8 col3">1.53</td>
+</tr>
+<tr class="even">
+<th id="T_2649d_level0_row9" class="row_heading level0 row9" data-quarto-table-cell-role="th">2022</th>
+<td id="T_2649d_row9_col0" class="data row9 col0">41,405</td>
+<td id="T_2649d_row9_col1" class="data row9 col1">19.5</td>
+<td id="T_2649d_row9_col2" class="data row9 col2">24.3</td>
+<td id="T_2649d_row9_col3" class="data row9 col3">1.71</td>
+</tr>
+<tr class="odd">
+<th id="T_2649d_level0_row10" class="row_heading level0 row10" data-quarto-table-cell-role="th">2023</th>
+<td id="T_2649d_row10_col0" class="data row10 col0">37,681</td>
+<td id="T_2649d_row10_col1" class="data row10 col1">19.9</td>
+<td id="T_2649d_row10_col2" class="data row10 col2">21.4</td>
+<td id="T_2649d_row10_col3" class="data row10 col3">1.76</td>
+</tr>
+<tr class="even">
+<th id="T_2649d_level0_row11" class="row_heading level0 row11" data-quarto-table-cell-role="th">2024</th>
+<td id="T_2649d_row11_col0" class="data row11 col0">31,308</td>
+<td id="T_2649d_row11_col1" class="data row11 col1">16.4</td>
+<td id="T_2649d_row11_col2" class="data row11 col2">16.4</td>
+<td id="T_2649d_row11_col3" class="data row11 col3">1.91</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="cell-fig-miles" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-12T02:07:23.556464Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-12T02:07:23.556374Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-12T02:07:23.628250Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-12T02:07:23.627741Z&quot;}}" data-execution_count="11">
+<div class="cell-output cell-output-display">
+<div id="fig-miles" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-miles-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="road-paving_files/figure-html/fig-miles-output-1.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-miles-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Federal-aid resurfacing, restoration and rehabilitation projects by fiscal year: miles covered, and miles per million dollars of project cost after adjusting for construction prices.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="reading-miles-per-dollar-with-care" class="level3">
+<h3 class="anchored" data-anchor-id="reading-miles-per-dollar-with-care">Reading miles per dollar with care</h3>
+<p>A fall in miles per dollar is not only a price effect, since prices are already taken out. It can also mean the work itself changed: more rehabilitation and less thin overlay, more urban and multi-lane roads, or more added work such as safety and drainage inside the same project. FA-10 counts centerline miles of projects, not lane-miles, and cannot separate these.</p>
 
 
 </section>

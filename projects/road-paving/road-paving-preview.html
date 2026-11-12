@@ -266,9 +266,11 @@
    
   <ul>
   <li><a href="#download" id="toc-download" class="nav-link active" data-scroll-target="#download">Download</a></li>
-  <li><a href="#read-every-sheet" id="toc-read-every-sheet" class="nav-link" data-scroll-target="#read-every-sheet">Read every sheet</a></li>
-  <li><a href="#national-series" id="toc-national-series" class="nav-link" data-scroll-target="#national-series">National series</a></li>
-  <li><a href="#not-done-yet" id="toc-not-done-yet" class="nav-link" data-scroll-target="#not-done-yet">Not done yet</a></li>
+  <li><a href="#spending-read-every-sheet-of-sf-12a" id="toc-spending-read-every-sheet-of-sf-12a" class="nav-link" data-scroll-target="#spending-read-every-sheet-of-sf-12a">Spending: read every sheet of SF-12A</a></li>
+  <li><a href="#inflation-the-highway-construction-cost-index" id="toc-inflation-the-highway-construction-cost-index" class="nav-link" data-scroll-target="#inflation-the-highway-construction-cost-index">Inflation: the highway construction cost index</a></li>
+  <li><a href="#national-spending-series" id="toc-national-spending-series" class="nav-link" data-scroll-target="#national-spending-series">National spending series</a></li>
+  <li><a href="#miles-table-fa-10" id="toc-miles-table-fa-10" class="nav-link" data-scroll-target="#miles-table-fa-10">Miles: Table FA-10</a></li>
+  <li><a href="#reading-miles-per-dollar-with-care" id="toc-reading-miles-per-dollar-with-care" class="nav-link" data-scroll-target="#reading-miles-per-dollar-with-care">Reading miles per dollar with care</a></li>
   </ul>
 </nav>
 </nav>
@@ -293,21 +295,55 @@
   
 
 
-</header>     <div id="ea9e2683c53d4a50" class="cell markdown">
-<p>This notebook builds the data behind the road paving project.</p>
-<p>It reads FHWA Highway Statistics Table SF-12A, which reports what each state highway agency spent on capital projects, split by the kind of work. One workbook is published per year, with one sheet per road class in rural or urban areas.</p>
-<p>Resurfacing is not reported on its own in most years. States that use the revised reporting form fold it into “restoration and rehabilitation”, so the measure used here is FHWA’s whole <strong>3R</strong> group: resurfacing, restoration, rehabilitation, and minor widening.</p>
+</header>     <div id="4b715802b46f4431" class="cell markdown">
+<p>This notebook builds the data behind the road paving project from three FHWA sources.</p>
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Source</th>
+<th>What it gives</th>
+<th>Used for</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Highway Statistics, Table SF-12A</td>
+<td>State highway agency capital outlay by kind of work</td>
+<td>Dollars spent on repair</td>
+</tr>
+<tr class="even">
+<td>National Highway Construction Cost Index (NHCCI)</td>
+<td>Price index for highway construction</td>
+<td>Adjusting dollars for inflation</td>
+</tr>
+<tr class="odd">
+<td>Highway Statistics, Table FA-10</td>
+<td>Miles and cost of federal-aid projects by kind of work</td>
+<td>Miles repaved, and miles per dollar</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Two different measures of “repair”</strong></p>
+<ul>
+<li>SF-12A does not report resurfacing on its own in most years, so spending uses FHWA’s whole <strong>3R</strong> group: resurfacing, restoration, rehabilitation, and minor widening.</li>
+<li>FA-10 reports <strong>resurfacing</strong> and <strong>restoration and rehabilitation</strong> separately, with miles. Those two lines are added together.</li>
+</ul>
 <p><strong>Caveats</strong></p>
 <ul>
-<li>Dollars are nominal. Construction costs rose over the period, so the rise in dollars overstates the rise in work done. Shares of spending are not affected.</li>
-<li>These are state highway agency outlays. Spending by cities and counties on their own roads is not included.</li>
-<li>Local-class roads only appear in the table from 2015, so they are left out to keep the years comparable.</li>
+<li>SF-12A covers what state highway agencies spent. FA-10 covers only projects with federal-aid funds authorized that fiscal year. The two are not the same set of projects, so miles are only ever divided by FA-10’s own costs.</li>
+<li>Local-class roads only appear in SF-12A from 2015, so they are left out to keep the years comparable.</li>
 <li>When a state did not report, FHWA reuses its previous year’s figures.</li>
+<li>FHWA published no FA-10 table in its 2021 edition.</li>
 </ul>
 </div>
-<div class="cell-container"><div class="cell-decorator"><pre>In [1]:</pre></div><div id="9de09cf370d846b3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-12T01:44:47.204744Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-12T01:44:47.204631Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-12T01:44:48.098011Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-12T01:44:48.097459Z&quot;}}" data-execution_count="1">
+<div class="cell-container"><div class="cell-decorator"><pre>In [1]:</pre></div><div id="053e28dbe8964170" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-12T02:07:14.132293Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-12T02:07:14.131916Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-12T02:07:14.703336Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-12T02:07:14.702928Z&quot;}}" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Needs: requests beautifulsoup4 pandas openpyxl xlrd matplotlib</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re, time, hashlib, sys</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re, time, sys</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> urllib.parse <span class="im">import</span> urljoin</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
@@ -326,16 +362,19 @@
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>PROC <span class="op">=</span> Path(<span class="st">"data/processed"</span>)<span class="op">;</span>             PROC.mkdir(parents<span class="op">=</span><span class="va">True</span>, exist_ok<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>FHWA_STATS <span class="op">=</span> <span class="st">"https://www.fhwa.dot.gov/policyinformation/statistics.cfm"</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>FIRST_YEAR <span class="op">=</span> <span class="dv">2012</span>      <span class="co"># first year SF-12A is published in this layout</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>REFRESH <span class="op">=</span> <span class="va">False</span>        <span class="co"># True: ask FHWA for years not yet downloaded</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>NHCCI_CSV <span class="op">=</span> (<span class="st">"https://datahub.transportation.gov/resource/r94d-n4f9.csv"</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>             <span class="st">"?$select=quarter,nhcci&amp;$order=quarter&amp;$limit=1000"</span>)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>TABLES <span class="op">=</span> (<span class="st">"sf12a"</span>, <span class="st">"fa10"</span>)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>FIRST_YEAR <span class="op">=</span> <span class="dv">2012</span>      <span class="co"># first year SF-12A is published in this layout</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>REFRESH <span class="op">=</span> <span class="va">False</span>        <span class="co"># True: ask FHWA for years and index values not yet downloaded</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
-<div id="fcb8a1dcebe344b1" class="cell markdown">
+<div id="50d3110198954f9a" class="cell markdown">
 <section id="download" class="level3">
 <h3 class="anchored" data-anchor-id="download">Download</h3>
-<p>Workbooks are downloaded once into <code>data/raw/</code> and reused after that. Set <code>REFRESH = True</code> above to pick up a newly published year.</p>
+<p>Files are downloaded once into <code>data/raw/</code> and reused after that. Set <code>REFRESH = True</code> above to pick up a newly published year.</p>
 </section>
 </div>
-<div class="cell-container"><div class="cell-decorator"><pre>In [2]:</pre></div><div id="e03e90aebe494e3c" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-12T01:44:48.099768Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-12T01:44:48.099611Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-12T01:44:48.104913Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-12T01:44:48.104497Z&quot;}}" data-execution_count="2">
+<div class="cell-container"><div class="cell-decorator"><pre>In [2]:</pre></div><div id="86a97220cf164560" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-12T02:07:14.705147Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-12T02:07:14.704990Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-12T02:07:14.711047Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-12T02:07:14.710486Z&quot;}}" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>SESSION <span class="op">=</span> requests.Session()</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>SESSION.headers.update({<span class="st">"User-Agent"</span>: <span class="st">"research-notebook/1.0"</span>})</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -345,60 +384,61 @@
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> BeautifulSoup(r.text, <span class="st">"html.parser"</span>)</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fetch(url, filename, pause<span class="op">=</span><span class="fl">1.0</span>):</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Download once, reuse thereafter. Returns a local Path."""</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    dest <span class="op">=</span> RAW <span class="op">/</span> filename</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> dest.exists() <span class="kw">and</span> dest.stat().st_size <span class="op">&gt;</span> <span class="dv">0</span>:</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> dest</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> SESSION.get(url, stream<span class="op">=</span><span class="va">True</span>, timeout<span class="op">=</span><span class="dv">120</span>) <span class="im">as</span> r:</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>        r.raise_for_status()</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>        dest.write_bytes(r.content)</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    time.sleep(pause)   <span class="co"># FHWA is a public good; do not hammer it</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> dest</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> find_year_pages():</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""{year: url} for each Highway Statistics edition."""</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    out <span class="op">=</span> {}</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> opt <span class="kw">in</span> soup(FHWA_STATS).find_all(<span class="st">"option"</span>):</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>        m <span class="op">=</span> re.search(<span class="vs">r"</span><span class="kw">(</span><span class="vs">19</span><span class="cf">|</span><span class="vs">20</span><span class="kw">)</span><span class="dv">\d</span><span class="op">{2}</span><span class="vs">"</span>, opt.get_text(<span class="st">" "</span>, strip<span class="op">=</span><span class="va">True</span>))</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>        val <span class="op">=</span> opt.get(<span class="st">"value"</span>, <span class="st">""</span>)</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> m <span class="kw">and</span> val <span class="kw">and</span> val <span class="op">!=</span> <span class="st">"#"</span>:</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>            out[<span class="bu">int</span>(m.group(<span class="dv">0</span>))] <span class="op">=</span> urljoin(FHWA_STATS, val)</span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">dict</span>(<span class="bu">sorted</span>(out.items()))</span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> download_sf12a():</span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Fetch the SF-12A Excel file from every edition since FIRST_YEAR."""</span></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> year, page <span class="kw">in</span> find_year_pages().items():</span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> year <span class="op">&lt;</span> FIRST_YEAR:</span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>            <span class="cf">continue</span></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> a <span class="kw">in</span> soup(page).find_all(<span class="st">"a"</span>, href<span class="op">=</span><span class="va">True</span>):</span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> a.get_text(<span class="st">" "</span>, strip<span class="op">=</span><span class="va">True</span>) <span class="op">==</span> <span class="st">"Excel"</span> <span class="kw">and</span> <span class="op">\</span></span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>                    re.fullmatch(<span class="vs">r"</span><span class="fu">(?i)</span><span class="vs">sf-</span><span class="op">?</span><span class="vs">12a"</span>, Path(a[<span class="st">"href"</span>]).stem):</span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>                fetch(urljoin(page, a[<span class="st">"href"</span>]), <span class="ss">f"</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>Path(a[<span class="st">'href'</span>])<span class="sc">.</span>name<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> cached_workbooks():</span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">sorted</span>(RAW.glob(<span class="st">"*_sf12a.xls*"</span>))</span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> REFRESH <span class="kw">or</span> <span class="kw">not</span> cached_workbooks():</span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>    download_sf12a()</span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>workbooks <span class="op">=</span> cached_workbooks()</span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="bu">len</span>(workbooks)<span class="sc">}</span><span class="ss"> SF-12A workbooks, </span><span class="sc">{</span>workbooks[<span class="dv">0</span>]<span class="sc">.</span>name[:<span class="dv">4</span>]<span class="sc">}</span><span class="ss"> to </span><span class="sc">{</span>workbooks[<span class="op">-</span><span class="dv">1</span>]<span class="sc">.</span>name[:<span class="dv">4</span>]<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fetch(url, dest, pause<span class="op">=</span><span class="fl">1.0</span>):</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Download once, reuse thereafter. Returns the local Path."""</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> dest.exists() <span class="kw">and</span> dest.stat().st_size <span class="op">&gt;</span> <span class="dv">0</span> <span class="kw">and</span> <span class="kw">not</span> (REFRESH <span class="kw">and</span> dest.suffix <span class="op">==</span> <span class="st">".csv"</span>):</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> dest</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    r <span class="op">=</span> SESSION.get(url, timeout<span class="op">=</span><span class="dv">120</span>)<span class="op">;</span> r.raise_for_status()</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    dest.write_bytes(r.content)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    time.sleep(pause)   <span class="co"># FHWA is a public good; do not hammer it</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> dest</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> find_year_pages():</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""{year: url} for each Highway Statistics edition."""</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    out <span class="op">=</span> {}</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> opt <span class="kw">in</span> soup(FHWA_STATS).find_all(<span class="st">"option"</span>):</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>        m <span class="op">=</span> re.search(<span class="vs">r"</span><span class="kw">(</span><span class="vs">19</span><span class="cf">|</span><span class="vs">20</span><span class="kw">)</span><span class="dv">\d</span><span class="op">{2}</span><span class="vs">"</span>, opt.get_text(<span class="st">" "</span>, strip<span class="op">=</span><span class="va">True</span>))</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>        val <span class="op">=</span> opt.get(<span class="st">"value"</span>, <span class="st">""</span>)</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> m <span class="kw">and</span> val <span class="kw">and</span> val <span class="op">!=</span> <span class="st">"#"</span>:</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>            out[<span class="bu">int</span>(m.group(<span class="dv">0</span>))] <span class="op">=</span> urljoin(FHWA_STATS, val)</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">dict</span>(<span class="bu">sorted</span>(out.items()))</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> download_tables():</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Fetch the Excel file for each table in TABLES from every edition since FIRST_YEAR."""</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> year, page <span class="kw">in</span> find_year_pages().items():</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> year <span class="op">&lt;</span> FIRST_YEAR:</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>            <span class="cf">continue</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> a <span class="kw">in</span> soup(page).find_all(<span class="st">"a"</span>, href<span class="op">=</span><span class="va">True</span>):</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>            stem <span class="op">=</span> Path(a[<span class="st">"href"</span>]).stem.lower().replace(<span class="st">"-"</span>, <span class="st">""</span>)</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> a.get_text(<span class="st">" "</span>, strip<span class="op">=</span><span class="va">True</span>) <span class="op">==</span> <span class="st">"Excel"</span> <span class="kw">and</span> stem <span class="kw">in</span> TABLES:</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>                fetch(urljoin(page, a[<span class="st">"href"</span>]), RAW <span class="op">/</span> <span class="ss">f"</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>stem<span class="sc">}{</span>Path(a[<span class="st">'href'</span>])<span class="sc">.</span>suffix<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> cached(table):</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">sorted</span>(RAW.glob(<span class="ss">f"*_</span><span class="sc">{</span>table<span class="sc">}</span><span class="ss">.xls*"</span>))</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> REFRESH <span class="kw">or</span> <span class="kw">not</span> <span class="bu">all</span>(cached(t) <span class="cf">for</span> t <span class="kw">in</span> TABLES):</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>    download_tables()</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>nhcci_file <span class="op">=</span> fetch(NHCCI_CSV, RAW.parent <span class="op">/</span> <span class="st">"nhcci_quarterly.csv"</span>)</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> t <span class="kw">in</span> TABLES:</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>    files <span class="op">=</span> cached(t)</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>t<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span><span class="bu">len</span>(files)<span class="sc">}</span><span class="ss"> workbooks, </span><span class="sc">{</span>files[<span class="dv">0</span>]<span class="sc">.</span>name[:<span class="dv">4</span>]<span class="sc">}</span><span class="ss"> to </span><span class="sc">{</span>files[<span class="op">-</span><span class="dv">1</span>]<span class="sc">.</span>name[:<span class="dv">4</span>]<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>12 SF-12A workbooks, 2012 to 2023</code></pre>
+<pre><code>sf12a: 13 workbooks, 2012 to 2024
+fa10: 12 workbooks, 2012 to 2024</code></pre>
 </div>
 </div></div>
-<div id="eaec601d64c74dbd" class="cell markdown">
-<section id="read-every-sheet" class="level3">
-<h3 class="anchored" data-anchor-id="read-every-sheet">Read every sheet</h3>
-<p>Each sheet has the states down the side and the improvement types across the top. Headings are matched by name, and an unrecognised heading stops the run, so a change in FHWA’s layout cannot slip through as a wrong number.</p>
+<div id="061c836088654da0" class="cell markdown">
+<section id="spending-read-every-sheet-of-sf-12a" class="level3">
+<h3 class="anchored" data-anchor-id="spending-read-every-sheet-of-sf-12a">Spending: read every sheet of SF-12A</h3>
+<p>Each sheet has the states down the side and the improvement types across the top, for one road class in rural or urban areas. Headings are matched by name, and an unrecognised heading stops the run, so a change in FHWA’s layout cannot slip through as a wrong number.</p>
 </section>
 </div>
-<div class="cell-container"><div class="cell-decorator"><pre>In [3]:</pre></div><div id="c9765bfe012b4fb6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-12T01:44:48.106540Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-12T01:44:48.106340Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-12T01:44:48.113453Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-12T01:44:48.113056Z&quot;}}" data-execution_count="3">
+<div class="cell-container"><div class="cell-decorator"><pre>In [3]:</pre></div><div id="d7df1313c86c43aa" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-12T02:07:14.712364Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-12T02:07:14.712274Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-12T02:07:14.719298Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-12T02:07:14.718814Z&quot;}}" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Canonical improvement types, keyed by the bottom two header rows of each column.</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>IMPROVEMENT_TYPES <span class="op">=</span> {</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ROW"</span>: (<span class="st">"Right of way"</span>, <span class="st">"Right of way and engineering"</span>),</span>
@@ -485,9 +525,9 @@
 <span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a>                mismatches.append((year, sheet, improvement, ours[improvement], published))</span>
 <span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pd.concat(frames, ignore_index<span class="op">=</span><span class="va">True</span>), mismatches</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
-<div class="cell-container"><div class="cell-decorator"><pre>In [4]:</pre></div><div id="3cdc13b62d3f4844" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-12T01:44:48.114656Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-12T01:44:48.114589Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-12T01:44:55.984037Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-12T01:44:55.983586Z&quot;}}" data-execution_count="4">
+<div class="cell-container"><div class="cell-decorator"><pre>In [4]:</pre></div><div id="794b6a4b4a3c4de5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-12T02:07:14.720713Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-12T02:07:14.720637Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-12T02:07:23.003005Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-12T02:07:23.002618Z&quot;}}" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>frames, mismatches <span class="op">=</span> [], []</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> path <span class="kw">in</span> workbooks:</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> path <span class="kw">in</span> cached(<span class="st">"sf12a"</span>):</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    tidy_year, bad <span class="op">=</span> read_workbook(path)</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    frames.append(tidy_year)</span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    mismatches <span class="op">+=</span> bad</span>
@@ -498,165 +538,237 @@
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> mismatches:</span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="ss">f"</span><span class="sc">{</span><span class="bu">len</span>(mismatches)<span class="sc">}</span><span class="ss"> column totals do not match FHWA's: </span><span class="sc">{</span>mismatches[:<span class="dv">5</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="bu">len</span>(tidy)<span class="sc">:,}</span><span class="ss"> rows from </span><span class="sc">{</span><span class="bu">len</span>(workbooks)<span class="sc">}</span><span class="ss"> workbooks; "</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="bu">len</span>(tidy)<span class="sc">:,}</span><span class="ss"> rows from </span><span class="sc">{</span><span class="bu">len</span>(frames)<span class="sc">}</span><span class="ss"> workbooks; "</span></span>
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"every column total matches the published Total row."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>122,706 rows from 12 workbooks; every column total matches the published Total row.</code></pre>
+<pre><code>134,844 rows from 13 workbooks; every column total matches the published Total row.</code></pre>
 </div>
 </div></div>
-<div id="f7cd81b088594ee9" class="cell markdown">
-<section id="national-series" class="level3">
-<h3 class="anchored" data-anchor-id="national-series">National series</h3>
+<div id="7c70576ff6bc48b9" class="cell markdown">
+<section id="inflation-the-highway-construction-cost-index" class="level3">
+<h3 class="anchored" data-anchor-id="inflation-the-highway-construction-cost-index">Inflation: the highway construction cost index</h3>
+<p>NHCCI is quarterly. Each year’s index is the average of its four quarters, and dollars are restated in the prices of the latest year of spending data.</p>
+</section>
+</div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [5]:</pre></div><div id="92b09310049c449c" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-12T02:07:23.004581Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-12T02:07:23.004491Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-12T02:07:23.023382Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-12T02:07:23.023010Z&quot;}}" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>quarterly <span class="op">=</span> pd.read_csv(nhcci_file)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>quarterly[<span class="st">"year"</span>] <span class="op">=</span> quarterly[<span class="st">"quarter"</span>].<span class="bu">str</span>[:<span class="dv">4</span>].astype(<span class="bu">int</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>by_year <span class="op">=</span> quarterly.groupby(<span class="st">"year"</span>)[<span class="st">"nhcci"</span>].agg([<span class="st">"mean"</span>, <span class="st">"size"</span>])</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>nhcci <span class="op">=</span> by_year.loc[by_year[<span class="st">"size"</span>] <span class="op">==</span> <span class="dv">4</span>, <span class="st">"mean"</span>]     <span class="co"># complete years only</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>comparable <span class="op">=</span> tidy[tidy[<span class="st">"road_class"</span>] <span class="op">!=</span> <span class="st">"Local"</span>]</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>BASE_YEAR <span class="op">=</span> <span class="bu">int</span>(comparable[<span class="st">"year"</span>].<span class="bu">max</span>())</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>to_base_dollars <span class="op">=</span> nhcci[BASE_YEAR] <span class="op">/</span> nhcci             <span class="co"># multiply nominal dollars by this</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Construction prices rose </span><span class="sc">{</span>nhcci[BASE_YEAR] <span class="op">/</span> nhcci[FIRST_YEAR] <span class="op">-</span> <span class="dv">1</span><span class="sc">:.0%}</span><span class="ss"> "</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"from </span><span class="sc">{</span>FIRST_YEAR<span class="sc">}</span><span class="ss"> to </span><span class="sc">{</span>BASE_YEAR<span class="sc">}</span><span class="ss">. Dollars below are in </span><span class="sc">{</span>BASE_YEAR<span class="sc">}</span><span class="ss"> prices."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Construction prices rose 102% from 2012 to 2024. Dollars below are in 2024 prices.</code></pre>
+</div>
+</div></div>
+<div id="aa7d4c4983884dc3" class="cell markdown">
+<section id="national-spending-series" class="level3">
+<h3 class="anchored" data-anchor-id="national-spending-series">National spending series</h3>
 <p>Local-class roads are dropped here so that every year covers the same road classes: Interstates, other arterials, and collectors.</p>
 </section>
 </div>
-<div class="cell-container"><div class="cell-decorator"><pre>In [5]:</pre></div><div id="a52c3536a8824351" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-12T01:44:55.985455Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-12T01:44:55.985371Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-12T01:44:56.053519Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-12T01:44:56.052992Z&quot;}}" data-execution_count="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>comparable <span class="op">=</span> tidy[tidy[<span class="st">"road_class"</span>] <span class="op">!=</span> <span class="st">"Local"</span>]</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>national <span class="op">=</span> (comparable.groupby([<span class="st">"year"</span>, <span class="st">"group"</span>], as_index<span class="op">=</span><span class="va">False</span>)[<span class="st">"dollars_thousands"</span>].<span class="bu">sum</span>())</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>national.to_csv(PROC <span class="op">/</span> <span class="st">"national_outlay_by_group.csv"</span>, index<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>by_state <span class="op">=</span> (comparable.assign(three_r<span class="op">=</span>comparable[<span class="st">"dollars_thousands"</span>].where(comparable[<span class="st">"group"</span>] <span class="op">==</span> THREE_R, <span class="fl">0.0</span>))</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>            .groupby([<span class="st">"year"</span>, <span class="st">"state"</span>], as_index<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>            .agg(three_r_thousands<span class="op">=</span>(<span class="st">"three_r"</span>, <span class="st">"sum"</span>), total_thousands<span class="op">=</span>(<span class="st">"dollars_thousands"</span>, <span class="st">"sum"</span>)))</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>by_state.to_csv(PROC <span class="op">/</span> <span class="st">"state_3r_outlay.csv"</span>, index<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>billions <span class="op">=</span> national.pivot(index<span class="op">=</span><span class="st">"year"</span>, columns<span class="op">=</span><span class="st">"group"</span>, values<span class="op">=</span><span class="st">"dollars_thousands"</span>) <span class="op">/</span> <span class="fl">1e6</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>summary <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"3R outlay ($bn)"</span>: billions[THREE_R],</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"All capital outlay ($bn)"</span>: billions.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>),</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>summary[<span class="st">"3R share"</span>] <span class="op">=</span> summary[<span class="st">"3R outlay ($bn)"</span>] <span class="op">/</span> summary[<span class="st">"All capital outlay ($bn)"</span>]</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>summary.style.<span class="bu">format</span>({<span class="st">"3R outlay ($bn)"</span>: <span class="st">"</span><span class="sc">{:.1f}</span><span class="st">"</span>, <span class="st">"All capital outlay ($bn)"</span>: <span class="st">"</span><span class="sc">{:.1f}</span><span class="st">"</span>,</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"3R share"</span>: <span class="st">"</span><span class="sc">{:.0%}</span><span class="st">"</span>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
+<div class="cell-container"><div class="cell-decorator"><pre>In [6]:</pre></div><div id="f68e3dc18f844176" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-12T02:07:23.024607Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-12T02:07:23.024534Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-12T02:07:23.077312Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-12T02:07:23.076477Z&quot;}}" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>national <span class="op">=</span> comparable.groupby([<span class="st">"year"</span>, <span class="st">"group"</span>], as_index<span class="op">=</span><span class="va">False</span>)[<span class="st">"dollars_thousands"</span>].<span class="bu">sum</span>()</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>national.to_csv(PROC <span class="op">/</span> <span class="st">"national_outlay_by_group.csv"</span>, index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>by_state <span class="op">=</span> (comparable.assign(three_r<span class="op">=</span>comparable[<span class="st">"dollars_thousands"</span>].where(comparable[<span class="st">"group"</span>] <span class="op">==</span> THREE_R, <span class="fl">0.0</span>))</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>            .groupby([<span class="st">"year"</span>, <span class="st">"state"</span>], as_index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>            .agg(three_r_thousands<span class="op">=</span>(<span class="st">"three_r"</span>, <span class="st">"sum"</span>), total_thousands<span class="op">=</span>(<span class="st">"dollars_thousands"</span>, <span class="st">"sum"</span>)))</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>by_state.to_csv(PROC <span class="op">/</span> <span class="st">"state_3r_outlay.csv"</span>, index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>billions <span class="op">=</span> national.pivot(index<span class="op">=</span><span class="st">"year"</span>, columns<span class="op">=</span><span class="st">"group"</span>, values<span class="op">=</span><span class="st">"dollars_thousands"</span>) <span class="op">/</span> <span class="fl">1e6</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>summary <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"three_r_bn"</span>: billions[THREE_R],</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"all_capital_bn"</span>: billions.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>),</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>summary[<span class="st">"three_r_share"</span>] <span class="op">=</span> summary[<span class="st">"three_r_bn"</span>] <span class="op">/</span> summary[<span class="st">"all_capital_bn"</span>]</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>summary[<span class="st">"nhcci"</span>] <span class="op">=</span> nhcci.reindex(summary.index)</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>summary[<span class="st">"three_r_real_bn"</span>] <span class="op">=</span> summary[<span class="st">"three_r_bn"</span>] <span class="op">*</span> to_base_dollars.reindex(summary.index)</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>summary[<span class="st">"base_year"</span>] <span class="op">=</span> BASE_YEAR</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>summary.to_csv(PROC <span class="op">/</span> <span class="st">"national_3r_summary.csv"</span>)</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>(summary.drop(columns<span class="op">=</span><span class="st">"base_year"</span>)</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a> .rename(columns<span class="op">=</span>{<span class="st">"three_r_bn"</span>: <span class="st">"3R outlay ($bn)"</span>, <span class="st">"all_capital_bn"</span>: <span class="st">"All capital outlay ($bn)"</span>,</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"three_r_share"</span>: <span class="st">"3R share"</span>, <span class="st">"nhcci"</span>: <span class="st">"NHCCI"</span>,</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"three_r_real_bn"</span>: <span class="ss">f"3R outlay (</span><span class="sc">{</span>BASE_YEAR<span class="sc">}</span><span class="ss"> $bn)"</span>})</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a> .style.<span class="bu">format</span>({<span class="st">"3R outlay ($bn)"</span>: <span class="st">"</span><span class="sc">{:.1f}</span><span class="st">"</span>, <span class="st">"All capital outlay ($bn)"</span>: <span class="st">"</span><span class="sc">{:.1f}</span><span class="st">"</span>,</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>                <span class="st">"3R share"</span>: <span class="st">"</span><span class="sc">{:.0%}</span><span class="st">"</span>, <span class="st">"NHCCI"</span>: <span class="st">"</span><span class="sc">{:.2f}</span><span class="st">"</span>,</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>                <span class="ss">f"3R outlay (</span><span class="sc">{</span>BASE_YEAR<span class="sc">}</span><span class="ss"> $bn)"</span>: <span class="st">"</span><span class="sc">{:.1f}</span><span class="st">"</span>}))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
 <style type="text/css">
 </style>
 
-<table id="T_82a0b" class="caption-top table table-sm table-striped small">
+<table id="T_41210" class="caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th class="blank level0" data-quarto-table-cell-role="th">&nbsp;</th>
-<th id="T_82a0b_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">3R outlay ($bn)</th>
-<th id="T_82a0b_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">All capital outlay ($bn)</th>
-<th id="T_82a0b_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">3R share</th>
+<th id="T_41210_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">3R outlay ($bn)</th>
+<th id="T_41210_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">All capital outlay ($bn)</th>
+<th id="T_41210_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">3R share</th>
+<th id="T_41210_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">NHCCI</th>
+<th id="T_41210_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">3R outlay (2024 $bn)</th>
 </tr>
 <tr class="even">
 <th class="index_name level0" data-quarto-table-cell-role="th">year</th>
 <th class="blank col0" data-quarto-table-cell-role="th">&nbsp;</th>
 <th class="blank col1" data-quarto-table-cell-role="th">&nbsp;</th>
 <th class="blank col2" data-quarto-table-cell-role="th">&nbsp;</th>
+<th class="blank col3" data-quarto-table-cell-role="th">&nbsp;</th>
+<th class="blank col4" data-quarto-table-cell-role="th">&nbsp;</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<th id="T_82a0b_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th">2012</th>
-<td id="T_82a0b_row0_col0" class="data row0 col0">18.0</td>
-<td id="T_82a0b_row0_col1" class="data row0 col1">65.8</td>
-<td id="T_82a0b_row0_col2" class="data row0 col2">27%</td>
+<th id="T_41210_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th">2012</th>
+<td id="T_41210_row0_col0" class="data row0 col0">18.0</td>
+<td id="T_41210_row0_col1" class="data row0 col1">65.8</td>
+<td id="T_41210_row0_col2" class="data row0 col2">27%</td>
+<td id="T_41210_row0_col3" class="data row0 col3">1.60</td>
+<td id="T_41210_row0_col4" class="data row0 col4">36.3</td>
 </tr>
 <tr class="even">
-<th id="T_82a0b_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th">2013</th>
-<td id="T_82a0b_row1_col0" class="data row1 col0">18.2</td>
-<td id="T_82a0b_row1_col1" class="data row1 col1">65.0</td>
-<td id="T_82a0b_row1_col2" class="data row1 col2">28%</td>
+<th id="T_41210_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th">2013</th>
+<td id="T_41210_row1_col0" class="data row1 col0">18.2</td>
+<td id="T_41210_row1_col1" class="data row1 col1">65.0</td>
+<td id="T_41210_row1_col2" class="data row1 col2">28%</td>
+<td id="T_41210_row1_col3" class="data row1 col3">1.61</td>
+<td id="T_41210_row1_col4" class="data row1 col4">36.5</td>
 </tr>
 <tr class="odd">
-<th id="T_82a0b_level0_row2" class="row_heading level0 row2" data-quarto-table-cell-role="th">2014</th>
-<td id="T_82a0b_row2_col0" class="data row2 col0">21.4</td>
-<td id="T_82a0b_row2_col1" class="data row2 col1">68.4</td>
-<td id="T_82a0b_row2_col2" class="data row2 col2">31%</td>
+<th id="T_41210_level0_row2" class="row_heading level0 row2" data-quarto-table-cell-role="th">2014</th>
+<td id="T_41210_row2_col0" class="data row2 col0">21.4</td>
+<td id="T_41210_row2_col1" class="data row2 col1">68.4</td>
+<td id="T_41210_row2_col2" class="data row2 col2">31%</td>
+<td id="T_41210_row2_col3" class="data row2 col3">1.68</td>
+<td id="T_41210_row2_col4" class="data row2 col4">41.2</td>
 </tr>
 <tr class="even">
-<th id="T_82a0b_level0_row3" class="row_heading level0 row3" data-quarto-table-cell-role="th">2015</th>
-<td id="T_82a0b_row3_col0" class="data row3 col0">22.3</td>
-<td id="T_82a0b_row3_col1" class="data row3 col1">69.0</td>
-<td id="T_82a0b_row3_col2" class="data row3 col2">32%</td>
+<th id="T_41210_level0_row3" class="row_heading level0 row3" data-quarto-table-cell-role="th">2015</th>
+<td id="T_41210_row3_col0" class="data row3 col0">22.3</td>
+<td id="T_41210_row3_col1" class="data row3 col1">69.0</td>
+<td id="T_41210_row3_col2" class="data row3 col2">32%</td>
+<td id="T_41210_row3_col3" class="data row3 col3">1.70</td>
+<td id="T_41210_row3_col4" class="data row3 col4">42.5</td>
 </tr>
 <tr class="odd">
-<th id="T_82a0b_level0_row4" class="row_heading level0 row4" data-quarto-table-cell-role="th">2016</th>
-<td id="T_82a0b_row4_col0" class="data row4 col0">19.9</td>
-<td id="T_82a0b_row4_col1" class="data row4 col1">70.1</td>
-<td id="T_82a0b_row4_col2" class="data row4 col2">28%</td>
+<th id="T_41210_level0_row4" class="row_heading level0 row4" data-quarto-table-cell-role="th">2016</th>
+<td id="T_41210_row4_col0" class="data row4 col0">19.9</td>
+<td id="T_41210_row4_col1" class="data row4 col1">70.1</td>
+<td id="T_41210_row4_col2" class="data row4 col2">28%</td>
+<td id="T_41210_row4_col3" class="data row4 col3">1.66</td>
+<td id="T_41210_row4_col4" class="data row4 col4">38.7</td>
 </tr>
 <tr class="even">
-<th id="T_82a0b_level0_row5" class="row_heading level0 row5" data-quarto-table-cell-role="th">2017</th>
-<td id="T_82a0b_row5_col0" class="data row5 col0">23.5</td>
-<td id="T_82a0b_row5_col1" class="data row5 col1">75.0</td>
-<td id="T_82a0b_row5_col2" class="data row5 col2">31%</td>
+<th id="T_41210_level0_row5" class="row_heading level0 row5" data-quarto-table-cell-role="th">2017</th>
+<td id="T_41210_row5_col0" class="data row5 col0">23.5</td>
+<td id="T_41210_row5_col1" class="data row5 col1">75.0</td>
+<td id="T_41210_row5_col2" class="data row5 col2">31%</td>
+<td id="T_41210_row5_col3" class="data row5 col3">1.67</td>
+<td id="T_41210_row5_col4" class="data row5 col4">45.5</td>
 </tr>
 <tr class="odd">
-<th id="T_82a0b_level0_row6" class="row_heading level0 row6" data-quarto-table-cell-role="th">2018</th>
-<td id="T_82a0b_row6_col0" class="data row6 col0">27.0</td>
-<td id="T_82a0b_row6_col1" class="data row6 col1">84.3</td>
-<td id="T_82a0b_row6_col2" class="data row6 col2">32%</td>
+<th id="T_41210_level0_row6" class="row_heading level0 row6" data-quarto-table-cell-role="th">2018</th>
+<td id="T_41210_row6_col0" class="data row6 col0">27.0</td>
+<td id="T_41210_row6_col1" class="data row6 col1">84.3</td>
+<td id="T_41210_row6_col2" class="data row6 col2">32%</td>
+<td id="T_41210_row6_col3" class="data row6 col3">1.79</td>
+<td id="T_41210_row6_col4" class="data row6 col4">49.0</td>
 </tr>
 <tr class="even">
-<th id="T_82a0b_level0_row7" class="row_heading level0 row7" data-quarto-table-cell-role="th">2019</th>
-<td id="T_82a0b_row7_col0" class="data row7 col0">26.1</td>
-<td id="T_82a0b_row7_col1" class="data row7 col1">81.7</td>
-<td id="T_82a0b_row7_col2" class="data row7 col2">32%</td>
+<th id="T_41210_level0_row7" class="row_heading level0 row7" data-quarto-table-cell-role="th">2019</th>
+<td id="T_41210_row7_col0" class="data row7 col0">26.1</td>
+<td id="T_41210_row7_col1" class="data row7 col1">81.7</td>
+<td id="T_41210_row7_col2" class="data row7 col2">32%</td>
+<td id="T_41210_row7_col3" class="data row7 col3">1.92</td>
+<td id="T_41210_row7_col4" class="data row7 col4">43.9</td>
 </tr>
 <tr class="odd">
-<th id="T_82a0b_level0_row8" class="row_heading level0 row8" data-quarto-table-cell-role="th">2020</th>
-<td id="T_82a0b_row8_col0" class="data row8 col0">29.1</td>
-<td id="T_82a0b_row8_col1" class="data row8 col1">89.1</td>
-<td id="T_82a0b_row8_col2" class="data row8 col2">33%</td>
+<th id="T_41210_level0_row8" class="row_heading level0 row8" data-quarto-table-cell-role="th">2020</th>
+<td id="T_41210_row8_col0" class="data row8 col0">29.1</td>
+<td id="T_41210_row8_col1" class="data row8 col1">89.1</td>
+<td id="T_41210_row8_col2" class="data row8 col2">33%</td>
+<td id="T_41210_row8_col3" class="data row8 col3">1.92</td>
+<td id="T_41210_row8_col4" class="data row8 col4">49.0</td>
 </tr>
 <tr class="even">
-<th id="T_82a0b_level0_row9" class="row_heading level0 row9" data-quarto-table-cell-role="th">2021</th>
-<td id="T_82a0b_row9_col0" class="data row9 col0">27.8</td>
-<td id="T_82a0b_row9_col1" class="data row9 col1">86.4</td>
-<td id="T_82a0b_row9_col2" class="data row9 col2">32%</td>
+<th id="T_41210_level0_row9" class="row_heading level0 row9" data-quarto-table-cell-role="th">2021</th>
+<td id="T_41210_row9_col0" class="data row9 col0">27.8</td>
+<td id="T_41210_row9_col1" class="data row9 col1">86.4</td>
+<td id="T_41210_row9_col2" class="data row9 col2">32%</td>
+<td id="T_41210_row9_col3" class="data row9 col3">2.06</td>
+<td id="T_41210_row9_col4" class="data row9 col4">43.7</td>
 </tr>
 <tr class="odd">
-<th id="T_82a0b_level0_row10" class="row_heading level0 row10" data-quarto-table-cell-role="th">2022</th>
-<td id="T_82a0b_row10_col0" class="data row10 col0">25.8</td>
-<td id="T_82a0b_row10_col1" class="data row10 col1">86.0</td>
-<td id="T_82a0b_row10_col2" class="data row10 col2">30%</td>
+<th id="T_41210_level0_row10" class="row_heading level0 row10" data-quarto-table-cell-role="th">2022</th>
+<td id="T_41210_row10_col0" class="data row10 col0">25.8</td>
+<td id="T_41210_row10_col1" class="data row10 col1">86.0</td>
+<td id="T_41210_row10_col2" class="data row10 col2">30%</td>
+<td id="T_41210_row10_col3" class="data row10 col3">2.60</td>
+<td id="T_41210_row10_col4" class="data row10 col4">32.1</td>
 </tr>
 <tr class="even">
-<th id="T_82a0b_level0_row11" class="row_heading level0 row11" data-quarto-table-cell-role="th">2023</th>
-<td id="T_82a0b_row11_col0" class="data row11 col0">29.2</td>
-<td id="T_82a0b_row11_col1" class="data row11 col1">94.5</td>
-<td id="T_82a0b_row11_col2" class="data row11 col2">31%</td>
+<th id="T_41210_level0_row11" class="row_heading level0 row11" data-quarto-table-cell-role="th">2023</th>
+<td id="T_41210_row11_col0" class="data row11 col0">29.2</td>
+<td id="T_41210_row11_col1" class="data row11 col1">94.5</td>
+<td id="T_41210_row11_col2" class="data row11 col2">31%</td>
+<td id="T_41210_row11_col3" class="data row11 col3">3.01</td>
+<td id="T_41210_row11_col4" class="data row11 col4">31.4</td>
+</tr>
+<tr class="odd">
+<th id="T_41210_level0_row12" class="row_heading level0 row12" data-quarto-table-cell-role="th">2024</th>
+<td id="T_41210_row12_col0" class="data row12 col0">35.1</td>
+<td id="T_41210_row12_col1" class="data row12 col1">107.7</td>
+<td id="T_41210_row12_col2" class="data row12 col2">33%</td>
+<td id="T_41210_row12_col3" class="data row12 col3">3.24</td>
+<td id="T_41210_row12_col4" class="data row12 col4">35.1</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div></div>
-<div class="cell-container"><div class="cell-decorator"><pre>In [6]:</pre></div><div id="cell-fig-3r-trend" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-12T01:44:56.054705Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-12T01:44:56.054629Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-12T01:44:56.130129Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-12T01:44:56.129586Z&quot;}}" data-execution_count="6">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>years <span class="op">=</span> summary.index</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>share <span class="op">=</span> summary[<span class="st">"3R share"</span>] <span class="op">*</span> <span class="dv">100</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>dollars <span class="op">=</span> summary[<span class="st">"3R outlay ($bn)"</span>]</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>fig, (ax, ax_d) <span class="op">=</span> plt.subplots(</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="dv">2</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="fl">6.6</span>), sharex<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    gridspec_kw<span class="op">=</span>{<span class="st">"height_ratios"</span>: [<span class="fl">2.2</span>, <span class="fl">1.6</span>], <span class="st">"hspace"</span>: <span class="fl">0.28</span>},</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>ax.plot(years, share, color<span class="op">=</span>ss.BRICK, marker<span class="op">=</span><span class="st">"o"</span>, markersize<span class="op">=</span><span class="dv">4</span>)</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="dv">0</span>, <span class="dv">40</span>)</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>ax.set_yticks([<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>], [<span class="st">"0"</span>, <span class="st">"10"</span>, <span class="st">"20"</span>, <span class="st">"30"</span>, <span class="st">"40%"</span>])</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> y <span class="kw">in</span> (years[<span class="dv">0</span>], years[<span class="op">-</span><span class="dv">1</span>]):</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    ss.callout(ax, y, share[y], <span class="ss">f"</span><span class="sc">{</span>share[y]<span class="sc">:.0f}</span><span class="ss">%"</span>, dy<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>ss.axis_heading(ax, <span class="st">"Share of state highway capital outlay"</span>)</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>ax_d.bar(years, dollars, width<span class="op">=</span><span class="fl">0.7</span>, color<span class="op">=</span>ss.BRICK, alpha<span class="op">=</span><span class="fl">0.38</span>)</span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> y <span class="kw">in</span> (years[<span class="dv">0</span>], years[<span class="op">-</span><span class="dv">1</span>]):</span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    ss.callout(ax_d, y, dollars[y], <span class="ss">f"$</span><span class="sc">{</span>dollars[y]<span class="sc">:.0f}</span><span class="ss">bn"</span>, dy<span class="op">=</span><span class="dv">4</span>)</span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>ax_d.set_ylim(<span class="dv">0</span>, dollars.<span class="bu">max</span>() <span class="op">*</span> <span class="fl">1.25</span>)</span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>ax_d.set_yticks([<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>], [<span class="st">"$0"</span>, <span class="st">"$10bn"</span>, <span class="st">"$20bn"</span>, <span class="st">"$30bn"</span>])</span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>ss.axis_heading(ax_d, <span class="st">"Dollars spent (not adjusted for inflation)"</span>)</span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>ax_d.set_xticks(<span class="bu">list</span>(years))</span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>ax_d.set_xlim(years[<span class="dv">0</span>] <span class="op">-</span> <span class="fl">0.7</span>, years[<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> <span class="fl">0.7</span>)</span>
-<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>ss.titles(fig, <span class="st">"Repaving and repair takes about three of every ten highway capital dollars"</span>,</span>
-<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f"State highway agency spending on 3R work, </span><span class="sc">{</span>years[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> to </span><span class="sc">{</span>years[<span class="op">-</span><span class="dv">1</span>]<span class="sc">}</span><span class="ss">"</span>,</span>
-<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>          y<span class="op">=</span><span class="fl">0.93</span>)</span>
-<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>ss.source_note(fig, <span class="st">"Source: FHWA Highway Statistics, Table SF-12A. Excludes local-class roads."</span>,</span>
-<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>               y<span class="op">=</span><span class="fl">0.04</span>)</span>
-<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [7]:</pre></div><div id="cell-fig-3r-trend" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-12T02:07:23.078919Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-12T02:07:23.078765Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-12T02:07:23.161263Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-12T02:07:23.160499Z&quot;}}" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>years <span class="op">=</span> summary.index</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>share <span class="op">=</span> summary[<span class="st">"three_r_share"</span>] <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>nominal <span class="op">=</span> summary[<span class="st">"three_r_bn"</span>]</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>real <span class="op">=</span> summary[<span class="st">"three_r_real_bn"</span>]</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>first, last <span class="op">=</span> years[<span class="dv">0</span>], years[<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>change <span class="op">=</span> real[last] <span class="op">/</span> real[first] <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>fig, (ax, ax_d) <span class="op">=</span> plt.subplots(</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="dv">2</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="fl">6.8</span>), sharex<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    gridspec_kw<span class="op">=</span>{<span class="st">"height_ratios"</span>: [<span class="fl">1.7</span>, <span class="fl">2.1</span>], <span class="st">"hspace"</span>: <span class="fl">0.3</span>},</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>ax.plot(years, share, color<span class="op">=</span>ss.BRICK, marker<span class="op">=</span><span class="st">"o"</span>, markersize<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="dv">0</span>, <span class="dv">40</span>)</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>ax.set_yticks([<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>], [<span class="st">"0"</span>, <span class="st">"10"</span>, <span class="st">"20"</span>, <span class="st">"30"</span>, <span class="st">"40%"</span>])</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> y <span class="kw">in</span> (first, last):</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    ss.callout(ax, y, share[y], <span class="ss">f"</span><span class="sc">{</span>share[y]<span class="sc">:.0f}</span><span class="ss">%"</span>, dy<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>ss.axis_heading(ax, <span class="st">"Share of state highway capital outlay"</span>)</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>ax_d.bar(years, real, width<span class="op">=</span><span class="fl">0.7</span>, color<span class="op">=</span>ss.BRICK, alpha<span class="op">=</span><span class="fl">0.38</span>)</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>ax_d.plot(years, nominal, color<span class="op">=</span>ss.INDIGO, marker<span class="op">=</span><span class="st">"o"</span>, markersize<span class="op">=</span><span class="fl">3.5</span>)</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> y <span class="kw">in</span> (first, last):</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>    ss.callout(ax_d, y, real[y], <span class="ss">f"$</span><span class="sc">{</span>real[y]<span class="sc">:.0f}</span><span class="ss">bn"</span>, dy<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>ss.end_label(ax_d, last, nominal[last], <span class="st">"As spent"</span>, color<span class="op">=</span>ss.INDIGO, dx<span class="op">=</span><span class="dv">18</span>, dy<span class="op">=-</span><span class="dv">10</span>)</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>ax_d.set_ylim(<span class="dv">0</span>, real.<span class="bu">max</span>() <span class="op">*</span> <span class="fl">1.22</span>)</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>ticks <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">0</span>, <span class="bu">int</span>(real.<span class="bu">max</span>()) <span class="op">+</span> <span class="dv">1</span>, <span class="dv">10</span>))</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>ax_d.set_yticks(ticks, [<span class="st">"$0"</span>] <span class="op">+</span> [<span class="ss">f"$</span><span class="sc">{</span>t<span class="sc">}</span><span class="ss">bn"</span> <span class="cf">for</span> t <span class="kw">in</span> ticks[<span class="dv">1</span>:]])</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>ss.axis_heading(ax_d, <span class="ss">f"Dollars spent, in </span><span class="sc">{</span>BASE_YEAR<span class="sc">}</span><span class="ss"> construction prices (bars)"</span>)</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>ax_d.set_xticks(<span class="bu">list</span>(years))</span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>ax_d.set_xlim(first <span class="op">-</span> <span class="fl">0.7</span>, last <span class="op">+</span> <span class="fl">0.7</span>)</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>ss.titles(fig, <span class="ss">f"After inflation, states spent </span><span class="sc">{</span><span class="bu">abs</span>(change)<span class="sc">:.0%}</span><span class="ss"> "</span></span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>               <span class="ss">f"</span><span class="sc">{</span><span class="st">'less'</span> <span class="cf">if</span> change <span class="op">&lt;</span> <span class="dv">0</span> <span class="cf">else</span> <span class="st">'more'</span><span class="sc">}</span><span class="ss"> on road repair in </span><span class="sc">{</span>last<span class="sc">}</span><span class="ss"> than in </span><span class="sc">{</span>first<span class="sc">}</span><span class="ss">"</span>,</span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f"State highway agency spending on 3R work, </span><span class="sc">{</span>first<span class="sc">}</span><span class="ss"> to </span><span class="sc">{</span>last<span class="sc">}</span><span class="ss">"</span>, y<span class="op">=</span><span class="fl">0.93</span>)</span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>ss.source_note(fig, <span class="st">"Source: FHWA Highway Statistics, Table SF-12A; FHWA National Highway "</span></span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"Construction Cost Index. Excludes local-class roads."</span>, y<span class="op">=</span><span class="fl">0.04</span>)</span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div id="fig-3r-trend" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -664,32 +776,32 @@
 <img src="road-paving_files/figure-html/fig-3r-trend-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3r-trend-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: State highway agency capital outlay on resurfacing, restoration, rehabilitation and minor widening (3R), as a share of all capital outlay and in dollars. Local-class roads excluded.
+Figure&nbsp;1: State highway agency capital outlay on resurfacing, restoration, rehabilitation and minor widening (3R): its share of all capital outlay, and the dollars before and after adjusting for construction prices. Local-class roads excluded.
 </figcaption>
 </figure>
 </div>
 </div>
 </div></div>
-<div class="cell-container"><div class="cell-decorator"><pre>In [7]:</pre></div><div id="cell-fig-outlay-mix" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-12T01:44:56.131663Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-12T01:44:56.131568Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-12T01:44:56.167719Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-12T01:44:56.167220Z&quot;}}" data-execution_count="7">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>latest <span class="op">=</span> billions.index[<span class="op">-</span><span class="dv">1</span>]</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>mix <span class="op">=</span> billions.loc[latest].sort_values()</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> [ss.BRICK <span class="cf">if</span> group <span class="op">==</span> THREE_R <span class="cf">else</span> ss.FAINT <span class="cf">for</span> group <span class="kw">in</span> mix.index]</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">6.8</span>, <span class="fl">3.8</span>))</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>ax.barh(mix.index, mix.values, color<span class="op">=</span>colors, height<span class="op">=</span><span class="fl">0.66</span>)</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> group, value <span class="kw">in</span> mix.items():</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    ax.text(value <span class="op">+</span> <span class="fl">0.3</span>, group, <span class="ss">f"$</span><span class="sc">{</span>value<span class="sc">:.1f}</span><span class="ss">bn"</span>, va<span class="op">=</span><span class="st">"center"</span>, fontsize<span class="op">=</span><span class="fl">10.5</span>, color<span class="op">=</span>ss.MUTED)</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">False</span>)</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>ax.spines[<span class="st">"bottom"</span>].set_visible(<span class="va">False</span>)</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>ax.set_xticks([])</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="dv">0</span>, mix.<span class="bu">max</span>() <span class="op">*</span> <span class="fl">1.15</span>)</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>ax.tick_params(axis<span class="op">=</span><span class="st">"y"</span>, labelcolor<span class="op">=</span>ss.INK)</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>ss.titles(fig, <span class="st">"Repair is the largest single use of highway capital money"</span>,</span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f"State highway agency capital outlay by kind of work, </span><span class="sc">{</span>latest<span class="sc">}</span><span class="ss">"</span>, y<span class="op">=</span><span class="fl">0.93</span>)</span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>ss.source_note(fig, <span class="st">"Source: FHWA Highway Statistics, Table SF-12A. Excludes local-class roads."</span>,</span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>               y<span class="op">=</span><span class="fl">0.0</span>)</span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [8]:</pre></div><div id="cell-fig-outlay-mix" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-12T02:07:23.163058Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-12T02:07:23.162976Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-12T02:07:23.196842Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-12T02:07:23.196498Z&quot;}}" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>latest <span class="op">=</span> billions.index[<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>mix <span class="op">=</span> billions.loc[latest].sort_values()</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> [ss.BRICK <span class="cf">if</span> group <span class="op">==</span> THREE_R <span class="cf">else</span> ss.FAINT <span class="cf">for</span> group <span class="kw">in</span> mix.index]</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">6.8</span>, <span class="fl">3.8</span>))</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>ax.barh(mix.index, mix.values, color<span class="op">=</span>colors, height<span class="op">=</span><span class="fl">0.66</span>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> group, value <span class="kw">in</span> mix.items():</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    ax.text(value <span class="op">+</span> <span class="fl">0.3</span>, group, <span class="ss">f"$</span><span class="sc">{</span>value<span class="sc">:.1f}</span><span class="ss">bn"</span>, va<span class="op">=</span><span class="st">"center"</span>, fontsize<span class="op">=</span><span class="fl">10.5</span>, color<span class="op">=</span>ss.MUTED)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">False</span>)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>ax.spines[<span class="st">"bottom"</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>ax.set_xticks([])</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="dv">0</span>, mix.<span class="bu">max</span>() <span class="op">*</span> <span class="fl">1.15</span>)</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>ax.tick_params(axis<span class="op">=</span><span class="st">"y"</span>, labelcolor<span class="op">=</span>ss.INK)</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>ss.titles(fig, <span class="st">"Repair is the largest single use of highway capital money"</span>,</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f"State highway agency capital outlay by kind of work, </span><span class="sc">{</span>latest<span class="sc">}</span><span class="ss">"</span>, y<span class="op">=</span><span class="fl">0.93</span>)</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>ss.source_note(fig, <span class="st">"Source: FHWA Highway Statistics, Table SF-12A. Excludes local-class roads."</span>,</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>               y<span class="op">=</span><span class="fl">0.0</span>)</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div id="fig-outlay-mix" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -703,13 +815,240 @@ Figure&nbsp;2: State highway agency capital outlay by kind of work, latest year.
 </div>
 </div>
 </div></div>
-<div id="469c3df40c334518" class="cell markdown">
-<section id="not-done-yet" class="level3">
-<h3 class="anchored" data-anchor-id="not-done-yet">Not done yet</h3>
-<ul>
-<li><strong>Miles, not just dollars.</strong> The plan was to add miles improved per year from FHWA’s HPMS public release. Its download page no longer links the files directly, so that source still needs a working route in.</li>
-<li><strong>Inflation.</strong> Deflating by a highway construction cost index would show how much of the dollar increase is real.</li>
-</ul>
+<div id="b5e1eccf95dd4b32" class="cell markdown">
+<section id="miles-table-fa-10" class="level3">
+<h3 class="anchored" data-anchor-id="miles-table-fa-10">Miles: Table FA-10</h3>
+<p>FA-10 lists, for projects with federal-aid funds authorized in each fiscal year, the miles covered and the total project cost by kind of work. Miles here are divided only by FA-10’s own costs, restated in the base year’s prices.</p>
+<p>The split between “resurfacing” and “restoration and rehabilitation” moves around a lot from year to year, which looks like reclassification, so the two are added together.</p>
+</section>
+</div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [9]:</pre></div><div id="f7eb4b22d5f04bf4" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-12T02:07:23.198081Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-12T02:07:23.198005Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-12T02:07:23.201528Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-12T02:07:23.201153Z&quot;}}" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>FA10_MEASURES <span class="op">=</span> {<span class="st">"number of miles"</span>: <span class="st">"miles"</span>, <span class="st">"total cost"</span>: <span class="st">"total_cost_thousands"</span>,</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"federal funds"</span>: <span class="st">"federal_funds_thousands"</span>}</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> read_fa10(path):</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""One year's FA-10 table -&gt; rows of (year, improvement, measure, value).</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co">    The table stacks a block per improvement type: a heading row, then</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co">    "Number Of Miles", "Federal Funds" and "Total Cost" rows across the road</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co">    classes, ending in a total column. Only the total column is kept, after</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co">    checking that it equals the sum of the road classes.</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    year <span class="op">=</span> <span class="bu">int</span>(path.name[:<span class="dv">4</span>])</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    raw <span class="op">=</span> pd.read_excel(path, header<span class="op">=</span><span class="va">None</span>, dtype<span class="op">=</span><span class="bu">object</span>)</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    text <span class="op">=</span> raw.<span class="bu">map</span>(squash)</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    measure_col <span class="op">=</span> <span class="bu">next</span>(c <span class="cf">for</span> c <span class="kw">in</span> text.columns</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>                       <span class="cf">if</span> (text[c].<span class="bu">str</span>.lower() <span class="op">==</span> <span class="st">"number of miles"</span>).<span class="bu">any</span>())</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    rows, improvement <span class="op">=</span> [], <span class="va">None</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> raw.index:</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>        heading <span class="op">=</span> <span class="st">" "</span>.join(t <span class="cf">for</span> t <span class="kw">in</span> text.loc[i, :measure_col <span class="op">-</span> <span class="dv">1</span>] <span class="cf">if</span> t)</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>        measure <span class="op">=</span> text.at[i, measure_col].lower()</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> heading:</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>            improvement <span class="op">=</span> re.sub(<span class="vs">r"</span><span class="dv">\s</span><span class="op">*</span><span class="kw">(</span><span class="ch">\(</span><span class="dv">\d</span><span class="op">+</span><span class="ch">\)</span><span class="cf">|</span><span class="dv">\d</span><span class="op">+</span><span class="vs">/</span><span class="kw">)</span><span class="dv">$</span><span class="vs">"</span>, <span class="st">""</span>, heading)</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> improvement <span class="op">==</span> <span class="st">"U.S. Total"</span>:</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>            <span class="cf">continue</span>   <span class="co"># not used, and FHWA's own grand-total row does not always add up</span></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> measure <span class="kw">in</span> FA10_MEASURES <span class="kw">and</span> improvement:</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>            values <span class="op">=</span> pd.to_numeric(raw.loc[i, measure_col <span class="op">+</span> <span class="dv">1</span>:], errors<span class="op">=</span><span class="st">"coerce"</span>).dropna()</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>            total, parts <span class="op">=</span> values.iloc[<span class="op">-</span><span class="dv">1</span>], values.iloc[:<span class="op">-</span><span class="dv">1</span>].<span class="bu">sum</span>()</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="bu">abs</span>(total <span class="op">-</span> parts) <span class="op">&gt;</span> <span class="bu">max</span>(<span class="fl">1.0</span>, <span class="bu">abs</span>(total) <span class="op">*</span> <span class="fl">0.001</span>):</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>                <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="ss">f"</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss"> FA-10 </span><span class="sc">{</span>improvement<span class="sc">}</span><span class="ss"> </span><span class="sc">{</span>measure<span class="sc">}</span><span class="ss">: "</span></span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>                                 <span class="ss">f"total </span><span class="sc">{</span>total<span class="sc">}</span><span class="ss"> is not the sum of its columns </span><span class="sc">{</span>parts<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>            rows.append({<span class="st">"year"</span>: year, <span class="st">"improvement"</span>: improvement,</span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>                         <span class="st">"measure"</span>: FA10_MEASURES[measure], <span class="st">"value"</span>: <span class="bu">float</span>(total)})</span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pd.DataFrame(rows)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [10]:</pre></div><div id="b129675606274df2" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-12T02:07:23.202789Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-12T02:07:23.202714Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-12T02:07:23.554963Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-12T02:07:23.554308Z&quot;}}" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>fa10 <span class="op">=</span> pd.concat([read_fa10(p) <span class="cf">for</span> p <span class="kw">in</span> cached(<span class="st">"fa10"</span>)], ignore_index<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>REPAVING <span class="op">=</span> [<span class="st">"Resurfacing"</span>, <span class="st">"Restoration &amp; Rehabilitation"</span>]</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>repaving <span class="op">=</span> (fa10[fa10[<span class="st">"improvement"</span>].isin(REPAVING)]</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>            .pivot_table(index<span class="op">=</span><span class="st">"year"</span>, columns<span class="op">=</span><span class="st">"measure"</span>, values<span class="op">=</span><span class="st">"value"</span>, aggfunc<span class="op">=</span><span class="st">"sum"</span>))</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>miles <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"miles"</span>: repaving[<span class="st">"miles"</span>],</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"total_cost_bn"</span>: repaving[<span class="st">"total_cost_thousands"</span>] <span class="op">/</span> <span class="fl">1e6</span>,</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>miles[<span class="st">"total_cost_real_bn"</span>] <span class="op">=</span> miles[<span class="st">"total_cost_bn"</span>] <span class="op">*</span> to_base_dollars.reindex(miles.index)</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>miles[<span class="st">"miles_per_million_real"</span>] <span class="op">=</span> miles[<span class="st">"miles"</span>] <span class="op">/</span> (miles[<span class="st">"total_cost_real_bn"</span>] <span class="op">*</span> <span class="dv">1000</span>)</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>miles[<span class="st">"base_year"</span>] <span class="op">=</span> BASE_YEAR</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>miles.to_csv(PROC <span class="op">/</span> <span class="st">"federal_aid_repaving_miles.csv"</span>)</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>missing <span class="op">=</span> <span class="bu">sorted</span>(<span class="bu">set</span>(<span class="bu">range</span>(miles.index.<span class="bu">min</span>(), miles.index.<span class="bu">max</span>() <span class="op">+</span> <span class="dv">1</span>)) <span class="op">-</span> <span class="bu">set</span>(miles.index))</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"No FA-10 table for: </span><span class="sc">{</span>missing <span class="kw">or</span> <span class="st">'none'</span><span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>(miles.drop(columns<span class="op">=</span><span class="st">"base_year"</span>)</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a> .rename(columns<span class="op">=</span>{<span class="st">"miles"</span>: <span class="st">"Miles"</span>, <span class="st">"total_cost_bn"</span>: <span class="st">"Total cost ($bn)"</span>,</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"total_cost_real_bn"</span>: <span class="ss">f"Total cost (</span><span class="sc">{</span>BASE_YEAR<span class="sc">}</span><span class="ss"> $bn)"</span>,</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"miles_per_million_real"</span>: <span class="ss">f"Miles per $1m (</span><span class="sc">{</span>BASE_YEAR<span class="sc">}</span><span class="ss"> $)"</span>})</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a> .style.<span class="bu">format</span>({<span class="st">"Miles"</span>: <span class="st">"</span><span class="sc">{:,.0f}</span><span class="st">"</span>, <span class="st">"Total cost ($bn)"</span>: <span class="st">"</span><span class="sc">{:.1f}</span><span class="st">"</span>,</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>                <span class="ss">f"Total cost (</span><span class="sc">{</span>BASE_YEAR<span class="sc">}</span><span class="ss"> $bn)"</span>: <span class="st">"</span><span class="sc">{:.1f}</span><span class="st">"</span>,</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>                <span class="ss">f"Miles per $1m (</span><span class="sc">{</span>BASE_YEAR<span class="sc">}</span><span class="ss"> $)"</span>: <span class="st">"</span><span class="sc">{:.2f}</span><span class="st">"</span>}))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>No FA-10 table for: [2021]</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<style type="text/css">
+</style>
+
+<table id="T_2649d" class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th class="blank level0" data-quarto-table-cell-role="th">&nbsp;</th>
+<th id="T_2649d_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Miles</th>
+<th id="T_2649d_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Total cost ($bn)</th>
+<th id="T_2649d_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">Total cost (2024 $bn)</th>
+<th id="T_2649d_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">Miles per $1m (2024 $)</th>
+</tr>
+<tr class="even">
+<th class="index_name level0" data-quarto-table-cell-role="th">year</th>
+<th class="blank col0" data-quarto-table-cell-role="th">&nbsp;</th>
+<th class="blank col1" data-quarto-table-cell-role="th">&nbsp;</th>
+<th class="blank col2" data-quarto-table-cell-role="th">&nbsp;</th>
+<th class="blank col3" data-quarto-table-cell-role="th">&nbsp;</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th id="T_2649d_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th">2012</th>
+<td id="T_2649d_row0_col0" class="data row0 col0">54,079</td>
+<td id="T_2649d_row0_col1" class="data row0 col1">10.3</td>
+<td id="T_2649d_row0_col2" class="data row0 col2">20.8</td>
+<td id="T_2649d_row0_col3" class="data row0 col3">2.61</td>
+</tr>
+<tr class="even">
+<th id="T_2649d_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th">2013</th>
+<td id="T_2649d_row1_col0" class="data row1 col0">62,367</td>
+<td id="T_2649d_row1_col1" class="data row1 col1">10.3</td>
+<td id="T_2649d_row1_col2" class="data row1 col2">20.8</td>
+<td id="T_2649d_row1_col3" class="data row1 col3">3.00</td>
+</tr>
+<tr class="odd">
+<th id="T_2649d_level0_row2" class="row_heading level0 row2" data-quarto-table-cell-role="th">2014</th>
+<td id="T_2649d_row2_col0" class="data row2 col0">45,138</td>
+<td id="T_2649d_row2_col1" class="data row2 col1">10.3</td>
+<td id="T_2649d_row2_col2" class="data row2 col2">19.8</td>
+<td id="T_2649d_row2_col3" class="data row2 col3">2.28</td>
+</tr>
+<tr class="even">
+<th id="T_2649d_level0_row3" class="row_heading level0 row3" data-quarto-table-cell-role="th">2015</th>
+<td id="T_2649d_row3_col0" class="data row3 col0">46,115</td>
+<td id="T_2649d_row3_col1" class="data row3 col1">11.7</td>
+<td id="T_2649d_row3_col2" class="data row3 col2">22.3</td>
+<td id="T_2649d_row3_col3" class="data row3 col3">2.07</td>
+</tr>
+<tr class="odd">
+<th id="T_2649d_level0_row4" class="row_heading level0 row4" data-quarto-table-cell-role="th">2016</th>
+<td id="T_2649d_row4_col0" class="data row4 col0">35,198</td>
+<td id="T_2649d_row4_col1" class="data row4 col1">8.7</td>
+<td id="T_2649d_row4_col2" class="data row4 col2">17.0</td>
+<td id="T_2649d_row4_col3" class="data row4 col3">2.07</td>
+</tr>
+<tr class="even">
+<th id="T_2649d_level0_row5" class="row_heading level0 row5" data-quarto-table-cell-role="th">2017</th>
+<td id="T_2649d_row5_col0" class="data row5 col0">32,781</td>
+<td id="T_2649d_row5_col1" class="data row5 col1">10.1</td>
+<td id="T_2649d_row5_col2" class="data row5 col2">19.6</td>
+<td id="T_2649d_row5_col3" class="data row5 col3">1.67</td>
+</tr>
+<tr class="odd">
+<th id="T_2649d_level0_row6" class="row_heading level0 row6" data-quarto-table-cell-role="th">2018</th>
+<td id="T_2649d_row6_col0" class="data row6 col0">44,312</td>
+<td id="T_2649d_row6_col1" class="data row6 col1">13.3</td>
+<td id="T_2649d_row6_col2" class="data row6 col2">24.2</td>
+<td id="T_2649d_row6_col3" class="data row6 col3">1.83</td>
+</tr>
+<tr class="even">
+<th id="T_2649d_level0_row7" class="row_heading level0 row7" data-quarto-table-cell-role="th">2019</th>
+<td id="T_2649d_row7_col0" class="data row7 col0">43,754</td>
+<td id="T_2649d_row7_col1" class="data row7 col1">15.4</td>
+<td id="T_2649d_row7_col2" class="data row7 col2">25.9</td>
+<td id="T_2649d_row7_col3" class="data row7 col3">1.69</td>
+</tr>
+<tr class="odd">
+<th id="T_2649d_level0_row8" class="row_heading level0 row8" data-quarto-table-cell-role="th">2020</th>
+<td id="T_2649d_row8_col0" class="data row8 col0">38,676</td>
+<td id="T_2649d_row8_col1" class="data row8 col1">15.0</td>
+<td id="T_2649d_row8_col2" class="data row8 col2">25.3</td>
+<td id="T_2649d_row8_col3" class="data row8 col3">1.53</td>
+</tr>
+<tr class="even">
+<th id="T_2649d_level0_row9" class="row_heading level0 row9" data-quarto-table-cell-role="th">2022</th>
+<td id="T_2649d_row9_col0" class="data row9 col0">41,405</td>
+<td id="T_2649d_row9_col1" class="data row9 col1">19.5</td>
+<td id="T_2649d_row9_col2" class="data row9 col2">24.3</td>
+<td id="T_2649d_row9_col3" class="data row9 col3">1.71</td>
+</tr>
+<tr class="odd">
+<th id="T_2649d_level0_row10" class="row_heading level0 row10" data-quarto-table-cell-role="th">2023</th>
+<td id="T_2649d_row10_col0" class="data row10 col0">37,681</td>
+<td id="T_2649d_row10_col1" class="data row10 col1">19.9</td>
+<td id="T_2649d_row10_col2" class="data row10 col2">21.4</td>
+<td id="T_2649d_row10_col3" class="data row10 col3">1.76</td>
+</tr>
+<tr class="even">
+<th id="T_2649d_level0_row11" class="row_heading level0 row11" data-quarto-table-cell-role="th">2024</th>
+<td id="T_2649d_row11_col0" class="data row11 col0">31,308</td>
+<td id="T_2649d_row11_col1" class="data row11 col1">16.4</td>
+<td id="T_2649d_row11_col2" class="data row11 col2">16.4</td>
+<td id="T_2649d_row11_col3" class="data row11 col3">1.91</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [11]:</pre></div><div id="cell-fig-miles" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-12T02:07:23.556464Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-12T02:07:23.556374Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-12T02:07:23.628250Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-12T02:07:23.627741Z&quot;}}" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reindex so a year without a table shows as a gap, not a straight line across it.</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>span <span class="op">=</span> <span class="bu">range</span>(miles.index.<span class="bu">min</span>(), miles.index.<span class="bu">max</span>() <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> miles.reindex(span)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>thousand_miles <span class="op">=</span> m[<span class="st">"miles"</span>] <span class="op">/</span> <span class="dv">1000</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>per_million <span class="op">=</span> m[<span class="st">"miles_per_million_real"</span>]</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>first, last <span class="op">=</span> miles.index[<span class="dv">0</span>], miles.index[<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>fig, (ax, ax_r) <span class="op">=</span> plt.subplots(</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="dv">2</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="fl">6.8</span>), sharex<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    gridspec_kw<span class="op">=</span>{<span class="st">"height_ratios"</span>: [<span class="dv">2</span>, <span class="dv">2</span>], <span class="st">"hspace"</span>: <span class="fl">0.3</span>},</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>ax.bar(m.index, thousand_miles, width<span class="op">=</span><span class="fl">0.7</span>, color<span class="op">=</span>ss.BRICK, alpha<span class="op">=</span><span class="fl">0.38</span>)</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> y <span class="kw">in</span> (first, last):</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    ss.callout(ax, y, thousand_miles[y], <span class="ss">f"</span><span class="sc">{</span>miles<span class="sc">.</span>at[y, <span class="st">'miles'</span>]<span class="sc">:,.0f}</span><span class="ss">"</span>, dy<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="dv">0</span>, thousand_miles.<span class="bu">max</span>() <span class="op">*</span> <span class="fl">1.2</span>)</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>ax.set_yticks([<span class="dv">0</span>, <span class="dv">20</span>, <span class="dv">40</span>, <span class="dv">60</span>], [<span class="st">"0"</span>, <span class="st">"20k"</span>, <span class="st">"40k"</span>, <span class="st">"60k"</span>])</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>ss.axis_heading(ax, <span class="st">"Miles of road in projects authorized each year"</span>)</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>ax_r.plot(m.index, per_million, color<span class="op">=</span>ss.BRICK, marker<span class="op">=</span><span class="st">"o"</span>, markersize<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> y <span class="kw">in</span> (first, last):</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>    ss.callout(ax_r, y, per_million[y], <span class="ss">f"</span><span class="sc">{</span>per_million[y]<span class="sc">:.1f}</span><span class="ss">"</span>, dy<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>ax_r.set_ylim(<span class="dv">0</span>, per_million.<span class="bu">max</span>() <span class="op">*</span> <span class="fl">1.3</span>)</span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>ss.axis_heading(ax_r, <span class="ss">f"Miles per $1 million of project cost, in </span><span class="sc">{</span>BASE_YEAR<span class="sc">}</span><span class="ss"> construction prices"</span>)</span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> y <span class="kw">in</span> missing:</span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>    ax_r.text(y, per_million.<span class="bu">max</span>() <span class="op">*</span> <span class="fl">0.08</span>, <span class="st">"no table"</span>, ha<span class="op">=</span><span class="st">"center"</span>, fontsize<span class="op">=</span><span class="dv">9</span>, color<span class="op">=</span>ss.FAINT)</span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>ax_r.set_xticks(<span class="bu">list</span>(m.index))</span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>ax_r.set_xlim(first <span class="op">-</span> <span class="fl">0.7</span>, last <span class="op">+</span> <span class="fl">0.7</span>)</span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>ss.titles(fig, <span class="ss">f"A million dollars covered </span><span class="sc">{</span>per_million[first]<span class="sc">:.1f}</span><span class="ss"> miles of repaving in </span><span class="sc">{</span>first<span class="sc">}</span><span class="ss">, "</span></span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>               <span class="ss">f"and </span><span class="sc">{</span>per_million[last]<span class="sc">:.1f}</span><span class="ss"> in </span><span class="sc">{</span>last<span class="sc">}</span><span class="ss">"</span>,</span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Federal-aid resurfacing, restoration and rehabilitation projects, by fiscal year"</span>, y<span class="op">=</span><span class="fl">0.93</span>)</span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a>ss.source_note(fig, <span class="st">"Source: FHWA Highway Statistics, Table FA-10; FHWA National Highway "</span></span>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"Construction Cost Index."</span>, y<span class="op">=</span><span class="fl">0.04</span>)</span>
+<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="fig-miles" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-miles-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
+<img src="road-paving_files/figure-html/fig-miles-output-1.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-miles-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Federal-aid resurfacing, restoration and rehabilitation projects by fiscal year: miles covered, and miles per million dollars of project cost after adjusting for construction prices.
+</figcaption>
+</figure>
+</div>
+</div>
+</div></div>
+<div id="945708b1f48345bd" class="cell markdown">
+<section id="reading-miles-per-dollar-with-care" class="level3">
+<h3 class="anchored" data-anchor-id="reading-miles-per-dollar-with-care">Reading miles per dollar with care</h3>
+<p>A fall in miles per dollar is not only a price effect, since prices are already taken out. It can also mean the work itself changed: more rehabilitation and less thin overlay, more urban and multi-lane roads, or more added work such as safety and drainage inside the same project. FA-10 counts centerline miles of projects, not lane-miles, and cannot separate these.</p>
 </section>
 </div>
 
