@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>US Road Paving and Resurfacing: Data Acquisition – Eric Eliot Schnitger’s Portfolio</title>
+<title>US Road Paving and Repair: Data Notebook – Eric Eliot Schnitger’s Portfolio</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -74,7 +74,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
 
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
-<script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@*/dist/embed-amd.js" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://api.fontshare.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
@@ -136,7 +135,16 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#download" id="toc-download" class="nav-link active" data-scroll-target="#download">Download</a></li>
+  <li><a href="#read-every-sheet" id="toc-read-every-sheet" class="nav-link" data-scroll-target="#read-every-sheet">Read every sheet</a></li>
+  <li><a href="#national-series" id="toc-national-series" class="nav-link" data-scroll-target="#national-series">National series</a></li>
+  <li><a href="#not-done-yet" id="toc-not-done-yet" class="nav-link" data-scroll-target="#not-done-yet">Not done yet</a></li>
+  </ul>
+</nav>
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
@@ -147,7 +155,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">US Road Paving and Resurfacing: Data Acquisition</h1>
+<h1 class="title">US Road Paving and Repair: Data Notebook</h1>
 </div>
 
 
@@ -164,171 +172,172 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Pulls annual paving and resurfacing activity from two federal sources:</p>
-<ol type="1">
-<li>FHWA Highway Statistics Series (SF tables) — state highway capital outlay by improvement type, in dollars and miles.</li>
-<li>FHWA HPMS public release — segment-level Year of Last Improvement, aggregated to miles per year.</li>
-</ol>
-<p>Outputs tidy CSVs into ./data/processed/.</p>
-<p>Caveat retained throughout: neither source captures the full universe of locally owned road mileage. Treat results as a well-instrumented estimate.</p>
-<div id="c3d1ea08a7065df5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2026-09-11T04:58:07.136762Z&quot;,&quot;start_time&quot;:&quot;2026-09-11T04:58:05.425459Z&quot;}}" data-execution_count="1">
+<p>This notebook builds the data behind the road paving project.</p>
+<p>It reads FHWA Highway Statistics Table SF-12A, which reports what each state highway agency spent on capital projects, split by the kind of work. One workbook is published per year, with one sheet per road class in rural or urban areas.</p>
+<p>Resurfacing is not reported on its own in most years. States that use the revised reporting form fold it into “restoration and rehabilitation”, so the measure used here is FHWA’s whole <strong>3R</strong> group: resurfacing, restoration, rehabilitation, and minor widening.</p>
+<p><strong>Caveats</strong></p>
+<ul>
+<li>Dollars are nominal. Construction costs rose over the period, so the rise in dollars overstates the rise in work done. Shares of spending are not affected.</li>
+<li>These are state highway agency outlays. Spending by cities and counties on their own roads is not included.</li>
+<li>Local-class roads only appear in the table from 2015, so they are left out to keep the years comparable.</li>
+<li>When a state did not report, FHWA reuses its previous year’s figures.</li>
+</ul>
+<section id="download" class="level3">
+<h3 class="anchored" data-anchor-id="download">Download</h3>
+<p>Workbooks are downloaded once into <code>data/raw/</code> and reused after that. Set <code>REFRESH = True</code> above to pick up a newly published year.</p>
+<div id="e03e90aebe494e3c" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-12T01:44:48.099768Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-12T01:44:48.099611Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-12T01:44:48.104913Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-12T01:44:48.104497Z&quot;}}" data-execution_count="2">
 <div class="cell-output cell-output-stdout">
-<pre><code>Note: you may need to restart the kernel to use updated packages.
-Note: you may need to restart the kernel to use updated packages.</code></pre>
+<pre><code>12 SF-12A workbooks, 2012 to 2023</code></pre>
 </div>
 </div>
-<div id="40d0fa30ebe7e83c" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2026-09-11T04:58:09.531632Z&quot;,&quot;start_time&quot;:&quot;2026-09-11T04:58:08.550350Z&quot;}}" data-execution_count="4">
+</section>
+<section id="read-every-sheet" class="level3">
+<h3 class="anchored" data-anchor-id="read-every-sheet">Read every sheet</h3>
+<p>Each sheet has the states down the side and the improvement types across the top. Headings are matched by name, and an unrecognised heading stops the run, so a change in FHWA’s layout cannot slip through as a wrong number.</p>
+<div id="3cdc13b62d3f4844" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-12T01:44:48.114656Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-12T01:44:48.114589Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-12T01:44:55.984037Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-12T01:44:55.983586Z&quot;}}" data-execution_count="4">
 <div class="cell-output cell-output-stdout">
-<pre><code>Found 31 year pages</code></pre>
+<pre><code>122,706 rows from 12 workbooks; every column total matches the published Total row.</code></pre>
 </div>
 </div>
-<div id="c00455576de30013" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2026-09-11T05:02:50.991644Z&quot;,&quot;start_time&quot;:&quot;2026-09-11T05:02:48.463709Z&quot;}}" data-execution_count="18">
-<div class="cell-output cell-output-stdout">
-<pre><code>Empty DataFrame
-Columns: []
-Index: []</code></pre>
-</div>
-</div>
-<div id="f22dfd973cc04657" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2026-09-11T04:58:19.761949Z&quot;,&quot;start_time&quot;:&quot;2026-09-11T04:58:09.549978Z&quot;}}" data-execution_count="6">
-<div class="cell-output cell-output-display">
-<script type="application/vnd.jupyter.widget-view+json">
-{"version_major":2,"version_minor":0,"model_id":"7496f07b48a8458592e8ef45504db2e3","quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
-</script>
-</div>
-</div>
-<div id="cc966a127056fa30" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2026-09-11T04:58:31.224912Z&quot;,&quot;start_time&quot;:&quot;2026-09-11T04:58:19.882175Z&quot;}}" data-execution_count="9">
-<div class="cell-output cell-output-stdout">
-<pre><code>2011 sf12: (52, 13)
-2012 sf12: (52, 13)
-2012 sf12a: (52, 19)
-2012 sf12b: (52, 15)
-2013 sf12: (52, 13)
-2013 sf12a: (52, 19)
-2013 sf12b: (52, 15)
-2014 sf12: (52, 13)
-2014 sf12a: (52, 19)
-2014 sf12b: (52, 15)
-2015 sf12: (52, 21)
-2015 sf12a: (52, 18)
-2015 sf12b: (53, 15)
-2016 sf12: (52, 21)
-2016 sf12a: (52, 18)
-2016 sf12b: (53, 15)
-2017 sf12: (52, 21)
-2017 sf12a: (52, 18)
-2017 sf12b: (53, 15)
-2018 sf12: (52, 15)
-2018 sf12a: (52, 19)
-2018 sf12b: (53, 15)
-2019 sf12: (52, 15)
-2019 sf12a: (52, 19)
-2019 sf12b: (56, 15)
-2020 sf12: (52, 15)
-2020 sf12a: (52, 19)
-2020 sf12b: (56, 15)
-2021 sf12: (55, 15)
-2021 sf12a: (55, 19)
-2021 sf12b: (56, 15)
-2022 sf12: (55, 15)
-2022 sf12a: (55, 19)
-2022 sf12b: (56, 15)
-2023 sf12: (55, 15)
-2023 sf12a: (55, 19)
-2023 sf12b: (56, 15)
-2011 sf12 duplicated columns: ['OTHER PRINCIPAL ARTERIAL', 'MINOR ARTERIAL', 'MAJOR COLLECTOR', 'MINOR COLLECTOR', 'SUBTOTAL 2/']
-2012 sf12 duplicated columns: ['OTHER PRINCIPAL ARTERIAL', 'MINOR ARTERIAL', 'MAJOR COLLECTOR', 'MINOR COLLECTOR', 'SUBTOTAL 2/']
-2012 sf12b duplicated columns: ['NATIONAL HIGHWAY SYSTEM INTERSTATE', 'OTHER NHS', 'FEDERAL - AID HIGHWAYS TOTAL NHS', 'OTHER FEDERAL-AID HIGHWAYS 2/', 'TOTAL FEDERAL-AID HIGHWAYS', 'NON- FEDERAL-AID HIGHWAYS 3/', 'TOTAL']
-2013 sf12 duplicated columns: ['OTHER PRINCIPAL ARTERIAL', 'MINOR ARTERIAL', 'MAJOR COLLECTOR', 'MINOR COLLECTOR', 'SUBTOTAL 2/']
-2013 sf12b duplicated columns: ['NATIONAL HIGHWAY SYSTEM INTERSTATE', 'OTHER NHS', 'FEDERAL - AID HIGHWAYS TOTAL NHS', 'OTHER FEDERAL-AID HIGHWAYS 2/', 'TOTAL FEDERAL-AID HIGHWAYS', 'NON- FEDERAL-AID HIGHWAYS 3/', 'TOTAL']
-2014 sf12 duplicated columns: ['OTHER PRINCIPAL ARTERIAL', 'MINOR ARTERIAL', 'MAJOR COLLECTOR', 'MINOR COLLECTOR', 'SUBTOTAL 2/']
-2014 sf12b duplicated columns: ['NATIONAL HIGHWAY SYSTEM INTERSTATE', 'OTHER NHS', 'FEDERAL - AID HIGHWAYS TOTAL NHS', 'OTHER FEDERAL-AID HIGHWAYS 2/', 'TOTAL FEDERAL-AID HIGHWAYS', 'NON- FEDERAL-AID HIGHWAYS 3/', 'TOTAL']
-2015 sf12 duplicated columns: ['OTHER FWYS AND EXPRESSWAYS', 'OTHER PRINCIPAL ARTERIAL', 'MINOR ARTERIAL', 'MAJOR COLLECTOR', 'MINOR COLLECTOR', 'SUBTOTAL 2/']
-2015 sf12b duplicated columns: ['NATIONAL HIGHWAY SYSTEM INTERSTATE', 'OTHER NHS 2/', 'FEDERAL - AID HIGHWAYS TOTAL NHS', 'OTHER FEDERAL-AID HIGHWAYS 4/', 'TOTAL FEDERAL-AID HIGHWAYS', 'NON- FEDERAL-AID HIGHWAYS 5/', 'TOTAL']
-2016 sf12 duplicated columns: ['OTHER FWYS AND EXPRESSWAYS', 'OTHER PRINCIPAL ARTERIAL', 'MINOR ARTERIAL', 'MAJOR COLLECTOR', 'MINOR COLLECTOR', 'SUBTOTAL 2/']
-2016 sf12b duplicated columns: ['NATIONAL HIGHWAY SYSTEM INTERSTATE', 'OTHER NHS 2/', 'FEDERAL - AID HIGHWAYS TOTAL NHS', 'OTHER FEDERAL-AID HIGHWAYS 4/', 'TOTAL FEDERAL-AID HIGHWAYS', 'NON- FEDERAL-AID HIGHWAYS 5/', 'TOTAL']
-2017 sf12 duplicated columns: ['OTHER FWYS AND EXPRESSWAYS', 'OTHER PRINCIPAL ARTERIAL', 'MINOR ARTERIAL', 'MAJOR COLLECTOR', 'MINOR COLLECTOR', 'SUBTOTAL 2/']
-2017 sf12b duplicated columns: ['NATIONAL HIGHWAY SYSTEM INTERSTATE', 'OTHER NHS 2/', 'FEDERAL - AID HIGHWAYS TOTAL NHS', 'OTHER FEDERAL-AID HIGHWAYS 4/', 'TOTAL FEDERAL-AID HIGHWAYS', 'NON- FEDERAL-AID HIGHWAYS 5/', 'TOTAL']
-2018 sf12 duplicated columns: ['OTHER FWYS AND EXPRESSWAYS', 'OTHER PRINCIPAL ARTERIAL', 'MINOR ARTERIAL', 'MAJOR COLLECTOR', 'MINOR COLLECTOR', 'SUBTOTAL 2/']
-2018 sf12b duplicated columns: ['NATIONAL HIGHWAY SYSTEM INTERSTATE', 'OTHER NHS 2/', 'FEDERAL - AID HIGHWAYS TOTAL NHS', 'OTHER FEDERAL-AID HIGHWAYS 4/', 'TOTAL FEDERAL-AID HIGHWAYS', 'NON- FEDERAL-AID HIGHWAYS 5/', 'TOTAL']
-2019 sf12 duplicated columns: ['OTHER FWYS AND EXPRESSWAYS', 'OTHER PRINCIPAL ARTERIAL', 'MINOR ARTERIAL', 'MAJOR COLLECTOR', 'MINOR COLLECTOR', 'SUBTOTAL (2)']
-2019 sf12b duplicated columns: ['NATIONAL HIGHWAY SYSTEM INTERSTATE', 'OTHER NHS (2)', 'FEDERAL - AID HIGHWAYS TOTAL NHS', 'OTHER FEDERAL-AID HIGHWAYS (4)', 'TOTAL FEDERAL-AID HIGHWAYS', 'TOTAL']
-2020 sf12 duplicated columns: ['OTHER FWYS AND EXPRESSWAYS', 'OTHER PRINCIPAL ARTERIAL', 'MINOR ARTERIAL', 'MAJOR COLLECTOR', 'MINOR COLLECTOR', 'SUBTOTAL (2)']
-2020 sf12b duplicated columns: ['NATIONAL HIGHWAY SYSTEM INTERSTATE', 'OTHER NHS (2)', 'FEDERAL - AID HIGHWAYS TOTAL NHS', 'OTHER FEDERAL-AID HIGHWAYS (4)', 'TOTAL FEDERAL-AID HIGHWAYS', 'TOTAL']
-2021 sf12 duplicated columns: ['OTHER FWYS AND EXPRESSWAYS', 'OTHER PRINCIPAL ARTERIAL', 'MINOR ARTERIAL', 'MAJOR COLLECTOR', 'MINOR COLLECTOR', 'SUBTOTAL (2)']
-2021 sf12b duplicated columns: ['NATIONAL HIGHWAY SYSTEM INTERSTATE', 'OTHER NHS (2)', 'FEDERAL - AID HIGHWAYS TOTAL NHS', 'OTHER FEDERAL-AID HIGHWAYS (4)', 'TOTAL FEDERAL-AID HIGHWAYS', 'TOTAL']
-2022 sf12 duplicated columns: ['OTHER FWYS AND EXPRESSWAYS', 'OTHER PRINCIPAL ARTERIAL', 'MINOR ARTERIAL', 'MAJOR COLLECTOR', 'MINOR COLLECTOR', 'SUBTOTAL (2)']
-2022 sf12b duplicated columns: ['NATIONAL HIGHWAY SYSTEM INTERSTATE', 'OTHER NHS (2)', 'FEDERAL - AID HIGHWAYS TOTAL NHS', 'OTHER FEDERAL-AID HIGHWAYS (4)', 'TOTAL FEDERAL-AID HIGHWAYS', 'TOTAL']
-2023 sf12 duplicated columns: ['OTHER FWYS AND EXPRESSWAYS', 'OTHER PRINCIPAL ARTERIAL', 'MINOR ARTERIAL', 'MAJOR COLLECTOR', 'MINOR COLLECTOR', 'SUBTOTAL (2)']
-2023 sf12b duplicated columns: ['NATIONAL HIGHWAY SYSTEM INTERSTATE', 'OTHER NHS (2)', 'FEDERAL - AID HIGHWAYS TOTAL NHS', 'OTHER FEDERAL-AID HIGHWAYS (4)', 'TOTAL FEDERAL-AID HIGHWAYS', 'TOTAL']</code></pre>
-</div>
-</div>
-<div id="240a41df2b49cb41" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2026-09-11T04:58:31.537973Z&quot;,&quot;start_time&quot;:&quot;2026-09-11T04:58:31.318333Z&quot;}}" data-execution_count="12">
-<div class="cell-output cell-output-display" data-execution_count="12">
-<div>
+</section>
+<section id="national-series" class="level3">
+<h3 class="anchored" data-anchor-id="national-series">National series</h3>
+<p>Local-class roads are dropped here so that every year covers the same road classes: Interstates, other arterials, and collectors.</p>
+<div id="a52c3536a8824351" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-12T01:44:55.985455Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-12T01:44:55.985371Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-12T01:44:56.053519Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-12T01:44:56.052992Z&quot;}}" data-execution_count="5">
+<div class="cell-output cell-output-display" data-execution_count="5">
+<style type="text/css">
+</style>
 
-
-<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<table id="T_82a0b" class="caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
-<th data-quarto-table-cell-role="th"></th>
+<th class="blank level0" data-quarto-table-cell-role="th">&nbsp;</th>
+<th id="T_82a0b_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">3R outlay ($bn)</th>
+<th id="T_82a0b_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">All capital outlay ($bn)</th>
+<th id="T_82a0b_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">3R share</th>
+</tr>
+<tr class="even">
+<th class="index_name level0" data-quarto-table-cell-role="th">year</th>
+<th class="blank col0" data-quarto-table-cell-role="th">&nbsp;</th>
+<th class="blank col1" data-quarto-table-cell-role="th">&nbsp;</th>
+<th class="blank col2" data-quarto-table-cell-role="th">&nbsp;</th>
 </tr>
 </thead>
 <tbody>
+<tr class="odd">
+<th id="T_82a0b_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th">2012</th>
+<td id="T_82a0b_row0_col0" class="data row0 col0">18.0</td>
+<td id="T_82a0b_row0_col1" class="data row0 col1">65.8</td>
+<td id="T_82a0b_row0_col2" class="data row0 col2">27%</td>
+</tr>
+<tr class="even">
+<th id="T_82a0b_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th">2013</th>
+<td id="T_82a0b_row1_col0" class="data row1 col0">18.2</td>
+<td id="T_82a0b_row1_col1" class="data row1 col1">65.0</td>
+<td id="T_82a0b_row1_col2" class="data row1 col2">28%</td>
+</tr>
+<tr class="odd">
+<th id="T_82a0b_level0_row2" class="row_heading level0 row2" data-quarto-table-cell-role="th">2014</th>
+<td id="T_82a0b_row2_col0" class="data row2 col0">21.4</td>
+<td id="T_82a0b_row2_col1" class="data row2 col1">68.4</td>
+<td id="T_82a0b_row2_col2" class="data row2 col2">31%</td>
+</tr>
+<tr class="even">
+<th id="T_82a0b_level0_row3" class="row_heading level0 row3" data-quarto-table-cell-role="th">2015</th>
+<td id="T_82a0b_row3_col0" class="data row3 col0">22.3</td>
+<td id="T_82a0b_row3_col1" class="data row3 col1">69.0</td>
+<td id="T_82a0b_row3_col2" class="data row3 col2">32%</td>
+</tr>
+<tr class="odd">
+<th id="T_82a0b_level0_row4" class="row_heading level0 row4" data-quarto-table-cell-role="th">2016</th>
+<td id="T_82a0b_row4_col0" class="data row4 col0">19.9</td>
+<td id="T_82a0b_row4_col1" class="data row4 col1">70.1</td>
+<td id="T_82a0b_row4_col2" class="data row4 col2">28%</td>
+</tr>
+<tr class="even">
+<th id="T_82a0b_level0_row5" class="row_heading level0 row5" data-quarto-table-cell-role="th">2017</th>
+<td id="T_82a0b_row5_col0" class="data row5 col0">23.5</td>
+<td id="T_82a0b_row5_col1" class="data row5 col1">75.0</td>
+<td id="T_82a0b_row5_col2" class="data row5 col2">31%</td>
+</tr>
+<tr class="odd">
+<th id="T_82a0b_level0_row6" class="row_heading level0 row6" data-quarto-table-cell-role="th">2018</th>
+<td id="T_82a0b_row6_col0" class="data row6 col0">27.0</td>
+<td id="T_82a0b_row6_col1" class="data row6 col1">84.3</td>
+<td id="T_82a0b_row6_col2" class="data row6 col2">32%</td>
+</tr>
+<tr class="even">
+<th id="T_82a0b_level0_row7" class="row_heading level0 row7" data-quarto-table-cell-role="th">2019</th>
+<td id="T_82a0b_row7_col0" class="data row7 col0">26.1</td>
+<td id="T_82a0b_row7_col1" class="data row7 col1">81.7</td>
+<td id="T_82a0b_row7_col2" class="data row7 col2">32%</td>
+</tr>
+<tr class="odd">
+<th id="T_82a0b_level0_row8" class="row_heading level0 row8" data-quarto-table-cell-role="th">2020</th>
+<td id="T_82a0b_row8_col0" class="data row8 col0">29.1</td>
+<td id="T_82a0b_row8_col1" class="data row8 col1">89.1</td>
+<td id="T_82a0b_row8_col2" class="data row8 col2">33%</td>
+</tr>
+<tr class="even">
+<th id="T_82a0b_level0_row9" class="row_heading level0 row9" data-quarto-table-cell-role="th">2021</th>
+<td id="T_82a0b_row9_col0" class="data row9 col0">27.8</td>
+<td id="T_82a0b_row9_col1" class="data row9 col1">86.4</td>
+<td id="T_82a0b_row9_col2" class="data row9 col2">32%</td>
+</tr>
+<tr class="odd">
+<th id="T_82a0b_level0_row10" class="row_heading level0 row10" data-quarto-table-cell-role="th">2022</th>
+<td id="T_82a0b_row10_col0" class="data row10 col0">25.8</td>
+<td id="T_82a0b_row10_col1" class="data row10 col1">86.0</td>
+<td id="T_82a0b_row10_col2" class="data row10 col2">30%</td>
+</tr>
+<tr class="even">
+<th id="T_82a0b_level0_row11" class="row_heading level0 row11" data-quarto-table-cell-role="th">2023</th>
+<td id="T_82a0b_row11_col0" class="data row11 col0">29.2</td>
+<td id="T_82a0b_row11_col1" class="data row11 col1">94.5</td>
+<td id="T_82a0b_row11_col2" class="data row11 col2">31%</td>
+</tr>
 </tbody>
 </table>
-
+</div>
+</div>
+<div id="cell-fig-3r-trend" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-12T01:44:56.054705Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-12T01:44:56.054629Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-12T01:44:56.130129Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-12T01:44:56.129586Z&quot;}}" data-execution_count="6">
+<div class="cell-output cell-output-display">
+<div id="fig-3r-trend" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-3r-trend-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="road-paving_files/figure-html/fig-3r-trend-output-1.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3r-trend-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: State highway agency capital outlay on resurfacing, restoration, rehabilitation and minor widening (3R), as a share of all capital outlay and in dollars. Local-class roads excluded.
+</figcaption>
+</figure>
 </div>
 </div>
 </div>
-<div id="ac269be8a44691e6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2026-09-11T05:03:11.103411Z&quot;,&quot;start_time&quot;:&quot;2026-09-11T05:03:11.068811Z&quot;}}" data-execution_count="19">
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[19]</span><span class="ansi-green-fg">, line 1</span>
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> national.to_csv(PROC / <span class="ansi-yellow-fg">"for_chart.csv"</span>, index=<span style="font-weight:bold;color:rgb(0,135,0)">False</span>)
-<span class="ansi-green-fg">      2</span> print(national.to_csv(index=<span style="font-weight:bold;color:rgb(0,135,0)">False</span>))
-
-<span class="ansi-red-fg">NameError</span>: name 'national' is not defined</pre>
+<div id="cell-fig-outlay-mix" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-12T01:44:56.131663Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-12T01:44:56.131568Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-12T01:44:56.167719Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-12T01:44:56.167220Z&quot;}}" data-execution_count="7">
+<div class="cell-output cell-output-display">
+<div id="fig-outlay-mix" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-outlay-mix-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="road-paving_files/figure-html/fig-outlay-mix-output-1.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-outlay-mix-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: State highway agency capital outlay by kind of work, latest year. Local-class roads excluded.
+</figcaption>
+</figure>
 </div>
 </div>
 </div>
-<div id="ad12f66438734115" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2026-09-11T05:00:49.078878Z&quot;,&quot;start_time&quot;:&quot;2026-09-11T05:00:49.037616Z&quot;}}" data-execution_count="16">
-<div class="cell-output cell-output-stdout">
-<pre><code>&lt;ArrowStringArray&gt;
-['3R MINOR WIDENING', 'RESTORATION &amp; REHABILITATION', 'RESURFACING']
-Length: 3, dtype: str
-&lt;ArrowStringArray&gt;
-['3R MINOR WIDENING', 'RESTORATION &amp; REHABILITATION', 'RESURFACING']
-Length: 3, dtype: str
-6562612.5961614
-     state                  measure_2012  dollars_thousands_2012  \
-0  Alabama             3R MINOR WIDENING                 0.00000   
-1  Alabama             3R MINOR WIDENING                 0.00000   
-2  Alabama             3R MINOR WIDENING                 0.00000   
-3  Alabama  RESTORATION &amp; REHABILITATION             47263.31400   
-4  Alabama  RESTORATION &amp; REHABILITATION             47263.31400   
-5  Alabama  RESTORATION &amp; REHABILITATION             47263.31400   
-6  Alabama                   RESURFACING                 0.00000   
-7  Alabama                   RESURFACING                 0.00000   
-8  Alabama                   RESURFACING                 0.00000   
-9   Alaska             3R MINOR WIDENING             16951.82485   
-
-                   measure_2013  dollars_thousands_2013  
-0             3R MINOR WIDENING                 0.00000  
-1  RESTORATION &amp; REHABILITATION             47263.31400  
-2                   RESURFACING                 0.00000  
-3             3R MINOR WIDENING                 0.00000  
-4  RESTORATION &amp; REHABILITATION             47263.31400  
-5                   RESURFACING                 0.00000  
-6             3R MINOR WIDENING                 0.00000  
-7  RESTORATION &amp; REHABILITATION             47263.31400  
-8                   RESURFACING                 0.00000  
-9             3R MINOR WIDENING             16951.82485  </code></pre>
-</div>
-</div>
+</section>
+<section id="not-done-yet" class="level3">
+<h3 class="anchored" data-anchor-id="not-done-yet">Not done yet</h3>
+<ul>
+<li><strong>Miles, not just dollars.</strong> The plan was to add miles improved per year from FHWA’s HPMS public release. Its download page no longer links the files directly, so that source still needs a working route in.</li>
+<li><strong>Inflation.</strong> Deflating by a highway construction cost index would show how much of the dollar increase is real.</li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
