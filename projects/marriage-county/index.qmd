@@ -2,7 +2,7 @@
 title: "Marriage, Religion, and Politics by County"
 author: "Eric Schnitger"
 description: "The first step in a larger project: government-recorded marriage by county, layered with economics, religion, politics, and city size."
-date: 2026-11-10
+date: 2026-08-10
 categories: [r, tableau, demographics, marriage, religion, politics]
 image: thumbnail.png
 format:
