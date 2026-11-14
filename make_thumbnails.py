@@ -173,7 +173,24 @@ def temperature_animation():
     _save(fig, "temperature-animation")
 
 
+def ingenuity_flight_log():
+    folder = PROJECTS / "ingenuity-flight-log" / "data"
+    paths = pd.read_csv(folder / "ingenuity_paths.csv")
+    fields = pd.read_csv(folder / "ingenuity_locations.csv")
+    fig, ax = _figure()
+    for _, f in paths.groupby("flight_num"):
+        ax.plot(f["east_m"], f["north_m"], color=ss.BRICK, linewidth=1.6,
+                solid_capstyle="round")
+    ax.scatter(fields["east_m"], fields["north_m"], s=14, color=ss.INDIGO, zorder=3)
+    ax.set_aspect("equal", adjustable="datalim")
+    ax.set_xticks([-6000, -4000, -2000, 0], ["−6", "−4", "−2", "0 km"])
+    ax.set_yticks([-1000, 0, 1000, 2000, 3000], ["−1", "0", "1", "2", "3 km"])
+    ss.axis_heading(ax, "All 72 flights on Mars")
+    _save(fig, "ingenuity-flight-log")
+
+
 THUMBNAILS = {
+    "ingenuity-flight-log": ingenuity_flight_log,
     "temperature-animation": temperature_animation,
     "marriage-county": marriage_county,
     "premier-league": premier_league,
