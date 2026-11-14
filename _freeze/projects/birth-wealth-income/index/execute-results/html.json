@@ -1,0 +1,12 @@
+{
+  "hash": "b7ae803dcd0ec9b640250ded0197744b",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: \"Birth, Wealth, and Income Analysis\"\ndescription: \"How the U.S. birth rate has moved as national income and household wealth grew, 1960 to today.\"\nauthor: \"Eric Schnitger\"\ndate: 2026-09-01\ncategories: [data-viz, python, demographics, economics, wealth, income]\nimage: thumbnail.png\nformat:\n  html:\n    toc: true\n    toc-location: left\n    page-layout: article\njupyter: python3\n---\n\n\n## Overview\n\nDo richer countries have fewer children? This project looks at one country over time: the United States from 1960 to 2024. It sets the crude birth rate (births per 1,000 people) against two measures of national prosperity, real GDP per person and total household net worth.\n\n## Key Findings\n\n- **The birth rate more than halved.** It fell from 23\\.7 births per 1,000 people in 1960 to 10\\.6 in 2024.\n- **Income more than tripled.** Real GDP per person rose from \\$19\\,365 to \\$68\\,788.\n- **Wealth grew far faster.** Household net worth went from \\$2\\.1 trillion to \\$169 trillion, in nominal dollars.\n- **The two move in opposite directions.** The birth rate's correlation with income is \\-0\\.87 and with net worth \\-0\\.78.\n\n{{< embed birth_wealth_income.ipynb#fig-birth-wealth >}}\n\n## Reading the Numbers\n\n- **National totals, not families.** These are country-wide figures. They say nothing about whether richer *households* have fewer children.\n- **Correlation, not cause.** All three series trend over the whole period, so a strong correlation is close to guaranteed. Education, contraception, women's work, housing costs and age at marriage all moved over the same years.\n- **Nominal wealth.** Net worth is not adjusted for inflation, while GDP per person is. Part of the rise in wealth is rising prices.\n- **The birth-rate series starts in 1960**, so the post-war baby-boom peak is only partly shown.\n\n## Data and Code\n\nThe data comes from FRED: the World Bank crude birth rate (SPDYNCBRTINUSA), BEA real GDP per capita (A939RX0Q048SBEA), and Federal Reserve household net worth (HNONWRA027N), averaged to calendar years. The [notebook](birth_wealth_income.ipynb) downloads and caches them.\n\nThe code is on [GitHub](https://github.com/eschnitger/eschnitger.github.io/tree/main/projects/birth-wealth-income).\n\n",
+    "supporting": [
+      "index_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

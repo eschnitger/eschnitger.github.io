@@ -1,32 +1,53 @@
 ---
 title: "Birth, Wealth, and Income Analysis"
-description: "An exploration of birth rates with family wealth and income"
+description: "How the U.S. birth rate has moved as national income and household wealth grew, 1960 to today."
+author: "Eric Schnitger"
 date: 2026-09-01
-update: 2026-09-02
-categories: [data-viz, birth, demographics, economics, wealth, income]
+categories: [data-viz, python, demographics, economics, wealth, income]
 image: thumbnail.png
 format:
   html:
-    self-contained: true  # This helps ensure all JS is bundled in one file
+    toc: true
+    toc-location: left
     page-layout: article
 jupyter: python3
 ---
 
+```{python}
+#| include: false
+# Figures in the text come from the data the notebook cached.
+import pandas as pd
+
+df = pd.read_csv("data/fred_annual.csv", index_col="year").dropna()
+first, last = int(df.index[0]), int(df.index[-1])
+birth = df["Birth_Rate_Per_1000"]
+gdp = df["Real_GDP_Per_Capita"]
+worth = df["Household_Net_Worth"] / 1e6  # trillions of nominal dollars
+corr = df.corr()["Birth_Rate_Per_1000"]
+```
+
 ## Overview
 
-Test
+Do richer countries have fewer children? This project looks at one country over time: the United States from `{python} first` to `{python} last`. It sets the crude birth rate (births per 1,000 people) against two measures of national prosperity, real GDP per person and total household net worth.
 
 ## Key Findings
 
-Test
+- **The birth rate more than halved.** It fell from `{python} f"{birth[first]:.1f}"` births per 1,000 people in `{python} first` to `{python} f"{birth[last]:.1f}"` in `{python} last`.
+- **Income more than tripled.** Real GDP per person rose from \$`{python} f"{gdp[first]:,.0f}"` to \$`{python} f"{gdp[last]:,.0f}"`.
+- **Wealth grew far faster.** Household net worth went from \$`{python} f"{worth[first]:.1f}"` trillion to \$`{python} f"{worth[last]:.0f}"` trillion, in nominal dollars.
+- **The two move in opposite directions.** The birth rate's correlation with income is `{python} f"{corr['Real_GDP_Per_Capita']:.2f}"` and with net worth `{python} f"{corr['Household_Net_Worth']:.2f}"`.
 
-## The Whole Project
+{{< embed birth_wealth_income.ipynb#fig-birth-wealth >}}
 
-::: {.column-page}
-{{< embed birth_wealth_income.ipynb >}}
-:::
+## Reading the Numbers
 
-## Code
+- **National totals, not families.** These are country-wide figures. They say nothing about whether richer *households* have fewer children.
+- **Correlation, not cause.** All three series trend over the whole period, so a strong correlation is close to guaranteed. Education, contraception, women's work, housing costs and age at marriage all moved over the same years.
+- **Nominal wealth.** Net worth is not adjusted for inflation, while GDP per person is. Part of the rise in wealth is rising prices.
+- **The birth-rate series starts in 1960**, so the post-war baby-boom peak is only partly shown.
 
-The full source notebook is available on
-[GitHub](https://github.com/eschnitger/).
+## Data and Code
+
+The data comes from FRED: the World Bank crude birth rate (SPDYNCBRTINUSA), BEA real GDP per capita (A939RX0Q048SBEA), and Federal Reserve household net worth (HNONWRA027N), averaged to calendar years. The [notebook](birth_wealth_income.ipynb) downloads and caches them.
+
+The code is on [GitHub](https://github.com/eschnitger/eschnitger.github.io/tree/main/projects/birth-wealth-income).
