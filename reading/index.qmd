@@ -1,0 +1,120 @@
+---
+title: "Reading"
+description: "What I've been reading, from my StoryGraph library."
+toc: false
+jupyter: python3
+---
+
+```{python}
+#| include: false
+# Data comes from reading/data/reading.csv, written by update_reading.py
+# from a StoryGraph export. Only read and currently-reading books are kept.
+import html
+import sys
+from pathlib import Path
+
+import matplotlib.pyplot as plt
+import pandas as pd
+
+sys.path.insert(0, str(next(p for p in Path.cwd().resolve().parents
+                            if (p / "_quarto.yml").exists())))
+import site_style as ss
+ss.apply()
+
+books = pd.read_csv("data/reading.csv")
+books["finished"] = pd.to_datetime(books["Last Date Read"], format="%Y/%m/%d", errors="coerce")
+# A few books only have a year recorded; they still count toward that year.
+books["year"] = pd.to_numeric(books["Last Date Read"].str[:4], errors="coerce")
+books["rating"] = pd.to_numeric(books["Star Rating"], errors="coerce")
+books["times_read"] = pd.to_numeric(books["Read Count"], errors="coerce").fillna(1).astype(int)
+
+read = books[books["Read Status"] == "read"]
+current = books[books["Read Status"] == "currently-reading"]
+dated = read.dropna(subset=["year"])
+per_year = dated.groupby(dated["year"].astype(int)).size()
+
+this_year = pd.Timestamp.today().year
+so_far = int(per_year.get(this_year, 0))
+average = read["rating"].mean()
+```
+
+I keep track of what I read on [StoryGraph](https://app.thestorygraph.com/). This page is built from that record: `{python} len(read)` books finished so far, `{python} so_far` of them in `{python} this_year`, with an average rating of `{python} f"{average:.2f}"` out of 5.
+
+## Currently Reading
+
+```{python}
+#| output: asis
+for _, b in current.sort_values("Title").iterrows():
+    print(f"- *{b['Title']}*, {b['Authors']}")
+```
+
+## By the Numbers
+
+```{python}
+#| label: fig-books-per-year
+#| fig-cap: "Books finished each calendar year."
+years = per_year.index.astype(int)
+colors = [ss.BRICK] * len(years)
+
+fig, ax = plt.subplots(figsize=(6.8, 3.4))
+bars = ax.bar(years, per_year.values, width=0.6, color=colors)
+bars[-1].set_alpha(0.45) if years[-1] == this_year else None
+for y, n in zip(years, per_year.values):
+    label = f"{n} so far" if y == this_year else f"{n}"
+    ax.text(y, n + 1.5, label, ha="center", va="bottom", fontsize=10.5, color=ss.MUTED)
+ax.set_xticks(list(years))
+ax.set_ylim(0, per_year.max() * 1.2)
+ss.titles(fig, "Books finished each year", "From my StoryGraph library", y=0.95)
+plt.show()
+```
+
+```{python}
+#| label: fig-ratings
+#| fig-cap: "My star ratings, grouped to the nearest half star."
+halves = (read["rating"].dropna() * 2).round() / 2
+counts = halves.value_counts().reindex([x / 2 for x in range(2, 11)], fill_value=0)
+
+fig, ax = plt.subplots(figsize=(6.8, 3.2))
+ax.bar(counts.index, counts.values, width=0.38, color=ss.INDIGO)
+ax.set_xticks(list(counts.index), [f"{x:g}" for x in counts.index])
+ss.axis_heading(ax, "Books")
+ss.titles(fig, f"My most common rating is {counts.idxmax():g} stars",
+          f"{int(counts.sum())} rated books; average {average:.2f}", y=0.97)
+plt.show()
+```
+
+## Books Read
+
+```{python}
+#| output: asis
+def table(rows):
+    """One year's books as an HTML table, newest first."""
+    out = ['<table class="table table-sm reading-table"><thead><tr>'
+           '<th>Title</th><th>Author</th><th>Finished</th><th>Rating</th></tr></thead><tbody>']
+    for _, b in rows.iterrows():
+        title = html.escape(b["Title"])
+        if b["times_read"] > 1:
+            title += f' <span class="reading-reread">read {b["times_read"]}×</span>'
+        finished = b["finished"].strftime("%b %-d") if pd.notna(b["finished"]) else ""
+        rating = f'{b["rating"]:g} ★' if pd.notna(b["rating"]) else ""
+        out.append(f"<tr><td>{title}</td><td>{html.escape(b['Authors'])}</td>"
+                   f"<td>{finished}</td><td>{rating}</td></tr>")
+    out.append("</tbody></table>")
+    return "\n".join(out)
+
+
+sections = [(str(y), dated[dated["year"] == y].sort_values("finished", ascending=False))
+            for y in sorted(per_year.index.astype(int), reverse=True)]
+undated = read[read["year"].isna()].sort_values("Title")
+if len(undated):
+    sections.append(("Date not recorded", undated))
+
+print("```{=html}")
+for i, (name, rows) in enumerate(sections):
+    is_open = " open" if i == 0 else ""
+    print(f'<details class="collapsible-section"{is_open}>')
+    print(f"<summary><h3>{name} <small>· {len(rows)} books</small></h3></summary>")
+    print(table(rows))
+    print("</details>")
+print("```")
+```

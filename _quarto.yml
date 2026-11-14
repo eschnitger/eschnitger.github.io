@@ -13,6 +13,8 @@ website:
        href: projects/index.qmd
      - text: "Writings"
        href: writing/index.qmd
+     - text: "Reading"
+       href: reading/index.qmd
      - text: "About"
        href: about.qmd
    right:
