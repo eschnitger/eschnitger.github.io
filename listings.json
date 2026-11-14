@@ -1,5 +1,12 @@
 [
   {
+    "listing": "/writing/index.html",
+    "items": [
+      "/writing/2026-11-13-the-price-of-work-and-the-worth-of-work/index.html",
+      "/writing/2026-11-11-seventh-generation/index.html"
+    ]
+  },
+  {
     "listing": "/projects/index.html",
     "items": [
       "/projects/temperature-animation/index.html",
@@ -9,12 +16,6 @@
       "/projects/RootBeer/index.html",
       "/projects/fastest-human/index.html",
       "/projects/premier-league/index.html"
-    ]
-  },
-  {
-    "listing": "/writing/index.html",
-    "items": [
-      "/writing/2026-11-11-seventh-generation/index.html"
     ]
   }
 ]
