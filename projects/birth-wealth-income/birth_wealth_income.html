@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2026-05-01">
-<meta name="description" content="An analysis of generational mobility data.">
 
-<title>Birth, Wealth, and Income Analysis – Eric Eliot Schnitger’s Portfolio</title>
+<title>Birth, Wealth, and Income – Eric Eliot Schnitger’s Portfolio</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -149,29 +147,14 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Birth, Wealth, and Income Analysis</h1>
-  <div class="quarto-categories">
-    <div class="quarto-category">Python</div>
-    <div class="quarto-category">Economics</div>
-  </div>
-  </div>
-
-<div>
-  <div class="description">
-    An analysis of generational mobility data.
-  </div>
+<h1 class="title">Birth, Wealth, and Income</h1>
 </div>
+
 
 
 <div class="quarto-title-meta">
 
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">May 1, 2026</p>
-    </div>
-  </div>
   
     
   </div>
@@ -181,99 +164,19 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div id="initial_id" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-11T01:01:21.728548Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-11T01:01:21.728330Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-11T01:01:22.884390Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-11T01:01:22.883863Z&quot;}}" data-execution_count="1">
-<div class="cell-output cell-output-stdout">
-<div class="ansi-escaped-output">
-<pre>Requirement already satisfied: pandas-datareader in /Users/ees/githubrepo/ees-portfolio/.venv/lib/python3.13/site-packages (0.11.1)
-
-Requirement already satisfied: matplotlib in /Users/ees/githubrepo/ees-portfolio/.venv/lib/python3.13/site-packages (3.10.9)
-
-Requirement already satisfied: seaborn in /Users/ees/githubrepo/ees-portfolio/.venv/lib/python3.13/site-packages (0.13.2)
-
-Requirement already satisfied: lxml in /Users/ees/githubrepo/ees-portfolio/.venv/lib/python3.13/site-packages (from pandas-datareader) (6.1.1)
-
-Requirement already satisfied: pandas&gt;=2.1.4 in /Users/ees/githubrepo/ees-portfolio/.venv/lib/python3.13/site-packages (from pandas-datareader) (3.0.3)
-
-Requirement already satisfied: requests&gt;=2.19.0 in /Users/ees/githubrepo/ees-portfolio/.venv/lib/python3.13/site-packages (from pandas-datareader) (2.34.2)
-
-Requirement already satisfied: setuptools in /Users/ees/githubrepo/ees-portfolio/.venv/lib/python3.13/site-packages (from pandas-datareader) (84.0.0)
-
-Requirement already satisfied: contourpy&gt;=1.0.1 in /Users/ees/githubrepo/ees-portfolio/.venv/lib/python3.13/site-packages (from matplotlib) (1.3.3)
-
-Requirement already satisfied: cycler&gt;=0.10 in /Users/ees/githubrepo/ees-portfolio/.venv/lib/python3.13/site-packages (from matplotlib) (0.12.1)
-
-Requirement already satisfied: fonttools&gt;=4.22.0 in /Users/ees/githubrepo/ees-portfolio/.venv/lib/python3.13/site-packages (from matplotlib) (4.63.0)
-
-Requirement already satisfied: kiwisolver&gt;=1.3.1 in /Users/ees/githubrepo/ees-portfolio/.venv/lib/python3.13/site-packages (from matplotlib) (1.5.0)
-
-Requirement already satisfied: numpy&gt;=1.23 in /Users/ees/githubrepo/ees-portfolio/.venv/lib/python3.13/site-packages (from matplotlib) (2.4.6)
-
-Requirement already satisfied: packaging&gt;=20.0 in /Users/ees/githubrepo/ees-portfolio/.venv/lib/python3.13/site-packages (from matplotlib) (26.3)
-
-Requirement already satisfied: pillow&gt;=8 in /Users/ees/githubrepo/ees-portfolio/.venv/lib/python3.13/site-packages (from matplotlib) (12.2.0)
-
-Requirement already satisfied: pyparsing&gt;=3 in /Users/ees/githubrepo/ees-portfolio/.venv/lib/python3.13/site-packages (from matplotlib) (3.3.2)
-
-Requirement already satisfied: python-dateutil&gt;=2.7 in /Users/ees/githubrepo/ees-portfolio/.venv/lib/python3.13/site-packages (from matplotlib) (2.9.0.post0)
-
-Requirement already satisfied: six&gt;=1.5 in /Users/ees/githubrepo/ees-portfolio/.venv/lib/python3.13/site-packages (from python-dateutil&gt;=2.7-&gt;matplotlib) (1.17.0)
-
-Requirement already satisfied: charset_normalizer&lt;4,&gt;=2 in /Users/ees/githubrepo/ees-portfolio/.venv/lib/python3.13/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (3.5.1)
-
-Requirement already satisfied: idna&lt;4,&gt;=2.5 in /Users/ees/githubrepo/ees-portfolio/.venv/lib/python3.13/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (3.19)
-
-Requirement already satisfied: urllib3&lt;3,&gt;=1.26 in /Users/ees/githubrepo/ees-portfolio/.venv/lib/python3.13/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (2.7.0)
-
-Requirement already satisfied: certifi&gt;=2023.5.7 in /Users/ees/githubrepo/ees-portfolio/.venv/lib/python3.13/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader) (2026.7.22)
-
-
-
-<span class="ansi-bold">[</span><span class="ansi-blue-fg">notice</span><span class="ansi-bold">]</span> A new release of pip is available: <span class="ansi-red-fg">26.2.1</span> -&gt; <span class="ansi-green-fg">26.3</span>
-
-<span class="ansi-bold">[</span><span class="ansi-blue-fg">notice</span><span class="ansi-bold">]</span> To update, run: <span class="ansi-green-fg">pip install --upgrade pip</span>
-</pre>
-</div>
-</div>
-</div>
-<div id="a78c06a5c580434d" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-11T01:01:26.847252Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-11T01:01:26.847180Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-11T01:01:27.905151Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-11T01:01:27.904575Z&quot;}}" data-execution_count="4">
-<div class="cell-output cell-output-stdout">
-<pre><code>      Birth_Rate_Per_1000  Real_GDP_Per_Capita  Household_Net_Worth
-1960                 23.7             19365.25            2092257.0
-1961                 23.3             19537.50            2258800.0
-1962                 22.4             20419.25            2321405.0
-1963                 21.7             21003.50            2425147.0
-1964                 21.1             21910.25            2606796.0</code></pre>
-</div>
-</div>
-<div id="902e7c3a56d64c39" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-11T01:01:27.907278Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-11T01:01:27.907149Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-11T01:01:27.913049Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-11T01:01:27.912539Z&quot;}}" data-execution_count="5">
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Data Sample (First 5 Years):
-      Birth_Rate_Per_1000  Real_GDP_Per_Capita  Household_Net_Worth
-1960                 23.7             19365.25            2092257.0
-1961                 23.3             19537.50            2258800.0
-1962                 22.4             20419.25            2321405.0
-1963                 21.7             21003.50            2425147.0
-1964                 21.1             21910.25            2606796.0</code></pre>
-</div>
-</div>
-<div id="97316f229264c2e6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-11T01:01:27.915245Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-11T01:01:27.915065Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-11T01:01:28.050253Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-11T01:01:28.049664Z&quot;}}" data-execution_count="6">
+<p>U.S. crude birth rate against real GDP per capita and household net worth, from FRED.</p>
+<div id="cell-fig-birth-wealth" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-14T16:57:03.234631Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-14T16:57:03.234553Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-14T16:57:03.378192Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-14T16:57:03.377546Z&quot;}}" data-execution_count="3">
 <div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="birth_wealth_income_files/figure-html/cell-7-output-1.svg" class="img-fluid figure-img"></p>
+<div id="fig-birth-wealth" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-birth-wealth-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="birth_wealth_income_files/figure-html/fig-birth-wealth-output-1.svg" id="fig-birth-wealth" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-birth-wealth-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1
+</figcaption>
 </figure>
 </div>
-</div>
-</div>
-<div id="ccabb4cb247baa85" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-11T01:01:28.051529Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-11T01:01:28.051450Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-11T01:01:28.053992Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-11T01:01:28.053688Z&quot;}}" data-execution_count="7">
-<div class="cell-output cell-output-stdout">
-<pre><code>
---- Correlation Matrix ---
-Birth_Rate_Per_1000    1.000000
-Real_GDP_Per_Capita   -0.870516
-Household_Net_Worth   -0.775671
-Name: Birth_Rate_Per_1000, dtype: float64</code></pre>
 </div>
 </div>
 
@@ -353,7 +256,7 @@ Name: Birth_Rate_Per_1000, dtype: float64</code></pre>
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/eschnitger\.github\.io\/");
+        var filterRegex = new RegExp('/' + window.location.host + '/');
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
