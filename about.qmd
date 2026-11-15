@@ -3,6 +3,8 @@ title: "About"
 toc: false
 ---
 
+My academic CV, conference presentations, and publications are on the [Research page](research/index.qmd).
+
 <!-- The heading is the toggle; styled by .collapsible-section in theme.scss -->
 <details class="collapsible-section">
 <summary><h2>Resume</h2></summary>
@@ -110,25 +112,5 @@ Pasadena, CA · 2023
   Co-chair, Peace and Justice Concerns Committee
 * **A.B. in Physics, Minor in Mathematics**
 * **Certificates:** Python Programming · Python for Data Science · Analytics in R · Data Science with SQL and Tableau
-
-### Conference Presentations
-
-* Public Policy and Environmental Justice (Co-Chair), Society for Christian Ethics Annual Meeting, January 2026
-* Migration and Climate Justice (Co-Chair), Society for Christian Ethics Annual Meeting, January 2025
-* Climate Justice and Public Health (Co-Chair), Society for Christian Ethics Annual Meeting, January 2024
-* Contingency, Disparity, and Vulnerability: Why Isn't Everyone Paid Enough?, Society for Christian Ethics Annual Meeting, January 2022
-* Mutual Aid and MCC: A Way of Understanding Just Economic Relationships, MCC at 100: Mennonites, Service, and the Humanitarian Impulse, University of Winnipeg, October 2021
-* (de)Growing Monetary Policy?: A Christian Engagement with the Degrowth Movement, Society for Christian Ethics Annual Meeting, January 2020
-* Designing Engaging Learning Experiences, Faculty Development Day, Azusa Pacific University, June 2017
-* The Places of Community: Economic Valuing and Virtuous Flourishing, PhD Student Symposium Challenge, hosted by Southeastern Baptist Theological Seminary, June 2016
-
-### Book Reviews
-
-* Review of *Law's Virtue: Fostering Autonomy and Solidarity in American Society*, by Cathleen Kaveny. *Journal of the Society of Christian Ethics* 35, no. 1 (Spring/Summer 2015): 212-3.
-* Review of *René Girard and Secular Modernity: Christ, Culture and Crisis*, by Scott Cowdell. *Political Theology: The Journal of Christian Socialism* 16, no. 3 (May 2015): 293-5.
-
-### Popular Writings
-
-* "Reflections on Protesting and Faith," with Frank Scoffield Nellesen. Mennonite Church USA. [mennoniteusa.org](https://www.mennoniteusa.org/menno-snapshots/reflections-protesting-and-faith)
 
 </details>

@@ -40,7 +40,7 @@ EOF
 
   publish)
     # Save the post source to main, then build the site and push it to gh-pages (what GitHub Pages serves).
-    git add writing post.sh
+    git add writing research post.sh
     if ! git diff --cached --quiet; then
       git commit -m "${2:-Update writings}"
       git push
