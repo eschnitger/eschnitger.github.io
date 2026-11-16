@@ -1,0 +1,33 @@
+---
+title: "Designing Engaging Learning Experiences"
+author: "Eric Schnitger"
+date: "2017-06-01"
+date-format: "MMMM YYYY"
+event: "Faculty Development Day, Azusa Pacific University"
+categories: [talk, teaching]
+# description: "One or two sentences shown in search results and link previews."
+citation:
+  type: speech
+  genre: "Conference presentation"
+  event-title: "Faculty Development Day, Azusa Pacific University"
+---
+
+Presented at Faculty Development Day, Azusa Pacific University, June 2017.
+
+## Abstract
+
+<!-- Paste the abstract here. -->
+
+## Slides
+
+<!--
+Put the slides PDF in this folder as slides.pdf, then uncomment:
+
+[Download slides (PDF)](slides.pdf){.btn .btn-outline-primary .btn-sm}
+
+<iframe src="slides.pdf" width="100%" height="520" style="border:1px solid var(--color-divider); border-radius: var(--radius-md);"></iframe>
+-->
+
+## Paper
+
+<!-- Paste the paper text here, or link a PDF the same way as the slides. Delete any section you don't use. -->

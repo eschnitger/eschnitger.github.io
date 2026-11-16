@@ -1,0 +1,33 @@
+---
+title: "The Places of Community: Economic Valuing and Virtuous Flourishing"
+author: "Eric Schnitger"
+date: "2016-06-01"
+date-format: "MMMM YYYY"
+event: "PhD Student Symposium Challenge, Southeastern Baptist Theological Seminary"
+categories: [talk, community, economics, virtue]
+# description: "One or two sentences shown in search results and link previews."
+citation:
+  type: speech
+  genre: "Conference presentation"
+  event-title: "PhD Student Symposium Challenge, Southeastern Baptist Theological Seminary"
+---
+
+Presented at the PhD Student Symposium Challenge, hosted by Southeastern Baptist Theological Seminary, June 2016.
+
+## Abstract
+
+<!-- Paste the abstract here. -->
+
+## Slides
+
+<!--
+Put the slides PDF in this folder as slides.pdf, then uncomment:
+
+[Download slides (PDF)](slides.pdf){.btn .btn-outline-primary .btn-sm}
+
+<iframe src="slides.pdf" width="100%" height="520" style="border:1px solid var(--color-divider); border-radius: var(--radius-md);"></iframe>
+-->
+
+## Paper
+
+<!-- Paste the paper text here, or link a PDF the same way as the slides. Delete any section you don't use. -->
