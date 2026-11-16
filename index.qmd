@@ -1,7 +1,7 @@
 ---
 title: "Eric Eliot Schnitger's Portfolio"
 ---
-I once gave a conference talk called [“Why Isn’t Everyone Paid Enough?”](research/talks/2022-01-why-isnt-everyone-paid-enough/index.qmd) I’m still working on the answer, now with Python.
+I once gave a conference talk called [“Why Isn’t Everyone Paid Enough?”](research/index.qmd#talk-2022-01-why-isnt-everyone-paid-enough) I’m still working on the answer, now with Python.
 
 I wrote a dissertation on complicity in capitalism, taught for a while, and attained the holy grail of American life, health insurance, by working retail. I’m a researcher and analyst interested in economic justice, climate, and what an economy looks like when it stops treating growth as the point. I trained as an ethicist, which taught me to ask better questions. I learned SQL, R, and Tableau so I could test the answers against data, which turned out to be its own rabbit hole.
 

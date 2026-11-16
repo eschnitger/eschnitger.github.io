@@ -594,3 +594,83 @@ details.collapsible-section > summary small {
   font-weight: 400;
   color: var(--color-text-faint);
 }
+
+/* ============================================================
+   Research page talk entries: <details class="talk">
+   Summary row is date · title / venue; the abstract opens below.
+   ============================================================ */
+details.talk {
+  border-bottom: 1px solid var(--color-divider);
+  scroll-margin-top: 5rem; /* keep the title clear of the fixed navbar */
+}
+details.talk:first-of-type {
+  border-top: 1px solid var(--color-text);
+}
+details.talk > summary {
+  display: grid;
+  grid-template-columns: 1ch 5.5rem 1fr;
+  column-gap: 0.9rem;
+  row-gap: 0.15rem;
+  padding-block: 0.75rem;
+  cursor: pointer;
+  list-style: none;
+}
+details.talk > summary::-webkit-details-marker {
+  display: none;
+}
+details.talk > summary::before {
+  content: "+";
+  grid-column: 1;
+  grid-row: 1;
+  font-family: var(--font-mono);
+  color: var(--color-accent);
+}
+details.talk[open] > summary::before {
+  content: "\2212";
+}
+details.talk > summary:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+.talk-date {
+  grid-column: 2;
+  grid-row: 1;
+  padding-top: 0.2rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-text-faint);
+  white-space: nowrap;
+}
+.talk-title {
+  grid-column: 3;
+  grid-row: 1;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  line-height: 1.3;
+  color: var(--color-text);
+}
+details.talk > summary:hover .talk-title,
+details.talk[open] .talk-title {
+  color: var(--color-accent);
+}
+.talk-venue {
+  grid-column: 3;
+  grid-row: 2;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+.talk-body {
+  padding: 0 0 1rem calc(1ch + 5.5rem + 1.8rem);
+}
+.talk-body > p:last-child {
+  margin-bottom: 0;
+}
+@media (max-width: 575.98px) {
+  details.talk > summary {
+    grid-template-columns: 1ch 1fr;
+  }
+  .talk-date   { grid-column: 2; grid-row: 1; padding-top: 0; }
+  .talk-title  { grid-column: 2; grid-row: 2; }
+  .talk-venue  { grid-column: 2; grid-row: 3; }
+  .talk-body   { padding-left: calc(1ch + 0.9rem); }
+}
