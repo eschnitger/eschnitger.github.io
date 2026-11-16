@@ -34,8 +34,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../assets/favicon.svg" rel="icon" type="image/svg+xml">
-<script src="../site_libs/quarto-listing/list.min.js"></script>
-<script src="../site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -45,7 +43,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-04fe498724aedfab0e60850590eb332a.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-25d10d48561759129ba95071ecacb2bb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-41651ab300e08b8568409c6ced45119d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -73,70 +71,12 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-talks .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-event',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-talks'] = new List('listing-talks', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 <link rel="preconnect" href="https://api.fontshare.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://api.fontshare.com/v2/css?f[]=zodiak@400,500,600&amp;f[]=satoshi@400,500,700&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -227,7 +167,7 @@ window.Quarto = {
 </header>
 
 
-<p>My academic work is in Christian ethics, focused on economic justice, complicity in capitalism, mutual aid, and degrowth. My CV is below, followed by talks and papers you can read in full.</p>
+<p>My academic work is in Christian ethics, focused on economic justice, complicity in capitalism, mutual aid, and degrowth. My CV is below, followed by abstracts of my talks and papers.</p>
 <!-- Add a PDF CV here once you have one: put it at research/cv.pdf and uncomment the line below. -->
 <!-- [Download CV (PDF)](cv.pdf){.btn .btn-outline-primary .btn-sm} -->
 <!-- The heading is the toggle; styled by .collapsible-section in theme.scss. Add `open` to the tag to show it expanded. -->
@@ -264,11 +204,11 @@ Pasadena, CA · 2007–2008</p>
 <li>Public Policy and Environmental Justice (Co-Chair), Society for Christian Ethics Annual Meeting, January 2026</li>
 <li>Migration and Climate Justice (Co-Chair), Society for Christian Ethics Annual Meeting, January 2025</li>
 <li>Climate Justice and Public Health (Co-Chair), Society for Christian Ethics Annual Meeting, January 2024</li>
-<li><a href="../research/talks/2022-01-why-isnt-everyone-paid-enough/index.html">Contingency, Disparity, and Vulnerability: Why Isn’t Everyone Paid Enough?</a>, Society for Christian Ethics Annual Meeting, January 2022</li>
-<li><a href="../research/talks/2021-10-mutual-aid-and-mcc/index.html">Mutual Aid and MCC: A Way of Understanding Just Economic Relationships</a>, MCC at 100: Mennonites, Service, and the Humanitarian Impulse, University of Winnipeg, October 2021</li>
-<li><a href="../research/talks/2020-01-degrowing-monetary-policy/index.html">(de)Growing Monetary Policy?: A Christian Engagement with the Degrowth Movement</a>, Society for Christian Ethics Annual Meeting, January 2020</li>
-<li><a href="../research/talks/2017-06-designing-engaging-learning-experiences/index.html">Designing Engaging Learning Experiences</a>, Faculty Development Day, Azusa Pacific University, June 2017</li>
-<li><a href="../research/talks/2016-06-the-places-of-community/index.html">The Places of Community: Economic Valuing and Virtuous Flourishing</a>, PhD Student Symposium Challenge, hosted by Southeastern Baptist Theological Seminary, June 2016</li>
+<li><a href="#talk-2022-01-why-isnt-everyone-paid-enough">Contingency, Disparity, and Vulnerability: Why Isn’t Everyone Paid Enough?</a>, Society for Christian Ethics Annual Meeting, January 2022</li>
+<li><a href="#talk-2021-10-mutual-aid-and-mcc">Mutual Aid and MCC: A Way of Understanding Just Economic Relationships</a>, MCC at 100: Mennonites, Service, and the Humanitarian Impulse, University of Winnipeg, October 2021</li>
+<li><a href="#talk-2020-01-degrowing-monetary-policy">(de)Growing Monetary Policy?: A Christian Engagement with the Degrowth Movement</a>, Society for Christian Ethics Annual Meeting, January 2020</li>
+<li><a href="#talk-2017-06-designing-engaging-learning-experiences">Designing Engaging Learning Experiences: Civil Debate over Contentious Material</a>, Faculty Development Day, Azusa Pacific University, June 2017</li>
+<li><a href="#talk-2016-06-the-places-of-community">The Places of Community: Economic Valuing and Virtuous Flourishing</a>, PhD Student Symposium Challenge, hosted by Southeastern Baptist Theological Seminary, June 2016</li>
 </ul>
 </section>
 <section id="book-reviews" class="level3">
@@ -287,97 +227,56 @@ Pasadena, CA · 2007–2008</p>
 
 <section id="talks-and-papers" class="level2">
 <h2 class="anchored" data-anchor-id="talks-and-papers">Talks and Papers</h2>
-<div id="listing-talks" class="quarto-listing quarto-listing-container-table">
-<table class="quarto-listing-table table">
-<thead>
-<tr>
-
-<th>
-Date
-</th>
-
-<th>
-Title
-</th>
-
-<th>
-Venue
-</th>
-
-</tr>
-</thead>
-<tbody class="list">
-
-<tr data-index="0" data-categories="dGFsayUyQ2Vjb25vbWljJTIwanVzdGljZSUyQ3dhZ2Vz" data-listing-date-sort="1641024000000" data-listing-file-modified-sort="1794789108974" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="263" data-listing-title-sort="Contingency, Disparity, and Vulnerability: Why Isn't Everyone Paid Enough?" data-listing-filename-sort="index.qmd">
-<td>
-<span class="listing-date">Jan 2022</span>
-</td>
-<td>
-<a href="../research/talks/2022-01-why-isnt-everyone-paid-enough/index.html" class="title listing-title">Contingency, Disparity, and Vulnerability: Why Isn’t Everyone Paid Enough?</a>
-</td>
-<td>
-<span class="listing-event">Society for Christian Ethics Annual Meeting</span>
-</td>
-
-</tr>
-
-<tr data-index="1" data-categories="dGFsayUyQ211dHVhbCUyMGFpZCUyQ2Vjb25vbWljJTIwanVzdGljZQ==" data-listing-date-sort="1633071600000" data-listing-file-modified-sort="1794789259942" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="312" data-listing-title-sort="Mutual Aid and MCC: A Way of Understanding Just Economic Relationships" data-listing-filename-sort="index.qmd">
-<td>
-<span class="listing-date">Oct 2021</span>
-</td>
-<td>
-<a href="../research/talks/2021-10-mutual-aid-and-mcc/index.html" class="title listing-title">Mutual Aid and MCC: A Way of Understanding Just Economic Relationships</a>
-</td>
-<td>
-<span class="listing-event">MCC at 100: Mennonites, Service, and the Humanitarian Impulse, University of Winnipeg</span>
-</td>
-
-</tr>
-
-<tr data-index="2" data-categories="dGFsayUyQ2RlZ3Jvd3RoJTJDbW9uZXRhcnklMjBwb2xpY3klMkNlY29ub21pY3M=" data-listing-date-sort="1577865600000" data-listing-file-modified-sort="1794789165825" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="288" data-listing-title-sort="(de)Growing Monetary Policy?: A Christian Engagement with the Degrowth Movement" data-listing-filename-sort="index.qmd">
-<td>
-<span class="listing-date">Jan 2020</span>
-</td>
-<td>
-<a href="../research/talks/2020-01-degrowing-monetary-policy/index.html" class="title listing-title">(de)Growing Monetary Policy?: A Christian Engagement with the Degrowth Movement</a>
-</td>
-<td>
-<span class="listing-event">Society for Christian Ethics Annual Meeting</span>
-</td>
-
-</tr>
-
-<tr data-index="3" data-categories="dGFsayUyQ3RlYWNoaW5nJTJDY2l2aWwlMjBkaXNjb3Vyc2U=" data-listing-date-sort="1496300400000" data-listing-file-modified-sort="1794789579653" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="178" data-listing-title-sort="Designing Engaging Learning Experiences" data-listing-filename-sort="index.qmd">
-<td>
-<span class="listing-date">Jun 2017</span>
-</td>
-<td>
-<a href="../research/talks/2017-06-designing-engaging-learning-experiences/index.html" class="title listing-title">Designing Engaging Learning Experiences</a>
-</td>
-<td>
-<span class="listing-event">Faculty Development Day, Azusa Pacific University</span>
-</td>
-
-</tr>
-
-<tr data-index="4" data-categories="dGFsayUyQ2NvbW11bml0eSUyQ2Vjb25vbWljcyUyQ3ZpcnR1ZQ==" data-listing-date-sort="1464764400000" data-listing-file-modified-sort="1794789448358" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="287" data-listing-title-sort="The Places of Community: Economic Valuing and Virtuous Flourishing" data-listing-filename-sort="index.qmd">
-<td>
-<span class="listing-date">Jun 2016</span>
-</td>
-<td>
-<a href="../research/talks/2016-06-the-places-of-community/index.html" class="title listing-title">The Places of Community: Economic Valuing and Virtuous Flourishing</a>
-</td>
-<td>
-<span class="listing-event">PhD Student Symposium Challenge, Southeastern Baptist Theological Seminary</span>
-</td>
-
-</tr>
-
-</tbody>
-</table>
-<div class="listing-no-matching d-none">No matching items</div>
+<!-- Each talk is a collapsible entry. To add one, copy a <details> block and edit it. The id lets other pages link straight to it. -->
+<details class="talk" id="talk-2022-01-why-isnt-everyone-paid-enough">
+<summary>
+<span class="talk-date">Jan 2022</span><span class="talk-title">Contingency, Disparity, and Vulnerability: Why Isn’t Everyone Paid Enough?</span><span class="talk-venue">Society for Christian Ethics Annual Meeting</span>
+</summary>
+<div class="talk-body">
+<p>Most of the conversation about contingency in higher education has centered on adjunct faculty, and for good reason. In this paper I widen the frame to everyone whose labor makes a university possible and who is still not paid enough to escape precarity, including groundskeepers, janitors, food service workers, and student workers. The usual economic explanation for wage disparity is scarcity, and scarcity does explain some of it. Yet scarcity is shaped by social arrangements and can even be manufactured, so it cannot settle how a community ought to share what it has. Wage disparity, I argue, is finally a political choice, and two ideologies do most of the work of justifying it. Neoliberalism trades the common good for individual competition, and meritocracy, as Michael Sandel describes it, teaches the successful that they earned their place and the struggling that they deserve theirs. Pay-ratio data from the Economic Policy Institute and the <em>Chronicle of Higher Education</em> suggest that our colleges increasingly mirror the corporate world, and I reflect on my own embarrassment as a Ph.D.&nbsp;working retail. I close with some modest possibilities, such as unionization, pay transparency, and wage ratios, and with a question for our institutions. Is the precarity of the people who work on our campuses an urgent problem? If it is, what are we prepared to do about it?</p>
 </div>
-
+</details>
+<details class="talk" id="talk-2021-10-mutual-aid-and-mcc">
+<summary>
+<span class="talk-date">Oct 2021</span><span class="talk-title">Mutual Aid and MCC: A Way of Understanding Just Economic Relationships</span><span class="talk-venue">MCC at 100: Mennonites, Service, and the Humanitarian Impulse, University of Winnipeg</span>
+</summary>
+<div class="talk-body">
+<p>Mutual aid has long been a lived economic ethic for many Anabaptists, and it has found new life in the Occupy movement and in the networks that sprang up during the pandemic. I set out to trace how the concerns of mutual aid animated the Mennonite Central Committee from its founding, but the pandemic closed off the archives, so this paper brings those concerns into the present instead. I begin with J. Winfield Fretz, the MCC volunteer who brought the term into Anabaptist usage in 1941, and with Balthasar Hubmaier’s earlier community of goods. Mutual aid is notoriously hard to define, so it helps to say what it is not. It is not charity, which sets up givers and receivers, and it is not insurance, which leaves out anyone without the means to pay in. That second distinction has a telling history, since the more than one hundred Mennonite mutual aid funds in Canada and the United States have all but disappeared. Regan de Loggans and Mutual Aid NYC press further than Fretz did, insisting that mutual aid requires long-term commitment to a community and refuses to rank the worth of persons. I close by asking what this might mean for MCC, which runs significantly on charitable giving and has moved toward relief and development. Do Anabaptists still trust their communities to care for them until death? I confess I do not know what that trust would look like. I tentatively suggest that development might mean supporting local communities of mutual aid, though even that would have to guard against the habits of charity and white saviorism.</p>
+</div>
+</details>
+<details class="talk" id="talk-2020-01-degrowing-monetary-policy">
+<summary>
+<span class="talk-date">Jan 2020</span><span class="talk-title">(de)Growing Monetary Policy?: A Christian Engagement with the Degrowth Movement</span><span class="talk-venue">Society for Christian Ethics Annual Meeting</span>
+</summary>
+<div class="talk-body">
+<p>Economists, of all people, might have been expected to lead the turn toward seeing human flourishing as bound up with the rest of creation. Within monetary policy, that turn has barely begun. In this paper I take up the degrowth movement, which grows out of that ecological interdependence and out of a long anxiety about energy costs, and which argues that wealthy economies will shrink whether they plan for it or not. Drawing on Frederick Soddy’s picture of an economy built on financial, productive, and ecological levels, as recovered by Herman Daly and Joan Martinez-Alier, I consider how money and debt borrow against a future the planet cannot supply. Peter Victor’s estimate of a sustainable global GDP per capita of about $3,800, roughly a fifteenth of the figure for the United States, gives a sense of the scale involved. Happiness research and the Yellow Vest protests in France both suggest that such a transition is possible only if its burdens are shared fairly. I then look at proposals for getting there, including Richard Douthwaite’s energy-backed money, work-sharing, and local practices of sharing. For Christian ethicists, degrowth raises hard questions of justice about who profits from ecological harm and who bears its costs. Following Serge Latouche and Jacques Ellul, it also asks for something closer to a loss of faith. Becoming an atheist of growth is a hard pill to swallow, and I am not sure those of us who ought to know better have begun to swallow it.</p>
+</div>
+</details>
+<details class="talk" id="talk-2017-06-designing-engaging-learning-experiences">
+<summary>
+<span class="talk-date">Jun 2017</span><span class="talk-title">Designing Engaging Learning Experiences: Civil Debate over Contentious Material</span><span class="talk-venue">Faculty Development Day, Azusa Pacific University</span>
+</summary>
+<div class="talk-body">
+<p>Contentious topics can be some of the most formative material in a classroom, and some of the hardest to teach well. In this session I shared how I prepare students for civil in-class debates over difficult issues. It begins with clear structures and expectations, including ground rules the class agrees on together, so that everyone knows what the conversation is for and how it will go. Students also prepare on the topic ahead of time, so the debate rests on more than first impressions. Most of all, the session focused on active listening, practiced through the simple habit of saying “I hear you saying…” before responding. None of these habits hold up if they appear for the first time on debate day, so I argued that they need to be practiced in lower-stakes moments well before the debate itself.</p>
+</div>
+</details>
+<details class="talk" id="talk-2016-06-the-places-of-community">
+<summary>
+<span class="talk-date">Jun 2016</span><span class="talk-title">The Places of Community: Economic Valuing and Virtuous Flourishing</span><span class="talk-venue">PhD Student Symposium Challenge, Southeastern Baptist Theological Seminary</span>
+</summary>
+<div class="talk-body">
+<p>Over the last century, Mennonite economic life in the United States has changed drastically, alongside a shift in identity from ethnic Mennonites to white Mennonites and a theological move from nonresistance to nonviolence. Agrarian, community-oriented self-sufficiency has given way to the full range of modern careers, to global trade in place of local resilience, and to individual retirement accounts in place of communal care. Even Mennonite Mutual Aid now goes by Everence. To make sense of these changes I draw on D. Stephen Long’s <em>The Divine Economy</em>, which shows how Weber’s fact-value distinction leaves value to individual will and pushes theology to the margins of economic life. Christian theology, I argue, cannot accept that arrangement. Value only makes sense in relation to a vision of human flourishing, and rightly valuing depends on virtues formed in community. For Anabaptists, that flourishing takes the shape of kenosis, the self-renunciation of Christ, and the virtues it forms include compassion, humility, and simple living. Ched Myers and Eric DeBode’s reading of the parable of the talents, in which the third servant speaks truth to power, unsettles the usual scriptural defense of the economic order. I close by proposing a recovery of commitment to place, broadly understood, as the seedbed for those virtues and for Christian mission. If the flourishing that Scripture names for Abraham and Job would look like poverty by Southern California standards, perhaps a kenotic vision of economic flourishing means learning how to be poor.</p>
+</div>
+</details>
+<script>
+// Open a talk when the page is reached through its link (e.g. research/#talk-...)
+function openTalkFromHash() {
+  const el = location.hash && document.querySelector(location.hash);
+  if (el && el.tagName === "DETAILS") { el.open = true; setTimeout(() => el.scrollIntoView({ block: "start" }), 150); }
+}
+window.addEventListener("hashchange", openTalkFromHash);
+window.addEventListener("load", openTalkFromHash);
+</script>
 
 
 </section>
