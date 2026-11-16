@@ -5,7 +5,7 @@ date: "2016-06-01"
 date-format: "MMMM YYYY"
 event: "PhD Student Symposium Challenge, Southeastern Baptist Theological Seminary"
 categories: [talk, community, economics, virtue]
-# description: "One or two sentences shown in search results and link previews."
+description: "How Mennonite economic life changed over a century, and why a kenotic Anabaptist ethic of value might begin with a commitment to place."
 citation:
   type: speech
   genre: "Conference presentation"
@@ -16,18 +16,10 @@ Presented at the PhD Student Symposium Challenge, hosted by Southeastern Baptist
 
 ## Abstract
 
-<!-- Paste the abstract here. -->
-
-## Slides
-
-<!--
-Put the slides PDF in this folder as slides.pdf, then uncomment:
-
-[Download slides (PDF)](slides.pdf){.btn .btn-outline-primary .btn-sm}
-
-<iframe src="slides.pdf" width="100%" height="520" style="border:1px solid var(--color-divider); border-radius: var(--radius-md);"></iframe>
--->
+Over the last century, Mennonite economic life in the United States has changed drastically, alongside a shift in identity from ethnic Mennonites to white Mennonites and a theological move from nonresistance to nonviolence. Agrarian, community-oriented self-sufficiency has given way to the full range of modern careers, to global trade in place of local resilience, and to individual retirement accounts in place of communal care. Even Mennonite Mutual Aid now goes by Everence. To make sense of these changes I draw on D. Stephen Long's *The Divine Economy*, which shows how Weber's fact-value distinction leaves value to individual will and pushes theology to the margins of economic life. Christian theology, I argue, cannot accept that arrangement. Value only makes sense in relation to a vision of human flourishing, and rightly valuing depends on virtues formed in community. For Anabaptists, that flourishing takes the shape of kenosis, the self-renunciation of Christ, and the virtues it forms include compassion, humility, and simple living. Ched Myers and Eric DeBode's reading of the parable of the talents, in which the third servant speaks truth to power, unsettles the usual scriptural defense of the economic order. I close by proposing a recovery of commitment to place, broadly understood, as the seedbed for those virtues and for Christian mission. If the flourishing that Scripture names for Abraham and Job would look like poverty by Southern California standards, perhaps a kenotic vision of economic flourishing means learning how to be poor.
 
 ## Paper
 
-<!-- Paste the paper text here, or link a PDF the same way as the slides. Delete any section you don't use. -->
+<!-- Paste the paper text here, or put the PDF in this folder as paper.pdf and add:
+[Download paper (PDF)](paper.pdf){.btn .btn-outline-primary .btn-sm}
+Delete this section if you don't post the paper. -->

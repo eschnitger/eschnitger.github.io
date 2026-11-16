@@ -4,8 +4,8 @@ author: "Eric Schnitger"
 date: "2017-06-01"
 date-format: "MMMM YYYY"
 event: "Faculty Development Day, Azusa Pacific University"
-categories: [talk, teaching]
-# description: "One or two sentences shown in search results and link previews."
+categories: [talk, teaching, civil discourse]
+description: "How to prepare students for civil in-class debates over contentious material, with shared ground rules and practiced active listening."
 citation:
   type: speech
   genre: "Conference presentation"
@@ -16,18 +16,10 @@ Presented at Faculty Development Day, Azusa Pacific University, June 2017.
 
 ## Abstract
 
-<!-- Paste the abstract here. -->
-
-## Slides
-
-<!--
-Put the slides PDF in this folder as slides.pdf, then uncomment:
-
-[Download slides (PDF)](slides.pdf){.btn .btn-outline-primary .btn-sm}
-
-<iframe src="slides.pdf" width="100%" height="520" style="border:1px solid var(--color-divider); border-radius: var(--radius-md);"></iframe>
--->
+Contentious topics can be some of the most formative material in a classroom, and some of the hardest to teach well. In this session I shared how I prepare students for civil in-class debates over difficult issues. It begins with clear structures and expectations, including ground rules the class agrees on together, so that everyone knows what the conversation is for and how it will go. Students also prepare on the topic ahead of time, so the debate rests on more than first impressions. Most of all, the session focused on active listening, practiced through the simple habit of saying "I hear you saying…" before responding. None of these habits hold up if they appear for the first time on debate day, so I argued that they need to be practiced in lower-stakes moments well before the debate itself.
 
 ## Paper
 
-<!-- Paste the paper text here, or link a PDF the same way as the slides. Delete any section you don't use. -->
+<!-- Paste the paper text here, or put the PDF in this folder as paper.pdf and add:
+[Download paper (PDF)](paper.pdf){.btn .btn-outline-primary .btn-sm}
+Delete this section if you don't post the paper. -->
