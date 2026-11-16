@@ -111,6 +111,10 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Writings</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="./research/index.html"> 
+<span class="menu-text">Research</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="./reading/index.html"> 
 <span class="menu-text">Reading</span></a>
   </li>  
@@ -164,9 +168,9 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>I once gave a conference talk called “Why Isn’t Everyone Paid Enough?” I’m still working on the answer, now with Python.</p>
+<p>I once gave a conference talk called <a href="./research/talks/2022-01-why-isnt-everyone-paid-enough/index.html">“Why Isn’t Everyone Paid Enough?”</a> I’m still working on the answer, now with Python.</p>
 <p>I wrote a dissertation on complicity in capitalism, taught for a while, and attained the holy grail of American life, health insurance, by working retail. I’m a researcher and analyst interested in economic justice, climate, and what an economy looks like when it stops treating growth as the point. I trained as an ethicist, which taught me to ask better questions. I learned SQL, R, and Tableau so I could test the answers against data, which turned out to be its own rabbit hole.</p>
-<p>This site is where the projects and writing end up. My resume lives on the <a href="./about.html">About page</a>. It’s a fun read.</p>
+<p>This site is where the projects and writing end up. My resume lives on the <a href="./about.html">About page</a>. It’s a fun read. My academic CV and conference talks are on the <a href="./research/index.html">Research page</a>.</p>
 
 
 
@@ -244,7 +248,7 @@ ul.task-list li input[type="checkbox"] {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/eschnitger\.github\.io\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

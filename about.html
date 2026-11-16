@@ -111,6 +111,10 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Writings</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="./research/index.html"> 
+<span class="menu-text">Research</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="./reading/index.html"> 
 <span class="menu-text">Reading</span></a>
   </li>  
@@ -163,6 +167,7 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>My academic CV, conference presentations, and publications are on the <a href="./research/index.html">Research page</a>.</p>
 <!-- The heading is the toggle; styled by .collapsible-section in theme.scss -->
 <details class="collapsible-section">
 <summary>
@@ -278,32 +283,6 @@ Co-chair, Peace and Justice Concerns Committee</li>
 <li><strong>A.B. in Physics, Minor in Mathematics</strong></li>
 <li><strong>Certificates:</strong> Python Programming · Python for Data Science · Analytics in R · Data Science with SQL and Tableau</li>
 </ul>
-</section>
-<section id="conference-presentations" class="level3">
-<h3 class="anchored" data-anchor-id="conference-presentations">Conference Presentations</h3>
-<ul>
-<li>Public Policy and Environmental Justice (Co-Chair), Society for Christian Ethics Annual Meeting, January 2026</li>
-<li>Migration and Climate Justice (Co-Chair), Society for Christian Ethics Annual Meeting, January 2025</li>
-<li>Climate Justice and Public Health (Co-Chair), Society for Christian Ethics Annual Meeting, January 2024</li>
-<li>Contingency, Disparity, and Vulnerability: Why Isn’t Everyone Paid Enough?, Society for Christian Ethics Annual Meeting, January 2022</li>
-<li>Mutual Aid and MCC: A Way of Understanding Just Economic Relationships, MCC at 100: Mennonites, Service, and the Humanitarian Impulse, University of Winnipeg, October 2021</li>
-<li>(de)Growing Monetary Policy?: A Christian Engagement with the Degrowth Movement, Society for Christian Ethics Annual Meeting, January 2020</li>
-<li>Designing Engaging Learning Experiences, Faculty Development Day, Azusa Pacific University, June 2017</li>
-<li>The Places of Community: Economic Valuing and Virtuous Flourishing, PhD Student Symposium Challenge, hosted by Southeastern Baptist Theological Seminary, June 2016</li>
-</ul>
-</section>
-<section id="book-reviews" class="level3">
-<h3 class="anchored" data-anchor-id="book-reviews">Book Reviews</h3>
-<ul>
-<li>Review of <em>Law’s Virtue: Fostering Autonomy and Solidarity in American Society</em>, by Cathleen Kaveny. <em>Journal of the Society of Christian Ethics</em> 35, no. 1 (Spring/Summer 2015): 212-3.</li>
-<li>Review of <em>René Girard and Secular Modernity: Christ, Culture and Crisis</em>, by Scott Cowdell. <em>Political Theology: The Journal of Christian Socialism</em> 16, no. 3 (May 2015): 293-5.</li>
-</ul>
-</section>
-<section id="popular-writings" class="level3">
-<h3 class="anchored" data-anchor-id="popular-writings">Popular Writings</h3>
-<ul>
-<li>“Reflections on Protesting and Faith,” with Frank Scoffield Nellesen. Mennonite Church USA. <a href="https://www.mennoniteusa.org/menno-snapshots/reflections-protesting-and-faith">mennoniteusa.org</a></li>
-</ul>
 </section></details>
 
 
@@ -383,7 +362,7 @@ Co-chair, Peace and Justice Concerns Committee</li>
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/eschnitger\.github\.io\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
